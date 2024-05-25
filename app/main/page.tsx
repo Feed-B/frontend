@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "./_components/SideBar/SideBar";
-import SortFilter from "./_components/\bSortFilter/SortFilter";
+import SortFilter from "./_components/SortFilter/SortFilter";
 
 function page() {
   return (
