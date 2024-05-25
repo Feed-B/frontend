@@ -10,7 +10,7 @@ function SortFilter() {
   };
 
   return (
-    <div className="flex h-6 flex-row items-center gap-3">
+    <div className="mt-5 flex h-6 flex-row items-center gap-3">
       <button
         className={`border-r border-solid pr-2 text-base font-normal leading-4 ${SortState === "최신순" ? "text-black" : "text-gray-400"}`}
         onClick={isChangeSort}>
