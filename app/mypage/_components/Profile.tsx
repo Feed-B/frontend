@@ -11,7 +11,7 @@ function Profile() {
       <div className="relative">
         <img
           src={mockData.imageUrl ? mockData.imageUrl : "/icons/default-profile.svg"}
-          alt="기본 프로필 이미지"
+          alt={mockData.imageUrl ? mockData.imageUrl : "기본 프로필 이미지"}
           className="h-[10rem] w-[10rem] rounded-full"
         />
         <label htmlFor="profile-image">
