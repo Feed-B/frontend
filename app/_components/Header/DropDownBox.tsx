@@ -2,20 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
+import useToggleHook from "@/app/_hooks/useToggleHook";
 
 function DropDownBox() {
-  const [DropDownBoxState, setDropDownBoxState] = useState<boolean>(false);
-
-  const isDropDownBoxOpen = () => {
-    setDropDownBoxState(prev => !prev);
-  };
+  const { isOpen, toggleState } = useToggleHook();
 
   return (
     <>
-      <button className="h-5 w-5" onClick={isDropDownBoxOpen}>
-        {DropDownBoxState ? (
+      <button className="h-5 w-5" onClick={toggleState}>
+        {isOpen ? (
           <>
             <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
           </> //위로향한 화살표 이지미로 바꿔야함
@@ -25,7 +22,7 @@ function DropDownBox() {
           </>
         )}
       </button>
-      {DropDownBoxState && (
+      {isOpen && (
         <div className="absolute right-0 top-24 w-40 rounded-lg border border-solid border-gray-300 py-4 text-black">
           <Link className="block cursor-pointer px-4 py-2" href="/mypage">
             마이페이지
