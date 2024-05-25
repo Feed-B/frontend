@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 
 function DropDownBox() {
   const [DropDownBoxState, setDropDownBoxState] = useState<boolean>(false);
@@ -16,11 +17,11 @@ function DropDownBox() {
       <button className="h-5 w-5" onClick={isDropDownBoxOpen}>
         {DropDownBoxState ? (
           <>
-            <Image src="/icons/headerArrow.svg" alt="open_dropbox" width={20} height={20} priority />
+            <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
           </> //위로향한 화살표 이지미로 바꿔야함
         ) : (
           <>
-            <Image src="/icons/headerArrow.svg" alt="open_dropbox" width={20} height={20} priority />
+            <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
           </>
         )}
       </button>
