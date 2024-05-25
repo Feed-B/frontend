@@ -7,7 +7,7 @@ const mockData = {
 
 function Profile() {
   return (
-    <form className="ml-[50%] mt-10 flex w-[90rem] -translate-x-1/2 items-start justify-start gap-7 rounded-lg border border-solid border-[#d9d9d9] p-10">
+    <form className="flex items-start justify-start gap-7 rounded-lg border border-solid border-[#d9d9d9] p-10">
       <div className="relative">
         <img
           src={mockData.imageUrl ? mockData.imageUrl : "/icons/default-profile.svg"}
