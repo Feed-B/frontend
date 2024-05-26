@@ -1,10 +1,16 @@
+import cardOne from "@/public/images/mock_cardTitle_1.jpg";
+import cardTwo from "@/public/images/mock_cardTitle_2.jpg";
+import cardThree from "@/public/images/mock_cardTitle_3.jpg";
+import cardFour from "@/public/images/mock_cardTitle_4.jpg";
+import cardFive from "@/public/images/mock_cardTitle_5.jpg";
+
 export const mockDataCardList = {
   myProjectList: {
     count: 4,
     data: [
       {
         id: 0,
-        titleImage: "https://i.pinimg.com/564x/67/38/d6/6738d6d168419d471dda2560ded89bd3.jpg",
+        titleImage: cardOne,
         stackList: ["React", "Node.js", "Figma"],
         favoriteCount: 10,
         isFavorite: true,
@@ -15,7 +21,7 @@ export const mockDataCardList = {
       },
       {
         id: 1,
-        titleImage: "https://i.pinimg.com/564x/80/ba/67/80ba6766830b734149ce73d38e779c4e.jpg",
+        titleImage: cardTwo,
         stackList: ["React"],
         favoriteCount: 52,
         isFavorite: false,
@@ -26,7 +32,7 @@ export const mockDataCardList = {
       },
       {
         id: 2,
-        titleImage: "https://i.pinimg.com/564x/69/ea/43/69ea437a5e727efe4cd14334720c98ba.jpg",
+        titleImage: cardThree,
         stackList: ["React"],
         favoriteCount: 52,
         isFavorite: true,
@@ -37,7 +43,7 @@ export const mockDataCardList = {
       },
       {
         id: 3,
-        titleImage: "https://i.pinimg.com/564x/03/5e/8d/035e8d1b74575e63af3e4fa328db3ac7.jpg",
+        titleImage: cardFour,
         stackList: ["React"],
         favoriteCount: 52,
         isFavorite: false,
@@ -48,7 +54,7 @@ export const mockDataCardList = {
       },
       {
         id: 4,
-        titleImage: "https://i.pinimg.com/564x/69/80/49/698049b659c01ff243c408d715f32e73.jpg",
+        titleImage: cardFive,
         stackList: ["React"],
         favoriteCount: 52,
         isFavorite: false,
@@ -64,7 +70,7 @@ export const mockDataCardList = {
     data: [
       {
         id: 0,
-        titleImage: "https://i.pinimg.com/564x/67/38/d6/6738d6d168419d471dda2560ded89bd3.jpg",
+        titleImage: cardOne,
         stackList: ["React", "Node.js", "Figma"],
         favoriteCount: 10,
         isFavorite: true,
@@ -75,7 +81,7 @@ export const mockDataCardList = {
       },
       {
         id: 2,
-        titleImage: "https://i.pinimg.com/564x/69/ea/43/69ea437a5e727efe4cd14334720c98ba.jpg",
+        titleImage: cardThree,
         stackList: ["React"],
         favoriteCount: 52,
         isFavorite: true,

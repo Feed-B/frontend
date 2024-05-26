@@ -29,7 +29,7 @@ function CardList() {
           })
         ) : (
           <h1 className="absolute bottom-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            프로젝트 목록이 없어잉~
+            프로젝트 목록이 없을 때
           </h1>
         )}
       </div>
