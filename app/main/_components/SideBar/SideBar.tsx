@@ -10,7 +10,7 @@ function SideBar() {
   const fullStackData = frontEndStack.concat(backEndStack);
 
   return (
-    <div className="w-56">
+    <div className="mr-5 w-56">
       <StackProvider>
         <StackBox stackDatas={fullStackData} />
         <StackList title="프론트엔드" stackDatas={frontEndStack} />

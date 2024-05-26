@@ -3,7 +3,7 @@
 import React, { MouseEvent, useState } from "react";
 
 function SortFilter() {
-  const [SortState, setSortState] = useState<string>("");
+  const [SortState, setSortState] = useState<string>("최신순");
 
   const isChangeSort = (e: MouseEvent<HTMLButtonElement>) => {
     setSortState(e.currentTarget.textContent || "");

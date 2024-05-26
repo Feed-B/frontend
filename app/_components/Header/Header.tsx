@@ -5,7 +5,7 @@ import DropDownBox from "./DropDownBox";
 function Header() {
   return (
     <header className="  mb-8 h-20 w-full border-b border-solid border-gray-300 text-white">
-      <div className="relative m-0 mx-auto flex h-full max-w-[1440px] flex-row items-center justify-between ">
+      <div className="relative m-0 mx-auto flex h-full max-w-[960px] flex-row items-center justify-between ">
         <div>
           <h1 className="text-black">LOGO</h1>
         </div>
