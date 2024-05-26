@@ -2,22 +2,15 @@ import Card from "./Card";
 import mockDataCardList from "./mockDataCardList";
 
 const projectList = mockDataCardList.myProjectList.data;
-const selectOption = "myProject";
 
 function CardList() {
   return (
     <div className="mt-10 flex flex-col gap-8">
       <div className="flex gap-5 text-lg font-bold">
-        <button
-          type="button"
-          id="myProject"
-          className={`${selectOption === "myProject" ? "text-black" : "text-[#545454]"}`}>
+        <button type="button" id="myProject" className="text-black">
           내 프로젝트{`(${mockDataCardList.myProjectList.count})`}
         </button>
-        <button
-          type="button"
-          id="favoriteProject"
-          className={`${selectOption === "favoriteProject" ? "text-black" : "text-[#d9d9d9]"}`}>
+        <button type="button" id="favoriteProject" className="text-[#d9d9d9]">
           찜{`(${mockDataCardList.favoriteProjectList.count})`}
         </button>
       </div>
