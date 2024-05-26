@@ -3,10 +3,11 @@
 import Image from "next/image";
 import React, { ReactNode } from "react";
 import { useGetStack } from "@/app/main/_context/StackProvider";
+import { ImageType } from "@/app/_types/StackType";
 
 interface StackItemProps {
   children: ReactNode;
-  image: string;
+  image: ImageType;
 }
 
 function StackItem({ children, image }: StackItemProps) {
