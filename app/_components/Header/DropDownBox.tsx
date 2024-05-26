@@ -23,14 +23,14 @@ function DropDownBox() {
         )}
       </button>
       {isOpen && (
-        <div className="absolute right-0 top-24 w-40 rounded-lg border border-solid border-gray-300 py-4 text-black">
-          <Link className="block cursor-pointer px-4 py-2" href="/mypage">
+        <div className="absolute right-0 top-24 w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
+          <Link className="block cursor-pointer p-2" href="/mypage">
             마이페이지
           </Link>
-          <Link className="block cursor-pointer px-4 py-2" href={"/"}>
+          <Link className="block cursor-pointer border-b border-solid border-gray-300  p-2" href={"/"}>
             프로필 정보 수정
           </Link>
-          <Link className="block cursor-pointer px-4 py-2" href={"/"}>
+          <Link className="block cursor-pointer p-2" href={"/"}>
             로그아웃
           </Link>
         </div>
