@@ -1,8 +1,7 @@
 const mockData = {
   nickName: "하늘을 나는 개발자",
   introduction: "반갑습니다~ 하늘을 날고 싶은 개발자입니다~!",
-  imageUrl:
-    "https://i.namu.wiki/i/PD4zDDZPkh_BR0CZzuLoan7V0MekaZCQ-5Ohb7ug1zrr3EiDuYjaF_0LOWBo9aX9_H53Ta3I76rF9M03oGI95sC8r8dYWjUD4z-7vFNfdhy8R1c43SVEOAhWgHFL6e-QKaxi-jvdaB88-CSR5Pbv5Q.webp",
+  imageUrl: "https://i.pinimg.com/564x/f1/10/dc/f110dcc55f8b0b58e67f74175014afac.jpg",
 };
 
 function Profile() {
