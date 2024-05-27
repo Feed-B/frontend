@@ -55,3 +55,5 @@ export const BACK_END_STACK: StackListType[] = [
     iamge: goIcon,
   },
 ];
+
+export const FULL_STACK_DATE = FRONT_END_STACK.concat(BACK_END_STACK);
