@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useToggleHook() {
+const useToggleHook = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleState = () => {
@@ -21,6 +21,6 @@ function useToggleHook() {
     ChangecloseState,
     ChangeopenState,
   };
-}
+};
 
 export default useToggleHook;
