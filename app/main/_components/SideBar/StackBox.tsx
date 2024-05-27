@@ -20,7 +20,7 @@ function StackBox({ stackDatas }: StackBoxProps) {
           return (
             <li className="flex cursor-pointer flex-row items-center gap-1" onClick={() => isDeleteStack(data)} key={i}>
               <Image src={stackItem?.iamge || ""} alt="기술스택 이미지입니다." />
-              <p className=" text-xs font-normal">{data}</p>
+              <p className="text-xs font-normal">{data}</p>
             </li>
           );
         })}
@@ -29,7 +29,7 @@ function StackBox({ stackDatas }: StackBoxProps) {
         <div
           className="mt-3 flex h-7 w-20 cursor-pointer flex-row items-center gap-2 rounded-2xl border border-solid border-[#5177FF] bg-white px-2 py-1"
           onClick={() => setStackState([])}>
-          <p className="  text-sm font-normal text-[#5177FF]">초기화</p>
+          <p className="text-sm font-normal text-[#5177FF]">초기화</p>
           <Image src={resetIcon} alt="기술스택 초기화 버튼입니다." width={16} />
         </div>
       )}
