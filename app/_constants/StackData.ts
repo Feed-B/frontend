@@ -10,7 +10,7 @@ import springIcon from "@/public/icons/spring.svg";
 import goIcon from "@/public/icons/go.svg";
 import { StackListType } from "../_types/StackType";
 
-export const frontEndStack: StackListType[] = [
+export const FRONT_END_STACK: StackListType[] = [
   {
     name: "Javascript",
     iamge: jsIcon,
@@ -37,7 +37,7 @@ export const frontEndStack: StackListType[] = [
   },
 ];
 
-export const backEndStack: StackListType[] = [
+export const BACK_END_STACK: StackListType[] = [
   {
     name: "Nodejs",
     iamge: nodeIcon,
