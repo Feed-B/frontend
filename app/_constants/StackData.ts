@@ -56,4 +56,4 @@ export const BACK_END_STACK: StackListType[] = [
   },
 ];
 
-export const FULL_STACK_DATE = FRONT_END_STACK.concat(BACK_END_STACK);
+export const FULL_STACK_DATA = FRONT_END_STACK.concat(BACK_END_STACK);
