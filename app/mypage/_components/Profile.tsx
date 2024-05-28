@@ -12,7 +12,7 @@ function Profile() {
   return (
     <form className="flex items-start justify-start gap-7 rounded-lg border border-solid border-[#d9d9d9] p-10">
       <div className="relative">
-        <ProfileImage imageUrl={mockData.imageUrl} />?
+        <ProfileImage imageUrl={mockData.imageUrl} />
         <label htmlFor="profile-image">
           <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
             <Image fill src="/icons/add-image.svg" alt="이미지 추가" />
