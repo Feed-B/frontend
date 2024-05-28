@@ -1,5 +1,5 @@
-import Card from "./Card";
-import EmptyCard from "./EmptyCard";
+import Card from "./Card/Card";
+import EmptyCard from "./Card/EmptyCard";
 import mockDataCardList from "./mockDataCardList";
 
 const projectList = mockDataCardList.myProjectList.data;
