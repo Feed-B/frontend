@@ -1,4 +1,4 @@
-import CardList from "./_components/CardList";
+import CardList from "../_components/CardList/CardList";
 import Profile from "./_components/Profile";
 
 function MyPage() {
