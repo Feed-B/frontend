@@ -1,6 +1,6 @@
 import Image from "next/image";
 import profileMock from "@/public/images/mock_profileImage.jpg";
-import defaultProfileImage from "@/public/icons/default-profile.svg";
+import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 
 const mockData = {
   nickName: "하늘을 나는 개발자",
@@ -12,13 +12,7 @@ function Profile() {
   return (
     <form className="flex items-start justify-start gap-7 rounded-lg border border-solid border-[#d9d9d9] p-10">
       <div className="relative">
-        <div className="relative h-[160px] w-[160px] overflow-hidden rounded-full">
-          <Image
-            fill
-            src={mockData.imageUrl ? mockData.imageUrl : defaultProfileImage}
-            alt={mockData.imageUrl ? `${mockData.nickName}의 프로필 이미지` : "기본 프로필 이미지"}
-          />
-        </div>
+        <ProfileImage imageUrl={mockData.imageUrl} />?
         <label htmlFor="profile-image">
           <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
             <Image fill src="/icons/add-image.svg" alt="이미지 추가" />
