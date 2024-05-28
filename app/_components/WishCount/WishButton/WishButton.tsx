@@ -7,9 +7,9 @@ import fullHeartIcon from "@/public/icons/full-heart.svg";
 function WishButton({ isFavorite = false }) {
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
 
-  function handleFavorite() {
+  const handleFavorite = () => {
     setIsFavoriteState(prevState => !prevState);
-  }
+  };
   return (
     <button type="button" className="relative h-6 w-6" onClick={handleFavorite}>
       <Image fill src={isFavoriteState ? fullHeartIcon : emptyHeartIcon} alt="favorite-project" />
