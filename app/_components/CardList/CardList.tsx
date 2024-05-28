@@ -1,3 +1,4 @@
+"use client";
 import Card from "./Card/Card";
 import EmptyCard from "./Card/EmptyCard";
 import mockDataCardList from "./mockDataCardList";
@@ -20,12 +21,15 @@ function CardList() {
         {projectList.length !== 0 ? (
           projectList.map(project => {
             return (
-              <Card
-                key={project.id}
-                projectTitle={project.projectName}
-                subDescription={project.supDescription}
-                titleImage={project.titleImage!}
-              />
+              <>
+                <Card
+                  key={project.id}
+                  stackList={project.stackList}
+                  projectTitle={project.projectName}
+                  subDescription={project.supDescription}
+                  titleImage={project.titleImage!}
+                />
+              </>
             );
           })
         ) : (
