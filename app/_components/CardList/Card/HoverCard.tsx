@@ -14,9 +14,9 @@ function HoverCard({
     <div className="flex p-6">
       <div className="z-20">
         <div className="grid grid-cols-3 gap-2.5">
-          {stackList.map((stack, index) => {
-            return <StackBadge key={index} stack={stack} />;
-          })}
+          {stackList.map((stack, index) => (
+            <StackBadge key={index} stack={stack} />
+          ))}
         </div>
         <div className="absolute bottom-5 right-5 text-white">
           <WishCount isFavorite={isWishProject} wishCount={wishCount} />

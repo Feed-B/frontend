@@ -20,19 +20,7 @@ function CardList() {
       <div className="relative grid grid-cols-4 gap-10 ">
         {projectList.length !== 0 ? (
           projectList.map(project => {
-            return (
-              <>
-                <Card
-                  key={project.id}
-                  isFavorite={project.isFavorite}
-                  wishCount={project.favoriteCount}
-                  stackList={project.stackList}
-                  projectTitle={project.projectName}
-                  subDescription={project.supDescription}
-                  titleImage={project.titleImage!}
-                />
-              </>
-            );
+            return <Card project={project} key={project.id} />;
           })
         ) : (
           <EmptyCard />
