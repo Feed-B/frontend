@@ -12,21 +12,17 @@ function Profile() {
   return (
     <form className="flex items-start justify-start gap-7 rounded-lg border border-solid border-[#d9d9d9] p-10">
       <div className="relative">
-        <Image
-          width={160}
-          height={160}
-          src={mockData.imageUrl ? mockData.imageUrl : defaultProfileImage}
-          alt={mockData.imageUrl ? `${mockData.nickName}의 프로필 이미지` : "기본 프로필 이미지"}
-          className="relative overflow-hidden rounded-full"
-        />
-        <label htmlFor="profile-image">
+        <div className="relative h-[160px] w-[160px] overflow-hidden rounded-full">
           <Image
-            width={40}
-            height={40}
-            src="/icons/add-image.svg"
-            alt="이미지 추가"
-            className="absolute bottom-1 right-0 cursor-pointer"
+            fill
+            src={mockData.imageUrl ? mockData.imageUrl : defaultProfileImage}
+            alt={mockData.imageUrl ? `${mockData.nickName}의 프로필 이미지` : "기본 프로필 이미지"}
           />
+        </div>
+        <label htmlFor="profile-image">
+          <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
+            <Image fill src="/icons/add-image.svg" alt="이미지 추가" />
+          </div>
         </label>
         <input type="file" id="profile-image" className="hidden" />
       </div>

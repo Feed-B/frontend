@@ -55,7 +55,7 @@ export const mockDataCardList = {
       {
         id: 4,
         titleImage: cardFive,
-        stackList: ["React"],
+        stackList: ["React", "Node.js", "Figma", "Spring", "SQL"],
         favoriteCount: 52,
         isFavorite: false,
         projectName: "Hello Been",
