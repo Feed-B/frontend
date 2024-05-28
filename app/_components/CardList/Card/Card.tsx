@@ -6,15 +6,17 @@ interface CardProp {
   subDescription: string;
   titleImage: StaticImageData;
   stackList: string[];
+  wishCount: number;
+  isFavorite: boolean;
   key: number;
 }
 
-function Card({ projectTitle, subDescription, titleImage, stackList, key }: CardProp) {
+function Card({ projectTitle, subDescription, titleImage, stackList, wishCount, isFavorite, key }: CardProp) {
   return (
     <div key={key} className="flex flex-col gap-2.5">
       <div className="group relative min-h-[320px] min-w-[320px] overflow-hidden rounded-md">
         <div className="absolute inset-0 z-30 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <HoverCard stackList={stackList} />
+          <HoverCard isWishProject={isFavorite} wishCount={wishCount} stackList={stackList} />
         </div>
         <Image fill src={titleImage} alt={subDescription} />
       </div>

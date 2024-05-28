@@ -24,6 +24,8 @@ function CardList() {
               <>
                 <Card
                   key={project.id}
+                  isFavorite={project.isFavorite}
+                  wishCount={project.favoriteCount}
                   stackList={project.stackList}
                   projectTitle={project.projectName}
                   subDescription={project.supDescription}
