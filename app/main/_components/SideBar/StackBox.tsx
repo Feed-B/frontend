@@ -4,35 +4,29 @@ import React from "react";
 import Image from "next/image";
 import { useGetStack } from "@/app/main/_context/StackProvider";
 import resetIcon from "@/public/icons/reset.svg";
-import { StackListType } from "@/app/_types/StackType";
+import closeIcon from "@/public/icons/crossLine.svg";
 
-interface StackBoxProps {
-  stackDatas: StackListType[];
-}
-
-function StackBox({ stackDatas }: StackBoxProps) {
+function StackBox() {
   const { stackState, setStackState, isDeleteStack } = useGetStack();
   return (
-    <div className="min-h-44 w-full rounded-2xl bg-[#F8FAFB] p-3">
+    <div className="flex min-h-12 w-full flex-row items-center gap-3 rounded-xl border border-solid border-[#EBEBEB] bg-white p-3">
+      <div
+        className="flex h-7 w-20 cursor-pointer flex-row items-center gap-1 border-r border-solid border-[#EBEBEB] bg-white px-2 py-1"
+        onClick={() => setStackState([])}>
+        <Image src={resetIcon} alt="기술스택 초기화 버튼입니다." width={16} />
+        <p className="text-sm font-normal text-[#5177FF]">초기화</p>
+      </div>
       <ul className="flex flex-row flex-wrap gap-2">
-        {stackState.map((data, i) => {
-          const stackItem = stackDatas.find(item => item.name === data);
-          return (
-            <li className="flex cursor-pointer flex-row items-center gap-1" onClick={() => isDeleteStack(data)} key={i}>
-              <Image src={stackItem?.iamge || ""} alt="기술스택 이미지입니다." />
-              <p className="text-xs font-normal">{data}</p>
-            </li>
-          );
-        })}
+        {stackState.map((data, i) => (
+          <li
+            className="flex cursor-pointer flex-row items-center gap-1 rounded bg-[#EBEBEB] p-1"
+            onClick={() => isDeleteStack(data)}
+            key={i}>
+            <p className="text-xs font-normal">{data}</p>
+            <Image src={closeIcon} alt="기술스택 지우기" width={16} />
+          </li>
+        ))}
       </ul>
-      {stackState.length > 0 && (
-        <div
-          className="mt-3 flex h-7 w-20 cursor-pointer flex-row items-center gap-2 rounded-2xl border border-solid border-[#5177FF] bg-white px-2 py-1"
-          onClick={() => setStackState([])}>
-          <p className="text-sm font-normal text-[#5177FF]">초기화</p>
-          <Image src={resetIcon} alt="기술스택 초기화 버튼입니다." width={16} />
-        </div>
-      )}
     </div>
   );
 }
