@@ -1,5 +1,5 @@
 import Image from "next/image";
-import signUpBar1Icon from "@/public/icons/signUpBar1.svg";
+import firstStepBar from "@/public/icons/firstStepBar.svg";
 
 interface Step1Props {
   nextStep: () => void;
@@ -8,7 +8,7 @@ interface Step1Props {
 function Step1({ nextStep }: Step1Props) {
   return (
     <div className="mx-[auto] mt-[117px] flex max-w-[420px] flex-col items-center">
-      <Image src={signUpBar1Icon} alt="signUpBar" />
+      <Image src={firstStepBar} alt="첫번째회원가입스텝바" />
 
       <div className="mb-[90px] mt-12 text-[#3A3A3A]">닉네임과 소개를 작성해 주세요</div>
 
