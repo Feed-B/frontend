@@ -15,6 +15,7 @@ function Step1({ nextStep }: Step1Props) {
       <div className="flex flex-col">
         <label htmlFor="nickName">닉네임*</label>
         <input
+          placeholder="사용하실 닉네임을 작성해주세요"
           type="text"
           id="nickName"
           className="mb-[69px] h-12 w-[420px] rounded-lg border border-[#d6d6d6] px-3.5 py-4 focus:border-[#0066DA] focus:outline-none"
