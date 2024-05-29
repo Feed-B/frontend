@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import mobileIcon from "@/public/images/mobile.png";
 // import pcIcon from "@/public/images/pc.png";
+import webIcon from "@/public/icons/web.svg";
 
 function ProjectArticle() {
   return (
@@ -18,8 +20,13 @@ function ProjectArticle() {
             프로젝트 본문 부분입니다! 프로젝트 본문 부분입니다! 프로젝트 본문 부분입니다! 프로젝트 본문 부분입니다!
           </p>
         </div>
-        {/* 임시 버튼 (공용 컴포넌트로 대체 예정) */}
-        <button className="w-fit rounded bg-[#EBECFF] p-3">확인하러 가기</button>
+        <Link
+          href={"https://www.naver.com/"}
+          target="_blank"
+          className="flex w-fit items-center gap-1 rounded-xl bg-[#EBECFF] p-3 text-sm text-[#3252FF]">
+          <Image src={webIcon} alt="배포 사이트 바로가기." />
+          <p>확인하러 가기</p>
+        </Link>
       </div>
       <div>
         <Image width="700" src={mobileIcon} alt="앱 서비스 프로젝트." />
