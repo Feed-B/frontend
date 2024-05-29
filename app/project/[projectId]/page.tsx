@@ -1,6 +1,6 @@
 import React from "react";
-import ProjectHeader from "./_components/ProjectHeader";
-import ProjectArticle from "./_components/ProjectArticle";
+import ProjectHeader from "./_components/Project/ProjectHeader";
+import ProjectArticle from "./_components/Project/ProjectArticle";
 
 function Project() {
   return (
