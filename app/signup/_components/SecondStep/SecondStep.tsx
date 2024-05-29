@@ -5,11 +5,11 @@ import checkIcon from "@/public/icons/check.svg";
 import secondStepBarIcon from "@/public/icons/secondStepBar.svg";
 import backArrowIcon from "@/public/icons/backArrow.svg";
 
-interface Step2Props {
+interface SecondStepProps {
   prevStep: () => void;
 }
 
-function Step2({ prevStep }: Step2Props) {
+function Step2({ prevStep }: SecondStepProps) {
   const [checked, setChecked] = useState<{ [key: string]: boolean }>({});
 
   const handleClick = (key: string) => {
