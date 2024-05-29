@@ -9,7 +9,7 @@ function Project() {
   const stackList = ["Javascript", "Typescript", "Java"];
   const linkList = ["https://www.naver.com/", "https://comic.naver.com/index", "https://www.youtube.com/"];
   return (
-    <div className="mx-auto flex w-[960px] flex-col">
+    <div className="mx-auto my-8 flex w-[960px] flex-col">
       <ProjectHeader />
       <hr />
       <ProjectArticle />
