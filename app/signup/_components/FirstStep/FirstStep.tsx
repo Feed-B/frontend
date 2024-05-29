@@ -1,11 +1,11 @@
 import Image from "next/image";
 import firstStepBar from "@/public/icons/firstStepBar.svg";
 
-interface Step1Props {
+interface FirstStepProps {
   nextStep: () => void;
 }
 
-function Step1({ nextStep }: Step1Props) {
+function Step1({ nextStep }: FirstStepProps) {
   return (
     <div className="mx-[auto] mt-[117px] flex max-w-[420px] flex-col items-center">
       <Image src={firstStepBar} alt="첫번째회원가입스텝바" />
