@@ -27,10 +27,10 @@ function Step2({ prevStep }: SecondStepProps) {
           <button
             key={key}
             onClick={() => handleClick(key)}
-            style={{
-              border: `1px solid ${checked[key] ? "#0066DA" : "#d6d6d6"}`,
-            }}
-            className="flex w-[176px] justify-between rounded-lg border px-4 py-4 text-[#757575]">
+            // style={{
+            //   border: `1px solid ${checked[key] ? "#0066DA" : "#d6d6d6"}`,
+            // }}
+            className={`flex w-[176px] justify-between rounded-lg ${checked[key] ? "border border-[#0066DA]" : "border border-[#d6d6d6]"} px-4 py-4 text-[#757575]`}>
             {value}
             {checked[key] && <Image src={checkIcon} alt="체크아이콘" />}
           </button>
