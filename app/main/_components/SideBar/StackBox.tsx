@@ -8,6 +8,7 @@ import closeIcon from "@/public/icons/crossLine.svg";
 
 function StackBox() {
   const { stackState, setStackState, isDeleteStack } = useGetStack();
+
   return (
     <div className="flex min-h-12 w-full flex-row items-center gap-3 rounded-xl border border-solid border-[#EBEBEB] bg-white p-3">
       <div
