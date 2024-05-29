@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Step1 from "./_components/Step1/Step1";
-import Step2 from "./_components/Step2/Step2";
+import FirstStep from "./_components/FirstStep/FirstStep";
+import SecondStep from "./_components/SecondStep/SecondStep";
 
 function SignUpPage() {
   const [step, setStep] = useState(1);
@@ -12,9 +12,9 @@ function SignUpPage() {
 
   switch (step) {
     case 1:
-      return <Step1 nextStep={nextStep} />;
+      return <FirstStep nextStep={nextStep} />;
     case 2:
-      return <Step2 prevStep={prevStep} />;
+      return <SecondStep prevStep={prevStep} />;
     default:
       return null;
   }
