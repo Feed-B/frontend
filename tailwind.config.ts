@@ -10,9 +10,13 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+    },
+    screens: {
+      mb: { max: "767px" },
+      tb: { min: "768px", max: "1199px" },
+      pc: { min: "1200px" },
     },
   },
   plugins: [],
