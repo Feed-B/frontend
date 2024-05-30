@@ -54,14 +54,14 @@ export const FRONT_END_STACK: StackListType[] = [
     iamge: svelteIcon,
   },
   {
-    name: "Nextjs",
+    name: "NextJs",
     iamge: nextIcon,
   },
 ];
 
 export const BACK_END_STACK: StackListType[] = [
   {
-    name: "Nodejs",
+    name: "NodeJs",
     iamge: nodeIcon,
   },
   {
@@ -73,7 +73,7 @@ export const BACK_END_STACK: StackListType[] = [
     iamge: springIcon,
   },
   {
-    name: "Nestjs",
+    name: "NestJs",
     iamge: nestIcon,
   },
   {
