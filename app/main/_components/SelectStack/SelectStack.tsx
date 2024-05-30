@@ -5,7 +5,7 @@ import StackProvider from "../../_context/StackProvider";
 import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
 import SearchBar from "../SearchBar/SearchBar";
-import StackBox from "../SideBar/StackBox";
+import StackBox from "../StackBox/StackBox";
 
 function SelectStack() {
   return (
