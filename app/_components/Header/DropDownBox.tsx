@@ -23,7 +23,7 @@ function DropDownBox() {
         )}
       </button>
       {isOpen && (
-        <div className="absolute right-0 top-24 w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
+        <div className="absolute right-0 top-[65px] w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
           <Link className="block cursor-pointer p-2" href="/mypage">
             마이페이지
           </Link>
