@@ -16,7 +16,7 @@ function StackList({ stackDatas, title }: StackListProps) {
   const { isOpen, toggleState } = useToggleHook();
 
   return (
-    <div className="w-full">
+    <div className="mb-6 w-full">
       <div className="flex w-full cursor-pointer flex-row items-center gap-1 py-2" onClick={toggleState}>
         <h2 className="text-base font-semibold">{title}</h2>
         <button>
@@ -27,7 +27,7 @@ function StackList({ stackDatas, title }: StackListProps) {
           )}
         </button>
       </div>
-      <ul className="mt-4 flex flex-col gap-2">
+      <ul className="mt-2 flex flex-col gap-2">
         {isOpen &&
           stackDatas.map((data, i) => (
             <StackItem key={i} image={data.iamge}>
