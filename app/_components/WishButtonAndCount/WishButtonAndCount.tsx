@@ -1,6 +1,6 @@
 import WishButton from "./WishButton/WishButton";
 
-function WishCount({ isFavorite = false, wishCount }: { isFavorite: boolean; wishCount: number }) {
+function WishButtonAndCount({ isFavorite = false, wishCount }: { isFavorite: boolean; wishCount: number }) {
   return (
     <div className="flex items-center justify-center gap-2">
       <WishButton isFavorite={isFavorite} />
@@ -9,4 +9,4 @@ function WishCount({ isFavorite = false, wishCount }: { isFavorite: boolean; wis
   );
 }
 
-export default WishCount;
+export default WishButtonAndCount;

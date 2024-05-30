@@ -1,5 +1,5 @@
 import Image from "next/image";
-import emptyFileIcon from "@/public/icons/empty-file.svg";
+import emptyFileIcon from "@/public/icons/emptyFile.svg";
 
 function EmptyCard() {
   return (

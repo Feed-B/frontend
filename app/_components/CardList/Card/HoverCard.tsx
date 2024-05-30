@@ -1,4 +1,4 @@
-import WishCount from "../../WishCount/WishCount";
+import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
 import StackBadge from "./StackBadge";
 
 function HoverCard({
@@ -19,7 +19,7 @@ function HoverCard({
           ))}
         </div>
         <div className="absolute bottom-5 right-5 text-white">
-          <WishCount isFavorite={isWishProject} wishCount={wishCount} />
+          <WishButtonAndCount isFavorite={isWishProject} wishCount={wishCount} />
         </div>
       </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black to-[rgba(0,0,0,0)] opacity-90" />
