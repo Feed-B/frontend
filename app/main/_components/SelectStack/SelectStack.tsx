@@ -11,13 +11,13 @@ function SelectStack() {
   return (
     <StackProvider>
       <SideBar />
-      <div>
+      <section>
         <div className="mb-3 flex h-10 flex-row items-center justify-between">
           <SortFilter />
           <SearchBar />
         </div>
         <StackBox />
-      </div>
+      </section>
     </StackProvider>
   );
 }
