@@ -1,6 +1,7 @@
 // "use client";
 
 import React from "react";
+import DropDown from "./_components/DropDown/DropDown";
 
 function page() {
   // const [selectedSize, setSelectedSize] = useState("웹");
@@ -73,15 +74,21 @@ function page() {
         <input
           type="text"
           placeholder="URL"
-          className="border=[#EBEBEB] h-12 w-[420px] rounded-sm border border-solid px-4 py-3"
+          className="h-12 w-[420px] rounded-sm border border-solid border-[#EBEBEB] px-4 py-3"
         />
         <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">추가 링크</h2>
+        <div className="relative flex h-12 w-28 items-center gap-2 border border-solid border-[#EBEBEB] p-2">
+          <DropDown dataType="tool" />
+        </div>
         <input
           type="text"
           placeholder="URL"
           className="border=[#EBEBEB] h-12 w-[420px] rounded-sm border border-solid px-4 py-3"
         />
         <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">팀원</h2>
+        <div className="relative flex h-12 w-28 items-center gap-2 border border-solid border-[#EBEBEB] p-2">
+          <DropDown dataType="job" />
+        </div>
         <input
           type="text"
           placeholder="이름"
