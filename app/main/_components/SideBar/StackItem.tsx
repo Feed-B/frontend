@@ -13,7 +13,7 @@ interface StackItemProps {
 
 function StackItem({ children, image }: StackItemProps) {
   const { stackState, isChangeStack, isDeleteStack } = useGetStack();
-  const { isOpen: stackClicked, toggleState, ChangecloseState, ChangeopenState } = useToggleHook();
+  const { isOpen: stackClicked, toggleState, changecloseState, changeopenState } = useToggleHook();
 
   const clickStack = () => {
     toggleState();
@@ -29,9 +29,9 @@ function StackItem({ children, image }: StackItemProps) {
     const inStack = stackState.includes(children + "");
 
     if (inStack) {
-      ChangeopenState();
+      changeopenState();
     } else {
-      ChangecloseState();
+      changecloseState();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackState]);

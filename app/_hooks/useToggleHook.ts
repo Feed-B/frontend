@@ -7,19 +7,19 @@ const useToggleHook = () => {
     setIsOpen(prev => !prev);
   };
 
-  const ChangecloseState = () => {
+  const changecloseState = () => {
     setIsOpen(false);
   };
 
-  const ChangeopenState = () => {
+  const changeopenState = () => {
     setIsOpen(true);
   };
 
   return {
     isOpen,
     toggleState,
-    ChangecloseState,
-    ChangeopenState,
+    changecloseState,
+    changeopenState,
   };
 };
 
