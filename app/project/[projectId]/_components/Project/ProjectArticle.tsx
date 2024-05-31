@@ -9,7 +9,7 @@ function ProjectArticle() {
   return (
     <article className="flex items-center gap-16 px-8 py-3">
       <div className="flex flex-col gap-2">
-        <p className="text-2xl font-bold text-[#4D5256]">프로젝트_제목</p>
+        <h2 className="text-2xl font-bold text-[#4D5256]">프로젝트_제목</h2>
         <div className="flex flex-col gap-2 text-sm text-[#4D5256]">
           <p>안녕하세요! 프로젝트_소개입니다:)</p>
           <p>
@@ -24,7 +24,7 @@ function ProjectArticle() {
           href={"https://www.naver.com/"}
           target="_blank"
           className="flex w-fit items-center gap-1 rounded-xl bg-[#EBECFF] p-3 text-sm text-[#3252FF]">
-          <Image src={webIcon} alt="배포 사이트 바로가기." />
+          <Image src={webIcon} alt="배포 사이트 바로가기." width={24} priority />
           <p>확인하러 가기</p>
         </Link>
       </div>

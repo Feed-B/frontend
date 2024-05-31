@@ -10,9 +10,9 @@ function ProjectHeader() {
       <div className="flex justify-between gap-2">
         <h1 className="text-2xl font-bold text-[#454545]">프로젝트_제목</h1>
         <div className="flex gap-2">
-          <Image src={favoriteIcon} alt="프로젝트 찜하기." />
-          <Image src={shareIcon} alt="프로젝트 공유하기." />
-          <Image src={kebabIcon} alt="프로젝트 메뉴." />
+          <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority />
+          <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
+          <Image src={kebabIcon} alt="프로젝트 메뉴." width={24} height={32} priority />
         </div>
       </div>
       <div className="flex w-full items-center gap-5">
