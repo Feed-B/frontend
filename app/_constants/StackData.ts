@@ -34,145 +34,178 @@ import { StackListType } from "../_types/StackType";
 
 export const FRONT_END_STACK: StackListType[] = [
   {
+    id: 1,
     name: "Javascript",
-    iamge: jsIcon,
+    image: jsIcon,
   },
   {
+    id: 2,
     name: "Typescript",
-    iamge: tsIcon,
+    image: tsIcon,
   },
   {
+    id: 3,
     name: "React",
-    iamge: reactIcon,
+    image: reactIcon,
   },
   {
+    id: 4,
     name: "Vue",
-    iamge: vueIcon,
+    image: vueIcon,
   },
   {
+    id: 5,
     name: "Svelte",
-    iamge: svelteIcon,
+    image: svelteIcon,
   },
   {
+    id: 6,
     name: "NextJs",
-    iamge: nextIcon,
+    image: nextIcon,
   },
 ];
 
 export const BACK_END_STACK: StackListType[] = [
   {
+    id: 7,
     name: "NodeJs",
-    iamge: nodeIcon,
+    image: nodeIcon,
   },
   {
+    id: 8,
     name: "Java",
-    iamge: javaIcon,
+    image: javaIcon,
   },
   {
+    id: 9,
     name: "Spring",
-    iamge: springIcon,
+    image: springIcon,
   },
   {
+    id: 10,
     name: "NestJs",
-    iamge: nestIcon,
+    image: nestIcon,
   },
   {
+    id: 11,
     name: "Go",
-    iamge: goIcon,
+    image: goIcon,
   },
   {
+    id: 12,
     name: "Kotlin",
-    iamge: kotlinIcon,
+    image: kotlinIcon,
   },
   {
+    id: 13,
     name: "Express",
-    iamge: expressIcon,
+    image: expressIcon,
   },
   {
+    id: 14,
     name: "MySQL",
-    iamge: mysqlIcon,
+    image: mysqlIcon,
   },
   {
+    id: 15,
     name: "MongoDB",
-    iamge: mongoIcon,
+    image: mongoIcon,
   },
   {
+    id: 16,
     name: "Python",
-    iamge: pythonIcon,
+    image: pythonIcon,
   },
   {
+    id: 17,
     name: "Django",
-    iamge: djangoIcon,
+    image: djangoIcon,
   },
   {
+    id: 18,
     name: "php",
-    iamge: phpIcon,
+    image: phpIcon,
   },
   {
+    id: 19,
     name: "GraphQL",
-    iamge: graphqlIcon,
+    image: graphqlIcon,
   },
   {
+    id: 20,
     name: "Firebase",
-    iamge: firebaseIcon,
+    image: firebaseIcon,
   },
 ];
 
 export const MOBILE_STACK: StackListType[] = [
   {
+    id: 21,
     name: "Flutter",
-    iamge: flutterIcon,
+    image: flutterIcon,
   },
   {
+    id: 22,
     name: "Swift",
-    iamge: swiftIcon,
+    image: swiftIcon,
   },
   {
+    id: 12,
     name: "Kotlin",
-    iamge: kotlinIcon,
+    image: kotlinIcon,
   },
   {
+    id: 23,
     name: "ReactNative",
-    iamge: reactnativeIcon,
+    image: reactnativeIcon,
   },
   {
+    id: 24,
     name: "Unity",
-    iamge: unityIcon,
+    image: unityIcon,
   },
 ];
 
 export const ETC_STACK: StackListType[] = [
   {
+    id: 25,
     name: "AWS",
-    iamge: aswIcon,
+    image: aswIcon,
   },
   {
+    id: 26,
     name: "Kubernetes",
-    iamge: kubernetesIcon,
+    image: kubernetesIcon,
   },
   {
+    id: 27,
     name: "Docker",
-    iamge: dockerIcon,
+    image: dockerIcon,
   },
   {
+    id: 28,
     name: "Git",
-    iamge: gitIcon,
+    image: gitIcon,
   },
   {
+    id: 29,
     name: "Figma",
-    iamge: figmaIcon,
+    image: figmaIcon,
   },
   {
+    id: 30,
     name: "Zeplin",
-    iamge: zeplinIcon,
+    image: zeplinIcon,
   },
   {
+    id: 31,
     name: "Jest",
-    iamge: jestIcon,
+    image: jestIcon,
   },
   {
+    id: 32,
     name: "C",
-    iamge: cIcon,
+    image: cIcon,
   },
 ];
 

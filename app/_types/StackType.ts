@@ -7,6 +7,7 @@ export interface ImageType {
 }
 
 export interface StackListType {
+  id: number;
   name: string;
-  iamge: ImageType;
+  image: ImageType;
 }

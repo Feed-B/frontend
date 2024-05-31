@@ -29,8 +29,8 @@ function StackList({ stackDatas, title }: StackListProps) {
       </div>
       <div className={`overflow-hidden duration-500 ease-in-out ${isOpen ? "max-h-screen" : "max-h-0"}`}>
         <ul className="mt-2 flex flex-col gap-2">
-          {stackDatas.map((data, i) => (
-            <StackItem key={i} image={data.iamge}>
+          {stackDatas.map(data => (
+            <StackItem key={data.id} image={data.image}>
               {data.name}
             </StackItem>
           ))}
