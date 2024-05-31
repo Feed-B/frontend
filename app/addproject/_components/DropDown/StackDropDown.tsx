@@ -27,7 +27,7 @@ function StackDropDown({ stackData, handleCheckboxChange }: StackDropDown) {
               onClick={() => handleCheckboxChange(data.id)}
             />
             <label htmlFor={`stack-${data.id}`} className="flex gap-1">
-              <Image src={data.image} alt="스택 이미지" width={20} height={20} />
+              <Image src={data.image} alt="스택 이미지" width={20} />
               <p>{data.name}</p>
             </label>
           </div>
