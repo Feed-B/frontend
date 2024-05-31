@@ -5,7 +5,7 @@ interface ModalPortalProps {
   children: ReactNode;
 }
 
-const ModalPortal: React.FC<ModalPortalProps> = ({ children }) => {
+const ModalPortal = ({ children }: ModalPortalProps) => {
   if (typeof window !== "undefined") {
     const el = document.getElementById("modal");
 
