@@ -1,5 +1,6 @@
 import Image from "next/image";
 import firstStepBar from "@/public/icons/firstStepBar.svg";
+import ExampleButton from "../ExampleButton/ExampleButton";
 
 interface FirstStepProps {
   nextStep: () => void;
@@ -30,6 +31,8 @@ function Step1({ nextStep }: FirstStepProps) {
           className="mb-[200px] h-40 w-[420px] rounded-lg border border-[#d6d6d6] px-3.5 py-4 focus:border-[#0066DA] focus:outline-none"
         />
       </div>
+
+      <ExampleButton />
 
       <button onClick={nextStep} className="w-[118px] rounded-lg bg-[#0066DA] px-[29px] py-3 text-white">
         다음으로
