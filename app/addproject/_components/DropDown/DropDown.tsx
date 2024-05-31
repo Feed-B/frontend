@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
-import useToggleHook from "@/app/_hooks/useToggleHook";
+import useToggleHook from "@/app/_hooks/useToggleHook"; // 병현님 머지 후에 리베이스하기(함수명 이름 바뀜 이슈)
 import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
 import TOOL_DATA from "@/app/_constants/ToolData";
 
@@ -44,9 +44,9 @@ function DropDown({ dataType }: DropDownProps) {
         )}
       </button>
       {isOpen && (
-        <div className="absolute left-0 top-12 w-28 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
-          {Object.entries(data).map(([key, value]) => (
-            <button key={key} className="block cursor-pointer p-2" onClick={() => handleItemClick(value)}>
+        <div className="absolute left-0 top-12 z-10 w-28 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
+          {Object.entries(data).map(([index, value]) => (
+            <button key={index} className="block cursor-pointer p-2" onClick={() => handleItemClick(value)}>
               {value}
             </button>
           ))}

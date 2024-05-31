@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "FeedBd에 오신 걸 환영합니다",
 };
 
-export default function RootLayout({
+export default function addProjectLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
