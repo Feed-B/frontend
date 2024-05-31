@@ -4,7 +4,7 @@ import "@/app/_styles/globals.css";
 
 export const metadata: Metadata = {
   title: "FeedB",
-  description: "FeedBd에 오신 걸 환영합니다",
+  description: "FeedB에서 프로젝트를 공유해보세요.",
 };
 
 export default function addProjectLayout({
