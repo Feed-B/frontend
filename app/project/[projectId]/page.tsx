@@ -5,11 +5,16 @@ import TeamMemberSection from "./_components/Section/TeamMemberSection";
 import StackSection from "./_components/Section/StackSection";
 import LinkSection from "./_components/Section/LinkSection";
 
+const stackList = ["Javascript", "Typescript", "Java"];
+const linkList = [
+  { id: 1, url: "https://www.naver.com/" },
+  { id: 2, url: "https://comic.naver.com/index" },
+  { id: 3, url: "https://www.youtube.com/" },
+];
+
 function Project() {
-  const stackList = ["Javascript", "Typescript", "Java"];
-  const linkList = ["https://www.naver.com/", "https://comic.naver.com/index", "https://www.youtube.com/"];
   return (
-    <div className="mx-auto my-8 flex w-[960px] flex-col">
+    <main className="mx-auto my-8 flex w-[960px] flex-col">
       <ProjectHeader />
       <hr />
       <ProjectArticle />
@@ -17,7 +22,7 @@ function Project() {
       <TeamMemberSection />
       <StackSection stackList={stackList} />
       <LinkSection linkList={linkList} />
-    </div>
+    </main>
   );
 }
 
