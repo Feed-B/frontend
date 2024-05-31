@@ -214,3 +214,10 @@ const combinedStack = [...FRONT_END_STACK, ...BACK_END_STACK, ...MOBILE_STACK, .
 const uniqueStack = Array.from(new Map(combinedStack.map(item => [item.name, item])).values());
 
 export const FULL_STACK_DATA: StackListType[] = uniqueStack;
+
+export const STACK_CATEGORIES = [
+  { id: 1, title: "프론트엔드", stackDatas: FRONT_END_STACK },
+  { id: 2, title: "백엔드", stackDatas: BACK_END_STACK },
+  { id: 3, title: "모바일", stackDatas: MOBILE_STACK },
+  { id: 4, title: "기타", stackDatas: ETC_STACK },
+];
