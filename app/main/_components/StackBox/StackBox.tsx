@@ -18,11 +18,11 @@ function StackBox() {
         <p className="text-sm font-normal text-[#5177FF]">초기화</p>
       </div>
       <ul className="flex flex-row flex-wrap gap-2">
-        {stackState.map((data, i) => (
+        {stackState.map(data => (
           <li
             className="flex cursor-pointer flex-row items-center gap-1 rounded bg-[#EBEBEB] p-1"
             onClick={() => isDeleteStack(data)}
-            key={i}>
+            key={data}>
             <p className="text-xs font-normal">{data}</p>
             <Image src={closeIcon} alt="기술스택 지우기" width={16} />
           </li>
