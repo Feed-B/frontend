@@ -46,7 +46,7 @@ function DropDownSection({
   };
 
   return (
-    <>
+    <section>
       <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">{title}</h2>
       {dropDownType !== "stack" ? (
         <>
@@ -83,7 +83,7 @@ function DropDownSection({
           <UseStack stackList={["Javascript"]} /> {/* mock data 작성 */}
         </>
       )}
-    </>
+    </section>
   );
 }
 
