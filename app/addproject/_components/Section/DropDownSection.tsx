@@ -5,6 +5,7 @@ import Image from "next/image";
 import deleteIcon from "@/public/icons/delete.svg";
 import notDeleteIcon from "@/public/icons/notDelete.svg";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
+import UseStack from "@/app/_components/Stack/UseStack";
 
 interface DropDownSectionProps {
   title: string;
@@ -79,7 +80,7 @@ function DropDownSection({
       ) : (
         <>
           <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
-          <div className="flex w-[960px] gap-2 rounded-xl border border-solid border-[#EBEBEB] p-3">JavaScript</div>
+          <UseStack stackList={["Javascript"]} /> {/* mock data 작성 */}
         </>
       )}
     </>
