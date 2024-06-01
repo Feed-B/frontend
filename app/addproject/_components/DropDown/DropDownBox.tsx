@@ -30,12 +30,6 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
   const [item, setItem] = useState(data && Object.values(data)[0]);
   const [checkStacks, setCheckStacks] = useState<Set<number>>(new Set());
 
-  // 체크박스 확인용
-  Array.from(checkStacks).map(id => {
-    const stack = stackData.find(stack => stack.id === id);
-    console.log(stack && stack.name);
-  });
-
   const handleItemClick = (value: string) => {
     setItem(value);
     toggleState();
@@ -52,6 +46,12 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       return newSelectedStacks;
     });
   };
+
+  // 체크박스 확인용
+  Array.from(checkStacks).map(id => {
+    const stack = stackData.find(stack => stack.id === id);
+    console.log(stack && stack.name);
+  });
 
   return (
     <div
