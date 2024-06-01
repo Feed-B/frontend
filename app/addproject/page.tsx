@@ -21,7 +21,7 @@ function page() {
           inputWidth="w-full"
         />
         <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
-        {/* 이미지는 승훈님이 제작하신 컴포넌트로 변경 예정 */}
+        {/* 이미지는 승훈님이 제작하신 input 컴포넌트 사용해서 변경 예정 */}
         <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">이미지</h2>
         <div className="flex gap-3">
           <label>
@@ -61,7 +61,7 @@ function page() {
           dropDownWidth="w-44"
         />
         <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <button className="mt-6 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
             등록하기
           </button>

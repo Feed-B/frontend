@@ -33,6 +33,14 @@ function StackDropDown({ stackData, handleCheckboxChange }: StackDropDown) {
           </div>
         ))}
       </div>
+      <div className="flex items-center gap-4">
+        <button className="mt-6 flex-1 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
+          초기화
+        </button>
+        <button className="mt-6 flex-1 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
+          결과보기
+        </button>
+      </div>
     </div>
   );
 }
