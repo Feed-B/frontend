@@ -5,13 +5,15 @@ import Link from "next/link";
 import React from "react";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import Profile from "../Profile/Profile";
 
 function DropDownBox() {
   const { isOpen, toggleState } = useToggleHook();
 
   return (
-    <>
-      <button className="h-5 w-5" onClick={toggleState}>
+    <div className="flex cursor-pointer items-center gap-2" onClick={toggleState}>
+      <Profile />
+      <button className="h-5 w-5">
         {isOpen ? (
           <>
             <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
@@ -35,7 +37,7 @@ function DropDownBox() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

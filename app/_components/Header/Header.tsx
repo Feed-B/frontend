@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import uploadIcon from "@/public/icons/upload.svg";
-import Profile from "../Profile/Profile";
+
 import DropDownBox from "./DropDownBox";
 
 function Header() {
@@ -19,7 +19,6 @@ function Header() {
             <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
             <span>업로드</span>
           </Link>
-          <Profile />
           <DropDownBox />
         </div>
       </div>
