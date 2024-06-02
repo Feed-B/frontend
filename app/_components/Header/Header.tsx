@@ -9,12 +9,12 @@ function Header() {
   return (
     <header className="h-16 w-full border-b border-solid border-gray-300 py-2 text-white">
       <div className="relative m-0 mx-auto flex h-11 max-w-[1400px] items-center justify-between">
-        <div>
+        <Link href="/main">
           <h1 className="h-full text-black">LOGO</h1>
-        </div>
+        </Link>
         <div className="flex h-full items-center gap-4">
           <Link
-            href="/"
+            href="/addproject"
             className="flex h-full w-[124px] items-center justify-center gap-1 rounded-lg bg-[#3C67E7] text-white">
             <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
             <span>업로드</span>
