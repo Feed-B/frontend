@@ -5,7 +5,7 @@ import { SearchProject } from "./SearchAction";
 
 function SearchBar() {
   return (
-    <div className="flex h-8 w-48 flex-row items-center gap-2 rounded-[20px] border border-solid border-[#D6D6D6] p-2">
+    <div className="flex h-8 w-48 items-center gap-2 rounded-[20px] border border-solid border-[#D6D6D6] p-2">
       <Image src={searchIcon} alt="검색 기능입니다." width={16} priority />
       <form action={SearchProject}>
         <input

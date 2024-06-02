@@ -8,7 +8,7 @@ import DropDownBox from "./DropDownBox";
 function Header() {
   return (
     <header className="h-16 w-full border-b border-solid border-gray-300 py-2 text-white">
-      <div className="relative m-0 mx-auto flex h-11 max-w-[1400px] flex-row items-center justify-between">
+      <div className="relative m-0 mx-auto flex h-11 max-w-[1400px] items-center justify-between">
         <div>
           <h1 className="h-full text-black">LOGO</h1>
         </div>

@@ -12,7 +12,7 @@ function SelectStack() {
     <StackProvider>
       <SideBar />
       <section>
-        <div className="mb-3 flex h-10 flex-row items-center justify-between">
+        <div className="mb-3 flex h-10 items-center justify-between">
           <SortFilter />
           <SearchBar />
         </div>
