@@ -16,7 +16,7 @@ function Header() {
           <Link
             href="/"
             className="flex h-full w-[124px] items-center justify-center gap-1 rounded-lg bg-[#3C67E7] text-white">
-            <Image src={uploadIcon} alt="프로젝트 업로드" width={20} />
+            <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
             <span>업로드</span>
           </Link>
           <Profile />
