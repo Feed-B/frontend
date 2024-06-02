@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import profileIcon from "@/public/icons/profile.svg";
+import defaultProfileImage from "@/public/icons/default-profile.svg";
 
 function Profile() {
   return (
-    <div className="custom-width flex h-9 w-9 items-center justify-center rounded-full bg-gray-200">
-      <Image src={profileIcon} alt="profile" width={20} priority />
+    <div className="flex items-center justify-center ">
+      <Image src={defaultProfileImage} alt="profile" width={36} priority />
     </div>
   );
 }
