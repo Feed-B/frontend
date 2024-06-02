@@ -4,6 +4,7 @@ import ProjectArticle from "./_components/Project/ProjectArticle";
 import TeamMemberSection from "./_components/Section/TeamMemberSection";
 import StackSection from "./_components/Section/StackSection";
 import LinkSection from "./_components/Section/LinkSection";
+import RatingSection from "./_components/Section/RatingSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [
@@ -14,14 +15,17 @@ const linkList = [
 
 function Project() {
   return (
-    <main className="mx-auto my-8 flex w-[960px] flex-col">
-      <ProjectHeader />
-      <hr />
-      <ProjectArticle />
-      <hr />
-      <TeamMemberSection />
-      <StackSection stackList={stackList} />
-      <LinkSection linkList={linkList} />
+    <main className="mx-auto my-8 flex w-[960px] flex-col gap-16">
+      <>
+        <ProjectHeader />
+        <hr />
+        <ProjectArticle />
+        <hr />
+        <TeamMemberSection />
+        <StackSection stackList={stackList} />
+        <LinkSection linkList={linkList} />
+      </>
+      <RatingSection />
     </main>
   );
 }
