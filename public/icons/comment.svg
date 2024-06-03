@@ -1,0 +1,10 @@
+<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Chat bubble outline" clip-path="url(#clip0_145_12896)">
+<path id="Vector" d="M17.1667 1.6665H3.83341C2.91675 1.6665 2.16675 2.4165 2.16675 3.33317V18.3332L5.50008 14.9998H17.1667C18.0834 14.9998 18.8334 14.2498 18.8334 13.3332V3.33317C18.8334 2.4165 18.0834 1.6665 17.1667 1.6665ZM17.1667 13.3332H5.50008L3.83341 14.9998V3.33317H17.1667V13.3332Z" fill="#454545"/>
+</g>
+<defs>
+<clipPath id="clip0_145_12896">
+<rect width="20" height="20" fill="white" transform="translate(0.5)"/>
+</clipPath>
+</defs>
+</svg>
