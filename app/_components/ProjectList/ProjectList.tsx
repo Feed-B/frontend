@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
-import EmptyCard from "./Card/EmptyCard";
 import ProjectCardInfo from "./ProjectCardInfo";
-import ProjectCard from "./Card/Card";
+import ProjectCard from "./ProjectCard/ProjectCard";
+import EmptyCard from "./ProjectCard/EmptyCard";
 
 interface ProjectListProps {
   id: number;
