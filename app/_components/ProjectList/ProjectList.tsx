@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import formatViewCount from "@/app/_utils/formViewCount";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
@@ -12,6 +13,7 @@ interface ProjectListProps {
   projectName: string;
   subDescription: string;
   description: string;
+  viewCount: number;
 }
 
 function ProjectList({ projectList }: { projectList: ProjectListProps[] }) {
@@ -22,7 +24,11 @@ function ProjectList({ projectList }: { projectList: ProjectListProps[] }) {
           return (
             <div className="flex flex-col gap-2.5" key={project.id}>
               <ProjectCard project={project} />
-              <ProjectCardInfo projectTitle={project.projectName} projectSubDescription={project.subDescription} />
+              <ProjectCardInfo
+                projectTitle={project.projectName}
+                projectSubDescription={project.subDescription}
+                viewCount={formatViewCount(project.viewCount)}
+              />
             </div>
           );
         })
