@@ -17,8 +17,6 @@ interface DropDownProps {
 }
 
 function DropDown({ dataType, dropDownWidth }: DropDownProps) {
-  const { isOpen, toggleState } = useToggleHook();
-
   const dataMap: Record<string, Record<string, string>> = {
     job: JOB_CATEGORIES,
     tool: TOOL_DATA,
@@ -26,6 +24,8 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
 
   const data = dataMap[dataType];
   const stackData = FULL_STACK_DATA;
+
+  const { isOpen, toggleState } = useToggleHook();
 
   const [item, setItem] = useState(data && Object.values(data)[0]);
   const [checkStacks, setCheckStacks] = useState<Set<number>>(new Set());
