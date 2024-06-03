@@ -14,7 +14,7 @@ function ProfileProjectList() {
           찜 {`(${mockDataCardList.favoriteProjectList.count})`}
         </ProjectCategoryButton>
       </ProjectListCategory>
-      <ProjectList projectList={mockDataCardList.myProjectList.data} />
+      <ProjectList projectList={mockDataCardList.myProjectList.data} gridCount={4} />
     </div>
   );
 }

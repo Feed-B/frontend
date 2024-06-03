@@ -3,7 +3,6 @@ import formatViewCount from "@/app/_utils/formViewCount";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
-import formatViewCount from "@/app/_utils/formViewCount";
 
 interface ProjectListResponse {
   id: number;
@@ -17,9 +16,14 @@ interface ProjectListResponse {
   viewCount: number;
 }
 
-function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
+interface ProjectListProps {
+  projectList: ProjectListResponse[];
+  gridCount?: number;
+}
+
+function ProjectList({ projectList, gridCount = 4 }: ProjectListProps) {
   return (
-    <div className="relative grid grid-cols-4 gap-10">
+    <div className={`relative grid grid-cols-${gridCount} gap-10`}>
       {projectList.length !== 0 ? (
         projectList.map(project => {
           return (
