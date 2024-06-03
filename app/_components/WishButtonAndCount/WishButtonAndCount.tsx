@@ -25,7 +25,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount }: WishButtonAndCoun
   return (
     <div className="flex items-center justify-center gap-0.5">
       <button type="button" className="relative h-4 w-4" onClick={handleFavorite}>
-        <Image fill src={favoriteState ? fullHeartIcon : emptyHeartIcon} alt="favorite-project" />
+        <Image fill src={favoriteState.isFavorite ? fullHeartIcon : emptyHeartIcon} alt="favorite-project" />
       </button>
       <p className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? "text-[#FF0000]" : "text-white"} `}>
         {favoriteState.wishCountState}
