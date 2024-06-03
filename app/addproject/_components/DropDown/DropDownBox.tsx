@@ -59,13 +59,9 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       {dataType === "stack" ? "사용한 기술스택" : item}
       <button className="h-5 w-5" onClick={toggleState}>
         {isOpen ? (
-          <>
-            <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
-          </>
+          <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
         ) : (
-          <>
-            <Image src={smallArrowIcon} alt="드롭다운 닫기" width={20} height={20} priority />
-          </>
+          <Image src={smallArrowIcon} alt="드롭다운 닫기" width={20} height={20} priority />
         )}
       </button>
       {isOpen && (
