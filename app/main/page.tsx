@@ -5,7 +5,7 @@ import SelectStack from "./_components/SelectStack/SelectStack";
 
 function MainPage() {
   return (
-    <main className="mx-auto mt-[100px] grid w-[1200px] grid-cols-[230px_minmax(960px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)]">
+    <main className="mx-auto mt-[100px] grid w-[1200px] grid-cols-[230px_minmax(960px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)] gap-y-8">
       <SelectStack />
       <ProjectList projectList={mockDataCardList.myProjectList.data} />
     </main>
