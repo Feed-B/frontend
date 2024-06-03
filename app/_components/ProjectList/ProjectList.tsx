@@ -16,14 +16,9 @@ interface ProjectListResponse {
   viewCount: number;
 }
 
-interface ProjectListProps {
-  projectList: ProjectListResponse[];
-  gridCount?: number;
-}
-
-function ProjectList({ projectList, gridCount = 4 }: ProjectListProps) {
+function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
   return (
-    <div className={`relative grid grid-cols-${gridCount} gap-10`}>
+    <div className="relative grid grid-cols-4 gap-10">
       {projectList.length !== 0 ? (
         projectList.map(project => {
           return (
