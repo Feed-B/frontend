@@ -4,6 +4,7 @@ import ProjectArticle from "./_components/Project/ProjectArticle";
 import TeamMemberSection from "./_components/Section/TeamMemberSection";
 import StackSection from "./_components/Section/StackSection";
 import LinkSection from "./_components/Section/LinkSection";
+import CommentModal from "./_components/CommnetModal/CommentModal";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [
@@ -22,6 +23,7 @@ function Project() {
       <TeamMemberSection />
       <StackSection stackList={stackList} />
       <LinkSection linkList={linkList} />
+      <CommentModal />
     </main>
   );
 }
