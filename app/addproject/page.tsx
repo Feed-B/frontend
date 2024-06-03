@@ -14,17 +14,25 @@ function page() {
           inputType="text"
           placeholder="프로젝트 이름을 작성해 주세요"
           inputWidth="w-full"
+          inputName="projectTitle"
         />
         <InputSection
           title="소개"
           inputType="text"
           placeholder="프로젝트에 대한 소개를 작성 주세요"
           inputWidth="w-full"
+          inputName="projectDescription"
         />
         <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
         <ImageSection title="썸네일" />
         <ImageSection title="이미지" />
-        <InputSection title="서비스 링크" inputType="text" placeholder="URL" inputWidth="w-[420px]" />
+        <InputSection
+          title="서비스 링크"
+          inputType="text"
+          placeholder="URL"
+          inputWidth="w-[420px]"
+          inputName="serviceLink"
+        />
         <DropDownSection
           title="추가 링크"
           inputType="text"
