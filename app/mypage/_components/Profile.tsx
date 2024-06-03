@@ -1,6 +1,7 @@
 import Image from "next/image";
 import profileMock from "@/public/images/mock_profileImage.jpg";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import addImageIcon from "@/public/icons/addImage.svg";
 
 const mockData = {
   nickName: "하늘을 나는 개발자",
@@ -15,7 +16,7 @@ function Profile() {
         <ProfileImage imageUrl={mockData.imageUrl} />
         <label htmlFor="profile-image">
           <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
-            <Image fill src="/icons/add-image.svg" alt="이미지 추가" />
+            <Image fill src={addImageIcon} alt="이미지 추가" />
           </div>
         </label>
         <input type="file" id="profile-image" className="hidden" />
