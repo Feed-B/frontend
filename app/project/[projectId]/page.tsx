@@ -1,10 +1,11 @@
 import React from "react";
 import ProjectHeader from "./_components/Project/ProjectHeader";
 import ProjectArticle from "./_components/Project/ProjectArticle";
-import TeamMemberSection from "./_components/Section/TeamMemberSection";
-import StackSection from "./_components/Section/StackSection";
-import LinkSection from "./_components/Section/LinkSection";
-import RatingSection from "./_components/Section/RatingSection";
+import TeamMemberSection from "./_components/ProjectSection/TeamMemberSection";
+import StackSection from "./_components/ProjectSection/StackSection";
+import LinkSection from "./_components/ProjectSection/LinkSection";
+import RatingSection from "./_components/ProjectSection/RatingSection";
+import WriteCommentSection from "./CommentSection/WriteCommentSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [
@@ -26,6 +27,7 @@ function Project() {
         <LinkSection linkList={linkList} />
       </div>
       <RatingSection />
+      <WriteCommentSection />
     </main>
   );
 }
