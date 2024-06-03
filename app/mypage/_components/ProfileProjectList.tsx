@@ -5,7 +5,7 @@ import ProjectCategoryButton from "./ProjectCategoryButton";
 
 function ProfileProjectList() {
   return (
-    <div className="mt-10 flex flex-col gap-8">
+    <div className="mt-10 flex flex-col gap-5">
       <ProjectListCategory>
         <ProjectCategoryButton isSelect={true}>
           내 프로젝트 {`(${mockDataCardList.myProjectList.count})`}
