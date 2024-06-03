@@ -23,7 +23,7 @@ function HoverCard({
             <WishButtonAndCount isFavorite={isWishProject} wishCount={wishCount} />
           </div>
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black to-[rgba(0,0,0,0)] opacity-90" />
+        <div className="from-black absolute inset-0 z-10 bg-gradient-to-t to-[rgba(0,0,0,0)] opacity-90" />
       </div>
     </div>
   );

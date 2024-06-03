@@ -1,8 +1,8 @@
 import { StaticImageData } from "next/image";
-import formatViewCount from "@/app/_utils/formViewCount";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
+import formatViewCount from "@/app/_utils/formViewCount";
 
 interface ProjectListResponse {
   id: number;
