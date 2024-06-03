@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import emptyHeartIcon from "@/public/icons/empty-heart.svg";
-import fullHeartIcon from "@/public/icons/full-heart.svg";
+import emptyHeartIcon from "@/public/icons/emptyHeart.svg";
+import fullHeartIcon from "@/public/icons/fullHeart.svg";
 
 function WishButton({ isFavorite = false }) {
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
