@@ -18,6 +18,7 @@ export const mockDataCardList = {
         subDescription: "간단한 프로젝트입니다.",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 100,
       },
       {
         id: 1,
@@ -29,6 +30,7 @@ export const mockDataCardList = {
         subDescription: "심오한 프로젝트입니다.",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 53,
       },
       {
         id: 2,
@@ -40,6 +42,7 @@ export const mockDataCardList = {
         subDescription: "어지러운 프로젝트입니다.",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 4,
       },
       {
         id: 3,
@@ -51,6 +54,7 @@ export const mockDataCardList = {
         subDescription: "어려운 프로젝트입니다. 사실 할 말 많은데 여기는 너무 짧게",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 1,
       },
       {
         id: 4,
@@ -62,6 +66,7 @@ export const mockDataCardList = {
         subDescription: "쉬운 프로젝트입니다. ",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 100000,
       },
     ],
   },
@@ -78,6 +83,7 @@ export const mockDataCardList = {
         subDescription: "간단한 프로젝트입니다.",
         description:
           "프로젝트에 대한 설명을 아주 약간씩만 할 건데요, 어지럽지만 일단 해보도록 하겠습니다. 감사합니다. 길진 않지만 길지 않다고 욕하지 말아주십쇼 ㅎㅅㅎ",
+        viewCount: 1000000,
       },
       {
         id: 2,
