@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import defaultProfileImage from "@/public/icons/default-profile.svg";
+import defaultProfileImage from "@/public/icons/defaultProfile.svg";
 
 function ProfileImage({ imageUrl }: { imageUrl: string | StaticImageData }) {
   return (
