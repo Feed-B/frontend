@@ -13,17 +13,23 @@ function InputSection({ title, inputType, placeholder, inputName, inputWidth, te
   return (
     <section>
       <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">{title}</h2>
+      <label htmlFor={inputName} className="mb-4 mt-6 text-base font-bold text-[#4D5256]">
+        {title}
+      </label>
       {!textArea ? (
         <input
           type={inputType}
           placeholder={placeholder}
           className={`${inputWidth} h-12 rounded-sm border border-solid border-[#EBEBEB] px-4 py-3`}
           name={inputName}
+          id={inputName}
         />
       ) : (
         <textarea
           className="h-52 w-full resize-none rounded-sm border border-solid border-[#EBEBEB] px-4 py-3"
           placeholder={placeholder}
+          name={inputName}
+          id={inputName}
         />
       )}
     </section>
