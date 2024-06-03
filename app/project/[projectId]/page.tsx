@@ -16,7 +16,7 @@ const linkList = [
 function Project() {
   return (
     <main className="mx-auto my-8 flex w-[960px] flex-col gap-16">
-      <>
+      <div>
         <ProjectHeader />
         <hr />
         <ProjectArticle />
@@ -24,7 +24,7 @@ function Project() {
         <TeamMemberSection />
         <StackSection stackList={stackList} />
         <LinkSection linkList={linkList} />
-      </>
+      </div>
       <RatingSection />
     </main>
   );
