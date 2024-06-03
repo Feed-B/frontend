@@ -15,17 +15,14 @@ function DropDownBox() {
       <Profile />
       <button className="h-5 w-5">
         {isOpen ? (
-          <>
-            <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
-          </> //위로향한 화살표 이지미로 바꿔야함
+          <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
         ) : (
-          <>
-            <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
-          </>
+          //위로향한 화살표 이지미로 바꿔야함
+          <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
         )}
       </button>
       {isOpen && (
-        <div className="absolute right-0 top-[65px] w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black">
+        <div className="text-black absolute right-0 top-[65px] w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm">
           <Link className="block cursor-pointer p-2" href="/mypage">
             마이페이지
           </Link>
