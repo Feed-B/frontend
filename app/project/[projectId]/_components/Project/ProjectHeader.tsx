@@ -2,10 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import favoriteIcon from "@/public/icons/favorite.svg";
 import shareIcon from "@/public/icons/share.svg";
 import kebabIcon from "@/public/icons/kebab.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import WishCount from "@/app/_components/WishCount/WishCount";
 import KebabDropDown from "./KebabDropDown";
 
 //임시 ID
@@ -19,7 +19,10 @@ function ProjectHeader() {
       <div className="flex justify-between gap-2">
         <h1 className="text-2xl font-bold text-[#454545]">프로젝트_제목</h1>
         <div className="flex gap-2">
-          <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority />
+          {/* <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority /> */}
+          <div className="w-10 text-black">
+            <WishCount isFavorite={true} wishCount={3} />
+          </div>
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
           <Image src={kebabIcon} alt="프로젝트 메뉴." width={24} height={32} priority onClick={toggleState} />
           {isOpen && <KebabDropDown projectId={projectId} />}
