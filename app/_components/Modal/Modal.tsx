@@ -1,10 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ModalProps {
-  children: ReactNode;
+interface ModalProps extends PropsWithChildren {
   openModal: boolean;
   handleModalClose: () => void;
   className?: string;
@@ -23,10 +22,9 @@ function Modal({ children, openModal, handleModalClose, className }: ModalProps)
   };
 
   return (
-    <>
-      <div className="bg-black-overlay fixed left-0 top-0 h-full w-full" onClick={handleOverlayClick} />
+    <div className="fixed left-0 top-0 h-full w-full bg-black-overlay" onClick={handleOverlayClick}>
       <div className={`${modalClass} ${openModal ? open : ""}`}>{children}</div>
-    </>
+    </div>
   );
 }
 
