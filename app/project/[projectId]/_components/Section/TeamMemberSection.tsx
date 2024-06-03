@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import profileIcon from "@/public/icons/default-profile.svg";
+import profileIcon from "@/public/icons/defaultProfile.svg";
 
 //mock data
 const teamMemberList = [
