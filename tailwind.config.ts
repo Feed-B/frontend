@@ -14,6 +14,7 @@ const config: Config = {
       },
       colors: {
         black: {
+          DEFAULT: "#000",
           overlay: "rgba(0, 0, 0, 0.70)",
         },
       },
