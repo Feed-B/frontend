@@ -5,8 +5,8 @@ import TeamMemberSection from "./_components/ProjectSection/TeamMemberSection";
 import StackSection from "./_components/ProjectSection/StackSection";
 import LinkSection from "./_components/ProjectSection/LinkSection";
 import RatingSection from "./_components/ProjectSection/RatingSection";
-import WriteCommentSection from "./CommentSection/WriteCommentSection";
-import CommentListSection from "./CommentSection/CommentListSection";
+import WriteCommentSection from "./_components/CommentSection/WriteCommentSection";
+import CommentListSection from "./_components/CommentSection/CommentListSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [

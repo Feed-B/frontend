@@ -1,8 +1,8 @@
 import React from "react";
-import CommentProfile from "../_components/CommentProfile/CommentProfile";
-import CommentCount from "../_components/CommentCount/CommentCount";
-import TotalStar from "../_components/TotalStar/TotalStar";
-import Pagination from "../_components/Pagination/Pagination";
+import CommentProfile from "../Comment/CommentProfile";
+import CommentCount from "../Comment/CommentCount";
+import TotalStar from "../Comment/TotalStar";
+import Pagination from "../Comment/Pagination";
 
 function CommentListSection() {
   return (
