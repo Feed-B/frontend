@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { InputHTMLAttributes, useState } from "react";
 import Image from "next/image";
 import deleteIcon from "@/public/icons/delete.svg";
 import notDeleteIcon from "@/public/icons/notDelete.svg";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import UseStack from "@/app/_components/Stack/UseStack";
 
-interface DropDownSectionProps {
+interface DropDownSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
-  inputType?: string;
-  placeholder?: string;
-  inputName?: string;
   inputWidth?: string;
   dropDownType: string;
   dropDownWidth?: string;
@@ -24,9 +21,9 @@ interface InputBox {
 
 function DropDownSection({
   title,
-  inputType,
+  type,
   placeholder,
-  inputName,
+  name,
   inputWidth,
   dropDownType,
   dropDownWidth,
@@ -47,17 +44,20 @@ function DropDownSection({
 
   return (
     <section>
-      <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">{title}</h2>
+      <label htmlFor={name} className="mb-4 mt-6 flex text-base font-bold text-[#4D5256]">
+        {title}
+      </label>
       {dropDownType !== "stack" ? (
         <>
           {additionalInput.map(item => (
             <div key={item.id} className="mb-2 flex gap-1">
               <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
               <input
-                type={inputType}
+                type={type}
                 placeholder={placeholder}
                 className={`${inputWidth} h-12 rounded-sm border border-solid border-[#EBEBEB] px-4 py-3`}
-                name={inputName}
+                name={name}
+                id={name}
               />
               <button
                 type="button"
