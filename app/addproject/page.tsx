@@ -51,7 +51,9 @@ function page() {
         />
         <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
         <div className="flex justify-center">
-          <button className="mt-6 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
+          <button
+            type="button"
+            className="mt-6 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
             등록하기
           </button>
         </div>

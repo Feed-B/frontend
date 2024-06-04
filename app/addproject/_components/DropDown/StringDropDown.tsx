@@ -9,7 +9,7 @@ function StringDropDown({ handleItemClick, data }: Props) {
   return (
     <>
       {Object.entries(data).map(([index, value]) => (
-        <button key={index} className="block cursor-pointer p-2" onClick={() => handleItemClick(value)}>
+        <button type="button" key={index} className="block cursor-pointer p-2" onClick={() => handleItemClick(value)}>
           {value}
         </button>
       ))}

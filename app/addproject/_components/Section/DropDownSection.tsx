@@ -60,6 +60,7 @@ function DropDownSection({
                 name={inputName}
               />
               <button
+                type="button"
                 className="flex h-12 w-12 items-center justify-center rounded border border-solid border-[#EBEBEB] p-2"
                 onClick={() => handleDeleteButtonClick(item.id)}>
                 <Image
@@ -72,6 +73,7 @@ function DropDownSection({
             </div>
           ))}
           <button
+            type="button"
             onClick={handleAddButtonClick}
             className="mt-4 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
             추가하기
