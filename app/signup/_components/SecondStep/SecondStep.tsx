@@ -4,6 +4,7 @@ import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
 import checkIcon from "@/public/icons/check.svg";
 import secondStepBarIcon from "@/public/icons/secondStepBar.svg";
 import backArrowIcon from "@/public/icons/backArrow.svg";
+import Button from "../../../_components/Button/Button";
 
 interface SecondStepProps {
   prevStep: () => void;
@@ -38,11 +39,13 @@ function Step2({ prevStep }: SecondStepProps) {
       </div>
 
       <div className="flex gap-32">
-        <button onClick={prevStep} className="flex w-[118px] justify-center rounded-lg bg-[#0066DA] py-3 text-white">
+        <Button className="flex justify-center" buttonSize="small" bgColor="secondBlue" onClick={prevStep}>
           <Image src={backArrowIcon} alt="뒤로가기아이콘" />
           <span>이전으로</span>
-        </button>
-        <button className="w-[118px] rounded-lg bg-[#0066DA] px-[29px] py-3 text-white">다음으로</button>
+        </Button>
+        <Button buttonSize="small" bgColor="mainBlue">
+          다음으로
+        </Button>
       </div>
     </div>
   );

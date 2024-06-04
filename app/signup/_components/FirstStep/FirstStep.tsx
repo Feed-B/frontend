@@ -1,6 +1,7 @@
 import Image from "next/image";
 import firstStepBar from "@/public/icons/firstStepBar.svg";
 import ExampleButton from "../ExampleButton/ExampleButton";
+import Button from "../../../_components/Button/Button";
 
 interface FirstStepProps {
   nextStep: () => void;
@@ -34,9 +35,13 @@ function Step1({ nextStep }: FirstStepProps) {
 
       <ExampleButton />
 
-      <button onClick={nextStep} className="w-[118px] rounded-lg bg-[#0066DA] px-[29px] py-3 text-white">
+      <Button buttonSize="small" bgColor="mainBlue" onClick={nextStep}>
         다음으로
-      </button>
+      </Button>
+
+      <Button className="my-[20px]" buttonSize="large" bgColor="white">
+        추가하기
+      </Button>
     </div>
   );
 }
