@@ -1,18 +1,12 @@
 "use client";
 
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends PropsWithChildren {
-  type?: buttonType;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren {
   buttonSize: ButtonSize;
   bgColor: BgColor;
-  onClick?: () => void;
-  className?: string;
-  disabled?: boolean;
 }
-
-type buttonType = "button" | "submit" | "reset";
 
 type ButtonSize = "large" | "small";
 
