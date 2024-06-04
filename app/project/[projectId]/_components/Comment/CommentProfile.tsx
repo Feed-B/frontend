@@ -5,7 +5,7 @@ function CommentProfile() {
   return (
     <div className="flex items-center gap-2">
       <Profile />
-      <p>김한주</p>
+      <p className="text-sm">김한주</p>
     </div>
   );
 }
