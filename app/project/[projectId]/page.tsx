@@ -6,6 +6,7 @@ import StackSection from "./_components/ProjectSection/StackSection";
 import LinkSection from "./_components/ProjectSection/LinkSection";
 import RatingSection from "./_components/ProjectSection/RatingSection";
 import WriteCommentSection from "./CommentSection/WriteCommentSection";
+import CommentListSection from "./CommentSection/CommentListSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [
@@ -27,7 +28,10 @@ function Project() {
         <LinkSection linkList={linkList} />
       </div>
       <RatingSection />
-      <WriteCommentSection />
+      <div>
+        <WriteCommentSection />
+        <CommentListSection />
+      </div>
     </main>
   );
 }
