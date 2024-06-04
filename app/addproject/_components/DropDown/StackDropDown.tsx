@@ -5,12 +5,13 @@ import { StackListType } from "@/app/_types/StackType";
 
 interface StackDropDown {
   stackData: StackListType[];
+  dropdownRef: React.RefObject<HTMLDivElement>;
   handleCheckboxChange: (id: number) => void | Set<number>;
 }
 
-function StackDropDown({ stackData, handleCheckboxChange }: StackDropDown) {
+function StackDropDown({ stackData, dropdownRef, handleCheckboxChange }: StackDropDown) {
   return (
-    <div className="flex flex-col gap-5">
+    <div ref={dropdownRef} className="flex flex-col gap-5">
       <h3 className="text-sm font-normal">사용한 기술스택</h3>
       <div className="flex w-64 flex-row items-center gap-3 rounded-lg border border-solid border-[#C4C4C4] p-3">
         <Image src={searchIcon} alt="검색 아이콘" width={16} priority />

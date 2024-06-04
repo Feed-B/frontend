@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import smallArrowIcon from "@/public/icons/smallArrow.svg";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
 import TOOL_DATA from "@/app/_constants/ToolData";
 import { FULL_STACK_DATA } from "@/app/_constants/StackData";
+import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import StackDropDown from "./StackDropDown";
 import StringDropDown from "./StringDropDown";
 
@@ -29,6 +30,10 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
 
   const [item, setItem] = useState(data && Object.values(data)[0]);
   const [checkStacks, setCheckStacks] = useState<Set<number>>(new Set());
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  useOutsideClick(dropdownRef, toggleState, buttonRef);
 
   const handleItemClick = (value: string) => {
     setItem(value);
@@ -57,7 +62,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
     <div
       className={`relative flex h-12 ${dropDownWidth} items-center justify-between gap-2 border border-solid border-[#EBEBEB] p-2 text-sm font-normal text-[#4D5256]`}>
       {dataType === "stack" ? "사용한 기술스택" : item}
-      <button type="button" className="h-5 w-5" onClick={toggleState}>
+      <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>
         {isOpen ? (
           <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
         ) : (
@@ -66,11 +71,15 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       </button>
       {isOpen && (
         <div
-          className={`absolute left-0 top-12 z-10 ${dataType !== "stack" ? dropDownWidth : ""} rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black`}>
+          className={`absolute left-0 top-12 z-10 ${dataType !== "stack" ? dropDownWidth : ""} text-black rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm`}>
           {dataType === "stack" ? (
-            <StackDropDown stackData={stackData} handleCheckboxChange={handleCheckboxChange} />
+            <StackDropDown
+              stackData={stackData}
+              dropdownRef={dropdownRef}
+              handleCheckboxChange={handleCheckboxChange}
+            />
           ) : (
-            <StringDropDown data={data} handleItemClick={handleItemClick} />
+            <StringDropDown data={data} dropdownRef={dropdownRef} handleItemClick={handleItemClick} />
           )}
         </div>
       )}
