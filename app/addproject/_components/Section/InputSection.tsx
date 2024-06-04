@@ -12,8 +12,7 @@ interface InputSectionProps {
 function InputSection({ title, inputType, placeholder, inputName, inputWidth, textArea }: InputSectionProps) {
   return (
     <section>
-      <h2 className="mb-4 mt-6 text-base font-bold text-[#4D5256]">{title}</h2>
-      <label htmlFor={inputName} className="mb-4 mt-6 text-base font-bold text-[#4D5256]">
+      <label htmlFor={inputName} className="mb-4 mt-6 flex text-base font-bold text-[#4D5256]">
         {title}
       </label>
       {!textArea ? (
