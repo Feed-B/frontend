@@ -57,7 +57,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
     <div
       className={`relative flex h-12 ${dropDownWidth} items-center justify-between gap-2 border border-solid border-[#EBEBEB] p-2 text-sm font-normal text-[#4D5256]`}>
       {dataType === "stack" ? "사용한 기술스택" : item}
-      <button className="h-5 w-5" onClick={toggleState}>
+      <button type="button" className="h-5 w-5" onClick={toggleState}>
         {isOpen ? (
           <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
         ) : (
