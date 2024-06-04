@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
+import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import Profile from "../Profile/Profile";
 import DropDown from "../DropDown/DropDown";
@@ -15,7 +16,7 @@ function HeaderDropDownBox() {
       <Profile />
       <DropDown.ToggleButton className="h-5 w-5">
         {isOpen ? (
-          <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
+          <Image src={SmallTopArrowIcon} alt="open_dropbox" width={20} height={20} priority />
         ) : (
           //위로향한 화살표 이지미로 바꿔야함
           <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
