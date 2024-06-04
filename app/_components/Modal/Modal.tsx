@@ -2,6 +2,7 @@
 
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
+import ModalPortal from "@/app/_utils/ModalPortal";
 
 interface ModalProps extends PropsWithChildren {
   openModal: boolean;
@@ -22,9 +23,10 @@ function Modal({ children, openModal, handleModalClose, className }: ModalProps)
   };
 
   return (
-    <div className="fixed left-0 top-0 h-full w-full bg-black-overlay" onClick={handleOverlayClick}>
+    <ModalPortal>
+      <div className="fixed left-0 top-0 h-full w-full bg-black-overlay" onClick={handleOverlayClick} />
       <div className={`${modalClass} ${openModal ? open : ""}`}>{children}</div>
-    </div>
+    </ModalPortal>
   );
 }
 
