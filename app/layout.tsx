@@ -14,8 +14,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        {children}
         <div id="modal" />
+        {children}
       </body>
     </html>
   );
