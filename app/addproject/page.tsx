@@ -11,40 +11,36 @@ function page() {
         <hr />
         <InputSection
           title="제목(프로젝트 이름)"
-          inputType="text"
+          type="text"
           placeholder="프로젝트 이름을 작성해 주세요"
           inputWidth="w-full"
-          inputName="projectTitle"
+          name="projectTitle"
         />
         <InputSection
           title="소개"
-          inputType="text"
+          type="text"
           placeholder="프로젝트에 대한 소개를 작성 주세요"
           inputWidth="w-full"
-          inputName="projectDescription"
+          name="projectDescription"
         />
         <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
         <ImageSection title="썸네일" />
         <ImageSection title="이미지" />
-        <InputSection
-          title="서비스 링크"
-          inputType="text"
-          placeholder="URL"
-          inputWidth="w-[420px]"
-          inputName="serviceLink"
-        />
+        <InputSection title="서비스 링크" type="text" placeholder="URL" inputWidth="w-[420px]" name="serviceLink" />
         <DropDownSection
           title="추가 링크"
-          inputType="text"
+          type="text"
           placeholder="URL"
+          name="addLink"
           inputWidth="w-96"
           dropDownType="tool"
           dropDownWidth="w-28"
         />
         <DropDownSection
           title="팀원"
-          inputType="text"
+          type="text"
           placeholder="이름"
+          name="member"
           inputWidth="w-48"
           dropDownType="job"
           dropDownWidth="w-44"
