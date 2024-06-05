@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import defaultProfileImage from "@/public/icons/default-profile.svg";
+import defaultProfileImage from "@/public/icons/defaultProfile.svg";
 
 function Profile() {
   return (

@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import closeIcon from "@/public/icons/crossLine.svg";
 import shareIcon from "@/public/icons/share.svg";
-import TotalStar from "../TotalStar/TotalStar";
-import CommentCount from "../CommentCount/CommentCount";
-import Pagination from "../Pagination/Pagination";
-import CommentProfile from "../CommentProfile/CommentProfile";
+import TotalStar from "../Comment/TotalStar";
+import CommentCount from "../Comment/CommentCount";
+import Pagination from "../Comment/Pagination";
+import CommentProfile from "../Comment/CommentProfile";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 function CommentModal() {

@@ -1,10 +1,12 @@
 import React from "react";
 import ProjectHeader from "./_components/Project/ProjectHeader";
 import ProjectArticle from "./_components/Project/ProjectArticle";
-import TeamMemberSection from "./_components/Section/TeamMemberSection";
-import StackSection from "./_components/Section/StackSection";
-import LinkSection from "./_components/Section/LinkSection";
-import RatingSection from "./_components/Section/RatingSection";
+import TeamMemberSection from "./_components/ProjectSection/TeamMemberSection";
+import StackSection from "./_components/ProjectSection/StackSection";
+import LinkSection from "./_components/ProjectSection/LinkSection";
+import RatingSection from "./_components/ProjectSection/RatingSection";
+import WriteCommentSection from "./_components/CommentSection/WriteCommentSection";
+import CommentListSection from "./_components/CommentSection/CommentListSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
 const linkList = [
@@ -15,7 +17,7 @@ const linkList = [
 
 function Project() {
   return (
-    <main className="mx-auto my-8 flex w-[960px] flex-col gap-16">
+    <main className="mx-auto my-8 flex w-[1200px] flex-col gap-16">
       <div>
         <ProjectHeader />
         <hr />
@@ -26,6 +28,10 @@ function Project() {
         <LinkSection linkList={linkList} />
       </div>
       <RatingSection />
+      <div>
+        <WriteCommentSection />
+        <CommentListSection />
+      </div>
     </main>
   );
 }

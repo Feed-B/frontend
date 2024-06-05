@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 @import url("./reset.css");
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
