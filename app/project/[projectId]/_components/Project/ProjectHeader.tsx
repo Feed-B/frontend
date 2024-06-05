@@ -20,7 +20,8 @@ function ProjectHeader() {
         <h1 className="text-2xl font-bold text-[#454545]">프로젝트_제목</h1>
         <div className="flex gap-2">
           {/* <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority /> */}
-          <div className="w-10">
+          <div className="text-black w-10">
+            {" "}
             <WishButtonAndCount isFavorite={true} wishCount={3} />
           </div>
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
