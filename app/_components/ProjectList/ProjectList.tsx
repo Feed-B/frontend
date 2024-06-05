@@ -19,7 +19,7 @@ interface ProjectListResponse {
 function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
   return (
     <div className="relative grid grid-cols-4 gap-4">
-      {projectList.length !== 0 ? (
+      {projectList.length > 0 ? (
         projectList.map(project => {
           return (
             <div className="flex flex-col gap-2.5" key={project.id}>
