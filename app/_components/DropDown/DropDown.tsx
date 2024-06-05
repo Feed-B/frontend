@@ -1,41 +1,42 @@
 import Link from "next/link";
 import React from "react";
-import { DropDownButtonProps, DropDownLinkProps, DropDownProps } from "@/app/_types/DropDownType";
+import { twMerge } from "tailwind-merge";
+import { DropDownLinkProps, DropDownProps } from "@/app/_types/DropDownType";
 
-function DropDown({ children, onClick }: DropDownProps) {
-  return (
-    <div className="flex cursor-pointer items-center gap-2" onClick={onClick}>
-      {children}
-    </div>
-  );
-}
+function DropDown({ children, className }: DropDownProps) {
+  const DefaultDropDownClass =
+    "absolute z-50 w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black";
+  const DropDownClass = twMerge(DefaultDropDownClass, className);
 
-function ToggleButton({ children, className }: DropDownButtonProps) {
-  return <button className={className}>{children}</button>;
-}
-
-function List({ children, className }: DropDownProps) {
-  return <div className={className}>{children}</div>;
+  return <div className={DropDownClass}>{children}</div>;
 }
 
 function LinkItem({ children, className, href }: DropDownLinkProps) {
+  const DefaultLinkItemClass = "block cursor-pointer p-2 text-black";
+  const LinkItemClass = twMerge(DefaultLinkItemClass, className);
+
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={LinkItemClass}>
       {children}
     </Link>
   );
 }
 
-function TextItem({ children, className }: DropDownProps) {
-  return <p className={className}>{children}</p>;
+function TextItem({ children, className, onClick }: DropDownProps) {
+  const DefaultTextItemClass = "cursor-pointer p-2 text-black";
+  const TextItemClass = twMerge(DefaultTextItemClass, className);
+
+  return (
+    <p className={TextItemClass} onClick={onClick}>
+      {children}
+    </p>
+  );
 }
 
-function HR({ className }: { className: string }) {
-  return <hr className={className} />;
+function HR() {
+  return <hr className="m-1 border-[0.5px] border-solid border-gray-300" />;
 }
 
-DropDown.ToggleButton = ToggleButton;
-DropDown.List = List;
 DropDown.LinkItem = LinkItem;
 DropDown.TextItem = TextItem;
 DropDown.HR = HR;
