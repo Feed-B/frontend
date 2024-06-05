@@ -19,6 +19,9 @@ const config: Config = {
       pc: { min: "1200px" },
     },
     colors: {
+      inherit: "inherit",
+      current: "currentColor",
+      transparent: "transparent",
       white: "#FFFFFF",
       black: {
         DEFAULT: "#000000",
