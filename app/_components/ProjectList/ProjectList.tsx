@@ -20,18 +20,16 @@ function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
   return (
     <div className="relative grid grid-cols-4 gap-4">
       {projectList.length > 0 ? (
-        projectList.map(project => {
-          return (
-            <div className="flex flex-col gap-2.5" key={project.id}>
-              <ProjectCard project={project} />
-              <ProjectCardInfo
-                projectTitle={project.projectName}
-                projectSubDescription={project.subDescription}
-                viewCount={formatViewCount(project.viewCount)}
-              />
-            </div>
-          );
-        })
+        projectList.map(project => (
+          <div className="flex flex-col gap-2.5" key={project.id}>
+            <ProjectCard project={project} />
+            <ProjectCardInfo
+              projectTitle={project.projectName}
+              projectSubDescription={project.subDescription}
+              viewCount={formatViewCount(project.viewCount)}
+            />
+          </div>
+        ))
       ) : (
         <EmptyCard />
       )}
