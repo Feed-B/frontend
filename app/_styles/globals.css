@@ -3,6 +3,11 @@
 @tailwind utilities;
 @import url("./reset.css");
 
+* {
+  box-sizing: border-box;
+  font-family: Pretendard;
+}
+
 .text-overflow {
   text-overflow: ellipsis;
   overflow: hidden;
