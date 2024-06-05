@@ -12,7 +12,7 @@ function DropDown({ children, className }: DropDownProps) {
 }
 
 function LinkItem({ children, className, href }: DropDownLinkProps) {
-  const DefaultLinkItemClass = "block cursor-pointer p-2 text-black";
+  const DefaultLinkItemClass = "block cursor-pointer p-2 text-black font-semibold hover:bg-[#F8FAFB]";
   const LinkItemClass = twMerge(DefaultLinkItemClass, className);
 
   return (
@@ -23,7 +23,7 @@ function LinkItem({ children, className, href }: DropDownLinkProps) {
 }
 
 function TextItem({ children, className, onClick }: DropDownProps) {
-  const DefaultTextItemClass = "cursor-pointer p-2 text-black";
+  const DefaultTextItemClass = "cursor-pointer p-2 text-black font-semibold hover:bg-[#F8FAFB]";
   const TextItemClass = twMerge(DefaultTextItemClass, className);
 
   return (
