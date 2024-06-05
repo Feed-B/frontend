@@ -1,6 +1,7 @@
 import useModal from "@/app/_hooks/useModal";
-import ModalPortal from "@/app/_utils/ModalPortal";
 import ExampleModal from "../ExampleModal/ExampleModal";
+import Button from "../../../_components/Button/Button";
+
 function ExampleButton() {
   const {
     openModal: exampleModal,
@@ -10,15 +11,11 @@ function ExampleButton() {
 
   return (
     <>
-      <ModalPortal>
-        <ExampleModal openModal={exampleModal} handleModalClose={exampleModalClose} />
-      </ModalPortal>
+      <ExampleModal openModal={exampleModal} handleModalClose={exampleModalClose} />
 
-      <button
-        className="mb-[20px] w-[118px] rounded-lg bg-[#0066DA] px-[29px] py-3 text-white"
-        onClick={exampleModalOpen}>
+      <Button className="mb-[20px]" buttonSize="small" bgColor="mainBlue" onClick={exampleModalOpen}>
         모달버튼
-      </button>
+      </Button>
     </>
   );
 }

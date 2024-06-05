@@ -7,10 +7,10 @@ interface ModalPortalProps {
 
 const ModalPortal = ({ children }: ModalPortalProps) => {
   if (typeof window !== "undefined") {
-    const el = document.getElementById("modal");
+    const modalContainer = document.getElementById("modal");
 
-    if (el) {
-      return ReactDOM.createPortal(children, el);
+    if (modalContainer) {
+      return ReactDOM.createPortal(children, modalContainer);
     }
   }
   return null;
