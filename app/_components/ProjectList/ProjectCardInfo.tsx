@@ -11,7 +11,7 @@ function ProjectCardInfo({ projectTitle, projectSubDescription, viewCount }: Pro
     <div className="relative">
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
-          <h6 className="max-w-[12rem] overflow-hidden text-ellipsis whitespace-nowrap text-base font-bold">
+          <h6 className="max-w-[192px] overflow-hidden text-ellipsis whitespace-nowrap text-base font-bold">
             {projectTitle}
           </h6>
           <ViewCount viewCount={viewCount} />
