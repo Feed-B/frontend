@@ -38,7 +38,7 @@ function StackItem({ children, image }: StackItemProps) {
 
   return (
     <li
-      className={`flex w-40 cursor-pointer items-center gap-2 rounded-lg p-2 ${stackClicked ? "bg-[#F8FAFB] text-[#3C67E7]" : "opacity-50 hover:bg-[#F8FAFB]"}`}
+      className={`flex w-40 cursor-pointer items-center gap-2 rounded-lg p-2 ${stackClicked ? "bg-[#F8FAFB] font-semibold" : "opacity-50 hover:bg-[#F8FAFB]"}`}
       onClick={clickStack}>
       <Image src={image} alt="기술스택입니다." width={20} />
       <p className="text-sm font-normal">{children}</p>
