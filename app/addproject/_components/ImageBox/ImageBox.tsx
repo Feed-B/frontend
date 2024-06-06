@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import fileIcon from "@/public/icons/file.svg";
+import uploadIcon from "@/public/icons/upload.svg";
+import Button from "@/app/_components/Button/Button";
 
 const ImageDescription = `프로젝트를 설명할
 사진을 업로드해주세요`;
@@ -25,11 +27,10 @@ function ImageBox() {
             <pre className="text-center text-base font-medium text-[#1C1C1C]">{ImageDescription}</pre>
             <Image src={fileIcon} width={54} alt="파일 이미지" />
             <p className="text-center text-xs font-medium text-[#575757]">{ImageSize}</p>
-            <button
-              type="button"
-              className="rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
-              업로드
-            </button>
+            <Button buttonSize="small" bgColor="mainBlue" className="flex items-center justify-center gap-1">
+              <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
+              <p>업로드</p>
+            </Button>
           </div>
         </div>
       </div>

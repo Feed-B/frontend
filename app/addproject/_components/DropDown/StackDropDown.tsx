@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import searchIcon from "@/public/icons/search.svg";
 import { StackListType } from "@/app/_types/StackType";
+import Button from "@/app/_components/Button/Button";
 
 interface StackDropDown {
   stackData: StackListType[];
@@ -13,7 +14,7 @@ function StackDropDown({ stackData, dropdownRef, handleCheckboxChange }: StackDr
   return (
     <div ref={dropdownRef} className="flex flex-col gap-5">
       <h3 className="text-sm font-normal">사용한 기술스택</h3>
-      <div className="flex w-64 flex-row items-center gap-3 rounded-lg border border-solid border-[#C4C4C4] p-3">
+      <div className="flex flex-row items-center gap-3 rounded-lg border border-solid border-[#C4C4C4] p-3">
         <Image src={searchIcon} alt="검색 아이콘" width={16} priority />
         <input className="w-full text-sm font-normal outline-none" name="search" placeholder="Search..." />
       </div>
@@ -35,16 +36,12 @@ function StackDropDown({ stackData, dropdownRef, handleCheckboxChange }: StackDr
         ))}
       </div>
       <div className="flex items-center gap-4">
-        <button
-          type="button"
-          className="mt-6 flex-1 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
-          초기화
-        </button>
-        <button
-          type="button"
-          className="mt-6 flex-1 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
-          결과보기
-        </button>
+        <Button buttonSize="small" bgColor="secondBlue">
+          <p>초기화</p>
+        </Button>
+        <Button buttonSize="small" bgColor="mainBlue">
+          <p>확인</p>
+        </Button>
       </div>
     </div>
   );
