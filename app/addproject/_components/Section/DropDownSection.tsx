@@ -81,8 +81,8 @@ function DropDownSection({
         </>
       ) : (
         <>
-          <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
           <UseStack stackList={["Javascript"]} /> {/* mock data 작성 */}
+          <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
         </>
       )}
     </section>
