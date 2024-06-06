@@ -16,7 +16,7 @@ const mockData = {
 function Profile() {
   const { isOpen, toggleState } = useToggleHook();
   return (
-    <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-[#d9d9d9] p-8">
+    <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8">
       <div className="relative">
         <ProfileImage imageUrl={mockData.imageUrl} />
         {isOpen && (
@@ -35,17 +35,17 @@ function Profile() {
           <input
             type="text"
             placeholder={mockData.nickName}
-            className="w-[250px] rounded-md border border-solid border-[#ebebeb] p-2 text-sm"
+            className="w-[250px] rounded-md border border-solid border-gray-200 p-2 text-sm"
           />
           <textarea
             placeholder={mockData.introduction}
-            className="h-[80px] w-[604px] resize-none rounded-md border border-solid border-[#ebebeb] p-2 text-sm"
+            className="h-[80px] w-[604px] resize-none rounded-md border border-solid border-gray-200 p-2 text-sm"
           />
         </div>
       ) : (
         <div className="mt-2.5 flex flex-col gap-4">
-          <div className="text-xl font-semibold">{mockData.nickName}</div>
-          <div className="text-base text-[#454545]">{mockData.introduction}</div>
+          <div className="text-xl font-semibold text-gray-900">{mockData.nickName}</div>
+          <div className="text-base text-gray-700">{mockData.introduction}</div>
         </div>
       )}
 

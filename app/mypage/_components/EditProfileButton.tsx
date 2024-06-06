@@ -10,7 +10,7 @@ function EditProfileButton({ children, onClick }: EditProfileButtonProps) {
     <button
       type="button"
       onClick={onClick}
-      className="rounded-lg border border-solid border-[#ebebeb] bg-white px-4 py-3 text-base text-[#3C67E7] active:bg-[#f4f4f4]">
+      className="rounded-lg border border-solid border-gray-200 bg-white px-4 py-3 text-sm text-blue-500 active:bg-gray-100">
       {children}
     </button>
   );
