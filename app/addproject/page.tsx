@@ -25,8 +25,6 @@ function page() {
           name="projectDescription"
         />
         <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
-        <ImageSection title="썸네일" />
-        <ImageSection title="이미지" />
         <InputSection title="서비스 링크" type="text" placeholder="URL" inputWidth="w-[420px]" name="serviceLink" />
         <DropDownSection
           title="추가 링크"
@@ -47,6 +45,8 @@ function page() {
           dropDownWidth="w-44"
         />
         <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
+        <ImageSection title="썸네일" />
+        <ImageSection title="이미지" />
         <div className="flex justify-center">
           <Button buttonSize="small" bgColor="mainBlue" className="mt-6">
             <p>등록하기</p>
