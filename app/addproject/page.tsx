@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../_components/Button/Button";
 import InputSection from "./_components/Section/InputSection";
 import DropDownSection from "./_components/Section/DropDownSection";
 import ImageSection from "./_components/Section/ImageSection";
@@ -47,11 +48,9 @@ function page() {
         />
         <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
         <div className="flex justify-center">
-          <button
-            type="button"
-            className="mt-6 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
-            등록하기
-          </button>
+          <Button buttonSize="small" bgColor="mainBlue" className="mt-6">
+            <p>등록하기</p>
+          </Button>
         </div>
       </div>
     </main>
