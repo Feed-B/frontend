@@ -5,6 +5,7 @@ import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import addImageIcon from "@/public/icons/addImage.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import EditProfileButton from "./EditProfileButton";
+import { MY_PAGE_TEXT } from "./constant";
 
 const mockData = {
   userId: 1,
@@ -50,7 +51,9 @@ function Profile() {
       )}
 
       <div className="absolute bottom-8 right-8">
-        <EditProfileButton onClick={toggleState}>{isOpen ? "수정 완료" : "프로필 수정"}</EditProfileButton>
+        <EditProfileButton onClick={toggleState}>
+          {isOpen ? MY_PAGE_TEXT.COMPLETE_EDIT_PROFILE : MY_PAGE_TEXT.EDIT_PROFILE}
+        </EditProfileButton>
       </div>
     </form>
   );
