@@ -36,16 +36,18 @@ function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
             {/*드롭박스 연결해야함*/}
           </div>
         </div>
-        <p className="mt-4 min-h-[150px] w-full text-sm font-normal text-[#1C1C1C]">
+        <p className="mt-4 min-h-[150px] w-full text-sm font-normal text-gray-900">
           제가말이죠 오늘 댓글 모달을 만들어 보았습니다. 참 잘했죠? 좋은 코드 리뷰 부탁드립니다? 안 해주면
           찾아가겠습니다.
         </p>
       </section>
-      <section className="mt-4 px-8">
+      <section className="mt-4">
         <RatingBox />
       </section>
       <section className="mt-4">
         <div>
+          <ReflyCommentItem />
+          <ReflyCommentItem />
           <ReflyCommentItem />
         </div>
       </section>
