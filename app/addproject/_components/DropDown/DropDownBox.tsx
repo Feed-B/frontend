@@ -60,7 +60,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
 
   return (
     <div
-      className={`relative flex h-12 ${dropDownWidth} items-center justify-between gap-2 border border-solid border-[#EBEBEB] p-2 text-sm font-normal text-[#4D5256]`}>
+      className={`relative flex h-12 ${dropDownWidth} items-center justify-between gap-2 border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}>
       {dataType === "stack" ? "사용한 기술스택" : item}
       <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>
         {isOpen ? (
@@ -71,7 +71,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       </button>
       {isOpen && (
         <div
-          className={`absolute left-0 top-12 z-10 ${dataType !== "stack" ? dropDownWidth : ""} text-black rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm`}>
+          className={`absolute left-0 top-12 z-10 ${dataType !== "stack" ? dropDownWidth : ""} rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black`}>
           {dataType === "stack" ? (
             <StackDropDown
               stackData={stackData}

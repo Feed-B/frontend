@@ -6,9 +6,9 @@ const ThumbnailSize = "프로젝트를 한 눈에 표현할 수 있는 이미지
 function ThumbnailBox() {
   return (
     <>
-      <p className="text-sm font-normal text-[#C4C4C4]">{ThumbnailSize}</p>
+      <p className="text-sm font-normal text-gray-500">{ThumbnailSize}</p>
       <div className="mb-4 mt-4">
-        <div className="h-[232px] w-[232px] rounded-xl border-2 border-dashed border-[#D4D4D4] bg-[#F8FAFB]" />
+        <div className="h-[232px] w-[232px] rounded-xl border-2 border-dashed border-gray-200 bg-gray-100" />
       </div>
       <Button buttonSize="small" bgColor="mainBlue">
         <p>업로드</p>
