@@ -41,7 +41,7 @@ const renderStars = (rating: number, max = 5) => {
 
 function RatingBox() {
   return (
-    <div className="flex w-full items-center gap-8 rounded-xl bg-gray-100 px-8 py-6">
+    <div className="flex w-full items-center justify-center gap-8 rounded-xl bg-gray-100 px-8 py-6">
       <div>
         <p className="text-5xl font-bold text-gray-900">{TestData.totalRating}</p>
       </div>
@@ -51,7 +51,7 @@ function RatingBox() {
       </div>
       <div className="grid grid-cols-2 grid-rows-2 gap-4 px-[6px]">
         {Object.entries(TestData.rating).map(([key, value]) => (
-          <div key={key} className="flex items-center gap-1">
+          <div key={key} className="flex items-center justify-end gap-1">
             <p className="text-xs text-gray-900">{ratingLabels[key]}</p>
             {renderStars(value)}
             <p className="text-[10px] text-gray-600">{value}/5</p>
