@@ -9,6 +9,7 @@ import KebabDropDown from "@/public/icons/kebab.svg";
 import CommentCount from "../Comment/CommentCount";
 import CommentProfile from "../Comment/CommentProfile";
 import ReflyCommentItem from "./ReflyCommentItem";
+import RatingBox from "./RatingBox";
 
 interface CommentModalProps {
   handleModalClose: () => void;
@@ -31,7 +32,7 @@ function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
           <div className="flex items-center gap-2">
             <CommentCount />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
-            <Image src={KebabDropDown} alt="댓글 모달 메뉴" />
+            <Image src={KebabDropDown} alt="댓글 모달 메뉴" width={24} />
             {/*드롭박스 연결해야함*/}
           </div>
         </div>
@@ -40,10 +41,8 @@ function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
           찾아가겠습니다.
         </p>
       </section>
-      <hr className="border-[#1C1C1C]" />
       <section className="mt-4 px-8">
-        {/*별점자리*/}
-        <div>별점자리</div>
+        <RatingBox />
       </section>
       <section className="mt-4">
         <div>
