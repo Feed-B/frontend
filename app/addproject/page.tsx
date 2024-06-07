@@ -3,6 +3,7 @@ import Button from "../_components/Button/Button";
 import InputSection from "./_components/Section/InputSection";
 import DropDownSection from "./_components/Section/DropDownSection";
 import ImageSection from "./_components/Section/ImageSection";
+import StackSection from "./_components/Section/SkillStackSection";
 
 function page() {
   return (
@@ -44,7 +45,7 @@ function page() {
           dropDownType="job"
           dropDownWidth="w-44"
         />
-        <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
+        <StackSection />
         <ImageSection title="썸네일" />
         <ImageSection title="이미지" />
         <div className="flex justify-center">
