@@ -5,19 +5,22 @@ import Input from "@/app/_components/Input/Input";
 // import ExampleButton from "../ExampleButton/ExampleButton";
 import Button from "../../../_components/Button/Button";
 
-interface FirstStepProps {
-  nextStep: () => void;
+interface FirstStepFormData {
   nickName: string;
 }
 
-function Step1({ nextStep }: FirstStepProps) {
+interface FirstStepProps {
+  nextStep: () => void;
+}
+
+function FirstStep({ nextStep }: FirstStepProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FirstStepProps>({ mode: "onBlur", reValidateMode: "onBlur" });
+  } = useForm<FirstStepFormData>({ mode: "onBlur", reValidateMode: "onBlur" });
 
-  const onSubmit: SubmitHandler<FirstStepProps> = data => {
+  const onSubmit: SubmitHandler<FirstStepFormData> = data => {
     console.log(data);
     nextStep();
   };
@@ -70,4 +73,4 @@ function Step1({ nextStep }: FirstStepProps) {
   );
 }
 
-export default Step1;
+export default FirstStep;
