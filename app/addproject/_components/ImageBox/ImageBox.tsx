@@ -22,11 +22,11 @@ function ImageBox() {
         </label>
       </div>
       <div className="mb-4 mt-4">
-        <div className="flex w-[1094px] justify-center rounded-lg border-2 border-dashed border-[#D4D4D4] bg-[#F8FAFB] px-[460px] py-28">
+        <div className="flex w-[1094px] justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 px-[460px] py-28">
           <div className="flex flex-col items-center gap-3">
-            <pre className="text-center text-base font-medium text-[#1C1C1C]">{ImageDescription}</pre>
+            <pre className="text-center text-base font-medium text-gray-900">{ImageDescription}</pre>
             <Image src={fileIcon} width={54} alt="파일 이미지" />
-            <p className="text-center text-xs font-medium text-[#575757]">{ImageSize}</p>
+            <p className="text-center text-xs font-medium text-gray-600">{ImageSize}</p>
             <Button buttonSize="small" bgColor="mainBlue" className="flex items-center justify-center gap-1">
               <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
               <p>업로드</p>

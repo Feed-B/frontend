@@ -8,10 +8,10 @@ function page() {
   return (
     <main className="grid place-items-center">
       <div className="w-[960px]">
-        <h1 className="mb-4 mt-6 text-[28px] font-bold text-[#4D5256]">글 작성</h1>
+        <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 디테일</h1>
         <hr />
         <InputSection
-          title="제목(프로젝트 이름)"
+          title="프로젝트 이름"
           type="text"
           placeholder="프로젝트 이름을 작성해 주세요"
           inputWidth="w-full"
@@ -25,7 +25,7 @@ function page() {
           name="projectDescription"
         />
         <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
-        <InputSection title="서비스 링크" type="text" placeholder="URL" inputWidth="w-[420px]" name="serviceLink" />
+        <InputSection title="프로젝트 링크" type="text" placeholder="URL" inputWidth="w-[420px]" name="serviceLink" />
         <DropDownSection
           title="추가 링크"
           type="text"
