@@ -44,12 +44,13 @@ function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
       <section className="mt-4">
         <RatingBox />
       </section>
-      <section className="mt-4">
-        <div>
-          <ReflyCommentItem />
-          <ReflyCommentItem />
-          <ReflyCommentItem />
-        </div>
+      <section className="mt-4 max-h-[300px] overflow-y-scroll">
+        <ReflyCommentItem />
+        <ReflyCommentItem />
+        <ReflyCommentItem />
+        <ReflyCommentItem />
+        <ReflyCommentItem />
+        <ReflyCommentItem />
       </section>
       <section>
         <div className="border border-solid p-3">
