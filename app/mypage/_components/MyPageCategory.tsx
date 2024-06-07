@@ -13,7 +13,6 @@ function MyPageCategory({ isSelect }: { isSelect: boolean }) {
 
   const handleSelectCategory = (event: MouseEvent<HTMLButtonElement>) => {
     setSelectCategory(event.currentTarget.id);
-    console.log(selectCategory);
   };
 
   return (
