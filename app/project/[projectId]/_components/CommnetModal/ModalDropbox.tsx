@@ -5,7 +5,7 @@ import KebabDropDown from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 
 function ModalDropbox() {
-  const { isOpen, toggleState, changecloseState } = useToggleHook();
+  const { isOpen, toggleState } = useToggleHook();
   return (
     <>
       <button type="button" onClick={toggleState} className="h-5 w-5">
@@ -13,7 +13,7 @@ function ModalDropbox() {
       </button>
 
       {isOpen && (
-        <DropDown className="right-0 top-[40px]" changecloseState={changecloseState}>
+        <DropDown className="right-0 top-[40px]">
           <DropDown.TextItem>수정</DropDown.TextItem>
           <DropDown.TextItem>삭제</DropDown.TextItem>
         </DropDown>
