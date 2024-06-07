@@ -29,11 +29,11 @@ const renderStars = (rating: number, max = 5) => {
   return (
     <>
       {[...Array(fullStars)].map((_, index) => (
-        <Image key={`full-${index}`} src={starIcon} alt="별점" width={16} height={16} />
+        <Image key={`full-${index}`} src={starIcon} alt="별점" width={16} />
       ))}
-      {hasHalfStar && <Image key="half" src={halfStarIcon} alt="반별점" width={16} height={16} />}
+      {hasHalfStar && <Image key="half" src={halfStarIcon} alt="반별점" width={16} />}
       {[...Array(emptyStars)].map((_, index) => (
-        <Image key={`empty-${index}`} src={grayStarIcon} alt="빈별점" width={16} height={16} />
+        <Image key={`empty-${index}`} src={grayStarIcon} alt="빈별점" width={16} />
       ))}
     </>
   );
