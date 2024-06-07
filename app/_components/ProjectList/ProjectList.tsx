@@ -9,7 +9,7 @@ function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
     <div className="relative grid grid-cols-4 gap-4">
       {projectList.length > 0 ? (
         projectList.map(project => (
-          <div className="flex flex-col gap-2.5" key={project.id}>
+          <div className="flex cursor-pointer flex-col gap-2.5" key={project.id}>
             <ProjectCard project={project} />
             <ProjectCardInfo
               projectTitle={project.projectTitle}
