@@ -24,7 +24,7 @@ function HeaderDropDownBox() {
         </button>
       </div>
       {isOpen && (
-        <DropDown className="right-0 top-[65px]">
+        <DropDown className="right-0 top-[65px] w-40">
           <DropDown.LinkItem href="/mypage">마이페이지</DropDown.LinkItem>
           <DropDown.HR />
           <DropDown.TextItem>로그아웃</DropDown.TextItem>

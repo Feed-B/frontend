@@ -5,7 +5,7 @@ import { DropDownLinkProps, DropDownProps } from "@/app/_types/DropDownType";
 
 function DropDown({ children, className, ref }: DropDownProps) {
   const DefaultDropDownClass =
-    "absolute z-50 w-40 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black";
+    "absolute z-50 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black";
   const DropDownClass = twMerge(DefaultDropDownClass, className);
 
   return (

@@ -5,11 +5,11 @@ import Image from "next/image";
 import closeIcon from "@/public/icons/crossLine.svg";
 import shareIcon from "@/public/icons/share.svg";
 import Modal from "@/app/_components/Modal/Modal";
-import KebabDropDown from "@/public/icons/kebab.svg";
 import CommentCount from "../Comment/CommentCount";
 import CommentProfile from "../Comment/CommentProfile";
 import ReflyCommentItem from "./ReflyCommentItem";
 import RatingBox from "./RatingBox";
+import ModalDropbox from "./ModalDropbox";
 
 interface CommentModalProps {
   handleModalClose: () => void;
@@ -29,11 +29,10 @@ function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
       <section className="mt-10 w-full p-4">
         <div className="flex items-center justify-between">
           <CommentProfile />
-          <div className="flex items-center gap-2">
+          <div className="relative flex items-center gap-2">
             <CommentCount />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
-            <Image src={KebabDropDown} alt="댓글 모달 메뉴" width={24} />
-            {/*드롭박스 연결해야함*/}
+            <ModalDropbox />
           </div>
         </div>
         <p className="mt-4 min-h-[150px] w-full text-sm font-normal text-gray-900">
