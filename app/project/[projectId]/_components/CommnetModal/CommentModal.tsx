@@ -1,18 +1,28 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import closeIcon from "@/public/icons/crossLine.svg";
 import shareIcon from "@/public/icons/share.svg";
-import TotalStar from "../Comment/TotalStar";
+import Modal from "@/app/_components/Modal/Modal";
+import KebabDropDown from "@/public/icons/kebab.svg";
 import CommentCount from "../Comment/CommentCount";
-import Pagination from "../Comment/Pagination";
 import CommentProfile from "../Comment/CommentProfile";
 import ReflyCommentItem from "./ReflyCommentItem";
 
-function CommentModal() {
+interface CommentModalProps {
+  handleModalClose: () => void;
+  openModal: boolean;
+  commnetId?: number;
+}
+
+function CommentModal({ openModal, handleModalClose }: CommentModalProps) {
   return (
-    //여기에 공통 모달 컴포넌트가 들어갈 예정
-    <div className="relative border border-solid p-6">
-      <button className="absolute right-6 top-6">
+    <Modal
+      openModal={openModal}
+      handleModalClose={handleModalClose}
+      className="relative w-[792px] border border-solid p-6">
+      <button type="button" className="absolute right-6 top-6" onClick={handleModalClose}>
         <Image src={closeIcon} alt="모달 닫기 버튼입니다." width={24} />
       </button>
       <section className="mt-10 w-full p-4">
@@ -21,6 +31,8 @@ function CommentModal() {
           <div className="flex items-center gap-2">
             <CommentCount />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
+            <Image src={KebabDropDown} alt="댓글 모달 메뉴" />
+            {/*드롭박스 연결해야함*/}
           </div>
         </div>
         <p className="mt-4 min-h-[150px] w-full text-sm font-normal text-[#1C1C1C]">
@@ -30,21 +42,20 @@ function CommentModal() {
       </section>
       <hr className="border-[#1C1C1C]" />
       <section className="mt-4 px-8">
-        <TotalStar />
-        {/*여기엔 소현띠가 만든 별점 리스트가 들어갈 예정*/}
-        <div className="h-[55px] border border-solid">자세한 별점이 들어갈 자리</div>
+        {/*별점자리*/}
+        <div>별점자리</div>
       </section>
       <section className="mt-4">
-        {/*여기엔 소현띠가 만든 인풋이 들어갈 예정*/}
-        <div className="border border-solid p-3">
-          <input placeholder="코멘트 인풋 들어올 자리" />
-        </div>
         <div>
           <ReflyCommentItem />
         </div>
-        <Pagination />
       </section>
-    </div>
+      <section>
+        <div className="border border-solid p-3">
+          <input placeholder="코멘트 인풋 들어올 자리" />
+        </div>
+      </section>
+    </Modal>
   );
 }
 export default CommentModal;
