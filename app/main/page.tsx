@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectList from "../_components/ProjectList/ProjectList";
-import mockDataCardList from "../_components/ProjectList/mockDataCardList";
+import { myProjectList } from "../_components/ProjectList/mockDataCardList";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 function MainPage() {
@@ -8,7 +8,7 @@ function MainPage() {
     <main className="mx-auto mt-[100px] grid w-[1200px] grid-cols-[230px_minmax(976px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)]">
       <SelectStack />
       <section className="col-start-2 mt-[40px]">
-        <ProjectList projectList={mockDataCardList.myProjectList.data} />
+        <ProjectList projectList={myProjectList.data} />
       </section>
     </main>
   );

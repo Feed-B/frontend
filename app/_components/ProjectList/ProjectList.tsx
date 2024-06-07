@@ -1,20 +1,8 @@
-import { StaticImageData } from "next/image";
 import formatViewCount from "@/app/_utils/formViewCount";
+import { ProjectListResponse } from "@/app/_types/ProjectListDataType";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
-
-interface ProjectListResponse {
-  id: number;
-  titleImage: string | StaticImageData;
-  stackList: string[];
-  wishCount: number;
-  isWish: boolean;
-  projectName: string;
-  subDescription: string;
-  description: string;
-  viewCount: number;
-}
 
 function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
   return (
@@ -24,7 +12,7 @@ function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
           <div className="flex flex-col gap-2.5" key={project.id}>
             <ProjectCard project={project} />
             <ProjectCardInfo
-              projectTitle={project.projectName}
+              projectTitle={project.projectTitle}
               projectSubDescription={project.subDescription}
               viewCount={formatViewCount(project.viewCount)}
             />

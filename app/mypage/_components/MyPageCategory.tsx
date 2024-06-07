@@ -1,20 +1,19 @@
 "use client";
 import Image from "next/image";
-import { MouseEvent, useState } from "react";
-import mockDataCardList from "@/app/_components/ProjectList/mockDataCardList";
+import { MouseEvent } from "react";
+import { myProjectList, wishProjectList } from "@/app/_components/ProjectList/mockDataCardList";
 import selectProfileIcon from "@/public/icons/blackProfile.svg";
 import defaultProfileIcon from "@/public/icons/defaultProfile.svg";
 import selectHeartIcon from "@/public/icons/fullHeart.svg";
 import defaultHeartIcon from "@/public/icons/grayHeart.svg";
 import ProjectCategoryButton from "./ProjectCategoryButton";
 
-function MyPageCategory({ isSelect }: { isSelect: boolean }) {
-  const [selectCategory, setSelectCategory] = useState("myProject");
+interface MyPageCategory {
+  selectCategory: string;
+  handleSelectCategory: (event: MouseEvent<HTMLButtonElement>) => void;
+}
 
-  const handleSelectCategory = (event: MouseEvent<HTMLButtonElement>) => {
-    setSelectCategory(event.currentTarget.id);
-  };
-
+function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory) {
   return (
     <div className="flex flex-col gap-2">
       <div className="text-lg font-bold text-gray-900">마이페이지</div>
@@ -26,9 +25,12 @@ function MyPageCategory({ isSelect }: { isSelect: boolean }) {
             src={selectCategory === "myProject" ? selectProfileIcon : defaultProfileIcon}
             alt="내 프로젝트 보기"
           />
-          <div className={`text-sm font-semibold ${isSelect ? defaultHeartIcon : selectHeartIcon}`}>내 프로젝트</div>
+          <div
+            className={`text-sm font-semibold ${selectCategory === "myProject" ? defaultHeartIcon : selectHeartIcon}`}>
+            내 프로젝트
+          </div>
         </div>
-        <div>{`(${mockDataCardList.myProjectList.count})`}</div>
+        <div>{`(${myProjectList.count})`}</div>
       </ProjectCategoryButton>
       <ProjectCategoryButton
         onClick={handleSelectCategory}
@@ -46,7 +48,7 @@ function MyPageCategory({ isSelect }: { isSelect: boolean }) {
             내 프로젝트
           </div>
         </div>
-        <div>{`(${mockDataCardList.favoriteProjectList.count})`}</div>
+        <div>{`(${wishProjectList.count})`}</div>
       </ProjectCategoryButton>
     </div>
   );
