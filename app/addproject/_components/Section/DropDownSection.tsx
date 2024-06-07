@@ -44,8 +44,8 @@ function DropDownSection({
 
   return (
     <section>
-      <label htmlFor={name} className="mb-4 mt-6 flex text-base font-bold text-[#4D5256]">
-        {title}
+      <label htmlFor={name} className="mb-4 mt-6 flex text-base font-bold text-gray-900">
+        <p>{title === "추가 링크" ? title : title + " *"}</p>
       </label>
       {dropDownType !== "stack" ? (
         <>
@@ -55,13 +55,13 @@ function DropDownSection({
               <input
                 type={type}
                 placeholder={placeholder}
-                className={`${inputWidth} h-12 rounded-sm border border-solid border-[#EBEBEB] px-4 py-3`}
+                className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
                 name={name}
                 id={name}
               />
               <button
                 type="button"
-                className="flex h-12 w-12 items-center justify-center rounded border border-solid border-[#EBEBEB] p-2"
+                className="flex h-12 w-12 items-center justify-center rounded border border-solid border-gray-200 p-2"
                 onClick={() => handleDeleteButtonClick(item.id)}>
                 <Image
                   width={20}
@@ -72,10 +72,7 @@ function DropDownSection({
               </button>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={handleAddButtonClick}
-            className="mt-4 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
+          <button type="button" onClick={handleAddButtonClick} className="mt-4 rounded-lg px-4 py-2 text-blue-500">
             추가하기
           </button>
         </>

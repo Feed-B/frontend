@@ -14,7 +14,7 @@ function StackDropDown({ stackData, dropdownRef, handleCheckboxChange }: StackDr
   return (
     <div ref={dropdownRef} className="flex flex-col gap-5">
       <h3 className="text-sm font-normal">사용한 기술스택</h3>
-      <div className="flex flex-row items-center gap-3 rounded-lg border border-solid border-[#C4C4C4] p-3">
+      <div className="flex flex-row items-center gap-3 rounded-lg border border-solid border-gray-400 p-3">
         <Image src={searchIcon} alt="검색 아이콘" width={16} priority />
         <input className="w-full text-sm font-normal outline-none" name="search" placeholder="Search..." />
       </div>
