@@ -14,13 +14,13 @@ function RatingSection() {
     <section className="flex">
       <div className="flex flex-col items-center gap-2">
         <Image src={emptyStarIcon} alt={"프로젝트 전체 별점."} width={120} />
-        <p className="text-4xl font-bold text-[#323232]">3.5</p>
+        <p className="text-4xl font-bold">3.5</p>
       </div>
       <div className="ms-12 flex w-full flex-col gap-4">
         {ratingCategory.map(category => (
           <div className="flex justify-between" key={category.id}>
-            <p className="text-xl text-[#434343]">{category.name}</p>
-            <div className="flex h-9 w-72 items-center bg-[#D9D9D9]">
+            <p className="text-xl">{category.name}</p>
+            <div className="flex h-9 w-72 items-center">
               <p className="ms-9 text-xl font-bold">{category.rate}</p>
             </div>
           </div>

@@ -41,10 +41,10 @@ function TeamMemberSection() {
       <div className="flex gap-8">
         {teamMemberList.map(team => (
           <div key={team.id}>
-            <p className="mb-3 text-sm text-[#1C1C1C]">{team.job}</p>
+            <p className="mb-3 text-sm text-gray-900">{team.job}</p>
             <div className="flex gap-3">
               {team.member.map(member => (
-                <div key={member.id} className="flex flex-col items-center gap-0.5 text-sm text-[#454545]">
+                <div key={member.id} className="flex flex-col items-center gap-0.5 text-sm">
                   {member.url ? (
                     <Link href={member.url} target="_blank">
                       <Image src={profileIcon} alt="프로젝트 팀원 프로필." width={40} />

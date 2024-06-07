@@ -8,7 +8,7 @@ interface StackListProps {
 
 function UseStack({ stackList }: StackListProps) {
   return (
-    <div className="rounded-xl border border-solid border-[#EBEBEB] bg-white p-3">
+    <div className="rounded-xl border border-solid border-gray-200 bg-gray-100 p-3">
       <ul className="flex flex-wrap gap-4">
         {stackList.map(stack => {
           const stackItem = FULL_STACK_DATA.find(item => item.name === stack);
