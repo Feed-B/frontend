@@ -1,18 +1,8 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import { ProjectListResponse } from "@/app/_types/ProjectListDataType";
 import HoverCard from "./HoverCard";
 
-interface CardProp {
-  id: number;
-  titleImage: StaticImageData | string;
-  stackList: string[];
-  wishCount: number;
-  isWish: boolean;
-  projectName: string;
-  subDescription: string;
-  description: string;
-}
-
-function ProjectCard({ project }: { project: CardProp }) {
+function ProjectCard({ project }: { project: ProjectListResponse }) {
   return (
     <div className="group relative aspect-square overflow-hidden rounded-md">
       <HoverCard isWishProject={project.isWish} wishCount={project.wishCount} stackList={project.stackList} />
