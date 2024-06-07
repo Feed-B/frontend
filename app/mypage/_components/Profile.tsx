@@ -7,12 +7,12 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import EditProfileButton from "./EditProfileButton";
 
 const mockData = {
+  userId: 1,
   nickName: "하늘을 나는 개발자",
   introduction: "반갑습니다~ 하늘을 날고 싶은 개발자입니다~!",
   imageUrl: profileMock,
 };
 
-// input은 공통 컴포넌트로 대체 예정입니다.
 function Profile() {
   const { isOpen, toggleState } = useToggleHook();
   return (
