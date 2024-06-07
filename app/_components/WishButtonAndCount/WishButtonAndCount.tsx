@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Image from "next/image";
 import emptyHeartIcon from "@/public/icons/emptyHeart.svg";
 import fullHeartIcon from "@/public/icons/fullHeart.svg";
@@ -15,7 +15,8 @@ function WishButtonAndCount({ isFavorite = false, wishCount }: WishButtonAndCoun
     wishCountState: wishCount,
   });
 
-  const handleFavorite = () => {
+  const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setFavoriteState(prevState => ({
       isFavorite: prevState.isFavorite ? false : true,
       wishCountState: prevState.isFavorite ? prevState.wishCountState - 1 : prevState.wishCountState + 1,
