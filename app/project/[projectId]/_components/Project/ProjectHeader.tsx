@@ -17,10 +17,10 @@ function ProjectHeader() {
   return (
     <header className="relative px-4 py-3">
       <div className="flex justify-between gap-2">
-        <h1 className="text-2xl font-bold text-[#454545]">프로젝트_제목</h1>
+        <h1 className="text-2xl font-bold text-gray-900">프로젝트_제목</h1>
         <div className="flex gap-2">
           {/* <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority /> */}
-          <div className="text-black w-10">
+          <div className="w-10 text-black">
             {" "}
             <WishButtonAndCount isFavorite={true} wishCount={3} />
           </div>
@@ -30,8 +30,8 @@ function ProjectHeader() {
         </div>
       </div>
       <div className="flex w-full items-center gap-5">
-        <p className="text-base font-bold text-[#454545]">작성자</p>
-        <p className="text-sm text-[#6f6f6f]">20XX.XX.XX</p>
+        <p className="text-base font-bold text-gray-900">작성자</p>
+        <p className="text-sm text-gray-500">20XX.XX.XX</p>
       </div>
     </header>
   );

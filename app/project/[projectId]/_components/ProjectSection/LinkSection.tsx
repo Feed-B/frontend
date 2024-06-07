@@ -17,7 +17,7 @@ function LinkSection({ linkList }: LinkListProps) {
           <Link
             href={`${link.url}`}
             target="_blank"
-            className="max-w-44 items-center gap-1 overflow-hidden text-ellipsis whitespace-nowrap rounded-xl bg-[#EBECFF] px-3 py-1 text-sm text-[#454545]"
+            className="max-w-44 items-center gap-1 overflow-hidden text-ellipsis whitespace-nowrap rounded-xl px-3 py-1 text-sm"
             key={link.id}>
             {link.url}
           </Link>
