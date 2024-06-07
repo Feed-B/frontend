@@ -7,6 +7,7 @@ import defaultProfileIcon from "@/public/icons/defaultProfile.svg";
 import selectHeartIcon from "@/public/icons/fullHeart.svg";
 import defaultHeartIcon from "@/public/icons/grayHeart.svg";
 import ProjectCategoryButton from "./ProjectCategoryButton";
+import { MY_PAGE_TEXT } from "./constant";
 
 interface MyPageCategory {
   selectCategory: string;
@@ -16,7 +17,7 @@ interface MyPageCategory {
 function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-lg font-bold text-gray-900">마이페이지</div>
+      <div className="text-lg font-bold text-gray-900">{MY_PAGE_TEXT.MY_PAGE}</div>
       <ProjectCategoryButton onClick={handleSelectCategory} id={"myProject"} isSelect={selectCategory === "myProject"}>
         <div className="flex items-center gap-2.5">
           <Image
@@ -27,7 +28,7 @@ function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory
           />
           <div
             className={`text-sm font-semibold ${selectCategory === "myProject" ? defaultHeartIcon : selectHeartIcon}`}>
-            내 프로젝트
+            {MY_PAGE_TEXT.MY_PROJECT}
           </div>
         </div>
         <div>{`(${myProjectList.count})`}</div>
@@ -45,7 +46,7 @@ function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory
           />
           <div
             className={`text-sm font-semibold ${selectCategory === "wishProject" ? defaultHeartIcon : selectHeartIcon}`}>
-            내 프로젝트
+            {MY_PAGE_TEXT.WISH_PROJECT}
           </div>
         </div>
         <div>{`(${wishProjectList.count})`}</div>
