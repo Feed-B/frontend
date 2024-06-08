@@ -16,7 +16,7 @@ function ProjectCardInfo({ projectTitle, projectSubDescription, viewCount }: Pro
             {projectTitle}
           </h6>
           <div className="flex gap-1.5">
-            <Image width={16} src={eyeIcon} alt="조회수" />
+            <Image width={16} src={eyeIcon} alt="조회수" priority />
             <p className="text-xs font-semibold text-gray-500">{viewCount}</p>
           </div>
         </div>

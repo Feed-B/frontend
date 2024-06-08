@@ -25,6 +25,7 @@ function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory
             height={24}
             src={selectCategory === "myProject" ? selectProfileIcon : defaultProfileIcon}
             alt="내 프로젝트 보기"
+            priority
           />
           <div
             className={`text-sm font-semibold ${selectCategory === "myProject" ? defaultHeartIcon : selectHeartIcon}`}>
@@ -43,6 +44,7 @@ function MyPageCategory({ selectCategory, handleSelectCategory }: MyPageCategory
             height={24}
             src={selectCategory === "wishProject" ? selectHeartIcon : defaultHeartIcon}
             alt="찜한 프로젝트 보기"
+            priority
           />
           <div
             className={`text-sm font-semibold ${selectCategory === "wishProject" ? defaultHeartIcon : selectHeartIcon}`}>
