@@ -9,7 +9,7 @@ function page() {
   return (
     <main className="grid place-items-center">
       <div className="w-[960px]">
-        <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 디테일</h1>
+        <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
         <hr />
         <InputSection
           title="프로젝트 이름"
