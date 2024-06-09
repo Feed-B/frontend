@@ -13,7 +13,7 @@ function ModalDropbox() {
       </button>
 
       {isOpen && (
-        <DropDown className="right-0 top-[40px]">
+        <DropDown className="right-0 top-10">
           <DropDown.TextItem>수정</DropDown.TextItem>
           <DropDown.TextItem>삭제</DropDown.TextItem>
         </DropDown>

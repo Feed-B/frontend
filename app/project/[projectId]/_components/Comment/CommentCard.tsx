@@ -27,12 +27,12 @@ function CommentCard({ comment }: CommentProps) {
       {openModal && <CommentModal openModal={openModal} handleModalClose={handleModalClose} commnetId={comment.id} />}
       <div
         onClick={handleModalOpen}
-        className="relative flex flex-col justify-between gap-4 rounded-xl bg-[#F8FAFB] p-4">
+        className="relative flex flex-col justify-between gap-4 rounded-xl bg-gray-100 p-4">
         <div className="flex justify-between">
           <CommentProfile />
           <CommentCount />
         </div>
-        <p className="text-overflow h-14 text-sm text-[#1C1C1C]">{comment.comment}</p>
+        <p className="text-overflow h-14 text-sm text-gray-900">{comment.comment}</p>
         <TotalStar />
         <Image className="absolute bottom-6 right-4" src={arrowIcon} alt="댓글 상세보기." width={24} />
       </div>
