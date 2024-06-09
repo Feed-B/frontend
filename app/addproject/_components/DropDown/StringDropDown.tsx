@@ -10,8 +10,12 @@ function StringDropDown({ data, dropdownRef, handleItemClick }: Props) {
   return (
     <div ref={dropdownRef}>
       {Object.entries(data).map(([index, value]) => (
-        <button type="button" key={index} className="block cursor-pointer p-2" onClick={() => handleItemClick(value)}>
-          {value}
+        <button
+          type="button"
+          key={index}
+          className="block w-full cursor-pointer p-2 text-left hover:bg-gray-100"
+          onClick={() => handleItemClick(value)}>
+          <p>{value}</p>
         </button>
       ))}
     </div>
