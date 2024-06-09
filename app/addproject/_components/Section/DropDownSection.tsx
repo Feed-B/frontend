@@ -43,7 +43,7 @@ function DropDownSection({
 
   return (
     <section>
-      <label htmlFor={name} className="mb-4 mt-6 flex text-base font-bold text-gray-900">
+      <label htmlFor={`${name}-${additionalInput[0].id}`} className="mb-4 mt-6 flex text-base font-bold text-gray-900">
         <p>{title === "추가 링크" ? title : title + " *"}</p>
       </label>
       {additionalInput.map(item => (
@@ -54,7 +54,8 @@ function DropDownSection({
             placeholder={placeholder}
             className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
             name={name}
-            id={name}
+            id={`${name}-${item.id}`}
+            autoComplete="off"
           />
           <button
             type="button"
