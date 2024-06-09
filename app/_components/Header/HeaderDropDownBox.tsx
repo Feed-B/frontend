@@ -17,9 +17,9 @@ function HeaderDropDownBox() {
         <ProfileImage imageUrl={""} className="h-9 w-9" />
         <button type="button" className="h-5 w-5">
           {isOpen ? (
-            <Image src={SmallTopArrowIcon} alt="open_dropbox" width={20} height={20} priority />
+            <Image src={SmallTopArrowIcon} alt="유저 옵션." width={20} height={20} priority />
           ) : (
-            <Image src={SmallArrowIcon} alt="open_dropbox" width={20} height={20} priority />
+            <Image src={SmallArrowIcon} alt="유저 옵션." width={20} height={20} priority />
           )}
         </button>
       </div>
