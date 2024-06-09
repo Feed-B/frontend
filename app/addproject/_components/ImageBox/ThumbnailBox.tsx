@@ -1,19 +1,25 @@
 import React from "react";
 import Button from "@/app/_components/Button/Button";
 
-const ThumbnailSize = "프로젝트를 한 눈에 표현할 수 있는 이미지를 골라주세요 (232 x 232 px)";
+const ThumbnailSize = "(232 x 232px)";
 
-function ThumbnailBox() {
+interface ThumbnailBoxProps {
+  title: string;
+}
+
+function ThumbnailBox({ title }: ThumbnailBoxProps) {
   return (
-    <>
-      <p className="text-sm font-normal text-gray-500">{ThumbnailSize}</p>
-      <div className="mb-4 mt-4">
-        <div className="h-[232px] w-[232px] rounded-xl border-2 border-dashed border-gray-200 bg-gray-100" />
+    <section className="flex flex-col gap-4">
+      <div className="flex w-[232px] items-center justify-between">
+        <h2 className="text-base font-bold text-gray-900">{title} *</h2>
+        <span className="text-sm font-normal text-gray-500">{ThumbnailSize}</span>
       </div>
-      <Button buttonSize="small" bgColor="mainBlue">
-        <p>업로드</p>
-      </Button>
-    </>
+      <div className="flex h-[232px] w-[232px] items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-gray-100">
+        <Button buttonSize="small" bgColor="white">
+          <p className="text-sm font-normal">이미지 업로드</p>
+        </Button>
+      </div>
+    </section>
   );
 }
 
