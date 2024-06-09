@@ -42,30 +42,37 @@ function DropDownSection({
   };
 
   return (
-    <section>
-      <label htmlFor={`${name}-${additionalInput[0].id}`} className="mb-4 mt-6 flex text-base font-bold text-gray-900">
+    <section className="flex flex-col gap-4">
+      <label htmlFor={`${name}-${additionalInput[0].id}`} className="flex text-base font-bold text-gray-900">
         <p>{title === "추가 링크" ? title : title + " *"}</p>
       </label>
-      {additionalInput.map(item => (
-        <div key={item.id} className="mb-2 flex gap-1">
-          <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
-          <input
-            type={type}
-            placeholder={placeholder}
-            className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
-            name={name}
-            id={`${name}-${item.id}`}
-            autoComplete="off"
-          />
-          <button
-            type="button"
-            className="flex h-12 w-12 items-center justify-center rounded border border-solid border-gray-200 p-2"
-            onClick={() => handleDeleteButtonClick(item.id)}>
-            <Image width={20} src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon} alt="삭제 버튼" priority />
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={handleAddButtonClick} className="mt-4 rounded-lg px-4 py-2 text-blue-500">
+      <div>
+        {additionalInput.map(item => (
+          <div key={item.id} className="mb-2 flex gap-1">
+            <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
+            <input
+              type={type}
+              placeholder={placeholder}
+              className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
+              name={name}
+              id={`${name}-${item.id}`}
+              autoComplete="off"
+            />
+            <button
+              type="button"
+              className="flex h-12 w-12 items-center justify-center rounded border border-solid border-gray-200 p-2"
+              onClick={() => handleDeleteButtonClick(item.id)}>
+              <Image
+                width={20}
+                src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
+                alt="삭제 버튼"
+                priority
+              />
+            </button>
+          </div>
+        ))}
+      </div>
+      <button type="button" onClick={handleAddButtonClick} className="w-fit rounded-lg p-2 text-blue-500">
         추가하기
       </button>
     </section>

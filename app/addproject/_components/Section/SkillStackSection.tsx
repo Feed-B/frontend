@@ -62,7 +62,7 @@ function SkillStackSection() {
 
   return (
     <section className="flex flex-col gap-4">
-      <label htmlFor="search" className="mt-6 flex text-base font-bold text-gray-900">
+      <label htmlFor="search" className="flex text-base font-bold text-gray-900">
         기술스택 *
       </label>
       <div className="relative">
@@ -89,7 +89,7 @@ function SkillStackSection() {
           />
         </div>
         {!isHidden ? (
-          <ul className="absolute flex h-32 w-full flex-col items-start gap-1 overflow-y-auto rounded border border-solid border-gray-200 bg-white">
+          <ul className="absolute z-20 flex h-32 w-full flex-col items-start gap-1 overflow-y-auto rounded border border-solid border-gray-200 bg-white">
             {stackData.map(data => (
               <li
                 key={data.id}
@@ -104,7 +104,7 @@ function SkillStackSection() {
           </ul>
         ) : null}
       </div>
-      <div className="flex min-h-9 flex-wrap gap-4">
+      <div className="flex min-h-10 flex-wrap gap-4">
         {selectedStacks.map(stack => {
           const stackItem = stackData.find(item => item.name === stack);
           return (
