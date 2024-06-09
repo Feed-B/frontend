@@ -50,7 +50,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       </button>
       {isOpen && (
         <div
-          className={`absolute left-0 top-12 z-10 ${dropDownWidth} rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black`}>
+          className={`absolute left-0 top-12 ${dropDownWidth} z-20 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black`}>
           <StringDropDown data={data} dropdownRef={dropdownRef} handleItemClick={handleItemClick} />
         </div>
       )}

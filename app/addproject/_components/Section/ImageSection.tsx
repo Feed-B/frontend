@@ -8,11 +8,10 @@ interface ImageSectionProps {
 
 function ImageSection({ title }: ImageSectionProps) {
   return (
-    <section>
-      <h2 className="mb-4 mt-6 text-base font-bold text-gray-900">{title} *</h2>
-      {title == "썸네일" && <ThumbnailBox />}
-      {title == "이미지" && <ImageBox />}
-    </section>
+    <>
+      {title == "썸네일" && <ThumbnailBox title={title} />}
+      {title == "이미지" && <ImageBox title={title} />}
+    </>
   );
 }
 
