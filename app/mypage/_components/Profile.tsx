@@ -19,7 +19,7 @@ function Profile() {
   return (
     <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8">
       <div className="relative">
-        <ProfileImage imageUrl={mockData.imageUrl} />
+        <ProfileImage imageUrl={mockData.imageUrl} className="h-[120px] w-[120px]" />
         {isOpen && (
           <>
             <label htmlFor="profile-image">
