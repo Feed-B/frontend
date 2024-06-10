@@ -3,18 +3,17 @@ import { twMerge } from "tailwind-merge";
 import { UseFormRegisterReturn, FieldError } from "react-hook-form";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  title: string;
+  title?: string;
   inputSize: InputSize;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   error?: FieldError;
 }
 
-type InputSize = "large" | "medium" | "small";
+type InputSize = "normal" | "small";
 
 const inputClasses = {
-  large: "w-[958px] px-3 py-3",
-  medium: "w-[379px] px-4 py-2",
-  small: "w-[197px] px-4 py-2",
+  normal: "w-[384px] px-2 py-3",
+  small: "w-[114px] px-2 py-2",
 };
 
 function Input({ register, title, type, name, placeholder, inputSize, className, error }: InputProps) {
@@ -30,7 +29,7 @@ function Input({ register, title, type, name, placeholder, inputSize, className,
         id={name}
         name={name}
         placeholder={placeholder}
-        className={`${inputClass} h-12 rounded border border-gray-200`}
+        className={`${inputClass} h-11 rounded-lg border border-gray-200 text-sm focus:border-gray-900 focus:outline-none`}
       />
       {error?.message && <span className="text-sm text-red-500">{error.message}</span>}
     </div>
