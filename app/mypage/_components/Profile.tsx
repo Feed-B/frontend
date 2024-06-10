@@ -6,6 +6,7 @@ import addImageIcon from "@/public/icons/addImage.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import EditProfileButton from "./EditProfileButton";
 import { MY_PAGE_TEXT } from "./constant";
+import EditProfileModal from "./EditProfileModal";
 
 const mockData = {
   userId: 1,
@@ -22,6 +23,7 @@ function Profile() {
         <ProfileImage imageUrl={mockData.imageUrl} className="h-[120px] w-[120px]" />
         {isOpen && (
           <>
+            <EditProfileModal openModal={!isOpen} handleModalClose={toggleState} />
             <label htmlFor="profile-image">
               <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
                 <Image fill src={addImageIcon} alt="이미지 추가" />
