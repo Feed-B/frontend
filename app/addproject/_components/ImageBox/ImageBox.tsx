@@ -7,14 +7,10 @@ import Button from "@/app/_components/Button/Button";
 const ImageDescription = "프로젝트를 설명할 이미지를 업로드해주세요";
 const ImageSize = "1440 X 1024 사이즈로 업로드";
 
-interface ImageBoxProps {
-  title: string;
-}
-
-function ImageBox({ title }: ImageBoxProps) {
+function ImageBox() {
   return (
     <>
-      <h2 className="text-base font-bold text-gray-900">{title} *</h2>
+      <h2 className="text-base font-bold text-gray-900">이미지 *</h2>
       <div className="flex gap-3">
         <label>
           <input type="radio" name="size" value="웹" />웹

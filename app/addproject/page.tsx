@@ -2,8 +2,9 @@ import React from "react";
 import Button from "../_components/Button/Button";
 import InputSection from "./_components/Section/InputSection";
 import DropDownSection from "./_components/Section/DropDownSection";
-import ImageSection from "./_components/Section/ImageSection";
 import StackSection from "./_components/Section/SkillStackSection";
+import ThumbnailBox from "./_components/ImageBox/ThumbnailBox";
+import ImageBox from "./_components/ImageBox/ImageBox";
 
 function page() {
   return (
@@ -12,7 +13,7 @@ function page() {
         <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
         <hr />
         <div className="mt-8 flex flex-col gap-8">
-          <ImageSection title="썸네일" />
+          <ThumbnailBox />
           <InputSection
             title="프로젝트 이름"
             type="text"
@@ -43,7 +44,7 @@ function page() {
             inputWidth="w-[420px]"
             name="serviceLink"
           />
-          <ImageSection title="이미지" />
+          <ImageBox />
           <StackSection />
           <DropDownSection
             title="팀원"
