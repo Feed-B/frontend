@@ -27,7 +27,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "bright
 
   return (
     <div className="flex items-center justify-center gap-0.5">
-      <button type="button" className="relative h-4 w-4" onClick={handleFavorite}>
+      <button type="button" className="relative h-6 w-6" onClick={handleFavorite}>
         <Image
           fill
           src={favoriteState.isFavorite ? fullHeartIcon : colorMode === "bright" ? emptyHeartIcon : emptyBlackHeartIcon}
@@ -35,7 +35,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "bright
         />
       </button>
       <p
-        className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? "text-[#FF0000]" : colorMode === "bright" ? "text-white" : "text-gray-900"}`}>
+        className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? "text-red-500" : colorMode === "bright" ? "text-white" : "text-gray-900"}`}>
         {favoriteState.wishCountState}
       </p>
     </div>

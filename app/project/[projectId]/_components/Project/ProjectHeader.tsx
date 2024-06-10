@@ -19,11 +19,7 @@ function ProjectHeader() {
       <div className="flex justify-between gap-2">
         <h1 className="text-2xl font-bold text-gray-900">프로젝트_제목</h1>
         <div className="flex gap-2">
-          {/* <Image src={favoriteIcon} alt="프로젝트 찜하기." width={24} height={32} priority /> */}
-          <div className="w-10 text-black">
-            {" "}
-            <WishButtonAndCount isFavorite={true} wishCount={3} />
-          </div>
+          <WishButtonAndCount isFavorite={true} wishCount={3} colorMode="dark" />
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
           <Image src={kebabIcon} alt="프로젝트 메뉴." width={24} height={32} priority onClick={toggleState} />
           {isOpen && <KebabDropDown projectId={projectId} />}
