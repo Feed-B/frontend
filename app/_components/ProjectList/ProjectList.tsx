@@ -15,7 +15,7 @@ function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
             <ProjectCardInfo
               projectTitle={project.projectTitle}
               projectSubDescription={project.subDescription}
-              viewCount={formatViewCount(project.viewCount)}
+              viewCount={formatViewCount(project.viewCount, 9999)}
             />
           </Link>
         ))

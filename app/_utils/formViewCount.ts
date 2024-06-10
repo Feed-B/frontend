@@ -1,9 +1,6 @@
-const MAX_COUNT_STRING = "9999+";
-const MAX_COUNT = 9999;
-
-export function formatViewCount(count: number) {
-  if (count > MAX_COUNT) {
-    return MAX_COUNT_STRING;
+export function formatViewCount(count: number, maxCount: number) {
+  if (count > maxCount) {
+    return maxCount + "+";
   } else {
     return count;
   }
