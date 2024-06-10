@@ -42,8 +42,7 @@ function FirstStep({ nextStep }: FirstStepProps) {
           type="text"
           name="nickName"
           placeholder="사용하실 닉네임을 작성해주세요"
-          inputSize="medium"
-          className="focus:border-blue-500 focus:outline-none"
+          inputSize="normal"
           register={register("nickName", {
             required: {
               value: true,
@@ -64,7 +63,7 @@ function FirstStep({ nextStep }: FirstStepProps) {
           <textarea
             placeholder={`자기를 어필할 수 있는 소개글을 작성해주세요 (${CONSTANTS.INTRODUCTION_MAX_LENGTH}자)`}
             id="introduction"
-            className="mb-[200px] h-40 w-[379px] rounded border border-[#EBEBEB] px-4 py-2 focus:border-blue-500 focus:outline-none"
+            className="mb-[200px] h-40 w-[379px] rounded border border-[#EBEBEB] px-4 py-2 "
           />
         </div>
 
