@@ -8,19 +8,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWith
   bgColor: BgColor;
 }
 
-type ButtonSize = "large" | "small";
+type ButtonSize = "normal" | "small";
 
-type BgColor = "white" | "mainBlue" | "secondBlue";
+type BgColor = "mainBlue" | "secondBlue" | "white" | "stroke";
 
 const buttonClasses = {
-  large: "w-[557px] rounded py-3",
-  small: "w-[124px] rounded-lg py-3",
+  normal: "w-28 h-11 rounded-lg py-3 text-sm",
+  small: "w-[72px] h-11 rounded-lg py-3 text-sm",
 };
 
 const bgColorClasses: Record<BgColor, string> = {
-  white: "border border-[#1852FD] bg-white text-[#1852FD]",
-  mainBlue: "bg-[#0066DA] text-white",
-  secondBlue: "bg-[#EBECFF] text-[#1852FD]",
+  mainBlue: "bg-blue-500 text-white hover:bg-blue-600",
+  secondBlue: "bg-blue-100 text-blue-500",
+  white: "border border-gray-200 bg-white",
+  stroke: "text-blue-500",
 };
 
 function Button({ children, type = "button", buttonSize, bgColor, onClick, className, disabled }: ButtonProps) {
