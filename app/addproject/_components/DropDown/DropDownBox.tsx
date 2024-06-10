@@ -8,7 +8,7 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
 import TOOL_DATA from "@/app/_constants/ToolData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-import StringDropDown from "./StringDropDown";
+import DropDownList from "./DropDownList";
 
 interface DropDownProps {
   dataType: string;
@@ -51,7 +51,7 @@ function DropDown({ dataType, dropDownWidth }: DropDownProps) {
       {isOpen && (
         <div
           className={`absolute left-0 top-12 ${dropDownWidth} z-20 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black`}>
-          <StringDropDown data={data} dropdownRef={dropdownRef} handleItemClick={handleItemClick} />
+          <DropDownList data={data} dropdownRef={dropdownRef} handleItemClick={handleItemClick} />
         </div>
       )}
     </div>
