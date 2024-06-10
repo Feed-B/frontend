@@ -13,6 +13,11 @@ interface FirstStepProps {
   nextStep: () => void;
 }
 
+const CONSTANTS = {
+  NICKNAME_MAX_LENGTH: 8,
+  INTRODUCTION_MAX_LENGTH: 150,
+};
+
 function FirstStep({ nextStep }: FirstStepProps) {
   const {
     register,
@@ -45,7 +50,7 @@ function FirstStep({ nextStep }: FirstStepProps) {
               message: "닉네임을 입력해주세요",
             },
             maxLength: {
-              value: 8,
+              value: CONSTANTS.NICKNAME_MAX_LENGTH,
               message: "닉네임은 8자를 초과할 수 없습니다",
             },
           })}
@@ -57,7 +62,7 @@ function FirstStep({ nextStep }: FirstStepProps) {
             소개
           </label>
           <textarea
-            placeholder="자기를 어필할 수 있는 소개글을 작성해주세요 (150자)"
+            placeholder={`자기를 어필할 수 있는 소개글을 작성해주세요 (${CONSTANTS.INTRODUCTION_MAX_LENGTH}자)`}
             id="introduction"
             className="mb-[200px] h-40 w-[379px] rounded border border-[#EBEBEB] px-4 py-2 focus:border-blue-500 focus:outline-none"
           />
