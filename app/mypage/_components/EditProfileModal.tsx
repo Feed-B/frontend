@@ -1,3 +1,4 @@
+import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import profileMock from "@/public/images/mock_profileImage.jpg";
@@ -41,12 +42,12 @@ function EditProfileModal({ openModal, handleModalClose }: EditProfileModalProps
           </div>
         </div>
         <div className="flex gap-4">
-          <button type="button" className="rounded-md px-5 py-4 active:bg-gray-200">
+          <Button type="button" buttonSize="normal" bgColor="white">
             취소
-          </button>
-          <button type="button" className="rounded-md bg-blue-500 px-5 py-4 text-white active:bg-blue-600">
+          </Button>
+          <Button type="button" buttonSize="normal" bgColor="mainBlue">
             수정 완료
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>
