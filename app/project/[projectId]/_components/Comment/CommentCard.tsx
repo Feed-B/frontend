@@ -3,8 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import arrowIcon from "@/public/icons/arrowRight.svg";
-import useModal from "@/app/_hooks/useModal";
-import CommentModal from "../CommnetModal/CommentModal";
 import CommentProfile from "./CommentProfile";
 import CommentCount from "./CommentCount";
 import TotalStar from "./TotalStar";
@@ -20,23 +18,16 @@ interface CommentProps {
 }
 
 function CommentCard({ comment }: CommentProps) {
-  const { openModal, handleModalOpen, handleModalClose } = useModal();
-
   return (
-    <>
-      {openModal && <CommentModal openModal={openModal} handleModalClose={handleModalClose} commnetId={comment.id} />}
-      <div
-        onClick={handleModalOpen}
-        className="relative flex flex-col justify-between gap-4 rounded-xl bg-gray-100 p-4">
-        <div className="flex justify-between">
-          <CommentProfile />
-          <CommentCount />
-        </div>
-        <p className="text-overflow h-14 text-sm text-gray-900">{comment.comment}</p>
-        <TotalStar />
-        <Image className="absolute bottom-6 right-4" src={arrowIcon} alt="댓글 상세보기." width={24} />
+    <div className="relative flex flex-col justify-between gap-4 rounded-xl bg-gray-100 p-4">
+      <div className="flex justify-between">
+        <CommentProfile />
+        <CommentCount />
       </div>
-    </>
+      <p className="text-overflow h-14 text-sm text-gray-900">{comment.comment}</p>
+      <TotalStar />
+      <Image className="absolute bottom-6 right-4" src={arrowIcon} alt="댓글 상세보기." width={24} />
+    </div>
   );
 }
 
