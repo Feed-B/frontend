@@ -4,7 +4,7 @@ import React, { InputHTMLAttributes, useState } from "react";
 import Image from "next/image";
 import deleteIcon from "@/public/icons/delete.svg";
 import notDeleteIcon from "@/public/icons/notDelete.svg";
-import DropDownBox from "../DropDown/DropDownBox";
+import DropDownBox from "./DropDownBox";
 
 interface DropDownSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;

@@ -61,10 +61,7 @@ function SkillStackSection() {
   }, [result]);
 
   return (
-    <section className="flex flex-col gap-4">
-      <label htmlFor="search" className="flex text-base font-bold text-gray-900">
-        기술스택 *
-      </label>
+    <>
       <div className="relative">
         <div className="mb-1 flex flex-row items-center gap-3 rounded-lg border border-solid border-gray-400 p-3">
           <Image src={searchIcon} alt="검색 아이콘" width={16} priority />
@@ -125,7 +122,7 @@ function SkillStackSection() {
           );
         })}
       </div>
-    </section>
+    </>
   );
 }
 

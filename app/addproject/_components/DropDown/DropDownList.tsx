@@ -6,7 +6,7 @@ interface Props {
   handleItemClick: (value: string) => void;
 }
 
-function StringDropDown({ data, dropdownRef, handleItemClick }: Props) {
+function DropDownList({ data, dropdownRef, handleItemClick }: Props) {
   return (
     <div ref={dropdownRef}>
       {Object.entries(data).map(([index, value]) => (
@@ -22,4 +22,4 @@ function StringDropDown({ data, dropdownRef, handleItemClick }: Props) {
   );
 }
 
-export default StringDropDown;
+export default DropDownList;
