@@ -37,7 +37,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
   };
 
   return (
-    <>
+    <section className="flex flex-col gap-4">
       <Title title={title} name={`${name}-${additionalInput[0].id}-primary`} label />
       <div>
         {additionalInput.map(item => (
@@ -72,7 +72,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
         <Image src={plusIcon} alt="추가하기" width={20} priority />
         {title === "팀원" ? "팀원" : "링크"} 추가하기
       </Button>
-    </>
+    </section>
   );
 }
 

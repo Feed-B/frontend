@@ -38,22 +38,9 @@ function page() {
           <Title title="이미지" />
           <ProjectImageBox />
         </section>
-        <section className="flex flex-col gap-4">
-          <Title title="기술스택" name="search" label />
-          <SkillStackSection />
-        </section>
-        <section className="flex flex-col gap-4">
-          <AddSection title="팀원" placeholder="이름" name="member" inputWidth="w-[114px]" dropDownType="job" />
-        </section>
-        <section className="flex flex-col gap-4">
-          <AddSection
-            title="추가 링크"
-            placeholder="http://"
-            name="addLink"
-            inputWidth="w-[520px]"
-            dropDownType="tool"
-          />
-        </section>
+        <SkillStackSection />
+        <AddSection title="팀원" placeholder="이름" name="member" inputWidth="w-[114px]" dropDownType="job" />
+        <AddSection title="추가 링크" placeholder="http://" name="addLink" inputWidth="w-[520px]" dropDownType="tool" />
       </div>
       <div className="mt-56 flex w-full justify-end">
         <Button buttonSize="normal" bgColor="mainBlue">

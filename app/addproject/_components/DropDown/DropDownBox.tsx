@@ -28,9 +28,9 @@ function DropDownBox({ dataType }: DropDownProps) {
   const [item, setItem] = useState(dataType === "job" ? "직무" : "플랫폼");
 
   const itemRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const exceptionRef = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(itemRef, toggleState, buttonRef);
+  useOutsideClick(itemRef, toggleState, exceptionRef);
 
   const handleItemClick = (value: string) => {
     setItem(value);
@@ -44,13 +44,13 @@ function DropDownBox({ dataType }: DropDownProps) {
           "flex h-11 w-[118px] items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
         }>
         {item}
-        <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>
+        <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
           {isOpen ? (
             <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
           ) : (
             <Image src={smallArrowIcon} alt="드롭다운 닫기" width={20} height={20} priority />
           )}
-        </button>
+        </div>
       </div>
       {isOpen && (
         <DropDown className="absolute w-auto" itemRef={itemRef}>
