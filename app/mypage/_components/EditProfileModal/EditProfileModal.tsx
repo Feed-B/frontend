@@ -6,6 +6,7 @@ import profileMock from "@/public/images/mock_profileImage.jpg";
 import closeButton from "@/public/icons/crossLine.svg";
 import Input from "@/app/_components/Input/Input";
 import { ProfileDataType } from "../Profile";
+import { MY_PAGE_TEXT } from "../constant";
 
 interface EditProfileModalProps {
   openModal: boolean;
@@ -19,26 +20,28 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       openModal={openModal}
       handleModalClose={handleModalClose}
       className="flex flex-col items-center gap-8 px-10 py-8">
-      <button type="button" className="relative h-6 w-6 self-end rounded-full active:bg-gray-200">
-        <Image fill src={closeButton} alt="프로필 수정 닫기" />
+      <button type="button" onClick={handleModalClose} className="self-end rounded-full p-1 active:bg-gray-200">
+        <Image width={20} height={20} src={closeButton} alt="프로필 수정 닫기" />
       </button>
       <div className="flex flex-col items-center justify-center gap-8">
         <div className="flex gap-24">
           <div className="flex flex-col gap-5">
             <ProfileImage imageUrl={profileMock} className="h-[124px] w-[124px]" />
             <label htmlFor="profile-image">
-              <div className="h-11 w-28 rounded-lg py-3 text-center text-sm text-blue-500">이미지 수정</div>
+              <div className="h-11 w-28 cursor-pointer rounded-lg py-3 text-center text-sm text-blue-500">
+                {MY_PAGE_TEXT.EDIT_IMAGE}
+              </div>
             </label>
             <input type="file" id="profile-image" className="hidden" />
           </div>
           <div className="flex flex-col gap-4">
             <Input inputSize="normal" name="nickName" type="text" placeholder={profileData.nickName} title="닉네임" />
             <label htmlFor="introduction" className="text-base font-bold text-gray-900">
-              직무
+              {MY_PAGE_TEXT.JOB}
             </label>
             {/** 프로젝트 등록할 때 drop down이랑 동일해보여서, 그걸 가져다가 쓸 것 같습니다. */}
             <label htmlFor="introduction" className="text-base font-bold text-gray-900">
-              소개
+              {MY_PAGE_TEXT.INTRODUCTION}
             </label>
             <textarea
               id="introduction"
@@ -50,10 +53,10 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       </div>
       <div className="flex gap-4">
         <Button type="button" buttonSize="normal" bgColor="white">
-          취소
+          {MY_PAGE_TEXT.CANCEL}
         </Button>
         <Button type="button" buttonSize="normal" bgColor="mainBlue">
-          수정 완료
+          {MY_PAGE_TEXT.COMPLETE_EDIT}
         </Button>
       </div>
     </Modal>
