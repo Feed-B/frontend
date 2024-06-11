@@ -7,6 +7,7 @@ import closeButton from "@/public/icons/crossLine.svg";
 import Input from "@/app/_components/Input/Input";
 import { ProfileDataType } from "../Profile";
 import { MY_PAGE_TEXT } from "../constant";
+import EditJobDropDown from "./EditProfileJob";
 
 interface EditProfileModalProps {
   openModal: boolean;
@@ -36,10 +37,8 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
           </div>
           <div className="flex flex-col gap-4">
             <Input inputSize="normal" name="nickName" type="text" placeholder={profileData.nickName} title="닉네임" />
-            <label htmlFor="introduction" className="text-base font-bold text-gray-900">
-              {MY_PAGE_TEXT.JOB}
-            </label>
-            {/** 프로젝트 등록할 때 drop down이랑 동일해보여서, 그걸 가져다가 쓸 것 같습니다. */}
+            <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
+            <EditJobDropDown currentJob="프론트엔드" />
             <label htmlFor="introduction" className="text-base font-bold text-gray-900">
               {MY_PAGE_TEXT.INTRODUCTION}
             </label>
@@ -52,7 +51,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
         </div>
       </div>
       <div className="flex gap-4">
-        <Button type="button" buttonSize="normal" bgColor="white">
+        <Button onClick={handleModalClose} type="button" buttonSize="normal" bgColor="white">
           {MY_PAGE_TEXT.CANCEL}
         </Button>
         <Button type="button" buttonSize="normal" bgColor="mainBlue">
