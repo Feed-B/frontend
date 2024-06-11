@@ -5,8 +5,8 @@ import CommentProfile from "../../_components/Comment/CommentProfile";
 import CommentCount from "../../_components/Comment/CommentCount";
 import RatingBox from "./_components/RatingBox";
 import CommentDropbox from "./_components/CommentDropbox";
-import ReflyCommentItem from "./_components/ReflyCommentItem";
 import CommentInput from "./_components/CommentInput";
+import ReflyCommentList from "./_components/ReflyCommentList";
 
 function CommentPage() {
   return (
@@ -31,14 +31,7 @@ function CommentPage() {
       <section className="mt-12">
         <CommentInput />
       </section>
-      <section className="mb-12 mt-4">
-        <ReflyCommentItem />
-        <ReflyCommentItem />
-        <ReflyCommentItem />
-        <ReflyCommentItem />
-        <ReflyCommentItem />
-        <ReflyCommentItem />
-      </section>
+      <ReflyCommentList />
     </div>
   );
 }
