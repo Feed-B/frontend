@@ -4,8 +4,17 @@ import Link from "next/link";
 import mobileIcon from "@/public/images/mobile.png";
 // import pcIcon from "@/public/images/pc.png";
 import webIcon from "@/public/icons/web.svg";
+import LinkSection from "../ProjectSection/LinkSection";
 
-function ProjectArticle() {
+interface LinkListProps {
+  linkList: {
+    id: number;
+    tool: string;
+    url: string;
+  }[];
+}
+
+function ProjectArticle({ linkList }: LinkListProps) {
   return (
     <article className="flex items-center gap-16 px-8 py-3">
       <div className="flex flex-col gap-2">
@@ -27,6 +36,7 @@ function ProjectArticle() {
           <Image src={webIcon} alt="배포 사이트 바로가기." width={24} priority />
           <p>확인하러 가기</p>
         </Link>
+        <LinkSection linkList={linkList} />
       </div>
       <div>
         <Image width="700" src={mobileIcon} alt="앱 서비스 프로젝트." />
