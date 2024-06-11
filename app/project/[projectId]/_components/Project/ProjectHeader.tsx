@@ -17,7 +17,9 @@ function ProjectHeader() {
   return (
     <header className="relative px-4 py-3">
       <div className="flex justify-between gap-2">
-        <h1 className="text-2xl font-bold text-gray-900">프로젝트_제목</h1>
+        <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
+          프로젝트_제목
+        </h1>
         <div className="flex gap-2">
           <WishButtonAndCount isFavorite={true} wishCount={3} colorMode="dark" />
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
@@ -25,8 +27,9 @@ function ProjectHeader() {
           {isOpen && <KebabDropDown projectId={projectId} />}
         </div>
       </div>
-      <div className="flex w-full items-center gap-5">
-        <p className="text-base font-bold text-gray-900">작성자</p>
+      <div className="flex w-full items-center gap-3">
+        <p className="text-sm font-bold text-gray-900">작성자</p>
+        <p className="text-[10px] text-blue-400">프론트엔드</p>
         <p className="text-sm text-gray-500">20XX.XX.XX</p>
       </div>
     </header>
