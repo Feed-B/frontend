@@ -16,7 +16,8 @@ function DropDown({ children, className, ref }: DropDownProps) {
 }
 
 function LinkItem({ children, className, href }: DropDownLinkProps) {
-  const DefaultLinkItemClass = "block cursor-pointer p-2 text-black font-semibold hover:bg-gray-100";
+  const DefaultLinkItemClass =
+    "text-nowrap block cursor-pointer p-2 text-black font-semibold hover:bg-gray-100 rounded";
   const LinkItemClass = twMerge(DefaultLinkItemClass, className);
 
   return (
@@ -27,7 +28,7 @@ function LinkItem({ children, className, href }: DropDownLinkProps) {
 }
 
 function TextItem({ children, className, onClick }: DropDownProps) {
-  const DefaultTextItemClass = "cursor-pointer p-2 text-black font-semibold hover:bg-gray-100";
+  const DefaultTextItemClass = "text-nowrap cursor-pointer p-2 text-black font-semibold hover:bg-gray-100 rounded";
   const TextItemClass = twMerge(DefaultTextItemClass, className);
 
   return (
