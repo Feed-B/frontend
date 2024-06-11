@@ -15,7 +15,7 @@ function ProjectHeader() {
   const { isOpen, toggleState } = useToggleHook();
 
   return (
-    <header className="relative px-4 py-3">
+    <header className="px-4 py-3">
       <div className="flex justify-between gap-2">
         <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
           프로젝트_제목

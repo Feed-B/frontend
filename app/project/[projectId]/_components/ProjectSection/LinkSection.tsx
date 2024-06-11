@@ -10,7 +10,7 @@ interface LinkListProps {
 
 function LinkSection({ linkList }: LinkListProps) {
   return (
-    <section className="mt-10">
+    <section>
       <p className="mb-4 text-lg font-bold">추가 링크</p>
       <div className="flex gap-2">
         {linkList.map(link => (
