@@ -39,7 +39,7 @@ function TextItem({ children, className, onClick }: DropDownProps) {
 }
 
 function HR() {
-  return <hr className="m-1 border-[0.5px] border-solid border-gray-300" />;
+  return <hr className="m-1" />;
 }
 
 DropDown.LinkItem = LinkItem;
