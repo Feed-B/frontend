@@ -1,25 +1,17 @@
 import React from "react";
+import DropDown from "@/app/_components/DropDown/DropDown";
 
 interface Props {
   data: Record<string, string>;
-  dropdownRef: React.RefObject<HTMLDivElement>;
   handleItemClick: (value: string) => void;
 }
 
-function DropDownList({ data, dropdownRef, handleItemClick }: Props) {
-  return (
-    <div ref={dropdownRef}>
-      {Object.entries(data).map(([index, value]) => (
-        <button
-          type="button"
-          key={index}
-          className="block w-full cursor-pointer p-2 text-left hover:bg-gray-100"
-          onClick={() => handleItemClick(value)}>
-          <p>{value}</p>
-        </button>
-      ))}
+function DropDownList({ data, handleItemClick }: Props) {
+  return Object.entries(data).map(([index, value]) => (
+    <div key={index}>
+      <DropDown.TextItem onClick={() => handleItemClick(value)}>{value}</DropDown.TextItem>
     </div>
-  );
+  ));
 }
 
 export default DropDownList;
