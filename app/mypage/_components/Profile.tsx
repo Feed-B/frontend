@@ -5,7 +5,7 @@ import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import EditProfileButton from "./EditProfileButton";
 import { MY_PAGE_TEXT } from "./constant";
-import EditProfileModal from "./EditProfileModal";
+import EditProfileModal from "./EditProfileModal/EditProfileModal";
 
 const mockData = {
   userId: 1,
