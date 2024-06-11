@@ -25,7 +25,7 @@ function DropDownBox({ dataType }: DropDownProps) {
 
   const { isOpen, toggleState } = useToggleHook();
 
-  const [item, setItem] = useState(data && Object.values(data)[0]);
+  const [item, setItem] = useState(dataType === "job" ? "직무" : "플랫폼");
 
   const itemRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
