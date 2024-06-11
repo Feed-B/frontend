@@ -1,4 +1,6 @@
-function httpClient(BASE_URL: string) {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+function httpClient() {
   async function get<R>(url: string) {
     const response = await fetch(BASE_URL + url);
     const result: R = await response.json();
