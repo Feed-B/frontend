@@ -33,7 +33,7 @@ const teamMemberList = [
 function TeamMemberSection() {
   return (
     <section>
-      <h3 className="mb-4 text-lg font-bold">팀원</h3>
+      <h3 className="mb-4 text-lg font-semibold">팀원</h3>
       <div className="flex gap-6">
         {teamMemberList.map(team => (
           <div className="flex gap-3" key={team.id}>

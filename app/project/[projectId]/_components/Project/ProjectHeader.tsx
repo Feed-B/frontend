@@ -28,7 +28,7 @@ function ProjectHeader() {
         </div>
       </div>
       <div className="flex w-full items-center gap-3">
-        <p className="text-sm font-bold text-gray-900">작성자</p>
+        <p className="text-sm font-semibold text-gray-900">작성자</p>
         <p className="text-[10px] text-blue-400">프론트엔드</p>
         <p className="text-sm text-gray-500">20XX.XX.XX</p>
       </div>
