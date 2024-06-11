@@ -1,8 +1,5 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import profileIcon from "@/public/icons/defaultProfile.svg";
-
 //mock data
 const teamMemberList = [
   {
@@ -12,7 +9,6 @@ const teamMemberList = [
       {
         id: 1,
         name: "홍길동동",
-        url: "https://www.naver.com/",
       },
       {
         id: 2,
@@ -27,7 +23,7 @@ const teamMemberList = [
     member: [
       {
         id: 1,
-        name: "LongName",
+        name: "일이삼사오육칠팔",
         url: "https://www.naver.com/",
       },
     ],
@@ -38,21 +34,20 @@ function TeamMemberSection() {
   return (
     <section>
       <h3 className="mb-4 text-lg font-bold">팀원</h3>
-      <div className="flex gap-8">
+      <div className="flex gap-6">
         {teamMemberList.map(team => (
-          <div key={team.id}>
-            <p className="mb-3 text-sm text-gray-900">{team.job}</p>
-            <div className="flex gap-3">
+          <div className="flex gap-3" key={team.id}>
+            <p className="rounded bg-gray-100 p-1 text-sm font-semibold text-blue-500">{team.job}</p>
+            <div className="flex items-center gap-2 text-sm">
               {team.member.map(member => (
-                <div key={member.id} className="flex flex-col items-center gap-0.5 text-sm">
+                <div key={member.id}>
                   {member.url ? (
                     <Link href={member.url} target="_blank">
-                      <Image src={profileIcon} alt="프로젝트 팀원 프로필." width={40} />
+                      <p className="font-bold">{member.name}</p>
                     </Link>
                   ) : (
-                    <Image src={profileIcon} alt="프로젝트 팀원 프로필." width={40} />
+                    <p>{member.name}</p>
                   )}
-                  <p className="w-14 overflow-hidden text-ellipsis whitespace-nowrap text-center">{member.name}</p>
                 </div>
               ))}
             </div>
