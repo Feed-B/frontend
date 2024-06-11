@@ -12,7 +12,6 @@ interface DropDownSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
   inputWidth?: string;
   dropDownType: string;
-  dropDownWidth?: string;
 }
 
 interface InputBox {
@@ -20,15 +19,7 @@ interface InputBox {
   value: string;
 }
 
-function DropDownSection({
-  title,
-  type,
-  placeholder,
-  name,
-  inputWidth,
-  dropDownType,
-  dropDownWidth,
-}: DropDownSectionProps) {
+function DropDownSection({ title, type, placeholder, name, inputWidth, dropDownType }: DropDownSectionProps) {
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>([{ id: 0, value: "" }]);
   const [nextId, setNextId] = useState(1);
 
@@ -51,21 +42,18 @@ function DropDownSection({
       <div>
         {additionalInput.map(item => (
           <div key={item.id} className="mb-2 flex gap-1">
-            <DropDownBox dataType={dropDownType} dropDownWidth={dropDownWidth} />
+            <DropDownBox dataType={dropDownType} />
             <input
               type={type}
               placeholder={placeholder}
-              className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
+              className={`${inputWidth} h-11 rounded-lg border border-solid border-gray-200 px-4 py-3`}
               name={name}
               id={`${name}-${item.id}`}
               autoComplete="off"
             />
-            <button
-              type="button"
-              className="flex h-12 w-12 items-center justify-center rounded border border-solid border-gray-200 p-2"
-              onClick={() => handleDeleteButtonClick(item.id)}>
+            <button type="button" onClick={() => handleDeleteButtonClick(item.id)}>
               <Image
-                width={20}
+                width={44}
                 src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
                 alt="삭제 버튼"
                 priority

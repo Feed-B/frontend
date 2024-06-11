@@ -32,7 +32,7 @@ function page() {
           </section>
           <section className="flex flex-col gap-4">
             <Title title="프로젝트 링크" name="projectLink" label />
-            <Input type="text" placeholder="http://" inputWidth="w-[420px]" name="projectLink" />
+            <Input type="text" placeholder="http://" inputWidth="w-full" name="projectLink" />
           </section>
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -49,7 +49,6 @@ function page() {
             name="member"
             inputWidth="w-48"
             dropDownType="job"
-            dropDownWidth="w-44"
           />{" "}
           {/** 수정필요 */}
           <DropDownSection
@@ -59,7 +58,6 @@ function page() {
             name="addLink"
             inputWidth="w-96"
             dropDownType="tool"
-            dropDownWidth="w-28"
           />
         </div>
       </div>

@@ -8,7 +8,7 @@ interface TitleProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function Title({ title, name, additionalSize, label }: TitleProps) {
   return (
-    <div className="flex w-[232px] items-center justify-between">
+    <div className="flex items-center justify-between">
       {label ? (
         <label htmlFor={name} className="text-base font-bold text-gray-900">
           {title} *
