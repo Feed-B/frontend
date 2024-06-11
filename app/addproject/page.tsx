@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../_components/Button/Button";
 import Input from "./_components/Section/Input";
 import DropDownSection from "./_components/DropDown/DropDownSection";
 import SkillStackSection from "./_components/SkillStack/SkillStackSection";
@@ -11,24 +10,24 @@ import TextArea from "./_components/Section/TextArea";
 function page() {
   return (
     <main className="grid place-items-center">
-      <div className="w-[960px]">
-        <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
+      <div className="w-[1200px]">
+        <h1 className="mb-4 mt-6 text-start text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
         <hr />
         <div className="mt-8 flex flex-col gap-8">
-          <section className="flex flex-col gap-4">
+          <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" additionalSize="(232 x 232px)" />
             <ThumbnailBox />
           </section>
           <section className="flex flex-col gap-4">
-            <Title title="프로젝트 이름" name="projectTitle" additionalSize="최대 50자" label />
+            <Title title="프로젝트 이름" name="projectTitle" additionalSize="(최대 50자)" label />
             <Input type="text" placeholder="제목을 입력해주세요" inputWidth="w-full" name="projectTitle" />
           </section>
           <section className="flex flex-col gap-4">
-            <Title title="소개" name="projectIntroduction" additionalSize="최대 50자" label />
+            <Title title="소개" name="projectIntroduction" additionalSize="(최대 50자)" label />
             <Input type="text" placeholder="소개를 입력해주세요" inputWidth="w-full" name="projectIntroduction" />
           </section>
           <section className="flex flex-col gap-4">
-            <Title title="본문" name="projectDescription" additionalSize="최대 150자" label />
+            <Title title="본문" name="projectDescription" additionalSize="(최대 150자)" label />
             <TextArea placeholder="텍스트를 입력해주세요" name="projectDescription" />
           </section>
           <section className="flex flex-col gap-4">
@@ -62,11 +61,6 @@ function page() {
             dropDownType="tool"
             dropDownWidth="w-28"
           />
-        </div>
-        <div className="flex justify-center">
-          <Button buttonSize="small" bgColor="mainBlue" className="mt-6">
-            <p>등록하기</p>
-          </Button>
         </div>
       </div>
     </main>
