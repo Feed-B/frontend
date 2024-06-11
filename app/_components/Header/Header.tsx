@@ -13,9 +13,7 @@ function Header() {
           <h1 className="h-full text-black">LOGO</h1>
         </Link>
         <div className="flex h-full items-center gap-4">
-          <Link
-            href="/addproject"
-            className="flex h-full w-[124px] items-center justify-center gap-1 rounded-lg bg-[#3C67E7] text-white">
+          <Link href="/addproject">
             <Button buttonSize="small" bgColor="mainBlue" className="flex items-center justify-center gap-1">
               <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
               <span>업로드</span>
