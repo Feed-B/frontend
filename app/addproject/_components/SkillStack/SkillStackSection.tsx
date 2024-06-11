@@ -63,7 +63,7 @@ function SkillStackSection() {
   return (
     <>
       <div className="relative">
-        <div className="mb-1 flex flex-row items-center gap-3 rounded-lg border border-solid border-gray-400 p-3">
+        <div className="mb-1 flex flex-row items-center gap-3 rounded-lg border border-solid border-gray-200 p-3">
           <Image src={searchIcon} alt="검색 아이콘" width={16} priority />
           <input
             className="w-full text-sm font-normal outline-none"

@@ -13,10 +13,9 @@ import DropDownList from "./DropDownList";
 
 interface DropDownProps {
   dataType: string;
-  dropDownWidth?: string;
 }
 
-function DropDownBox({ dataType, dropDownWidth }: DropDownProps) {
+function DropDownBox({ dataType }: DropDownProps) {
   const dataMap: Record<string, Record<string, string>> = {
     job: JOB_CATEGORIES,
     tool: TOOL_DATA,
@@ -39,18 +38,22 @@ function DropDownBox({ dataType, dropDownWidth }: DropDownProps) {
   };
 
   return (
-    <div
-      className={`relative flex h-12 ${dropDownWidth} items-center justify-between gap-2 border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}>
-      {item}
-      <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>
-        {isOpen ? (
-          <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
-        ) : (
-          <Image src={smallArrowIcon} alt="드롭다운 닫기" width={20} height={20} priority />
-        )}
-      </button>
+    <div className="relative">
+      <div
+        className={
+          "flex h-11 w-28 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
+        }>
+        {item}
+        <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>
+          {isOpen ? (
+            <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
+          ) : (
+            <Image src={smallArrowIcon} alt="드롭다운 닫기" width={20} height={20} priority />
+          )}
+        </button>
+      </div>
       {isOpen && (
-        <DropDown className={`${dropDownWidth} left-0 top-12`} itemRef={itemRef}>
+        <DropDown className="absolute w-auto" itemRef={itemRef}>
           <DropDownList data={data} handleItemClick={handleItemClick} />
         </DropDown>
       )}
