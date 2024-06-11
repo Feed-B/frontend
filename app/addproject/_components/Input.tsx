@@ -5,14 +5,15 @@ interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 // 임시 input 컴포넌트입니다
-function Input({ type, placeholder, name, inputWidth }: InputSectionProps) {
+function Input({ type, placeholder, name, id, inputWidth }: InputSectionProps) {
   return (
     <input
       type={type}
       placeholder={placeholder}
-      className={`${inputWidth} h-12 rounded-sm border border-solid border-gray-200 px-4 py-3`}
+      className={`${inputWidth ? inputWidth : "w-full"} h-11 rounded-lg border border-solid border-gray-200 px-4 py-3`}
       name={name}
-      id={name}
+      id={id ? id : name}
+      autoComplete="off"
     />
   );
 }
