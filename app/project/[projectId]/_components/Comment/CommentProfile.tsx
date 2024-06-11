@@ -7,7 +7,7 @@ function CommentProfile() {
       <ProfileImage imageUrl={""} className="h-10 w-10" />
       <div>
         <p className="text-sm">김한주</p>
-        <p className=" text-[10px] font-normal text-blue-400">프론트엔드</p>
+        <p className="text-[10px] font-normal text-blue-400">프론트엔드</p>
       </div>
     </div>
   );
