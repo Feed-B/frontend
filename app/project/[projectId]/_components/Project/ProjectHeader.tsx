@@ -6,7 +6,7 @@ import shareIcon from "@/public/icons/share.svg";
 import kebabIcon from "@/public/icons/kebab.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
-import KebabDropDown from "./KebabDropDown";
+import DropDown from "@/app/_components/DropDown/DropDown";
 
 //임시 ID
 const projectId = 1;
@@ -23,8 +23,21 @@ function ProjectHeader() {
         <div className="flex gap-2">
           <WishButtonAndCount isFavorite={true} wishCount={3} colorMode="dark" />
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
-          <Image src={kebabIcon} alt="프로젝트 메뉴." width={24} height={32} priority onClick={toggleState} />
-          {isOpen && <KebabDropDown projectId={projectId} />}
+          <Image
+            className="relative"
+            src={kebabIcon}
+            alt="프로젝트 메뉴."
+            width={24}
+            height={32}
+            priority
+            onClick={toggleState}
+          />
+          {isOpen && (
+            <DropDown className="w-fit translate-x-10 translate-y-10">
+              <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
+              <DropDown.TextItem>삭제</DropDown.TextItem>
+            </DropDown>
+          )}
         </div>
       </div>
       <div className="flex w-full items-center gap-3">
