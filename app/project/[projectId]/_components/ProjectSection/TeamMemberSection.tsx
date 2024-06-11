@@ -36,7 +36,7 @@ const teamMemberList = [
 
 function TeamMemberSection() {
   return (
-    <section className="mt-10">
+    <section>
       <h3 className="mb-4 text-lg font-bold">팀원</h3>
       <div className="flex gap-8">
         {teamMemberList.map(team => (

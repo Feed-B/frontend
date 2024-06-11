@@ -17,17 +17,15 @@ const linkList = [
 
 function Project() {
   return (
-    <main className="mx-auto my-8 flex w-[1200px] flex-col gap-16">
-      <div>
+    <main className="mx-auto my-8 flex w-[1200px] flex-col gap-12">
+      <div className="flex flex-col gap-10">
         <ProjectHeader />
-        <hr />
         <ProjectArticle />
-        <hr />
         <TeamMemberSection />
         <StackSection stackList={stackList} />
         <LinkSection linkList={linkList} />
+        <RatingSection />
       </div>
-      <RatingSection />
       <div>
         <WriteCommentSection />
         <CommentListSection />
