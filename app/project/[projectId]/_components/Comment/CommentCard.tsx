@@ -32,7 +32,7 @@ function CommentCard({ comment }: CommentProps) {
           <CommentProfile />
           <CommentCount />
         </div>
-        <p className="text-overflow h-14 text-sm text-gray-900">{comment.comment}</p>
+        <p className="text-overflow-3 h-14 text-sm text-gray-900">{comment.comment}</p>
         <TotalStar />
         <Image className="absolute bottom-6 right-4" src={arrowIcon} alt="댓글 상세보기." width={24} />
       </div>

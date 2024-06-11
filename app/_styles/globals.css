@@ -8,12 +8,22 @@
   font-family: Pretendard;
 }
 
-.text-overflow {
+.text-overflow-3 {
   text-overflow: ellipsis;
   overflow: hidden;
   word-break: break-all;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.text-overflow-12 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 12;
   -webkit-box-orient: vertical;
 }

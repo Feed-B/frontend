@@ -32,7 +32,7 @@ const teamMemberList = [
 
 function TeamMemberSection() {
   return (
-    <section>
+    <section className="px-8">
       <h3 className="mb-4 text-lg font-semibold">팀원</h3>
       <div className="flex gap-6">
         {teamMemberList.map(team => (
