@@ -4,6 +4,8 @@ import React, { InputHTMLAttributes, useState } from "react";
 import Image from "next/image";
 import deleteIcon from "@/public/icons/delete.svg";
 import notDeleteIcon from "@/public/icons/notDelete.svg";
+import Button from "@/app/_components/Button/Button";
+import plusIcon from "@/public/icons/plus.svg";
 import DropDownBox from "./DropDownBox";
 
 interface DropDownSectionProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -72,9 +74,14 @@ function DropDownSection({
           </div>
         ))}
       </div>
-      <button type="button" onClick={handleAddButtonClick} className="w-fit rounded-lg p-2 text-blue-500">
-        추가하기
-      </button>
+      <Button
+        buttonSize="normal"
+        bgColor="stroke"
+        onClick={handleAddButtonClick}
+        className="flex items-center justify-center gap-1">
+        <Image src={plusIcon} alt="추가하기" width={20} priority />
+        {title === "팀원" ? "팀원" : "링크"} 추가하기
+      </Button>
     </section>
   );
 }
