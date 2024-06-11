@@ -3,7 +3,7 @@ import { RefObject, useEffect } from "react";
 const useOutsideClick = (
   ref: RefObject<HTMLDivElement>,
   handleDropDownClose: () => void,
-  exceptionRef?: RefObject<HTMLButtonElement>
+  exceptionRef?: RefObject<HTMLDivElement>
 ) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
