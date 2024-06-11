@@ -40,6 +40,7 @@ function ProjectArticle({ linkList }: LinkListProps) {
         <LinkSection linkList={linkList} />
       </div>
       <div className="relative flex">
+        {/* 컴포넌트 분리 예정 */}
         <button className="absolute -left-5 top-1/2 h-11 w-11 -translate-y-1/2 rounded-full bg-gray-800 p-[10px]">
           <Image src={arrowLeftIcon} alt="왼쪽 이미지 보기." />
         </button>
