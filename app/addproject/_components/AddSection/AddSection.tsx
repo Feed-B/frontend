@@ -6,9 +6,11 @@ import deleteIcon from "@/public/icons/delete.svg";
 import notDeleteIcon from "@/public/icons/notDelete.svg";
 import Button from "@/app/_components/Button/Button";
 import plusIcon from "@/public/icons/plus.svg";
-import DropDownBox from "./DropDownBox";
+import Title from "../Title";
+import Input from "../Input";
+import DropDownBox from "../DropDown/DropDownBox";
 
-interface DropDownSectionProps extends InputHTMLAttributes<HTMLInputElement> {
+interface AddSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
   inputWidth?: string;
   dropDownType: string;
@@ -19,7 +21,7 @@ interface InputBox {
   value: string;
 }
 
-function DropDownSection({ title, type, placeholder, name, inputWidth, dropDownType }: DropDownSectionProps) {
+function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddSectionProps) {
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>([{ id: 0, value: "" }]);
   const [nextId, setNextId] = useState(1);
 
@@ -35,30 +37,30 @@ function DropDownSection({ title, type, placeholder, name, inputWidth, dropDownT
   };
 
   return (
-    <section className="flex flex-col gap-4">
-      <label htmlFor={`${name}-${additionalInput[0].id}`} className="flex text-base font-bold text-gray-900">
-        <p>{title === "추가 링크" ? title : title + " *"}</p>
-      </label>
+    <>
+      <Title title={title} name={`${name}-${additionalInput[0].id}-primary`} label />
       <div>
         {additionalInput.map(item => (
           <div key={item.id} className="mb-2 flex gap-1">
             <DropDownBox dataType={dropDownType} />
-            <input
-              type={type}
+            <Input
+              type="text"
               placeholder={placeholder}
-              className={`${inputWidth} h-11 rounded-lg border border-solid border-gray-200 px-4 py-3`}
-              name={name}
-              id={`${name}-${item.id}`}
-              autoComplete="off"
+              name={`${name}-primary`}
+              id={`${name}-${item.id}-primary`}
+              inputWidth={inputWidth}
             />
-            <button type="button" onClick={() => handleDeleteButtonClick(item.id)}>
+            {title === "팀원" && (
+              <Input type="text" placeholder="http://" name={`${name}-secondary`} id={`${name}-${item.id}-secondary`} />
+            )}
+            <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
               <Image
                 width={44}
                 src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
                 alt="삭제 버튼"
                 priority
               />
-            </button>
+            </div>
           </div>
         ))}
       </div>
@@ -70,8 +72,8 @@ function DropDownSection({ title, type, placeholder, name, inputWidth, dropDownT
         <Image src={plusIcon} alt="추가하기" width={20} priority />
         {title === "팀원" ? "팀원" : "링크"} 추가하기
       </Button>
-    </section>
+    </>
   );
 }
 
-export default DropDownSection;
+export default AddSection;

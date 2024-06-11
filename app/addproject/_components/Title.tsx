@@ -11,7 +11,7 @@ function Title({ title, name, additionalSize, label }: TitleProps) {
     <div className="flex items-center justify-between">
       {label ? (
         <label htmlFor={name} className="text-base font-bold text-gray-900">
-          {title} *
+          {title === "추가 링크" ? title : title + " *"}
         </label>
       ) : (
         <h2 className="text-base font-bold text-gray-900">{title} *</h2>

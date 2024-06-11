@@ -41,7 +41,7 @@ function DropDownBox({ dataType }: DropDownProps) {
     <div className="relative">
       <div
         className={
-          "flex h-11 w-28 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
+          "flex h-11 w-[118px] items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
         }>
         {item}
         <button type="button" className="h-5 w-5" onClick={toggleState} ref={buttonRef}>

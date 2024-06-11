@@ -18,7 +18,7 @@ function ProjectImageBox() {
           모바일
         </label>
       </div>
-      <div className="flex w-[1094px] justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 px-52 py-28">
+      <div className="flex h-[438px] w-auto items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100">
         <div className="flex flex-col items-center gap-5">
           <div className="flex flex-col items-center gap-3">
             <p className="text-center text-base font-normal text-gray-900">{ImageDescription}</p>
