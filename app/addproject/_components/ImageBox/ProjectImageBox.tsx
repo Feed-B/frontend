@@ -26,7 +26,7 @@ function ProjectImageBox() {
             <p className="text-center text-sm font-medium text-gray-600">{ImageSize}</p>
             <Image src={fileIcon} width={54} alt="파일 이미지" />
           </div>
-          <Button buttonSize="small" bgColor="mainBlue" className="flex items-center justify-center gap-1">
+          <Button buttonSize="normal" bgColor="mainBlue" className="flex items-center justify-center gap-1">
             <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
             <p>업로드</p>
           </Button>
