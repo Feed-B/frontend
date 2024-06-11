@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import starIcon from "@/public/icons/star2.svg";
-import grayStarIcon from "@/public/icons/grayStar.svg";
+import grayStarIcon from "@/public/icons/emptyStar.svg";
 import halfStarIcon from "@/public/icons/halfStar.svg";
 
 const TestData = {
@@ -54,7 +54,7 @@ function RatingBox() {
           <div key={key} className="flex items-center justify-end gap-1">
             <p className="text-xs text-gray-900">{ratingLabels[key]}</p>
             {renderStars(value)}
-            <p className="text-[10px] text-gray-600">{value}/5</p>
+            <p className="min-w-5 text-[10px] text-gray-600">{value}/5</p>
           </div>
         ))}
       </div>
