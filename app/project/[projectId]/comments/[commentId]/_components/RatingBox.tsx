@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import starIcon from "@/public/icons/star2.svg";
+import starIcon from "@/public/icons/fullStar.svg";
 import grayStarIcon from "@/public/icons/emptyStar.svg";
 import halfStarIcon from "@/public/icons/halfStar.svg";
 
@@ -41,15 +41,13 @@ const renderStars = (rating: number, max = 5) => {
 
 function RatingBox() {
   return (
-    <div className="flex w-full items-center justify-center gap-8 rounded-xl bg-gray-100 px-8 py-6">
-      <div>
-        <p className="text-5xl font-bold text-gray-900">{TestData.totalRating}</p>
-      </div>
-      <div>
-        <p className="mb-1 text-sm font-semibold text-gray-900">총점</p>
+    <div className="flex w-full items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6">
+      <div className="flex items-center gap-2">
+        <p className="text-sm font-semibold text-gray-900">총점</p>
+        <p className="text-2xl font-bold text-gray-900">{TestData.totalRating}</p>
         <div className="flex items-center">{renderStars(TestData.totalRating)}</div>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 px-[6px]">
+      <div className="flex items-center gap-4">
         {Object.entries(TestData.rating).map(([key, value]) => (
           <div key={key} className="flex items-center justify-end gap-1">
             <p className="text-xs text-gray-900">{ratingLabels[key]}</p>
