@@ -6,9 +6,9 @@ import smallArrowIcon from "@/public/icons/smallArrow.svg";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
-import TOOL_DATA from "@/app/_constants/ToolData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import DropDown from "@/app/_components/DropDown/DropDown";
+import { TOOL } from "@/app/_constants/LinkData";
 import DropDownList from "./DropDownList";
 
 interface DropDownProps {
@@ -16,9 +16,17 @@ interface DropDownProps {
 }
 
 function DropDownBox({ dataType }: DropDownProps) {
+  const toolData = TOOL.reduce(
+    (acc, { name }) => {
+      acc[name] = name;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+
   const dataMap: Record<string, Record<string, string>> = {
     job: JOB_CATEGORIES,
-    tool: TOOL_DATA,
+    tool: toolData,
   };
 
   const data = dataMap[dataType];
