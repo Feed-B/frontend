@@ -12,6 +12,10 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      boxShadow: {
+        "check-radio-border": "0 0 0 1px #3F3F3F",
+        "default-radio-border": "0 0 0 1px #D1D1D1",
+      },
     },
     screens: {
       mb: { max: "767px" },
