@@ -3,13 +3,13 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { DropDownLinkProps, DropDownProps } from "@/app/_types/DropDownType";
 
-function DropDown({ children, className, ref }: DropDownProps) {
+function DropDown({ children, className, itemRef }: DropDownProps) {
   const DefaultDropDownClass =
     "absolute z-50 rounded-lg border border-solid border-gray-300 bg-white px-4 py-3 text-sm text-black";
   const DropDownClass = twMerge(DefaultDropDownClass, className);
 
   return (
-    <div ref={ref} className={DropDownClass}>
+    <div ref={itemRef} className={DropDownClass}>
       {children}
     </div>
   );
