@@ -1,18 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import shareIcon from "@/public/icons/share.svg";
+import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
 import CommentProfile from "../../_components/Comment/CommentProfile";
 import CommentCount from "../../_components/Comment/CommentCount";
 import RatingBox from "./_components/RatingBox";
 import CommentDropbox from "./_components/CommentDropbox";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
-import ScrollToTopButton from "./_components/ScrollToTopButton";
 
 function CommentPage() {
   return (
     <div className=" mx-auto w-[1200px]">
-      <ScrollToTopButton />
+      <ScrollToTopButton direction="top" />
       <section className="mt-10 w-full p-4">
         <div className="flex items-center justify-between">
           <CommentProfile />
