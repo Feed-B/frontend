@@ -59,6 +59,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
                 src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
                 alt="삭제 버튼"
                 priority
+                className="cursor-pointer"
               />
             </div>
           </div>
