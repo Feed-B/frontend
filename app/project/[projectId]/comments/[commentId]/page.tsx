@@ -7,10 +7,12 @@ import RatingBox from "./_components/RatingBox";
 import CommentDropbox from "./_components/CommentDropbox";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
+import ScrollToTopButton from "./_components/ScrollToTopButton";
 
 function CommentPage() {
   return (
     <div className=" mx-auto w-[1200px]">
+      <ScrollToTopButton />
       <section className="mt-10 w-full p-4">
         <div className="flex items-center justify-between">
           <CommentProfile />
