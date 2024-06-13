@@ -1,34 +1,23 @@
-import { StaticImageData } from "next/image";
+import Link from "next/link";
 import formatViewCount from "@/app/_utils/formViewCount";
+import { ProjectListResponse } from "@/app/_types/ProjectListDataType";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
-
-interface ProjectListResponse {
-  id: number;
-  titleImage: string | StaticImageData;
-  stackList: string[];
-  wishCount: number;
-  isWish: boolean;
-  projectName: string;
-  subDescription: string;
-  description: string;
-  viewCount: number;
-}
 
 function ProjectList({ projectList }: { projectList: ProjectListResponse[] }) {
   return (
     <div className="relative grid grid-cols-4 gap-4">
       {projectList.length > 0 ? (
         projectList.map(project => (
-          <div className="flex flex-col gap-2.5" key={project.id}>
+          <Link href={`/project/${project.id}`} className="flex cursor-pointer flex-col gap-2.5" key={project.id}>
             <ProjectCard project={project} />
             <ProjectCardInfo
-              projectTitle={project.projectName}
+              projectTitle={project.projectTitle}
               projectSubDescription={project.subDescription}
-              viewCount={formatViewCount(project.viewCount)}
+              viewCount={formatViewCount(project.viewCount, 9999)}
             />
-          </div>
+          </Link>
         ))
       ) : (
         <EmptyCard />

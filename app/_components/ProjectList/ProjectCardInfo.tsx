@@ -1,4 +1,5 @@
-import ViewCount from "@/app/mypage/_components/ViewCount";
+import Image from "next/image";
+import eyeIcon from "@/public/icons/eye.svg";
 
 interface ProjectCardInfoProps {
   projectTitle: string;
@@ -14,11 +15,12 @@ function ProjectCardInfo({ projectTitle, projectSubDescription, viewCount }: Pro
           <h6 className="max-w-[192px] overflow-hidden text-ellipsis whitespace-nowrap text-base font-bold">
             {projectTitle}
           </h6>
-          <ViewCount viewCount={viewCount} />
+          <div className="flex gap-1.5">
+            <Image width={16} src={eyeIcon} alt="조회수" priority />
+            <p className="text-xs font-semibold text-gray-500">{viewCount}</p>
+          </div>
         </div>
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#454545]">
-          {projectSubDescription}
-        </p>
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-gray-600">{projectSubDescription}</p>
       </div>
     </div>
   );

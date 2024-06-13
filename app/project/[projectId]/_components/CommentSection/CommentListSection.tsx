@@ -66,7 +66,7 @@ const CommentList = [
 function CommentListSection() {
   return (
     <section className="mt-10">
-      <h3 className="mb-4 text-lg font-bold">댓글</h3>
+      <h3 className="mb-4 text-lg font-bold text-gray-900">댓글</h3>
       <div className="grid grid-cols-4 gap-x-6 gap-y-3">
         {CommentList.map(comment => (
           <CommentCard key={comment.id} comment={comment} />

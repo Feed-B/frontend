@@ -1,58 +1,55 @@
 "use client";
-import Image from "next/image";
+import { StaticImageData } from "next/image";
 import profileMock from "@/public/images/mock_profileImage.jpg";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
-import addImageIcon from "@/public/icons/addImage.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import EditProfileButton from "./EditProfileButton";
+import JobBadge, { Job } from "@/app/_components/JobBadge/JobBadge";
+import Button from "@/app/_components/Button/Button";
+import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import { MY_PAGE_TEXT } from "./constant";
 
-const mockData = {
+const mockData: ProfileDataType = {
+  userId: 1,
   nickName: "하늘을 나는 개발자",
   introduction: "반갑습니다~ 하늘을 날고 싶은 개발자입니다~!",
   imageUrl: profileMock,
+  job: "프론트엔드",
 };
 
-// input은 공통 컴포넌트로 대체 예정입니다.
+export interface ProfileDataType {
+  userId: number;
+  nickName: string;
+  introduction: string;
+  imageUrl: StaticImageData | string;
+  job: Job;
+}
+
 function Profile() {
   const { isOpen, toggleState } = useToggleHook();
   return (
-    <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-[#d9d9d9] p-8">
-      <div className="relative">
-        <ProfileImage imageUrl={mockData.imageUrl} />
-        {isOpen && (
-          <>
-            <label htmlFor="profile-image">
-              <div className="absolute bottom-1 right-0 h-10 w-10 cursor-pointer">
-                <Image fill src={addImageIcon} alt="이미지 추가" />
-              </div>
-            </label>
-            <input type="file" id="profile-image" className="hidden" />
-          </>
-        )}
-      </div>
-      {isOpen ? (
-        <div className="flex flex-col gap-4">
-          <input
-            type="text"
-            placeholder={mockData.nickName}
-            className="w-[250px] rounded-md border border-solid border-[#ebebeb] p-2 text-sm"
-          />
-          <textarea
-            placeholder={mockData.introduction}
-            className="h-[80px] w-[604px] resize-none rounded-md border border-solid border-[#ebebeb] p-2 text-sm"
-          />
+    <>
+      {isOpen && <EditProfileModal profileData={mockData} openModal={isOpen} handleModalClose={toggleState} />}
+      <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8">
+        <div className="relative">
+          <ProfileImage imageUrl={mockData.imageUrl} className="h-[120px] w-[120px]" />
         </div>
-      ) : (
-        <div className="mt-2.5 flex flex-col gap-4">
-          <div className="text-xl font-semibold">{mockData.nickName}</div>
-          <div className="text-base text-[#454545]">{mockData.introduction}</div>
+        <div className="mt-2.5 flex flex-col gap-3">
+          <div className="flex items-center gap-4">
+            <div className="text-lg font-semibold text-gray-900">{mockData.nickName}</div>
+            <JobBadge job={mockData.job} />
+          </div>
+          <div className="text-sm text-gray-700">{mockData.introduction}</div>
         </div>
-      )}
-
-      <div className="absolute bottom-8 right-8">
-        <EditProfileButton onClick={toggleState}>{isOpen ? "수정 완료" : "프로필 수정"}</EditProfileButton>
-      </div>
-    </form>
+        <Button
+          onClick={toggleState}
+          type="button"
+          bgColor="stroke"
+          buttonSize="normal"
+          className="absolute bottom-8 right-8">
+          {MY_PAGE_TEXT.EDIT_PROFILE}
+        </Button>
+      </form>
+    </>
   );
 }
 

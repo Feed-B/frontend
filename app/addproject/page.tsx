@@ -1,57 +1,72 @@
 import React from "react";
-import InputSection from "./_components/Section/InputSection";
-import DropDownSection from "./_components/Section/DropDownSection";
-import ImageSection from "./_components/Section/ImageSection";
+import Button from "../_components/Button/Button";
+import Input from "./_components/Section/Input";
+import DropDownSection from "./_components/DropDown/DropDownSection";
+import SkillStackSection from "./_components/SkillStack/SkillStackSection";
+import ThumbnailBox from "./_components/ImageBox/ThumbnailBox";
+import ProjectImageBox from "./_components/ImageBox/ProjectImageBox";
+import Title from "./_components/Section/Title";
+import TextArea from "./_components/Section/TextArea";
 
 function page() {
   return (
     <main className="grid place-items-center">
       <div className="w-[960px]">
-        <h1 className="mb-4 mt-6 text-[28px] font-bold text-[#4D5256]">글 작성</h1>
+        <h1 className="mb-4 mt-6 text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
         <hr />
-        <InputSection
-          title="제목(프로젝트 이름)"
-          type="text"
-          placeholder="프로젝트 이름을 작성해 주세요"
-          inputWidth="w-full"
-          name="projectTitle"
-        />
-        <InputSection
-          title="소개"
-          type="text"
-          placeholder="프로젝트에 대한 소개를 작성 주세요"
-          inputWidth="w-full"
-          name="projectDescription"
-        />
-        <InputSection title="본문" placeholder="본문을 작성해 주세요" textArea />
-        <ImageSection title="썸네일" />
-        <ImageSection title="이미지" />
-        <InputSection title="서비스 링크" type="text" placeholder="URL" inputWidth="w-[420px]" name="serviceLink" />
-        <DropDownSection
-          title="추가 링크"
-          type="text"
-          placeholder="URL"
-          name="addLink"
-          inputWidth="w-96"
-          dropDownType="tool"
-          dropDownWidth="w-28"
-        />
-        <DropDownSection
-          title="팀원"
-          type="text"
-          placeholder="이름"
-          name="member"
-          inputWidth="w-48"
-          dropDownType="job"
-          dropDownWidth="w-44"
-        />
-        <DropDownSection title="기술스택" dropDownType="stack" dropDownWidth="w-44" />
+        <div className="mt-8 flex flex-col gap-8">
+          <section className="flex flex-col gap-4">
+            <Title title="썸네일" additionalSize="(232 x 232px)" />
+            <ThumbnailBox />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="프로젝트 이름" name="projectTitle" additionalSize="최대 50자" label />
+            <Input type="text" placeholder="제목을 입력해주세요" inputWidth="w-full" name="projectTitle" />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="소개" name="projectIntroduction" additionalSize="최대 50자" label />
+            <Input type="text" placeholder="소개를 입력해주세요" inputWidth="w-full" name="projectIntroduction" />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="본문" name="projectDescription" additionalSize="최대 150자" label />
+            <TextArea placeholder="텍스트를 입력해주세요" name="projectDescription" />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="프로젝트 링크" name="projectLink" label />
+            <Input type="text" placeholder="http://" inputWidth="w-[420px]" name="projectLink" />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="이미지" />
+            <ProjectImageBox />
+          </section>
+          <section className="flex flex-col gap-4">
+            <Title title="기술스택" name="search" label />
+            <SkillStackSection /> {/** 수정필요 */}
+          </section>
+          <DropDownSection
+            title="팀원"
+            type="text"
+            placeholder="이름"
+            name="member"
+            inputWidth="w-48"
+            dropDownType="job"
+            dropDownWidth="w-44"
+          />{" "}
+          {/** 수정필요 */}
+          <DropDownSection
+            title="추가 링크"
+            type="text"
+            placeholder="http://"
+            name="addLink"
+            inputWidth="w-96"
+            dropDownType="tool"
+            dropDownWidth="w-28"
+          />
+        </div>
         <div className="flex justify-center">
-          <button
-            type="button"
-            className="mt-6 rounded-md border border-solid border-[#1852FD] bg-[#1852FD] px-4 py-2 text-white">
-            등록하기
-          </button>
+          <Button buttonSize="small" bgColor="mainBlue" className="mt-6">
+            <p>등록하기</p>
+          </Button>
         </div>
       </div>
     </main>

@@ -1,14 +1,28 @@
-import { ReactNode } from "react";
+import Image, { StaticImageData } from "next/image";
+import { ButtonHTMLAttributes, MouseEvent } from "react";
+import { MY_PAGE_TEXT } from "./constant";
 
-interface CategoryProps {
-  children: ReactNode;
+interface CategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSelect: boolean;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  id: string;
+  icon: StaticImageData | string;
+  text: "MY_PROJECT" | "WISH_PROJECT";
+  count: string;
 }
 
-function ProjectCategoryButton({ children, isSelect }: CategoryProps) {
+function ProjectCategoryButton({ isSelect, onClick, id, icon, text, count }: CategoryProps) {
   return (
-    <button type="button" className={`${isSelect ? "text-black" : "text-[#d9d9d9]"} text-lg font-bold`}>
-      {children}
+    <button
+      type="button"
+      onClick={onClick}
+      id={id}
+      className={`${isSelect ? "rounded-lg bg-gray-100 text-black" : "text-gray-400"} flex justify-between px-3 py-2 text-sm`}>
+      <div className="flex items-center gap-2.5">
+        <Image width={24} height={24} src={icon} priority={true} alt={MY_PAGE_TEXT[text] + " 보기"} />
+        <p>{MY_PAGE_TEXT[text]}</p>
+      </div>
+      <p>{count}</p>
     </button>
   );
 }
