@@ -54,13 +54,15 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
               <Input type="text" placeholder="http://" name={`${name}-secondary`} id={`${name}-${item.id}-secondary`} />
             )}
             <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
-              <Image
-                width={44}
-                src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
-                alt="삭제 버튼"
-                priority
-                className="cursor-pointer"
-              />
+              <div
+                className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${additionalInput.length > 1 ? "border-blue-500" : "border-gray-400"}`}>
+                <Image
+                  width={17}
+                  src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
+                  alt="삭제 버튼"
+                  priority
+                />
+              </div>
             </div>
           </div>
         ))}

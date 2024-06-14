@@ -75,7 +75,7 @@ function SkillStackSearch() {
           />
         )}
       </div>
-      {!isHidden ? (
+      {!isHidden && (
         <div ref={dropdownRef}>
           <ul className="absolute z-20 flex h-32 w-full flex-col items-start gap-1 overflow-y-auto rounded border border-solid border-gray-200 bg-white">
             {stackData.map(data => (
@@ -91,7 +91,7 @@ function SkillStackSearch() {
             ))}
           </ul>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
