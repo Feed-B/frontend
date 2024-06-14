@@ -3,10 +3,10 @@
 import React, { ButtonHTMLAttributes } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import topArrowIcon from "@/public/icons/topArrow.svg";
-import bottomArrowIcon from "@/public/icons/bottomArrow.svg";
+import topArrowIcon from "@/public/icons/blackArrowTop.svg";
 import leftArrowIcon from "@/public/icons/blackArrowLeft.svg";
 import rightArrowIcon from "@/public/icons/blackArrowRight.svg";
+import bottomArrowIcon from "@/public/icons/blackArrowBottom.svg";
 
 interface DirectionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   direction: "top" | "bottom" | "left" | "right";

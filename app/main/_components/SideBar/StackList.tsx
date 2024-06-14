@@ -2,9 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import { StackListType } from "@/app/_types/StackType";
-import topArrowIcon from "@/public/icons/topArrow.svg";
-import bottomArrowIcon from "@/public/icons/bottomArrow.svg";
+import topArrowIcon from "@/public/icons/blackArrowTop.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import bottomArrowIcon from "@/public/icons/blackArrowBottom.svg";
 import StackItem from "./StackItem";
 
 interface StackListProps {

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { Job } from "@/app/_components/JobBadge/JobBadge";
-import openDropDownIcon from "@/public/icons/bottomArrow.svg";
-import closeDropDownIcon from "@/public/icons/topArrow.svg";
+import openDropDownIcon from "@/public/icons/blackArrowBottom.svg";
+import closeDropDownIcon from "@/public/icons/blackArrowTop.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 
 function EditJobDropDown({ currentJob }: { currentJob: Job }) {
