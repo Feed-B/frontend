@@ -29,7 +29,6 @@ function SelectSkillStackBox() {
                 alt="기술스택 삭제"
                 className="cursor-pointer"
                 onClick={() => isDeleteStack(stack)}
-                priority
               />
             </div>
           );
