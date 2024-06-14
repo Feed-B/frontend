@@ -18,19 +18,25 @@ function AddProjectContainer() {
         </section>
         <section className="flex flex-col gap-4">
           <Title title="프로젝트 이름" name="projectTitle" additionalSize="(최대 50자)" label />
-          <Input type="text" placeholder="제목을 입력해주세요" inputWidth="w-full" name="projectTitle" />
+          <Input type="text" placeholder="제목을 입력해주세요" name="projectTitle" maxLength={50} inputWidth="w-full" />
         </section>
         <section className="flex flex-col gap-4">
           <Title title="소개" name="projectIntroduction" additionalSize="(최대 50자)" label />
-          <Input type="text" placeholder="소개를 입력해주세요" inputWidth="w-full" name="projectIntroduction" />
+          <Input
+            type="text"
+            placeholder="소개를 입력해주세요"
+            name="projectIntroduction"
+            maxLength={50}
+            inputWidth="w-full"
+          />
         </section>
         <section className="flex flex-col gap-4">
           <Title title="본문" name="projectDescription" additionalSize="(최대 150자)" label />
-          <TextArea placeholder="텍스트를 입력해주세요" name="projectDescription" />
+          <TextArea placeholder="텍스트를 입력해주세요" name="projectDescription" maxLength={150} />
         </section>
         <section className="flex flex-col gap-4">
           <Title title="프로젝트 링크" name="projectLink" label />
-          <Input type="text" placeholder="http://" inputWidth="w-full" name="projectLink" />
+          <Input type="text" placeholder="http://" name="projectLink" inputWidth="w-full" />
         </section>
         <section className="flex flex-col gap-4">
           <Title title="이미지" />
