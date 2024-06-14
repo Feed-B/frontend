@@ -13,11 +13,10 @@ export default function MainPageLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <>
+      <div id="modal" />
+      <Header />
+      {children}
+    </>
   );
 }

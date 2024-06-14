@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import commentIcon from "@/public/icons/comment.svg";
+import commentIcon from "@/public/icons/reflyComment.svg";
 
 function CommentCount() {
   return (

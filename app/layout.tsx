@@ -13,10 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
-        <div id="modal" />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

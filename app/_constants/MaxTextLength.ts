@@ -1,0 +1,1 @@
+export const REFLY_COMMENT_LENGTH = 150;

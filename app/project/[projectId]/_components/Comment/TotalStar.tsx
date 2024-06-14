@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import starIcon from "@/public/icons/star2.svg";
+import starIcon from "@/public/icons/fullStar.svg";
 
 function TotalStar() {
   return (

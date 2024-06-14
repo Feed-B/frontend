@@ -5,7 +5,7 @@ export interface DropDownProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
-  ref?: RefObject<HTMLDivElement>;
+  itemRef?: RefObject<HTMLDivElement>;
 }
 export interface DropDownLinkProps extends PropsWithChildren<LinkProps> {
   className?: string;
