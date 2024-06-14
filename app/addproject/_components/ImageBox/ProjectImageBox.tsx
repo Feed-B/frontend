@@ -5,13 +5,12 @@ import Image from "next/image";
 import fileIcon from "@/public/icons/fullFile.svg";
 import uploadIcon from "@/public/icons/upload.svg";
 import Button from "@/app/_components/Button/Button";
+import RadioButton from "../RadioButton";
 
 const ImageDescription = "프로젝트를 설명할 이미지를 업로드해주세요";
 
 function ProjectImageBox() {
   const [selectedSize, setSelectedSize] = useState("웹");
-  const RadioButton =
-    "shadow-default-radio-border checked:shadow-check-radio-border h-3 w-3 appearance-none rounded-full bg-gray-200 checked:border-2 checked:border-white checked:bg-gray-800 hover:cursor-pointer";
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSize(event.target.value);
@@ -20,28 +19,8 @@ function ProjectImageBox() {
   return (
     <>
       <div className="flex gap-3">
-        <label className="flex items-center">
-          <input
-            type="radio"
-            name="size"
-            value="웹"
-            checked={selectedSize === "웹"}
-            onChange={handleSizeChange}
-            className={RadioButton}
-          />
-          <span className="ml-1 text-xs font-medium text-[#4D5256]">웹</span>
-        </label>
-        <label className="flex items-center">
-          <input
-            type="radio"
-            name="size"
-            value="모바일"
-            checked={selectedSize === "모바일"}
-            onChange={handleSizeChange}
-            className={RadioButton}
-          />
-          <span className="ml-1 text-xs font-medium text-[#4D5256]">모바일</span>
-        </label>
+        <RadioButton value="웹" checked={selectedSize === "웹"} onChange={handleSizeChange} text="웹" />
+        <RadioButton value="모바일" checked={selectedSize === "모바일"} onChange={handleSizeChange} text="모바일" />
       </div>
       <div className="flex h-[438px] w-auto items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100">
         <div className="flex flex-col items-center gap-5">
