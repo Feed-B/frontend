@@ -4,8 +4,7 @@ interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   inputWidth?: string;
 }
 
-// 임시 input 컴포넌트입니다
-function Input({ type, placeholder, name, id, inputWidth }: InputSectionProps) {
+function Input({ type, placeholder, name, id, maxLength, inputWidth }: InputSectionProps) {
   return (
     <input
       type={type}
@@ -14,6 +13,7 @@ function Input({ type, placeholder, name, id, inputWidth }: InputSectionProps) {
       name={name}
       id={id ? id : name}
       autoComplete="off"
+      maxLength={maxLength}
     />
   );
 }
