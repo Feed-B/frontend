@@ -6,8 +6,8 @@ import fullFileIcon from "@/public/icons/fullFile.svg";
 import uploadIcon from "@/public/icons/upload.svg";
 import Button from "@/app/_components/Button/Button";
 import whitePlusIcon from "@/public/icons/whitePlus.svg";
-import whiteDeleteIcon from "@/public/icons/whiteDelete.svg";
 import RadioButton from "../RadioButton";
+import ProjectImageCard from "./ProjectImageCard";
 
 const ImageDescription = "프로젝트를 설명할 이미지를 업로드해주세요";
 
@@ -54,19 +54,7 @@ function ProjectImageBox() {
         {showImageUrls.length > 0 ? (
           <div className="flex h-full w-full flex-row items-start gap-4">
             {showImageUrls.map((url, index) => (
-              <div key={index} className="relative h-[220px] w-[220px]">
-                <Image
-                  fill
-                  className="rounded-xl border border-solid border-gray-300 object-cover hover:cursor-move hover:border-blue-500 hover:shadow-md"
-                  src={url}
-                  alt={`이미지 ${index + 1}`}
-                />
-                <div
-                  className="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-700"
-                  onClick={() => handleImageDelete(index)}>
-                  <Image src={whiteDeleteIcon} width={18} alt="이미지 삭제 버튼" />
-                </div>
-              </div>
+              <ProjectImageCard key={index} index={index} imageUrl={url} handleImageDelete={handleImageDelete} />
             ))}
             {showImageUrls.length < 5 && (
               <div className="flex h-[220px] w-[220px] items-center justify-center rounded-xl border border-solid border-blue-500 bg-blue-100">
