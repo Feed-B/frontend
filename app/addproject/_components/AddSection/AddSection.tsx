@@ -2,8 +2,8 @@
 
 import React, { InputHTMLAttributes, useState } from "react";
 import Image from "next/image";
-import deleteIcon from "@/public/icons/delete.svg";
-import notDeleteIcon from "@/public/icons/notDelete.svg";
+import blueDeleteIcon from "@/public/icons/blueDelete.svg";
+import grayDeleteIcon from "@/public/icons/grayDelete.svg";
 import Button from "@/app/_components/Button/Button";
 import plusIcon from "@/public/icons/plus.svg";
 import Title from "../Title";
@@ -37,7 +37,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
   };
 
   return (
-    <section className="flex flex-col gap-4">
+    <>
       <Title title={title} name={`${name}-${additionalInput[0].id}-primary`} label />
       <div>
         {additionalInput.map(item => (
@@ -58,7 +58,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
                 className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${additionalInput.length > 1 ? "border-blue-500" : "border-gray-400"}`}>
                 <Image
                   width={17}
-                  src={additionalInput.length > 1 ? deleteIcon : notDeleteIcon}
+                  src={additionalInput.length > 1 ? blueDeleteIcon : grayDeleteIcon}
                   alt="삭제 버튼"
                   priority
                 />
@@ -75,7 +75,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
         <Image src={plusIcon} alt="추가하기" width={20} priority />
         {title === "팀원" ? "팀원" : "링크"} 추가하기
       </Button>
-    </section>
+    </>
   );
 }
 
