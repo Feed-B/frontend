@@ -17,9 +17,13 @@ export const commentApi = {
     await httpClient().get<CommentsListResponse>(`/${projectId}/commnets`, { page, size, limit });
   },
   getCommentDetail: async (projectId: string, commentId: string) => {
-    await httpClient().get<CommentDetailResponse>(`/${projectId}/commnets/${commentId}`);
+    await httpClient().get<CommentDetailResponse>(`/projects/${projectId}/commnets/${commentId}`);
   },
   getReflyCommentList: async ({ projectId, commentId, page = 1, size = 10, limit = 100 }: ReflyCommentListRequest) => {
-    await httpClient().get<ReflyCommentResponse>(`/${projectId}/commnets/${commentId}`, { page, size, limit });
+    await httpClient().get<ReflyCommentResponse>(`/projects/${projectId}/commnets/${commentId}/replies`, {
+      page,
+      size,
+      limit,
+    });
   },
 };
