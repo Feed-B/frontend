@@ -2,11 +2,10 @@ import React, { InputHTMLAttributes } from "react";
 
 interface TitleProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
-  additionalSize?: string;
   label?: boolean;
 }
 
-function Title({ title, name, additionalSize, label }: TitleProps) {
+function Title({ title, name, label }: TitleProps) {
   return (
     <div className="flex items-center justify-between">
       {label ? (
@@ -16,7 +15,6 @@ function Title({ title, name, additionalSize, label }: TitleProps) {
       ) : (
         <h2 className="text-base font-bold text-gray-900">{title} *</h2>
       )}
-      {additionalSize && <span className="text-sm font-normal text-gray-500">{additionalSize}</span>}
     </div>
   );
 }
