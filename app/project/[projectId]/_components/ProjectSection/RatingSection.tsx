@@ -22,7 +22,7 @@ function RatingSection() {
     <section className="flex gap-8 px-8 py-4">
       <div className="flex min-w-fit flex-col items-center gap-3">
         <p className="text-5xl font-bold">3.5</p>
-        <div className="flex gap-0.5">
+        <div className="flex">
           {/* 추후 기능 추가시 수정 예정 */}
           <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={25} />
           <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={25} />
