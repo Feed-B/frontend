@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
-import feedbeeIcon from "@/public/icons/feedbee2.svg";
 import Button from "@/app/_components/Button/Button";
 import ToolTip from "../Comment/ToolTip";
+import WriteCommentShield from "../Shield/WriteCommentShield";
 
 const ratingCategory = [
   { id: 1, name: "아이디어", starCount: 1 },
@@ -19,24 +19,7 @@ const MAX_COMMENT_LIMIT = 150;
 function WriteCommentSection() {
   return (
     <section className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
-      {!isLogin && (
-        <>
-          <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 rounded-xl border border-solid border-gray-200 bg-white px-8 py-4 shadow-lg">
-            <div className="flex gap-1">
-              <Image src={feedbeeIcon} alt="피드비." width={78} />
-              <Image src={fullStarIcon} alt="별." width={28} height={75} />
-            </div>
-            <div className="text-center">
-              <p className="text-xl font-semibold">방금 보신 프로젝트, 마음에 드셨나요?</p>
-              <p className="text-base text-gray-600">프로젝트를 평가하여 작성자에게 피드백을 전달하세요!</p>
-            </div>
-            <Button buttonSize="normal" bgColor="mainBlue">
-              피드비 시작하기
-            </Button>
-          </div>
-          <div className="absolute left-0 top-0 z-10 h-full w-full" />
-        </>
-      )}
+      {!isLogin && <WriteCommentShield />}
       <div className={`${!isLogin && "blur-sm"}`}>
         <div className="mb-8 flex items-center gap-1">
           <p className="text-xl font-semibold text-gray-900">프로젝트를 평가해주세요</p>
