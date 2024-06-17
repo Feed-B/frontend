@@ -19,8 +19,8 @@ const inputClasses = {
 function Input({ register, title, type, name, placeholder, inputSize, className, error }: InputProps) {
   const inputClass = twMerge(inputClasses[inputSize], className);
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-base font-bold text-gray-900">
+    <div className="flex flex-col">
+      <label htmlFor={name} className="mb-2 text-base font-bold text-gray-900">
         {title}
       </label>
       <input
@@ -31,7 +31,7 @@ function Input({ register, title, type, name, placeholder, inputSize, className,
         placeholder={placeholder}
         className={`${inputClass} h-11 rounded-lg border border-gray-200 text-sm focus:border-gray-900 focus:outline-none`}
       />
-      {error?.message && <span className="text-sm text-red-500">{error.message}</span>}
+      <div className="h-4">{error?.message && <span className="text-sm text-red-500">{error.message}</span>}</div>
     </div>
   );
 }
