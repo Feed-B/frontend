@@ -2,14 +2,14 @@ import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { commentApi } from "../_apis/comment";
 
 interface CommentListParams {
-  projectId: string;
+  projectId: number;
   page?: number;
   size?: number;
   limit?: number;
 }
 
 interface ReflyCommentListParams extends CommentListParams {
-  commentId: string;
+  commentId: number;
 }
 
 export const commentQueryKeys = createQueryKeys("comment", {
