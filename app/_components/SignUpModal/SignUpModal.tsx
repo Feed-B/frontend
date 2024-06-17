@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import useToggleHook from "@/app/_hooks/useToggleHook";
 import chevronLeftIcon from "@/public/icons/chevronLeft.svg";
+import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Modal from "../Modal/Modal";
-import SignUpDropdownBox from "./SignUpDropdownBox";
 
 interface SignUpFormData {
   nickName: string;
@@ -25,15 +23,6 @@ const CONSTANTS = {
 };
 
 function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps) {
-  const [item, setItem] = useState(dataType === "job" ? "직무" : "");
-
-  const { isOpen, toggleState } = useToggleHook();
-
-  const handleItemClick = (value: string) => {
-    setItem(value);
-    toggleState();
-  };
-
   const {
     register,
     handleSubmit,
@@ -48,7 +37,6 @@ function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps
   const handleModalCloseWidthReset = () => {
     handleModalClose();
     reset();
-    setItem(dataType === "job" ? "직무" : "");
   };
 
   if (!openModal) {
@@ -86,13 +74,17 @@ function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps
             error={errors.nickName}
           />
 
-          <SignUpDropdownBox
+          {/* <SignUpDropdownBox
             dataType={dataType}
             item={item}
             isOpen={isOpen}
             handleItemClick={handleItemClick}
             toggleState={toggleState}
-          />
+          /> */}
+          <label htmlFor="introduction" className="mb-2 text-base font-bold text-gray-900">
+            직무
+          </label>
+          <DropDownBox dataType={dataType} />
 
           <div className="flex flex-col">
             <label htmlFor="introduction" className="mb-2 mt-4 text-base font-bold text-gray-900">
