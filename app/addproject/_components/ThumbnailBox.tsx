@@ -8,8 +8,8 @@ function ThumbnailBox() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>("");
 
-  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
     if (file) {
       const imageUrl = URL.createObjectURL(file);
@@ -17,7 +17,7 @@ function ThumbnailBox() {
     }
   };
 
-  const handleBackgroundDivClick = () => {
+  const handleUploadButtonClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -35,7 +35,7 @@ function ThumbnailBox() {
                 className="border border-solid border-blue-400 text-blue-500"
                 buttonSize="normal"
                 bgColor="white"
-                onClick={handleBackgroundDivClick}>
+                onClick={handleUploadButtonClick}>
                 이미지 수정
               </Button>
             </div>
@@ -45,7 +45,7 @@ function ThumbnailBox() {
             className="border border-solid border-blue-400 text-blue-500"
             buttonSize="normal"
             bgColor="white"
-            onClick={handleBackgroundDivClick}>
+            onClick={handleUploadButtonClick}>
             이미지 업로드
           </Button>
         )}
