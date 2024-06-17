@@ -13,7 +13,7 @@ const ratingCategory = [
   { id: 4, name: "완성도", starCount: 4 },
 ];
 
-const isLogin = false;
+const isLogin = true;
 const MAX_COMMENT_LIMIT = 150;
 
 function WriteCommentSection() {
@@ -30,13 +30,13 @@ function WriteCommentSection() {
             {ratingCategory.map(category => (
               <div className="flex flex-col gap-1.5" key={category.id}>
                 <p className="text-base font-medium text-gray-900">{category.name}</p>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center">
                   {/* 추후 기능 추가시 수정 예정 */}
-                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={32} />
-                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={32} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={32} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={32} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={32} />
+                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={40} />
+                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={40} />
+                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
+                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
+                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
                   <p className="h-full content-end text-sm tracking-widest text-gray-600">{category.starCount}/5</p>
                 </div>
               </div>
