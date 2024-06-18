@@ -18,7 +18,7 @@ const buttonClasses = {
 };
 
 const bgColorClasses: Record<BgColor, string> = {
-  black: "bg-[#333] text-white",
+  black: "bg-gray-800 text-white",
   mainBlue: "bg-blue-500 text-white hover:bg-blue-600",
   secondBlue: "bg-blue-100 text-blue-500",
   white: "border border-gray-200 bg-white",
