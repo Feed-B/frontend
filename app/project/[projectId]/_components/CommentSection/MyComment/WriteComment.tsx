@@ -1,16 +1,16 @@
 "use client";
 
-import ToolTip from "../Comment/ToolTip";
-import WriteCommentShield from "../Shield/WriteCommentShield";
-import WriteRating from "../Comment/WriteRating";
-import WriteComment from "../Comment/WriteComment";
-import MyCommentProvider from "../../_context/MyCommentProvider";
+import ToolTip from "../../Comment/ToolTip";
+import WriteCommentShield from "../../Shield/WriteCommentShield";
+import WriteRating from "../../Comment/WriteRating";
+import MyCommentProvider from "../../../_context/MyCommentProvider";
+import WriteText from "../../Comment/WriteText";
 
 const isLogin = true;
 
-function WriteCommentSection() {
+function WriteComment() {
   return (
-    <section className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
+    <>
       {!isLogin && <WriteCommentShield />}
       <div className={`${!isLogin && "blur-sm"}`}>
         <div className="mb-8 flex items-center gap-1">
@@ -20,12 +20,12 @@ function WriteCommentSection() {
         <div className="flex flex-col gap-6">
           <MyCommentProvider>
             <WriteRating />
-            <WriteComment />
+            <WriteText />
           </MyCommentProvider>
         </div>
       </div>
-    </section>
+    </>
   );
 }
 
-export default WriteCommentSection;
+export default WriteComment;
