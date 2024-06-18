@@ -43,14 +43,14 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
         <Button
           buttonSize="normal"
           bgColor="green"
-          className="mb-1.5 flex h-[52px] w-96 items-center justify-center gap-3 text-[18px] font-medium">
+          className="mb-1.5 flex h-[52px] w-96 items-center justify-center gap-3 text-lg font-medium">
           <Image src={naverIcon} alt="네이버 아이콘" width={20} height={20} priority />
           네이버 로그인
         </Button>
         <Button
           buttonSize="normal"
           bgColor="kakao"
-          className="flex h-[52px] w-96 items-center justify-center gap-3 bg-[#FEE500] text-[18px] font-medium">
+          className="flex h-[52px] w-96 items-center justify-center gap-3 bg-[#FEE500] text-lg font-medium">
           <Image src={kakaoIcon} alt="카카오 아이콘" width={20} height={20} priority />
           카카오 로그인
         </Button>
