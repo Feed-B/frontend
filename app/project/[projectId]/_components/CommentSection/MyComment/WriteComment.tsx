@@ -10,7 +10,7 @@ const isLogin = false;
 
 function WriteComment() {
   return (
-    <>
+    <div className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
       {!isLogin && <WriteCommentShield />}
       <div className={`${!isLogin && "blur-sm"}`}>
         <div className="mb-8 flex items-center gap-1">
@@ -24,7 +24,7 @@ function WriteComment() {
           </MyCommentProvider>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
