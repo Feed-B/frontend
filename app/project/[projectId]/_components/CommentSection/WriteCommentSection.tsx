@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
 import Button from "@/app/_components/Button/Button";
+import { useRating } from "@/app/_hooks/useRating";
 import ToolTip from "../Comment/ToolTip";
 import WriteCommentShield from "../Shield/WriteCommentShield";
 
@@ -20,31 +20,7 @@ const MAX_COMMENT_LIMIT = 150;
 const MAX_STAR = 5;
 
 function WriteCommentSection() {
-  const [ratings, setRatings] = useState([0, 0, 0, 0]);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const handleRating = (categoryId: number, rating: number) => {
-    setRatings(prevRatings => {
-      const newRatings = [...prevRatings];
-      newRatings[categoryId] = rating;
-      return newRatings;
-    });
-  };
-
-  const handleMouseDown = (categoryId: number, rating: number) => {
-    setIsDragging(true);
-    handleRating(categoryId, rating);
-  };
-
-  const handleMouseMove = (categoryId: number, rating: number) => {
-    if (isDragging) {
-      handleRating(categoryId, rating);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const { rating, handleMouseDown, handleMouseMove, handleMouseUp } = useRating();
 
   return (
     <section
@@ -64,8 +40,8 @@ function WriteCommentSection() {
                 <div className="flex items-center">
                   {[...Array(MAX_STAR)].map((_, index) => (
                     <Image
-                      src={index < ratings[category.id] ? fullStarIcon : emptyStarIcon}
-                      alt={index < ratings[category.id] ? "노란색 별" : "회색 별"}
+                      src={index < rating[category.id] ? fullStarIcon : emptyStarIcon}
+                      alt={index < rating[category.id] ? "노란색 별" : "회색 별"}
                       width={40}
                       key={index}
                       onMouseDown={() => handleMouseDown(category.id, index + 1)}
@@ -73,7 +49,7 @@ function WriteCommentSection() {
                     />
                   ))}
                   <p className="h-full min-w-7 content-end text-sm tracking-widest text-gray-600">
-                    {ratings[category.id]}/{MAX_STAR}
+                    {rating[category.id]}/{MAX_STAR}
                   </p>
                 </div>
               </div>
