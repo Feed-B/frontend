@@ -31,21 +31,13 @@ function ThumbnailBox() {
             <Image fill className="rounded-xl object-contain" src={showImageUrl} alt="썸네일 이미지" />
             <div className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 group-hover:opacity-50" />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <Button
-                className="border border-solid border-blue-400 text-blue-500"
-                buttonSize="normal"
-                bgColor="white"
-                onClick={handleUploadButtonClick}>
+              <Button buttonSize="normal" bgColor="white" onClick={handleUploadButtonClick}>
                 이미지 수정
               </Button>
             </div>
           </div>
         ) : (
-          <Button
-            className="border border-solid border-blue-400 text-blue-500"
-            buttonSize="normal"
-            bgColor="white"
-            onClick={handleUploadButtonClick}>
+          <Button buttonSize="normal" bgColor="white" onClick={handleUploadButtonClick}>
             이미지 업로드
           </Button>
         )}

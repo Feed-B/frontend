@@ -19,7 +19,7 @@ function EmptyProjectImage({ onButtonClick }: EmptyProjectImageProps) {
       </div>
       <Button
         buttonSize="normal"
-        bgColor="mainBlue"
+        bgColor="black"
         className="flex items-center justify-center gap-1"
         onClick={onButtonClick}>
         <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
