@@ -21,16 +21,35 @@ const MAX_STAR = 5;
 
 function WriteCommentSection() {
   const [ratings, setRatings] = useState([0, 0, 0, 0]);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleRating = (categoryId: number, rating: number) => {
-    setRatings(prevRatings => ({
-      ...prevRatings,
-      [categoryId]: rating,
-    }));
+    setRatings(prevRatings => {
+      const newRatings = [...prevRatings];
+      newRatings[categoryId] = rating;
+      return newRatings;
+    });
+  };
+
+  const handleMouseDown = (categoryId: number, rating: number) => {
+    setIsDragging(true);
+    handleRating(categoryId, rating);
+  };
+
+  const handleMouseMove = (categoryId: number, rating: number) => {
+    if (isDragging) {
+      handleRating(categoryId, rating);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
   };
 
   return (
-    <section className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
+    <section
+      className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6"
+      onMouseUp={handleMouseUp}>
       {!isLogin && <WriteCommentShield />}
       <div className={`${!isLogin && "blur-sm"}`}>
         <div className="mb-8 flex items-center gap-1">
@@ -43,22 +62,14 @@ function WriteCommentSection() {
               <div className="flex flex-col gap-1.5" key={category.id}>
                 <p className="text-base font-medium text-gray-900">{category.name}</p>
                 <div className="flex items-center">
-                  {[...Array(ratings[category.id])].map((_, index) => (
+                  {[...Array(MAX_STAR)].map((_, index) => (
                     <Image
-                      src={fullStarIcon}
-                      alt="노란색 별."
+                      src={index < ratings[category.id] ? fullStarIcon : emptyStarIcon}
+                      alt={index < ratings[category.id] ? "노란색 별" : "회색 별"}
                       width={40}
                       key={index}
-                      onClick={() => handleRating(category.id, index + 1)}
-                    />
-                  ))}
-                  {[...Array(MAX_STAR - ratings[category.id])].map((_, index) => (
-                    <Image
-                      src={emptyStarIcon}
-                      alt="회색 별."
-                      width={40}
-                      key={index}
-                      onClick={() => handleRating(category.id, ratings[category.id] + index + 1)}
+                      onMouseDown={() => handleMouseDown(category.id, index + 1)}
+                      onMouseMove={() => handleMouseMove(category.id, index + 1)}
                     />
                   ))}
                   <p className="h-full min-w-7 content-end text-sm tracking-widest text-gray-600">
