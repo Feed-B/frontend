@@ -5,6 +5,7 @@ import Header from "../_components/Header/Header";
 function OnlyHeader({ children }: PropsWithChildren) {
   return (
     <>
+      <div id="modal" />
       <Header />
       {children}
     </>

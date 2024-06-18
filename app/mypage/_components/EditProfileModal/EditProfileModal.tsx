@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import profileMock from "@/public/images/mock_profileImage.jpg";
-import closeButton from "@/public/icons/crossLine.svg";
 import Input from "@/app/_components/Input/Input";
 import { ProfileDataType } from "../Profile";
 import { MY_PAGE_TEXT } from "../constant";
@@ -21,9 +19,6 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       openModal={openModal}
       handleModalClose={handleModalClose}
       className="flex flex-col items-center gap-8 px-10 py-8">
-      <button type="button" onClick={handleModalClose} className="self-end rounded-full p-1 active:bg-gray-200">
-        <Image width={20} height={20} src={closeButton} alt="프로필 수정 닫기" />
-      </button>
       <div className="flex flex-col items-center justify-center gap-8">
         <div className="flex gap-24">
           <div className="flex flex-col gap-5">
