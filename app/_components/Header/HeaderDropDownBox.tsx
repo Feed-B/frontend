@@ -19,7 +19,7 @@ function HeaderDropDownBox() {
   return (
     <>
       <div className="relative flex cursor-pointer items-center gap-2" onClick={toggleState}>
-        <ProfileImage imageUrl={""} className="h-9 w-9" />
+        <ProfileImage imageUrl={"default"} className="h-9 w-9" />
         <button type="button" className="h-5 w-5" ref={buttonRef}>
           {isOpen ? (
             <Image src={SmallTopArrowIcon} alt="유저 옵션." width={20} height={20} priority />
