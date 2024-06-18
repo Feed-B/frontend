@@ -17,7 +17,7 @@ export const commentQueryKeys = createQueryKeys("comment", {
     queryKey: ["commentList", props.page],
     queryFn: () => commentApi.getCommentList({ ...props }),
   }),
-  detail: (projectId: string, commentId: string) => ({
+  detail: (projectId: number, commentId: number) => ({
     queryKey: ["comment", commentId],
     queryFn: () => commentApi.getCommentDetail(projectId, commentId),
   }),
