@@ -17,7 +17,7 @@ function ProjectImageBox() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [selectedSize, setSelectedSize] = useState("웹");
-  const [showImageUrls, setShowImageUrls] = useState<ImageType[]>([]);
+  const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSize(event.target.value);
@@ -32,7 +32,7 @@ function ProjectImageBox() {
         url: URL.createObjectURL(file),
       }));
 
-      setShowImageUrls(prevImages => {
+      setShowImageUrlList(prevImages => {
         const existingImageIds = prevImages.map(image => image.id);
         const newImages = imageUrlList.filter(image => !existingImageIds.includes(image.id));
         return [...prevImages, ...newImages].slice(0, 5); // 이미지는 최대 5개까지만 허용
@@ -47,34 +47,34 @@ function ProjectImageBox() {
   };
 
   const handleImageDelete = (indexToDelete: number) => {
-    setShowImageUrls(prevImages => prevImages.filter((_, index) => index !== indexToDelete));
+    setShowImageUrlList(prevImages => prevImages.filter((_, index) => index !== indexToDelete));
   };
 
-  const onDragEnd = (result: DropResult) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
-    const reorderedImages = Array.from(showImageUrls);
+    const reorderedImages = Array.from(showImageUrlList);
     const [removed] = reorderedImages.splice(result.source.index, 1);
     reorderedImages.splice(result.destination.index, 0, removed);
 
-    setShowImageUrls(reorderedImages);
+    setShowImageUrlList(reorderedImages);
   };
 
   return (
     <>
       <div className="flex gap-3">
-        <RadioButton value="웹" checked={selectedSize === "웹"} onChange={handleSizeChange} text="웹" />
-        <RadioButton value="모바일" checked={selectedSize === "모바일"} onChange={handleSizeChange} text="모바일" />
+        <RadioButton value="웹" checked={selectedSize === "웹"} onChange={handleSizeChange} />
+        <RadioButton value="모바일" checked={selectedSize === "모바일"} onChange={handleSizeChange} />
       </div>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="cardLists" direction="horizontal">
           {provided => (
             <div className="cardLists" {...provided.droppableProps} ref={provided.innerRef}>
               <div
-                className={`flex h-[252px] ${showImageUrls.length > 0 ? "w-full" : "w-[690px]"} items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4`}>
-                {showImageUrls.length > 0 ? (
+                className={`flex h-[252px] ${showImageUrlList.length > 0 ? "w-full" : "w-[690px]"} items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4`}>
+                {showImageUrlList.length > 0 ? (
                   <div className="flex h-full w-full flex-row items-start gap-4">
-                    {showImageUrls.map((image, index) => (
+                    {showImageUrlList.map((image, index) => (
                       <Draggable draggableId={image.id} index={index} key={image.id}>
                         {provided => (
                           <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
@@ -89,7 +89,7 @@ function ProjectImageBox() {
                       </Draggable>
                     ))}
                     {provided.placeholder}
-                    {showImageUrls.length < 5 && (
+                    {showImageUrlList.length < 5 && (
                       <div className="flex h-[220px] w-[220px] items-center justify-center rounded-xl border border-solid border-blue-500 bg-blue-100">
                         <div
                           className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-blue-500"
