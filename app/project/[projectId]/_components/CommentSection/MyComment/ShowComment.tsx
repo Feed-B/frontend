@@ -21,8 +21,8 @@ function ShowComment() {
       <div className="relative flex flex-col gap-4 rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
         <div className="flex justify-between">
           <CommentProfile />
-          <div className="flex gap-2">
-            <CommentCount />
+          <div className="flex items-center gap-2">
+            <CommentCount size="large" />
             <Image
               className="relative"
               src={kebabIcon}
@@ -33,7 +33,7 @@ function ShowComment() {
               onClick={toggleState}
             />
             {isOpen && (
-              <DropDown className="w-fit translate-x-10 translate-y-10">
+              <DropDown className="w-fit translate-x-4 translate-y-16">
                 <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
                 <DropDown.TextItem>삭제</DropDown.TextItem>
               </DropDown>
