@@ -19,8 +19,8 @@ function SkillStackSearch() {
 
   const { isAddStack } = useGetSkillStack();
 
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = e => {
-    const { value } = e.currentTarget;
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = event => {
+    const { value } = event.currentTarget;
     setSearch(value);
   };
 
