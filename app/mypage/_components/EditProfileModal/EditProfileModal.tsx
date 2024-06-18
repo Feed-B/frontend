@@ -15,12 +15,9 @@ interface EditProfileModalProps {
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
   return (
-    <Modal
-      openModal={openModal}
-      handleModalClose={handleModalClose}
-      className="flex flex-col items-center gap-8 px-10 py-8">
-      <div className="flex flex-col items-center justify-center gap-8">
-        <div className="flex gap-24">
+    <Modal openModal={openModal} handleModalClose={handleModalClose} className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center justify-center gap-8 px-12 pt-[90px]">
+        <div className="flex gap-16">
           <div className="flex flex-col gap-5">
             <ProfileImage imageUrl={profileMock} className="h-[124px] w-[124px]" />
             <label htmlFor="profile-image">
@@ -39,13 +36,13 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             </label>
             <textarea
               id="introduction"
-              className="h-[384px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-gray-500 placeholder:text-sm"
+              className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-gray-500 placeholder:text-sm"
               placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
             />
           </div>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 pb-10">
         <Button onClick={handleModalClose} type="button" buttonSize="normal" bgColor="white">
           {MY_PAGE_TEXT.CANCEL}
         </Button>
