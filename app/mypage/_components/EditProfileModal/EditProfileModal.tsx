@@ -1,11 +1,14 @@
+"use client";
+import { StaticImageData } from "next/image";
+import { ChangeEvent, useRef, useState } from "react";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
-import profileMock from "@/public/images/mock_profileImage.jpg";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import { ProfileDataType } from "../Profile";
 import { MY_PAGE_TEXT } from "../constant";
+import DeleteImageButton from "./DeleteImageButton";
 
 interface EditProfileModalProps {
   openModal: boolean;
@@ -14,18 +17,44 @@ interface EditProfileModalProps {
 }
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
+  const profileImageInputRef = useRef<HTMLInputElement>(null);
+  const [profileImage, setProfileImage] = useState<string | StaticImageData>("default");
+
+  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setProfileImage("default");
+  };
+
+  const handleSelectImageClick = () => {
+    if (profileImageInputRef.current) {
+      profileImageInputRef.current.click();
+    }
+  };
   return (
     <Modal openModal={openModal} handleModalClose={handleModalClose} className="flex flex-col items-center gap-8">
       <div className="flex flex-col items-center justify-center gap-8 px-12 pt-[90px]">
         <div className="flex gap-16">
-          <div className="flex flex-col gap-5">
-            <ProfileImage imageUrl={profileMock} className="h-[124px] w-[124px]" />
-            <label htmlFor="profile-image">
-              <div className="h-11 w-28 cursor-pointer rounded-lg py-3 text-center text-sm text-blue-500">
-                {MY_PAGE_TEXT.EDIT_IMAGE}
-              </div>
-            </label>
-            <input type="file" id="profile-image" className="hidden" />
+          <div className="relative flex flex-col items-center gap-5">
+            <DeleteImageButton onClick={handleRemoveImage} className="absolute right-0" />
+            <ProfileImage imageUrl={profileImage} className="h-[124px] w-[124px]" />
+            <Button type="button" bgColor="stroke" buttonSize="normal" onClick={handleSelectImageClick}>
+              {MY_PAGE_TEXT.EDIT_IMAGE}
+            </Button>
+            <input
+              type="file"
+              id="profile-image"
+              className="hidden"
+              onChange={handleImageChange}
+              ref={profileImageInputRef}
+            />
           </div>
           <div className="flex flex-col gap-4">
             <Input inputSize="normal" name="nickName" type="text" placeholder={profileData.nickName} title="닉네임" />

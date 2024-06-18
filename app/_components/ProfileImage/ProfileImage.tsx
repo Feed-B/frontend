@@ -8,7 +8,7 @@ function ProfileImage({ imageUrl = "default", className }: { imageUrl: string | 
 
   return (
     <div className={ProfileClass}>
-      <Image sizes="fill" src={imageUrl === "default" ? defaultProfileImage : imageUrl} alt="프로필 이미지" />
+      <Image fill src={imageUrl === "default" ? defaultProfileImage : imageUrl} alt="프로필 이미지" />
     </div>
   );
 }
