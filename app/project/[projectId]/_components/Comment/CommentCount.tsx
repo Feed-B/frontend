@@ -3,7 +3,7 @@ import React from "react";
 import commentBubbleIcon from "@/public/icons/commentBubble.svg";
 
 interface Props {
-  size: "small" | "large";
+  size?: "small" | "large";
 }
 
 function CommentCount({ size = "small" }: Props) {
