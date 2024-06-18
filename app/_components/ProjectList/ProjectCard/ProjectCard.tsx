@@ -6,7 +6,7 @@ function ProjectCard({ project }: { project: ProjectListResponse }) {
   return (
     <div className="group relative aspect-square overflow-hidden rounded-md">
       <HoverCard isWishProject={project.isWish} wishCount={project.wishCount} stackList={project.stackList} />
-      <Image fill src={project.titleImage} alt={project.subDescription} />
+      <Image sizes="fill" src={project.titleImage} alt={project.subDescription} />
     </div>
   );
 }
