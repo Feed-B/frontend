@@ -9,9 +9,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: FieldError;
 }
 
-type InputSize = "normal" | "small";
+type InputSize = "large" | "normal" | "small";
 
 const inputClasses = {
+  large: "w-[690px] px-2 py-3",
   normal: "w-[384px] px-2 py-3",
   small: "w-[114px] px-2 py-2",
 };
