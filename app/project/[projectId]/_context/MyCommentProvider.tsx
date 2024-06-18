@@ -23,7 +23,7 @@ const MyCommentContext = createContext<MyCommentContextType>({
 
 export const useMyCommentContext = () => useContext(MyCommentContext);
 
-const MyCommentProvider = ({ children }: { children: ReactNode }) => {
+function MyCommentProvider({ children }: { children: ReactNode }) {
   const [rating, setRating] = useState<number[]>([0, 0, 0, 0]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [comment, setComment] = useState("");
@@ -75,6 +75,6 @@ const MyCommentProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </MyCommentContext.Provider>
   );
-};
+}
 
 export default MyCommentProvider;

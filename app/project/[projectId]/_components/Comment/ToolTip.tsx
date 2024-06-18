@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import infoIcon from "@/public/icons/info.svg";
 
-const ToolTip = () => {
+function ToolTip() {
   return (
     <div className="group relative">
       <Image src={infoIcon} alt="평가 기준 설명." width={24} height={24} />
@@ -17,6 +17,6 @@ const ToolTip = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ToolTip;
