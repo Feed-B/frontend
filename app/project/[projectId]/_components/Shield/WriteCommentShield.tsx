@@ -4,7 +4,7 @@ import feedbeeIcon from "@/public/icons/feedbee2.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
 import Button from "@/app/_components/Button/Button";
 
-const WriteCommentShield = () => {
+function WriteCommentShield() {
   return (
     <>
       <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 rounded-xl border border-solid border-gray-200 bg-white px-8 py-4 shadow-lg">
@@ -23,6 +23,6 @@ const WriteCommentShield = () => {
       <div className="absolute left-0 top-0 z-10 h-full w-full" />
     </>
   );
-};
+}
 
 export default WriteCommentShield;

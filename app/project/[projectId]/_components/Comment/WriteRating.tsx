@@ -15,7 +15,7 @@ const ratingCategory = [
 
 const MAX_STAR = 5;
 
-const WriteRating = () => {
+function WriteRating() {
   const { rating, handleMouseDown, handleMouseMove, handleMouseUp } = useMyCommentContext();
 
   return (
@@ -44,6 +44,6 @@ const WriteRating = () => {
       </div>
     </>
   );
-};
+}
 
 export default WriteRating;

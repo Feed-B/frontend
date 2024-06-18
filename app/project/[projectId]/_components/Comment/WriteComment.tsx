@@ -5,7 +5,7 @@ import Button from "@/app/_components/Button/Button";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
 const MAX_COMMENT_LIMIT = 150;
 
-const WriteComment = () => {
+function WriteComment() {
   const { comment, handleCommentChange } = useMyCommentContext();
 
   return (
@@ -26,6 +26,6 @@ const WriteComment = () => {
       </Button>
     </>
   );
-};
+}
 
 export default WriteComment;
