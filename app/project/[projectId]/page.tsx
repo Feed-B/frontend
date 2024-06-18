@@ -4,7 +4,7 @@ import ProjectArticle from "./_components/Project/ProjectArticle";
 import TeamMemberSection from "./_components/ProjectSection/TeamMemberSection";
 import StackSection from "./_components/ProjectSection/StackSection";
 import RatingSection from "./_components/ProjectSection/RatingSection";
-import WriteCommentSection from "./_components/CommentSection/WriteCommentSection";
+import MyCommentSection from "./_components/CommentSection/MyCommentSection";
 import CommentListSection from "./_components/CommentSection/CommentListSection";
 
 const stackList = ["Javascript", "Typescript", "Java"];
@@ -26,7 +26,7 @@ function Project() {
         <RatingSection />
       </div>
       <div>
-        <WriteCommentSection />
+        <MyCommentSection />
         <CommentListSection />
       </div>
     </main>
