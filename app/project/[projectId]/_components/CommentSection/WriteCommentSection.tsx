@@ -4,6 +4,7 @@ import ToolTip from "../Comment/ToolTip";
 import WriteCommentShield from "../Shield/WriteCommentShield";
 import WriteRating from "../Comment/WriteRating";
 import WriteComment from "../Comment/WriteComment";
+import MyCommentProvider from "../../_context/MyCommentProvider";
 
 const isLogin = true;
 
@@ -17,8 +18,10 @@ function WriteCommentSection() {
           <ToolTip />
         </div>
         <div className="flex flex-col gap-6">
-          <WriteRating />
-          <WriteComment />
+          <MyCommentProvider>
+            <WriteRating />
+            <WriteComment />
+          </MyCommentProvider>
         </div>
       </div>
     </section>
