@@ -3,8 +3,7 @@ import figmaIcon from "@/public/icons/figma.svg";
 import notionIcon from "@/public/icons/notion.svg";
 import linkIcon from "@/public/icons/link.svg";
 
-//ToolData 로 바꾸고 싶습니다.
-export const TOOL = [
+export const TOOL_DATA = [
   {
     id: 1,
     name: "github",
