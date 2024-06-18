@@ -3,9 +3,9 @@ import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import profileMock from "@/public/images/mock_profileImage.jpg";
 import Input from "@/app/_components/Input/Input";
+import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import { ProfileDataType } from "../Profile";
 import { MY_PAGE_TEXT } from "../constant";
-import EditJobDropDown from "./EditProfileJob";
 
 interface EditProfileModalProps {
   openModal: boolean;
@@ -33,7 +33,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
           <div className="flex flex-col gap-4">
             <Input inputSize="normal" name="nickName" type="text" placeholder={profileData.nickName} title="닉네임" />
             <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
-            <EditJobDropDown currentJob="프론트엔드" />
+            <DropDownBox dataType="job" />
             <label htmlFor="introduction" className="text-base font-bold text-gray-900">
               {MY_PAGE_TEXT.INTRODUCTION}
             </label>
