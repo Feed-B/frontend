@@ -3,14 +3,10 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import Image from "next/image";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
-import fullFileIcon from "@/public/icons/fullFile.svg";
-import uploadIcon from "@/public/icons/upload.svg";
-import Button from "@/app/_components/Button/Button";
 import whitePlusIcon from "@/public/icons/whitePlus.svg";
 import RadioButton from "../RadioButton";
 import ProjectImageCard from "./ProjectImageCard";
-
-const ImageDescription = "프로젝트를 설명할 이미지를 업로드해주세요";
+import EmptyProjectImage from "./EmptyProjectImage";
 
 interface ImageType {
   id: string;
@@ -104,20 +100,7 @@ function ProjectImageBox() {
                     )}
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center gap-5">
-                    <div className="flex flex-col items-center gap-3">
-                      <p className="text-center text-base font-normal text-gray-900">{ImageDescription}</p>
-                      <Image src={fullFileIcon} width={64} alt="파일 이미지" />
-                    </div>
-                    <Button
-                      buttonSize="normal"
-                      bgColor="mainBlue"
-                      className="flex items-center justify-center gap-1"
-                      onClick={handleUploadButtonClick}>
-                      <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
-                      <p>업로드</p>
-                    </Button>
-                  </div>
+                  <EmptyProjectImage onButtonClick={handleUploadButtonClick} />
                 )}
               </div>
             </div>
