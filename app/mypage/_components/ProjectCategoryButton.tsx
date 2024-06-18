@@ -19,7 +19,7 @@ function ProjectCategoryButton({ isSelect, onClick, id, icon, text, count }: Cat
       id={id}
       className={`${isSelect ? "rounded-lg bg-gray-100 text-black" : "text-gray-400"} flex justify-between px-3 py-2 text-sm`}>
       <div className="flex items-center gap-2.5">
-        <Image width={24} height={24} src={icon} priority={true} alt={MY_PAGE_TEXT[text] + " 보기"} />
+        <Image width={24} src={icon} alt={MY_PAGE_TEXT[text] + " 보기"} priority />
         <p>{MY_PAGE_TEXT[text]}</p>
       </div>
       <p>{count}</p>
