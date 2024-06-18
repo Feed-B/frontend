@@ -14,14 +14,12 @@ interface ReflyCommentListRequest extends CommentsListRequest {
 
 export const commentApi = {
   getCommentList: async ({ projectId, page = 1, size = 10, limit = 100 }: CommentsListRequest) => {
-    await httpClient().get<CommentsListResponse>(`/${projectId}/comments?page=${page}&size=${size}&limit=${limit}`);
+    await httpClient().get<CommentsListResponse>(`/${projectId}/comments`, { page, size, limit });
   },
   getCommentDetail: async (projectId: number, commentId: number) => {
     await httpClient().get<CommentDetailResponse>(`/projects/${projectId}/comments/${commentId}`);
   },
   getReflyCommentList: async ({ projectId, commentId, page = 1, size = 10, limit = 100 }: ReflyCommentListRequest) => {
-    await httpClient().get<ReflyCommentResponse>(
-      `/projects/${projectId}/comments/${commentId}/replies?page=${page}&size=${size}&limit=${limit}`
-    );
+    await httpClient().get<ReflyCommentResponse>(`/${projectId}/comments/${commentId}`, { page, size, limit });
   },
 };
