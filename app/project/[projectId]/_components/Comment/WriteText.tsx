@@ -5,7 +5,11 @@ import Button from "@/app/_components/Button/Button";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
 const MAX_COMMENT_LIMIT = 150;
 
-function WriteText() {
+interface Props {
+  mode?: "write" | "edit";
+}
+
+function WriteText({ mode = "write" }: Props) {
   const { comment, handleCommentChange } = useMyCommentContext();
 
   return (
@@ -21,9 +25,22 @@ function WriteText() {
           {comment.length}/{MAX_COMMENT_LIMIT}
         </p>
       </div>
-      <Button className="ml-auto" buttonSize="small" bgColor="mainBlue">
-        등록
-      </Button>
+      <div className="flex">
+        {mode === "write" ? (
+          <Button className="ml-auto" buttonSize="small" bgColor="mainBlue">
+            등록
+          </Button>
+        ) : (
+          <>
+            <Button className="ml-auto" buttonSize="small" bgColor="mainBlue">
+              취소
+            </Button>
+            <Button className="ml-2" buttonSize="small" bgColor="mainBlue">
+              수정
+            </Button>
+          </>
+        )}
+      </div>
     </>
   );
 }
