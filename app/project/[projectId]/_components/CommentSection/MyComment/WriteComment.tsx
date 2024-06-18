@@ -6,7 +6,7 @@ import WriteRating from "../../Comment/WriteRating";
 import MyCommentProvider from "../../../_context/MyCommentProvider";
 import WriteText from "../../Comment/WriteText";
 
-const isLogin = true;
+const isLogin = false;
 
 function WriteComment() {
   return (

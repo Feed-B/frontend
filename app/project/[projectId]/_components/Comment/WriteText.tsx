@@ -27,15 +27,15 @@ function WriteText({ mode = "write" }: Props) {
       </div>
       <div className="flex">
         {mode === "write" ? (
-          <Button className="ml-auto" buttonSize="small" bgColor="mainBlue">
+          <Button className="ml-auto" buttonSize="normal" bgColor="yellow">
             등록
           </Button>
         ) : (
           <>
-            <Button className="ml-auto" buttonSize="small" bgColor="mainBlue">
+            <Button className="ml-auto" buttonSize="normal" bgColor="white">
               취소
             </Button>
-            <Button className="ml-2" buttonSize="small" bgColor="mainBlue">
+            <Button className="ml-2" buttonSize="normal" bgColor="yellow">
               수정
             </Button>
           </>

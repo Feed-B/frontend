@@ -16,7 +16,7 @@ function WriteCommentShield() {
           <p className="text-xl font-semibold">방금 보신 프로젝트, 마음에 드셨나요?</p>
           <p className="text-base text-gray-600">프로젝트를 평가하여 작성자에게 피드백을 전달하세요!</p>
         </div>
-        <Button buttonSize="normal" bgColor="mainBlue">
+        <Button className="w-32" buttonSize="normal" bgColor="yellow">
           피드비 시작하기
         </Button>
       </div>
