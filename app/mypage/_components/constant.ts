@@ -8,5 +8,5 @@ export const MY_PAGE_TEXT = {
   JOB: "직무",
   INTRODUCTION: "소개",
   CANCEL: "취소",
-  COMPLETE_EDIT: "수정 완료",
+  COMPLETE_EDIT: "수정",
 };
