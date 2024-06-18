@@ -8,6 +8,9 @@ import Title from "../_components/Title";
 import TextArea from "../_components/TextArea";
 import Input from "../_components/Input";
 
+const TITLE_MAX_LENGTH = 50;
+const DESCRIPTION_MAX_LENGTH = 150;
+
 function AddProjectContainer() {
   return (
     <>
@@ -18,15 +21,24 @@ function AddProjectContainer() {
         </section>
         <section className="flex w-[690px] flex-col gap-4">
           <Title title="프로젝트 이름" name="projectTitle" label />
-          <Input type="text" placeholder="제목을 입력해주세요" name="projectTitle" maxLength={50} />
+          <Input type="text" placeholder="제목을 입력해주세요" name="projectTitle" maxLength={TITLE_MAX_LENGTH} />
         </section>
         <section className="flex w-[690px] flex-col gap-4">
           <Title title="소개" name="projectIntroduction" label />
-          <Input type="text" placeholder="소개를 입력해주세요 (최대 50자)" name="projectIntroduction" maxLength={50} />
+          <Input
+            type="text"
+            placeholder={`소개를 입력해주세요 (최대 ${TITLE_MAX_LENGTH}자)`}
+            name="projectIntroduction"
+            maxLength={TITLE_MAX_LENGTH}
+          />
         </section>
         <section className="flex w-[690px] flex-col gap-4">
           <Title title="본문" name="projectDescription" label />
-          <TextArea placeholder="텍스트를 입력해주세요 (최대 150자)" name="projectDescription" maxLength={150} />
+          <TextArea
+            placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
+            name="projectDescription"
+            maxLength={DESCRIPTION_MAX_LENGTH}
+          />
         </section>
         <section className="flex w-[690px] flex-col gap-4">
           <Title title="프로젝트 링크" name="projectLink" label />
