@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
@@ -7,16 +9,26 @@ import ToolTip from "../Comment/ToolTip";
 import WriteCommentShield from "../Shield/WriteCommentShield";
 
 const ratingCategory = [
-  { id: 1, name: "아이디어", starCount: 1 },
-  { id: 2, name: "디자인", starCount: 2 },
-  { id: 3, name: "기능", starCount: 3 },
-  { id: 4, name: "완성도", starCount: 4 },
+  { id: 0, name: "아이디어" },
+  { id: 1, name: "디자인" },
+  { id: 2, name: "기능" },
+  { id: 3, name: "완성도" },
 ];
 
 const isLogin = true;
 const MAX_COMMENT_LIMIT = 150;
+const MAX_STAR = 5;
 
 function WriteCommentSection() {
+  const [ratings, setRatings] = useState([0, 0, 0, 0]);
+
+  const handleRating = (categoryId: number, rating: number) => {
+    setRatings(prevRatings => ({
+      ...prevRatings,
+      [categoryId]: rating,
+    }));
+  };
+
   return (
     <section className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
       {!isLogin && <WriteCommentShield />}
@@ -31,13 +43,27 @@ function WriteCommentSection() {
               <div className="flex flex-col gap-1.5" key={category.id}>
                 <p className="text-base font-medium text-gray-900">{category.name}</p>
                 <div className="flex items-center">
-                  {/* 추후 기능 추가시 수정 예정 */}
-                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={40} />
-                  <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={40} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
-                  <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={40} />
-                  <p className="h-full content-end text-sm tracking-widest text-gray-600">{category.starCount}/5</p>
+                  {[...Array(ratings[category.id])].map((_, index) => (
+                    <Image
+                      src={fullStarIcon}
+                      alt="노란색 별."
+                      width={40}
+                      key={index}
+                      onClick={() => handleRating(category.id, index + 1)}
+                    />
+                  ))}
+                  {[...Array(MAX_STAR - ratings[category.id])].map((_, index) => (
+                    <Image
+                      src={emptyStarIcon}
+                      alt="회색 별."
+                      width={40}
+                      key={index}
+                      onClick={() => handleRating(category.id, ratings[category.id] + index + 1)}
+                    />
+                  ))}
+                  <p className="h-full min-w-7 content-end text-sm tracking-widest text-gray-600">
+                    {ratings[category.id]}/{MAX_STAR}
+                  </p>
                 </div>
               </div>
             ))}
