@@ -45,7 +45,7 @@ function Profile() {
           type="button"
           bgColor="stroke"
           buttonSize="normal"
-          className="absolute bottom-8 right-8">
+          className="absolute bottom-8 right-8 w-28">
           {MY_PAGE_TEXT.EDIT_PROFILE}
         </Button>
       </form>
