@@ -1,7 +1,7 @@
 import React, { Dispatch, ReactNode, SetStateAction, createContext, useCallback, useContext, useState } from "react";
 interface projectStateType {
   stackState: string[];
-  sortCondition: string;
+  sortCondition: "RECENT" | "LIKES" | "VIEWS";
   searchString: string;
   page: number;
   size: number;
@@ -13,6 +13,8 @@ interface StackContextType {
   setProjectState: Dispatch<SetStateAction<projectStateType>>;
   isChangeStack: (stack: string) => void;
   isDeleteStack: (stack: string) => void;
+  isChangeSearchString: (searchString: string) => void;
+  isChangeCondition: (sortCondition: "RECENT" | "LIKES" | "VIEWS") => void;
 }
 
 const StackContext = createContext<StackContextType>({
@@ -27,6 +29,8 @@ const StackContext = createContext<StackContextType>({
   setProjectState: () => {},
   isChangeStack: () => {},
   isDeleteStack: () => {},
+  isChangeSearchString: () => {},
+  isChangeCondition: () => {},
 });
 
 export const useGetStack = () => useContext(StackContext);
@@ -64,8 +68,31 @@ function StackProvider({ children }: { children: ReactNode }) {
       };
     });
   }, []);
+
+  const isChangeSearchString = useCallback((searchString: string) => {
+    setProjectState(prev => ({
+      ...prev,
+      searchString,
+    }));
+  }, []);
+
+  const isChangeCondition = useCallback((sortCondition: "RECENT" | "LIKES" | "VIEWS") => {
+    setProjectState(prev => ({
+      ...prev,
+      sortCondition,
+    }));
+  }, []);
+
   return (
-    <StackContext.Provider value={{ projectState, setProjectState, isChangeStack, isDeleteStack }}>
+    <StackContext.Provider
+      value={{
+        projectState,
+        setProjectState,
+        isChangeStack,
+        isDeleteStack,
+        isChangeSearchString,
+        isChangeCondition,
+      }}>
       {children}
     </StackContext.Provider>
   );
