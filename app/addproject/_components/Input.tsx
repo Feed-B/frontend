@@ -2,9 +2,10 @@ import React, { InputHTMLAttributes } from "react";
 
 interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   inputWidth?: string;
+  inputRef?: React.LegacyRef<HTMLInputElement>;
 }
 
-function Input({ type, placeholder, name, id, maxLength, inputWidth }: InputSectionProps) {
+function Input({ type, placeholder, name, id, maxLength, inputWidth, inputRef, onChange }: InputSectionProps) {
   return (
     <input
       type={type}
@@ -14,6 +15,8 @@ function Input({ type, placeholder, name, id, maxLength, inputWidth }: InputSect
       id={id ? id : name}
       autoComplete="off"
       maxLength={maxLength}
+      ref={inputRef}
+      onChange={onChange}
     />
   );
 }
