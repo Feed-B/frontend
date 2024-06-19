@@ -42,7 +42,14 @@ const config: Config = {
         800: "#333333",
         900: "#1C1C1C",
       },
-      yellow: "#F2D027",
+      yellow: {
+        100: "#FEFCE8",
+        200: "#FFFAC2",
+        300: "#FFF188",
+        400: "#FFE245",
+        500: "#FDCB07",
+        600: "#EDB405",
+      },
       red: {
         100: "#FCD3D3",
         200: "#FAA7A7",
@@ -67,6 +74,7 @@ const config: Config = {
         950: "#03301D",
       },
       blue: {
+        50: "#EFF4FF",
         100: "#D5DCFB",
         200: "#ABB8F7",
         300: "#8295F3",
