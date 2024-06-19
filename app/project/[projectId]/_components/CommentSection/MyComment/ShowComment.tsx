@@ -9,7 +9,7 @@ import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
 import TotalStar from "../../Comment/TotalStar";
-import { useMyCommentContext } from "../../../_context/MycommentProvider";
+import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 
 function ShowComment() {
   const { isOpen, toggleState } = useToggleHook();

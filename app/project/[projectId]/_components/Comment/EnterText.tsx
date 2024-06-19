@@ -3,7 +3,7 @@
 import React from "react";
 import Button from "@/app/_components/Button/Button";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
-import { useMyCommentContext } from "../../_context/MycommentProvider";
+import { useMyCommentContext } from "../../_context/MyCommentProvider";
 
 const MAX_COMMENT_LIMIT = 150;
 
