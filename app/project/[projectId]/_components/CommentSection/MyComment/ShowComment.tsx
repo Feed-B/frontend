@@ -24,7 +24,7 @@ function ShowComment() {
           <CommentProfile />
           <div className="flex items-center gap-2">
             <CommentCount size="large" />
-            <Image className="relative" src={kebabIcon} alt="댓글 메뉴." width={24} height={32} onClick={toggleState} />
+            <Image className="relative" src={kebabIcon} alt="댓글 메뉴." width={24} onClick={toggleState} />
             {isOpen && (
               <DropDown className="w-fit translate-x-4 translate-y-16">
                 <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
