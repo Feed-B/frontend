@@ -9,12 +9,11 @@ import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
 import TotalStar from "../../Comment/TotalStar";
-
-//임시 ID
-const projectId = 1;
+import { useMyCommentContext } from "../../../_context/MycommentProvider";
 
 function ShowComment() {
   const { isOpen, toggleState } = useToggleHook();
+  const { setView } = useMyCommentContext();
 
   return (
     <>
@@ -27,7 +26,7 @@ function ShowComment() {
             <Image className="relative" src={kebabIcon} alt="댓글 메뉴." width={24} onClick={toggleState} />
             {isOpen && (
               <DropDown className="w-fit translate-x-4 translate-y-16">
-                <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
+                <DropDown.TextItem onClick={() => setView("edit")}>수정</DropDown.TextItem>
                 <DropDown.TextItem>삭제</DropDown.TextItem>
               </DropDown>
             )}
