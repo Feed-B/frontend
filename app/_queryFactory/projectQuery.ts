@@ -5,13 +5,14 @@ interface projectListParams {
   page?: number;
   size?: number;
   limit?: number;
-  searchString?: string;
+  search1String?: string;
   projectTechStacks?: string[];
+  sortCondition?: string;
 }
 
 export const projectQueryKeys = createQueryKeys("project", {
   list: (props: projectListParams) => ({
-    queryKey: ["projectList", props.page],
+    queryKey: ["projectList"],
     queryFn: () => projectApi.getprojectList({ ...props }),
   }),
 });

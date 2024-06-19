@@ -26,7 +26,7 @@ function StackItem({ children, image }: StackItemProps) {
   };
 
   useEffect(() => {
-    const inStack = projectState.stackState.includes(children + "");
+    const inStack = projectState.projectTechStacks.includes(children + "");
 
     if (inStack) {
       changeopenState();
