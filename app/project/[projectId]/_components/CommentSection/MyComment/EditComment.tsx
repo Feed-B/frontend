@@ -1,9 +1,9 @@
 "use client";
 
 import ToolTip from "../../Comment/ToolTip";
-import WriteRating from "../../Comment/WriteRating";
-import MyCommentProvider from "../../../_context/MyCommentProvider";
-import WriteText from "../../Comment/WriteText";
+import EnterRating from "../../Comment/EnterRating";
+import EnterCommentProvider from "../../../_context/EnterCommentProvider";
+import EnterText from "../../Comment/EnterText";
 
 function EditComment() {
   return (
@@ -13,10 +13,10 @@ function EditComment() {
         <ToolTip />
       </div>
       <div className="flex flex-col gap-6">
-        <MyCommentProvider>
-          <WriteRating />
-          <WriteText mode="edit" />
-        </MyCommentProvider>
+        <EnterCommentProvider>
+          <EnterRating />
+          <EnterText mode="edit" />
+        </EnterCommentProvider>
       </div>
     </div>
   );
