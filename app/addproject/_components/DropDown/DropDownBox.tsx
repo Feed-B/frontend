@@ -13,9 +13,10 @@ import DropDownList from "./DropDownList";
 
 interface DropDownProps {
   dataType: string;
+  inputWidth?: string;
 }
 
-function DropDownBox({ dataType }: DropDownProps) {
+function DropDownBox({ dataType, inputWidth }: DropDownProps) {
   const toolData = TOOL_DATA.reduce(
     (acc, { name }) => {
       acc[name] = name;
@@ -48,9 +49,7 @@ function DropDownBox({ dataType }: DropDownProps) {
   return (
     <div className="relative">
       <div
-        className={
-          "flex h-11 w-[118px] items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
-        }>
+        className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}>
         {item}
         <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
           {isOpen ? (
