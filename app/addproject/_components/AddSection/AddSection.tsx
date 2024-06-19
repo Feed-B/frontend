@@ -71,7 +71,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
         buttonSize="normal"
         bgColor="stroke"
         onClick={handleAddButtonClick}
-        className="flex items-center justify-center gap-1">
+        className="flex items-center justify-center gap-1 hover:bg-[#EFF4FF]">
         <Image src={plusIcon} alt="추가하기" width={20} priority />
         {title === "팀원" ? "팀원" : "링크"} 추가하기
       </Button>
