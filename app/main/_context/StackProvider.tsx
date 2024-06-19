@@ -1,15 +1,30 @@
 import React, { Dispatch, ReactNode, SetStateAction, createContext, useCallback, useContext, useState } from "react";
+interface projectStateType {
+  stackState: string[];
+  sortCondition: string;
+  searchString: string;
+  page: number;
+  size: number;
+  limit: number;
+}
 
 interface StackContextType {
-  stackState: string[];
-  setStackState: Dispatch<SetStateAction<string[]>>;
+  projectState: projectStateType;
+  setProjectState: Dispatch<SetStateAction<projectStateType>>;
   isChangeStack: (stack: string) => void;
   isDeleteStack: (stack: string) => void;
 }
 
 const StackContext = createContext<StackContextType>({
-  stackState: [],
-  setStackState: () => {},
+  projectState: {
+    stackState: [],
+    sortCondition: "RECENT",
+    searchString: "",
+    page: 1,
+    size: 1,
+    limit: 1,
+  },
+  setProjectState: () => {},
   isChangeStack: () => {},
   isDeleteStack: () => {},
 });
@@ -17,29 +32,40 @@ const StackContext = createContext<StackContextType>({
 export const useGetStack = () => useContext(StackContext);
 
 function StackProvider({ children }: { children: ReactNode }) {
-  const [stackState, setStackState] = useState<string[]>([]);
+  const [projectState, setProjectState] = useState<projectStateType>({
+    stackState: [],
+    sortCondition: "RECENT",
+    searchString: "",
+    page: 1,
+    size: 1,
+    limit: 1,
+  });
 
   const isChangeStack = useCallback((stack: string) => {
-    setStackState(prev => {
-      const isAlreadyStack = prev.includes(stack);
-
+    setProjectState(prev => {
+      const isAlreadyStack = prev.stackState.includes(stack);
       if (isAlreadyStack) {
-        return prev;
+        return prev; // No change needed if stack already exists
       } else {
-        return [stack, ...prev];
+        return {
+          ...prev,
+          stackState: [stack, ...prev.stackState],
+        };
       }
     });
   }, []);
 
   const isDeleteStack = useCallback((stack: string) => {
-    setStackState(prev => {
-      const isFilterStack = prev.filter(data => stack !== data);
-
-      return isFilterStack;
+    setProjectState(prev => {
+      const isFilterStack = prev.stackState.filter(data => stack !== data);
+      return {
+        ...prev,
+        stackState: isFilterStack,
+      };
     });
   }, []);
   return (
-    <StackContext.Provider value={{ stackState, setStackState, isChangeStack, isDeleteStack }}>
+    <StackContext.Provider value={{ projectState, setProjectState, isChangeStack, isDeleteStack }}>
       {children}
     </StackContext.Provider>
   );
