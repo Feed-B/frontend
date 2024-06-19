@@ -2,9 +2,9 @@
 
 import ToolTip from "../../Comment/ToolTip";
 import WriteCommentShield from "../../Shield/WriteCommentShield";
-import WriteRating from "../../Comment/WriteRating";
-import MyCommentProvider from "../../../_context/MyCommentProvider";
-import WriteText from "../../Comment/WriteText";
+import EnterRating from "../../Comment/EnterRating";
+import EnterCommentProvider from "../../../_context/EnterCommentProvider";
+import EnterText from "../../Comment/EnterText";
 
 const isLogin = false;
 
@@ -18,10 +18,10 @@ function WriteComment() {
           <ToolTip />
         </div>
         <div className="flex flex-col gap-6">
-          <MyCommentProvider>
-            <WriteRating />
-            <WriteText />
-          </MyCommentProvider>
+          <EnterCommentProvider>
+            <EnterRating />
+            <EnterText />
+          </EnterCommentProvider>
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@
 
 import React from "react";
 import Button from "@/app/_components/Button/Button";
-import { useMyCommentContext } from "../../_context/MyCommentProvider";
+import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
+
 const MAX_COMMENT_LIMIT = 150;
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 }
 
 function WriteText({ mode = "write" }: Props) {
-  const { comment, handleCommentChange } = useMyCommentContext();
+  const { comment, handleCommentChange } = useEnterCommentContext();
 
   return (
     <>

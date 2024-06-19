@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useContext, useState } from "react";
 import { createContext } from "react";
 
-interface MyCommentContextType {
+interface EnterCommentContextType {
   rating: number[];
   isDragging: boolean;
   handleMouseDown: (categoryId: number, rating: number) => void;
@@ -11,7 +11,7 @@ interface MyCommentContextType {
   handleCommentChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const MyCommentContext = createContext<MyCommentContextType>({
+const EnterCommentContext = createContext<EnterCommentContextType>({
   rating: [],
   isDragging: false,
   handleMouseDown: () => {},
@@ -21,9 +21,9 @@ const MyCommentContext = createContext<MyCommentContextType>({
   handleCommentChange: () => {},
 });
 
-export const useMyCommentContext = () => useContext(MyCommentContext);
+export const useEnterCommentContext = () => useContext(EnterCommentContext);
 
-function MyCommentProvider({ children }: { children: ReactNode }) {
+function EnterCommentProvider({ children }: { children: ReactNode }) {
   const [rating, setRating] = useState<number[]>([0, 0, 0, 0]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [comment, setComment] = useState("");
@@ -62,7 +62,7 @@ function MyCommentProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <MyCommentContext.Provider
+    <EnterCommentContext.Provider
       value={{
         rating,
         isDragging,
@@ -73,8 +73,8 @@ function MyCommentProvider({ children }: { children: ReactNode }) {
         handleCommentChange,
       }}>
       {children}
-    </MyCommentContext.Provider>
+    </EnterCommentContext.Provider>
   );
 }
 
-export default MyCommentProvider;
+export default EnterCommentProvider;
