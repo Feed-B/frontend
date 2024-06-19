@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React, { Ref } from "react";
 import eyeIcon from "@/public/icons/eye.svg";
 
 interface ProjectCardInfoProps {
@@ -7,9 +8,12 @@ interface ProjectCardInfoProps {
   viewCount: number | string;
 }
 
-function ProjectCardInfo({ projectTitle, projectSubDescription, viewCount }: ProjectCardInfoProps) {
+function ProjectCardInfo(
+  { projectTitle, projectSubDescription, viewCount }: ProjectCardInfoProps,
+  ref: Ref<HTMLDivElement>
+) {
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
           <h6 className="max-w-[192px] overflow-hidden text-ellipsis whitespace-nowrap text-base font-bold">
@@ -26,4 +30,4 @@ function ProjectCardInfo({ projectTitle, projectSubDescription, viewCount }: Pro
   );
 }
 
-export default ProjectCardInfo;
+export default React.forwardRef<HTMLDivElement, ProjectCardInfoProps>(ProjectCardInfo);
