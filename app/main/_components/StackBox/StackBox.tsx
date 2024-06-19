@@ -25,7 +25,7 @@ function StackBox() {
         <p className="text-sm font-normal text-[#5177FF]">초기화</p>
       </div>
       <ul className="flex flex-wrap gap-2">
-        {projectState.stackState.map(data => (
+        {projectState.projectTechStacks.map(data => (
           <li
             className="flex cursor-pointer items-center gap-1 rounded bg-[#EBEBEB] p-1"
             onClick={() => isDeleteStack(data)}

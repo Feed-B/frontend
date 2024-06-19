@@ -1,13 +1,12 @@
 "use client";
 
 import React from "react";
-import ProjectList from "@/app/_components/ProjectList/ProjectList";
-import { myProjectList } from "@/app/_components/ProjectList/mockDataCardList";
 import StackProvider from "../../_context/StackProvider";
 import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
 import SearchBar from "../SearchBar/SearchBar";
 import StackBox from "../StackBox/StackBox";
+import ProjectSection from "../ProjectSection/ProjectSection";
 
 function SelectStack() {
   return (
@@ -20,9 +19,7 @@ function SelectStack() {
         </div>
         <StackBox />
       </section>
-      <section className="col-start-2 mt-[40px]">
-        <ProjectList projectList={myProjectList.data} />
-      </section>
+      <ProjectSection />
     </StackProvider>
   );
 }

@@ -10,7 +10,7 @@ interface ProjectListRequest {
 }
 
 export const projectApi = {
-  getprojectList: async ({ page = 1, size = 10, limit = 100, searchString, projectTechStacks }: ProjectListRequest) => {
+  getprojectList: async ({ page = 1, size = 1, limit = 1, searchString, projectTechStacks }: ProjectListRequest) => {
     await httpClient().get<ProjectListResponse>("/projects", {
       page,
       size,

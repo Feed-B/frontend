@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactNode, SetStateAction, createContext, useCallback, useContext, useState } from "react";
 interface projectStateType {
-  stackState: string[];
+  projectTechStacks: string[];
   sortCondition: "RECENT" | "LIKES" | "VIEWS";
   searchString: string;
   page: number;
@@ -19,7 +19,7 @@ interface StackContextType {
 
 const StackContext = createContext<StackContextType>({
   projectState: {
-    stackState: [],
+    projectTechStacks: [],
     sortCondition: "RECENT",
     searchString: "",
     page: 1,
@@ -37,7 +37,7 @@ export const useGetStack = () => useContext(StackContext);
 
 function StackProvider({ children }: { children: ReactNode }) {
   const [projectState, setProjectState] = useState<projectStateType>({
-    stackState: [],
+    projectTechStacks: [],
     sortCondition: "RECENT",
     searchString: "",
     page: 1,
@@ -47,13 +47,13 @@ function StackProvider({ children }: { children: ReactNode }) {
 
   const isChangeStack = useCallback((stack: string) => {
     setProjectState(prev => {
-      const isAlreadyStack = prev.stackState.includes(stack);
+      const isAlreadyStack = prev.projectTechStacks.includes(stack);
       if (isAlreadyStack) {
         return prev; // No change needed if stack already exists
       } else {
         return {
           ...prev,
-          stackState: [stack, ...prev.stackState],
+          stackState: [stack, ...prev.projectTechStacks],
         };
       }
     });
@@ -61,7 +61,7 @@ function StackProvider({ children }: { children: ReactNode }) {
 
   const isDeleteStack = useCallback((stack: string) => {
     setProjectState(prev => {
-      const isFilterStack = prev.stackState.filter(data => stack !== data);
+      const isFilterStack = prev.projectTechStacks.filter(data => stack !== data);
       return {
         ...prev,
         stackState: isFilterStack,
