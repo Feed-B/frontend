@@ -1,5 +1,5 @@
 import "@/app/_styles/globals.css";
-import Providers from "./providers";
+import Providers from "../../../../_queryFactory/providers";
 // import { commentApi } from "@/app/_apis/comment";
 
 interface Props {
