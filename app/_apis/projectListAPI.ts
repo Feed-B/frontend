@@ -36,4 +36,11 @@ export const projectListAPI = {
       limit,
     });
   },
+  getWishProjectList: async ({ page = 1, size = 24, limit = 100 }) => {
+    await httpClient().get<ProjectListAPI>(`/projects/mine/likes?page=${page}&size=${size}&limit=${limit}`, {
+      page,
+      size,
+      limit,
+    });
+  },
 };
