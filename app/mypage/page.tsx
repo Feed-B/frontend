@@ -23,6 +23,7 @@ function MyPage() {
       projectListData = wishProjectList.data;
     }
   }
+
   return (
     <main className="mb-20 ml-[50%] mt-10 flex w-[1200px] -translate-x-1/2 gap-11 gap-y-16">
       <div className="w-[180px]">
