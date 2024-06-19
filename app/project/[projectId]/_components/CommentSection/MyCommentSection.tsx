@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import MyCommentProvider from "../../_context/MycommentProvider";
-import { useMyCommentContext } from "../../_context/MycommentProvider";
+import MyCommentProvider from "../../_context/MyCommentProvider";
+import { useMyCommentContext } from "../../_context/MyCommentProvider";
 import ShowComment from "./MyComment/ShowComment";
 import WriteComment from "./MyComment/WriteComment";
 import EditComment from "./MyComment/EditComment";
