@@ -7,16 +7,25 @@ interface ProjectListRequest {
   limit?: number;
   searchString?: string;
   projectTechStacks?: string[];
+  sortCondition?: string;
 }
 
 export const projectApi = {
-  getprojectList: async ({ page = 1, size = 1, limit = 1, searchString, projectTechStacks }: ProjectListRequest) => {
-    await httpClient().get<ProjectListResponse>("/projects", {
+  getprojectList: async ({
+    page = 0,
+    size = 0,
+    limit = 0,
+    searchString = "",
+    projectTechStacks = [],
+    sortCondition = "RECENT",
+  }: ProjectListRequest) => {
+    await httpClient().get<ProjectListResponse>("/projects?", {
+      sortCondition,
+      projectTechStacks,
+      searchString,
       page,
       size,
       limit,
-      searchString,
-      projectTechStacks,
     });
   },
 };
