@@ -1,14 +1,20 @@
-import React from "react";
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { myProjectList } from "@/app/_components/ProjectList/mockDataCardList";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectApi } from "@/app/_apis/project";
 import { useGetStack } from "../../_context/StackProvider";
 
 function ProjectSection() {
   const { projectState } = useGetStack();
 
-  const { data } = useQuery(projectQueryKeys.list(projectState));
+  console.log(projectState);
+
+  const { data } = useQuery({
+    queryKey: ["project", "list", "projectList"],
+    queryFn: () => projectApi.getprojectList(projectState),
+  });
 
   console.log(data);
 

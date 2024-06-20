@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { ReactNode, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useGetStack } from "@/app/main/_context/StackProvider";
 import { ImageType } from "@/app/_types/StackType";
 import useToggleHook from "@/app/_hooks/useToggleHook";
@@ -14,6 +15,7 @@ interface StackItemProps {
 function StackItem({ children, image }: StackItemProps) {
   const { projectState, isChangeStack, isDeleteStack } = useGetStack();
   const { isOpen: stackClicked, toggleState, changecloseState, changeopenState } = useToggleHook();
+  const test = useQueryClient();
 
   const clickStack = () => {
     toggleState();
@@ -22,6 +24,7 @@ function StackItem({ children, image }: StackItemProps) {
       isDeleteStack(children + "");
     } else {
       isChangeStack(children + "");
+      test.invalidateQueries({ queryKey: ["project", "list", "projectList"] });
     }
   };
 
