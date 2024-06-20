@@ -53,7 +53,7 @@ function StackProvider({ children }: { children: ReactNode }) {
       } else {
         return {
           ...prev,
-          stackState: [stack, ...prev.projectTechStacks],
+          projectTechStacks: [stack, ...prev.projectTechStacks],
         };
       }
     });
@@ -64,7 +64,7 @@ function StackProvider({ children }: { children: ReactNode }) {
       const isFilterStack = prev.projectTechStacks.filter(data => stack !== data);
       return {
         ...prev,
-        stackState: isFilterStack,
+        projectTechStacks: isFilterStack,
       };
     });
   }, []);

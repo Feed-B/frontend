@@ -4,7 +4,6 @@ import { useGetStack } from "../../_context/StackProvider";
 
 function SortFilter() {
   const { projectState, isChangeCondition } = useGetStack();
-  console.log(projectState);
 
   return (
     <div className="flex h-6 items-center gap-3">
