@@ -1,4 +1,15 @@
-import React, { Dispatch, ReactNode, SetStateAction, createContext, useCallback, useContext, useState } from "react";
+import React, {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { useQueryClient } from "@tanstack/react-query";
+
 interface projectStateType {
   projectTechStacks: string[];
   sortCondition: "RECENT" | "LIKES" | "VIEWS";
@@ -36,6 +47,7 @@ const StackContext = createContext<StackContextType>({
 export const useGetStack = () => useContext(StackContext);
 
 function StackProvider({ children }: { children: ReactNode }) {
+  const reactQueryClient = useQueryClient();
   const [projectState, setProjectState] = useState<projectStateType>({
     projectTechStacks: [],
     sortCondition: "RECENT",
@@ -44,13 +56,24 @@ function StackProvider({ children }: { children: ReactNode }) {
     size: 0,
     limit: 0,
   });
+  const [stateUpdated, setStateUpdated] = useState(false); // projectState 상태가 업데이트 된 이후에 invalidateQueries 실행을 위한 함수
+
+  useEffect(() => {
+    if (stateUpdated) {
+      reactQueryClient.invalidateQueries({ queryKey: ["project", "list", "projectList"] });
+      setStateUpdated(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateUpdated]);
 
   const isChangeStack = useCallback((stack: string) => {
     setProjectState(prev => {
       const isAlreadyStack = prev.projectTechStacks.includes(stack);
       if (isAlreadyStack) {
-        return prev; // No change needed if stack already exists
+        setStateUpdated(false);
+        return prev;
       } else {
+        setStateUpdated(true);
         return {
           ...prev,
           projectTechStacks: [stack, ...prev.projectTechStacks],
@@ -62,6 +85,7 @@ function StackProvider({ children }: { children: ReactNode }) {
   const isDeleteStack = useCallback((stack: string) => {
     setProjectState(prev => {
       const isFilterStack = prev.projectTechStacks.filter(data => stack !== data);
+      setStateUpdated(true);
       return {
         ...prev,
         projectTechStacks: isFilterStack,
@@ -70,17 +94,23 @@ function StackProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const isChangeSearchString = useCallback((searchString: string) => {
-    setProjectState(prev => ({
-      ...prev,
-      searchString,
-    }));
+    setProjectState(prev => {
+      setStateUpdated(true);
+      return {
+        ...prev,
+        searchString,
+      };
+    });
   }, []);
 
   const isChangeCondition = useCallback((sortCondition: "RECENT" | "LIKES" | "VIEWS") => {
-    setProjectState(prev => ({
-      ...prev,
-      sortCondition,
-    }));
+    setProjectState(prev => {
+      setStateUpdated(true);
+      return {
+        ...prev,
+        sortCondition,
+      };
+    });
   }, []);
 
   return (
