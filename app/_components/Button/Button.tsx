@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWith
 
 type ButtonSize = "normal" | "small";
 
-type BgColor = "white" | "stroke" | "naver" | "yellow" | "kakao";
+type BgColor = "white" | "stroke" | "naver" | "yellow" | "kakao" | "mainBlue";
 
 const buttonClasses = {
   normal: "min-w-20 h-11 rounded-lg px-4 py-3 text-sm",
@@ -23,6 +23,7 @@ const bgColorClasses: Record<BgColor, string> = {
   white: "border border-gray-200 bg-white",
   naver: "bg-[#03C75A] text-white",
   kakao: "bg-[#FEE500]",
+  mainBlue: "bg-blue-500",
 };
 
 function Button({ children, type = "button", buttonSize, bgColor, onClick, className, disabled }: ButtonProps) {
