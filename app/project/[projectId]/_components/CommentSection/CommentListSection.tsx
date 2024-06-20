@@ -63,17 +63,22 @@ const CommentList = [
   },
 ];
 
+const isLogin = false;
+
 function CommentListSection() {
   return (
-    <section className="mt-10">
-      <h3 className="mb-4 text-lg font-bold text-gray-900">댓글</h3>
-      <div className="grid grid-cols-4 gap-x-6 gap-y-3">
-        {CommentList.map(comment => (
-          <CommentCard key={comment.id} comment={comment} />
-        ))}
-      </div>
-      <Pagination />
-    </section>
+    <>
+      <section className={`mt-10 ${!isLogin && "blur-sm"}`}>
+        <h3 className="mb-4 text-lg font-bold text-gray-900">댓글</h3>
+        <div className="grid grid-cols-4 gap-x-6 gap-y-3">
+          {CommentList.map(comment => (
+            <CommentCard key={comment.id} comment={comment} />
+          ))}
+        </div>
+        <Pagination />
+        {!isLogin && <div className="absolute left-0 top-0 z-10 h-full w-full" />}
+      </section>
+    </>
   );
 }
 
