@@ -61,7 +61,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
         <Button onClick={handleModalClose} type="button" buttonSize="normal" bgColor="white">
           {MY_PAGE_TEXT.CANCEL}
         </Button>
-        <Button type="button" buttonSize="normal" bgColor="yellow" className="font-semibold">
+        <Button type="button" buttonSize="normal" bgColor="yellow" className="bg-yellow-500 font-semibold">
           {MY_PAGE_TEXT.COMPLETE_EDIT}
         </Button>
       </div>
