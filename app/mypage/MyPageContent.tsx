@@ -19,8 +19,7 @@ function MyPageContent() {
         `http://3.37.64.186/projects/mine${selectCategory === "wishProject" ? "/likes" : ""}?page=0&size=5`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZTJlZDAyMyIsImlhdCI6MTcxODg3NDQ2NywiZXhwIjoxNzE4ODk2MDY3fQ.j2HKDVPZkRLVJ9uH7JwBVEg1InSe7nbuKniR3z00wvI",
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZTJlZDAyMyIsImlhdCI6MTcxODg3NDQ2NywiZXhwIjoxNzE4ODk2MDY3fQ.j2HKDVPZkRLVJ9uH7JwBVEg1InSe7nbuKniR3z00wvI",
           },
         }
       );
