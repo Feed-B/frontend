@@ -40,9 +40,9 @@ function StackProvider({ children }: { children: ReactNode }) {
     projectTechStacks: [],
     sortCondition: "RECENT",
     searchString: "",
-    page: 1,
-    size: 1,
-    limit: 1,
+    page: 0,
+    size: 0,
+    limit: 0,
   });
 
   const isChangeStack = useCallback((stack: string) => {
