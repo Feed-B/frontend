@@ -31,7 +31,7 @@ function Button({ children, type = "button", buttonSize, bgColor, onClick, class
 
   return (
     <button
-      className={`${buttonClass} ${bgColorClass} whitespace-nowrap`}
+      className={`${buttonClass} ${bgColorClass} whitespace-nowrap font-semibold`}
       type={type}
       onClick={onClick}
       disabled={disabled}>
