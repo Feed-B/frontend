@@ -15,6 +15,14 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
     return null;
   }
 
+  const handleNaverLogin = () => {
+    window.location.href = "http://3.37.64.186/oauth2/authorization/naver";
+  };
+
+  const handleKakaoLogin = () => {
+    window.location.href = "http://3.37.64.186/oauth2/authorization/kakao";
+  };
+
   return (
     <Modal
       openModal={openModal}
@@ -42,7 +50,8 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
 
         <Button
           buttonSize="normal"
-          bgColor="green"
+          bgColor="naver"
+          onClick={handleNaverLogin}
           className="mb-1.5 flex h-[52px] w-96 items-center justify-center gap-3 text-lg font-medium">
           <Image src={naverIcon} alt="네이버 아이콘" width={20} height={20} priority />
           네이버 로그인
@@ -50,6 +59,7 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
         <Button
           buttonSize="normal"
           bgColor="kakao"
+          onClick={handleKakaoLogin}
           className="flex h-[52px] w-96 items-center justify-center gap-3 bg-[#FEE500] text-lg font-medium">
           <Image src={kakaoIcon} alt="카카오 아이콘" width={20} height={20} priority />
           카카오 로그인
