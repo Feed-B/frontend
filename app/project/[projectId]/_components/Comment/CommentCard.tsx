@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import arrowIcon from "@/public/icons/arrowRight.svg";
+import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import CommentProfile from "./CommentProfile";
 import CommentCount from "./CommentCount";
 import TotalStar from "./TotalStar";
