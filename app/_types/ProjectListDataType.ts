@@ -1,14 +1,38 @@
-import { StaticImageData } from "next/image";
-
 export interface ProjectListResponse {
-  id: number;
-  userId: number;
-  titleImage: string | StaticImageData;
+  content: [
+    {
+      projectId: number;
+      thumbnailUrl: string;
+      stackList: string[];
+      likeCount: number;
+      isLiked: boolean;
+      projectTitle: string;
+      introduction: string;
+      viewCount: number;
+      createdAt: string;
+      modifiedAt: string;
+    },
+  ];
+  customPageable: {
+    first: boolean;
+    last: boolean;
+    hasNext: boolean;
+    totalPages: number;
+    totalElements: number;
+    page: number;
+    size: number;
+  };
+}
+
+export interface ProjectResponse {
+  projectId: number;
+  thumbnailUrl: string;
   stackList: string[];
-  wishCount: number;
-  isWish: boolean;
+  likeCount: number;
+  isLiked: boolean;
   projectTitle: string;
-  subDescription: string;
+  introduction: string;
   viewCount: number;
   createdAt: string;
+  modifiedAt: string;
 }
