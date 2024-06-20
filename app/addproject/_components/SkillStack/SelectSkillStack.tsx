@@ -11,7 +11,7 @@ function SelectSkillStackBox() {
   return (
     <div className="flex min-h-10 flex-wrap gap-2">
       {selectedStacks.length === 0 ? (
-        <div className="flex items-center rounded-[44px] bg-gray-100 p-2 text-sm font-normal text-gray-900">
+        <div className="flex items-center rounded-[44px] bg-gray-100 px-4 py-2 text-sm font-normal text-gray-600">
           선택된 스킬이 없습니다.
         </div>
       ) : (
