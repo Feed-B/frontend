@@ -10,7 +10,7 @@ async function MainPage() {
   await queryClient.prefetchQuery({
     queryKey: ["project", "list", "projectList"],
     queryFn: async () => {
-      const response = await fetch(BASE_URL + "/projects?sortCondition=RECENT&page=0&size=0&limit=0");
+      const response = await fetch(BASE_URL + "/projects?sortCondition=RECENT&page=1&size=12&limit=0");
       const result = await response.json();
       return result;
     },
