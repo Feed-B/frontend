@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { ProjectListResponse } from "@/app/_types/ProjectListDataType";
+import { ProjectData } from "@/app/_apis/projectListAPI";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
 
@@ -10,7 +10,7 @@ function MypageProjectList({
   projectList,
   projectType,
 }: {
-  projectList: ProjectListResponse[];
+  projectList: ProjectData[] | undefined;
   projectType: MyPageProjectListType;
 }) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
