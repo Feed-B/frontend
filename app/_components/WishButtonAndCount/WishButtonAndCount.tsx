@@ -1,9 +1,10 @@
 "use client";
 import { MouseEvent, useState } from "react";
 import Image from "next/image";
-import emptyHeartIcon from "@/public/icons/emptyHeart.svg";
-import fullHeartIcon from "@/public/icons/fullHeart.svg";
-import emptyBlackHeartIcon from "@/public/icons/emptyBlackHeart.svg";
+import emptyProjectListIcon from "@/public/icons/emptyWhitePot.svg";
+import fullProjectListIcon from "@/public/icons/fullDarkPot.svg";
+import emptyProjectIcon from "@/public/icons/emptyBlackPot.svg";
+import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
 
 interface WishButtonAndCountProps {
   isFavorite: boolean;
@@ -11,7 +12,19 @@ interface WishButtonAndCountProps {
   colorMode?: "bright" | "dark";
 }
 
-function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "bright" }: WishButtonAndCountProps) {
+function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark" }: WishButtonAndCountProps) {
+  const isDarkMode = colorMode === "dark";
+
+  const full = {
+    icon: isDarkMode ? fullProjectListIcon : fullProjectIcon,
+    text: isDarkMode ? "text-yellow-500 font-bold" : "text-yellow-600 font-bold",
+  };
+
+  const empty = {
+    icon: isDarkMode ? emptyProjectListIcon : emptyProjectIcon,
+    text: isDarkMode ? "text-white" : "text-gray-900",
+  };
+
   const [favoriteState, setFavoriteState] = useState({
     isFavorite: isFavorite,
     wishCountState: wishCount,
@@ -28,14 +41,9 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "bright
   return (
     <div className="flex items-center justify-center gap-0.5">
       <button type="button" className="relative h-6 w-6" onClick={handleFavorite}>
-        <Image
-          fill
-          src={favoriteState.isFavorite ? fullHeartIcon : colorMode === "bright" ? emptyHeartIcon : emptyBlackHeartIcon}
-          alt="favorite-project"
-        />
+        <Image fill src={favoriteState.isFavorite ? full.icon : empty.icon} alt="프로젝트 찜하기." />
       </button>
-      <p
-        className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? "text-red-500" : colorMode === "bright" ? "text-white" : "text-gray-900"}`}>
+      <p className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}>
         {favoriteState.wishCountState}
       </p>
     </div>
