@@ -3,10 +3,10 @@
 import React, { ButtonHTMLAttributes } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import topArrowIcon from "@/public/icons/blackArrowTop.svg";
-import leftArrowIcon from "@/public/icons/blackArrowLeft.svg";
-import rightArrowIcon from "@/public/icons/blackArrowRight.svg";
-import bottomArrowIcon from "@/public/icons/blackArrowBottom.svg";
+import topArrowIcon from "@/public/icons/whiteArrowTop.svg";
+import leftArrowIcon from "@/public/icons/whiteArrowLeft.svg";
+import rightArrowIcon from "@/public/icons/whiteArrowRight.svg";
+import bottomArrowIcon from "@/public/icons/whiteArrowBottom.svg";
 
 interface DirectionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   direction: "top" | "bottom" | "left" | "right";
@@ -36,12 +36,12 @@ const DirectionButton: React.FC<DirectionButtonProps> = ({ direction, className,
   };
 
   const DefaultDirectionButtonClass =
-    "fixed bottom-10 right-10 rounded-full bg-yellow shadow-lg focus:outline-none h-11 w-11 flex items-center justify-center";
+    "rounded-full h-11 w-11 flex items-center justify-center bg-gray-800 hover:bg-gray-900";
   const DirectionButtonClass = twMerge(DefaultDirectionButtonClass, className);
 
   return (
     <button type="button" onClick={onClick || topAutoScroll} className={DirectionButtonClass} {...props}>
-      <Image src={getIcon()} alt={`${direction} arrow`} width={24} />
+      <Image src={getIcon()} alt={`${direction} arrow`} width={28} />
     </button>
   );
 };
