@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { ProjectData } from "@/app/_apis/projectListAPI";
+import { ProjectData } from "@/app/_apis/schema/projectResponse";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
 

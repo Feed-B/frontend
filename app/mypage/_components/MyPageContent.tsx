@@ -1,15 +1,15 @@
 import { MouseEvent, useState } from "react";
 import { useQuery } from "react-query";
-import { ProjectResponseType, projectListAPI } from "@/app/_apis/projectListAPI";
+import { projectListAPI } from "@/app/_apis/projectListAPI";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory";
 import Profile from "./Profile";
 
 function MyPageContent() {
   const [selectCategory, setSelectCategory] = useState<MyPageProjectListType>("myProject");
-  const data = useQuery({
+  const { data } = useQuery({
     queryKey: [`projectList-${selectCategory}`],
-    queryFn: async (): Promise<ProjectResponseType> => {
+    queryFn: async () => {
       return await projectListAPI.getMyProjectList({ page: 1 }, selectCategory);
     },
   });
@@ -25,7 +25,7 @@ function MyPageContent() {
       </div>
       <div className="flex w-[976px] flex-col gap-8">
         <Profile />
-        <MypageProjectSection projectList={data.data?.content} projectType={selectCategory} />
+        <MypageProjectSection projectList={data?.content} projectType={selectCategory} />
       </div>
     </main>
   );
