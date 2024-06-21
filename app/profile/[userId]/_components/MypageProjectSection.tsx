@@ -18,7 +18,7 @@ function MypageProjectSection({
   useEffect(() => {
     console.log("projectType", projectType);
     console.log("isVisible", isVisible);
-  }, [isVisible]);
+  }, [isVisible, projectType]);
 
   return (
     <section>

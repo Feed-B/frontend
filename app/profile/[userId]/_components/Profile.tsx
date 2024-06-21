@@ -1,10 +1,13 @@
 "use client";
+import { useQuery } from "react-query";
 import { StaticImageData } from "next/image";
+import { useParams } from "next/navigation";
 import profileMock from "@/public/images/mock_profileImage.jpg";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge, { Job } from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
+import { profileAPI } from "@/app/_apis/ProfileAPI";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { MY_PAGE_TEXT } from "./constant";
 
@@ -25,6 +28,15 @@ export interface ProfileDataType {
 }
 
 function Profile() {
+  const { userId } = useParams();
+  const { data } = useQuery({
+    queryKey: [`profile-${userId}`],
+    queryFn: async () => {
+      return await profileAPI.getUserProfile({ userId: Number(userId) });
+    },
+  });
+
+  console.log("data", data);
   const { isOpen, toggleState } = useToggleHook();
   return (
     <>
