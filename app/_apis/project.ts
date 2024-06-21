@@ -1,14 +1,5 @@
-import { ProjectListResponse } from "../_types/ProjectListDataType";
+import { ProjectListParams, ProjectListResponse } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
-
-interface ProjectListRequest {
-  page?: number;
-  size?: number;
-  limit?: number;
-  searchString?: string;
-  projectTechStacks?: string[];
-  sortCondition?: "LIKES" | "VIEWS" | "RECENT";
-}
 
 export const projectApi = {
   getprojectList: async ({
@@ -18,7 +9,7 @@ export const projectApi = {
     searchString = "",
     projectTechStacks = [],
     sortCondition = "RECENT",
-  }: ProjectListRequest) => {
+  }: ProjectListParams) => {
     return await httpClient().get<ProjectListResponse>("/projects?", {
       sortCondition,
       projectTechStacks,

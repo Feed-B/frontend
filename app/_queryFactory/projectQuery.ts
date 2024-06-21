@@ -1,17 +1,9 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { projectApi } from "../_apis/project";
-
-interface projectListParams {
-  page?: number;
-  size?: number;
-  limit?: number;
-  search1String?: string;
-  projectTechStacks?: string[];
-  sortCondition?: string;
-}
+import { ProjectListParams } from "../_types/ProjectListDataType";
 
 export const projectQueryKeys = createQueryKeys("project", {
-  list: (props: projectListParams) => ({
+  list: (props: ProjectListParams) => ({
     queryKey: ["projectList"],
     queryFn: () => projectApi.getprojectList({ ...props }),
   }),

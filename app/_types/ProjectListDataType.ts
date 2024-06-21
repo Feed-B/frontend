@@ -36,3 +36,12 @@ export interface ProjectResponse {
   createdAt: string;
   modifiedAt: string;
 }
+
+export interface ProjectListParams {
+  page?: number;
+  size?: number;
+  limit?: number;
+  searchString?: string;
+  projectTechStacks?: string[];
+  sortCondition?: "LIKES" | "VIEWS" | "RECENT";
+}
