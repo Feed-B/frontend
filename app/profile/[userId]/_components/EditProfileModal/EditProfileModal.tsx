@@ -47,17 +47,21 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
         job: "FRONTEND",
       },
     };
-    console.log("submitData :", submitData);
+    console.log(submitData);
   };
 
-  useEffect(() => {
+  const hanleInitialSetData = () => {
     if (profileData?.imageUrl) {
       handleSetImage(profileData.imageUrl);
     }
     if (profileData?.nickName) {
       nickNameValue.handleSetValue(profileData?.nickName);
     }
-  }, [profileData?.imageUrl, profileData?.nickName, nickNameValue, handleSetImage]);
+  };
+
+  useEffect(() => {
+    hanleInitialSetData();
+  }, []);
 
   return (
     <Modal openModal={openModal} handleModalClose={handleModalClose}>
