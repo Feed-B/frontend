@@ -13,7 +13,7 @@ function MypageProjectSection({
   projectList: ProjectData[] | undefined;
   projectType: MyPageProjectListType;
 }) {
-  const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 0 });
+  const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
   useEffect(() => {
     console.log("projectType", projectType);
