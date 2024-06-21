@@ -10,7 +10,7 @@ function ProjectSection() {
   const { data } = useQuery(projectQueryKeys.list(projectState));
 
   if (!data) {
-    return <section className="col-start-2 mt-[40px]">로딩 중...</section>;
+    return <section className="col-start-2 mt-10">로딩 중...</section>;
   }
 
   return (
