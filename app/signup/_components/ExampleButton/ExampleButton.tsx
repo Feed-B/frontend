@@ -15,8 +15,8 @@ function ExampleButton() {
       <SignUpModal openModal={exampleModal} handleModalClose={exampleModalClose} dataType="job" />
       {/* <LoginModal openModal={exampleModal} handleModalClose={exampleModalClose} /> */}
 
-      <Button className="mb-[20px]" buttonSize="small" bgColor="mainBlue" onClick={exampleModalOpen}>
-        모달버튼
+      <Button buttonSize="normal" bgColor="yellow" onClick={exampleModalOpen}>
+        로그인
       </Button>
     </>
   );
