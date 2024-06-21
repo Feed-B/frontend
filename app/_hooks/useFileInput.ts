@@ -23,7 +23,11 @@ const useHandleInputFile = () => {
     }
   };
 
-  return { inputRef, image, handleImageChange, handleRemoveImage, handleSelectImageClick };
+  const handleSetImage = (imageUrl: string) => {
+    setImage(imageUrl);
+  };
+
+  return { inputRef, image, handleImageChange, handleRemoveImage, handleSelectImageClick, handleSetImage };
 };
 
 export default useHandleInputFile;

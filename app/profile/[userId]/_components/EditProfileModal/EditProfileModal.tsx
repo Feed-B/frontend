@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
@@ -22,7 +23,14 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     handleImageChange,
     handleRemoveImage,
     handleSelectImageClick,
+    handleSetImage,
   } = useHandleInputFile();
+
+  useEffect(() => {
+    if (profileData?.imageUrl) {
+      handleSetImage(profileData.imageUrl);
+    }
+  }, []);
 
   return (
     <Modal openModal={openModal} handleModalClose={handleModalClose} className="flex flex-col items-center gap-8">
