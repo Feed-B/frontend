@@ -1,4 +1,4 @@
-import { MyPageProjectListType } from "../mypage/_components/MypageProjectSection";
+import { MyPageProjectListType } from "../profile/[userId]/_components/MypageProjectSection";
 import httpClient from "./httpClient";
 import { ProjectResponseType } from "./schema/projectResponse";
 
