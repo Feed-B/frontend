@@ -1,3 +1,4 @@
+import { MyPageProjectListType } from "../mypage/_components/MypageProjectList";
 import httpClient from "./httpClient";
 
 export interface ProjectResponseType {
@@ -32,14 +33,14 @@ export interface CustomPageable {
 const headers = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZTJlZDAyMyIsImlhdCI6MTcxODg3NDQ2NywiZXhwIjoxNzE4ODk2MDY3fQ.j2HKDVPZkRLVJ9uH7JwBVEg1InSe7nbuKniR3z00wvI",
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNjNkYzNiOCIsImlhdCI6MTcxODkzNTEwNiwiZXhwIjoxNzE4OTU2NzA2fQ.fkP5c4awYUznYuc1_iczy56aHwIi-5mlkD50XebZRKs",
   },
 };
 
 export const projectListAPI = {
-  getMyProjectList: async ({ page = 1, size = 24, limit = 100 }) => {
-    await httpClient().get<ProjectResponseType>(
-      `/projects/mine?page=${page}&size=${size}&limit=${limit}`,
+  getMyProjectList: async ({ page = 1, size = 24, limit = 100 }, selectDataType: MyPageProjectListType) => {
+    return await httpClient().get<ProjectResponseType>(
+      `/projects/mine${selectDataType === "wishProject" ? "/likes" : ""}?page=${page}&size=${size}&limit=${limit}`,
       {
         page,
         size,
@@ -47,12 +48,5 @@ export const projectListAPI = {
       },
       headers.headers
     );
-  },
-  getWishProjectList: async ({ page = 1, size = 24, limit = 100 }) => {
-    await httpClient().get<ProjectResponseType>(`/projects/mine/likes?page=${page}&size=${size}&limit=${limit}`, {
-      page,
-      size,
-      limit,
-    });
   },
 };
