@@ -10,9 +10,16 @@ function EmptyCard() {
   return (
     <div className="absolute left-1/2 flex -translate-x-1/2  flex-col items-center justify-center gap-6">
       <Image width={54} height={72} src={emptyFileIcon} alt="파일 없음" />
+
       <p className="text-xl font-semibold text-gray-700">
-        <span className="text-xl font-semibold text-blue-600">`{projectState.searchString}`</span>에 대한 검색결과가
-        없어요
+        {projectState.searchString ? (
+          <>
+            <span className="text-xl font-semibold text-blue-600">{projectState.searchString}</span>에 대한 검색결과가
+            없어요
+          </>
+        ) : (
+          <div>프로젝트 목록이 없어요</div>
+        )}
       </p>
     </div>
   );
