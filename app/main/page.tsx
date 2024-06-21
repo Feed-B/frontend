@@ -1,18 +1,17 @@
 import React from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
+import { projectApi } from "../_apis/project";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 async function MainPage() {
   const queryClient = getQueryClient();
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   await queryClient.prefetchQuery({
     queryKey: ["project", "list", "projectList"],
     queryFn: async () => {
-      const response = await fetch(BASE_URL + "/projects?sortCondition=RECENT&page=1&size=12&limit=0");
-      const result = await response.json();
-      return result;
+      const response = projectApi.getprojectList({ page: 1, size: 12 });
+      return response;
     },
   });
 
