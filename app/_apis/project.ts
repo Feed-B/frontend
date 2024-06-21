@@ -7,13 +7,13 @@ interface ProjectListRequest {
   limit?: number;
   searchString?: string;
   projectTechStacks?: string[];
-  sortCondition?: string;
+  sortCondition?: "LIKES" | "VIEWS" | "RECENT";
 }
 
 export const projectApi = {
   getprojectList: async ({
-    page = 0,
-    size = 0,
+    page = 1,
+    size = 12,
     limit = 0,
     searchString = "",
     projectTechStacks = [],
