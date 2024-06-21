@@ -1,11 +1,11 @@
 import Image from "next/image";
 import DropDown from "@/app/_components/DropDown/DropDown";
-import { Job } from "@/app/_components/JobBadge/JobBadge";
 import openDropDownIcon from "@/public/icons/blackArrowBottom.svg";
 import closeDropDownIcon from "@/public/icons/blackArrowTop.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import { JobType } from "@/app/_apis/ProfileAPI";
 
-function EditJobDropDown({ currentJob }: { currentJob: Job }) {
+function EditJobDropDown({ currentJob }: { currentJob: JobType }) {
   const { isOpen, toggleState } = useToggleHook();
   return (
     <div className="relative">
