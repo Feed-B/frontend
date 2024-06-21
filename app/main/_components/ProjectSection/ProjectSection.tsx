@@ -14,7 +14,7 @@ function ProjectSection() {
   }
 
   return (
-    <section className="col-start-2 mt-[40px]">
+    <section className="col-start-2 mt-10">
       <ProjectList projectList={data} />
     </section>
   );
