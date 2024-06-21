@@ -7,7 +7,7 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 function TextArea({ placeholder, name, maxLength, inputRef, onChange }: TextAreaProps) {
   return (
     <textarea
-      className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-4 py-3"
+      className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-4 py-3 text-sm font-normal"
       placeholder={placeholder}
       name={name}
       id={name}
