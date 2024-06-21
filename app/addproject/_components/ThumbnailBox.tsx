@@ -4,7 +4,11 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import Image from "next/image";
 import Button from "@/app/_components/Button/Button";
 
-function ThumbnailBox() {
+interface ThumbnailBoxProps {
+  setThumbnail: (file: File) => void;
+}
+
+function ThumbnailBox({ setThumbnail }: ThumbnailBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>("");
 
@@ -14,6 +18,7 @@ function ThumbnailBox() {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setShowImageUrl(imageUrl);
+      setThumbnail(file);
     }
   };
 
