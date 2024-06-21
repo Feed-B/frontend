@@ -42,7 +42,7 @@ function ThumbnailBox({ setThumbnail }: ThumbnailBoxProps) {
             </div>
           </div>
         ) : (
-          <Button buttonSize="normal" bgColor="white" onClick={handleUploadButtonClick}>
+          <Button buttonSize="normal" bgColor="white" onClick={handleUploadButtonClick} className="border-none">
             이미지 업로드
           </Button>
         )}
