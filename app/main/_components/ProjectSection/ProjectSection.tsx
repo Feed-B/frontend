@@ -3,7 +3,6 @@
 import { useQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
-import { ProjectData } from "@/app/_apis/projectListAPI";
 import { useGetStack } from "../../_context/StackProvider";
 
 function ProjectSection() {
@@ -16,7 +15,7 @@ function ProjectSection() {
 
   return (
     <section className="col-start-2 mt-10">
-      <ProjectList projectList={data as unknown as ProjectData[] | undefined} />
+      <ProjectList projectList={data.content} />
     </section>
   );
 }

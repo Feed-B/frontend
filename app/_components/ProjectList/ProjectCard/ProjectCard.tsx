@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ProjectData } from "@/app/_apis/projectListAPI";
+import { ProjectData } from "@/app/_apis/schema/projectResponse";
 import HoverCard from "./HoverCard";
 
 function ProjectCard({ project }: { project: ProjectData }) {

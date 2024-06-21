@@ -1,33 +1,6 @@
 import { MyPageProjectListType } from "../mypage/_components/MypageProjectSection";
 import httpClient from "./httpClient";
-
-export interface ProjectResponseType {
-  content: ProjectData[];
-  customPageable: CustomPageable;
-}
-
-export interface ProjectData {
-  projectId: number;
-  thumbnailUrl: string;
-  stackList: string[];
-  likeCount: number;
-  isLiked: boolean;
-  projectTitle: string;
-  introduction: string;
-  viewCount: number;
-  createdAt: string;
-  modifiedAt: string;
-}
-
-export interface CustomPageable {
-  first: boolean;
-  last: boolean;
-  hasNext: boolean;
-  totalPages: number;
-  totalElements: number;
-  page: number;
-  size: number;
-}
+import { ProjectResponseType } from "./schema/projectResponse";
 
 // 임시 headers
 const headers = {

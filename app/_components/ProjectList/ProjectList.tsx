@@ -2,13 +2,13 @@
 import Link from "next/link";
 import { RefObject } from "react";
 import formatViewCount from "@/app/_utils/formViewCount";
-import { ProjectData } from "@/app/_apis/projectListAPI";
+import { ProjectData } from "@/app/_apis/schema/projectResponse";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
 
 interface ProjectListProp {
-  projectList: ProjectData[] | undefined | ProjectData[];
+  projectList: ProjectData[] | undefined;
   lastRef?: RefObject<HTMLDivElement>;
 }
 
