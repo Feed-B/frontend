@@ -8,7 +8,7 @@ import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
 
 interface ProjectListProp {
-  projectList: ProjectData[] | undefined;
+  projectList: ProjectData[] | undefined | ProjectData[];
   lastRef?: RefObject<HTMLDivElement>;
 }
 
