@@ -5,14 +5,14 @@ import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useHandleInputFile from "@/app/_hooks/useFileInput";
-import { ProfileDataType } from "../Profile";
+import { UserProfileType } from "@/app/_apis/ProfileAPI";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 
 interface EditProfileModalProps {
   openModal: boolean;
   handleModalClose: () => void;
-  profileData: ProfileDataType;
+  profileData: UserProfileType | undefined;
 }
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
@@ -43,7 +43,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             />
           </div>
           <div className="flex flex-col gap-4">
-            <Input inputSize="normal" name="nickName" type="text" placeholder={profileData.nickName} title="닉네임" />
+            <Input inputSize="normal" name="nickName" type="text" placeholder={profileData?.nickName} title="닉네임" />
             <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
             <DropDownBox dataType="job" />
             <label htmlFor="introduction" className="text-base font-bold text-gray-900">
