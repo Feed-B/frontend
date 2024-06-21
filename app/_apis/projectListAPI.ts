@@ -1,4 +1,4 @@
-import { MyPageProjectListType } from "../mypage/_components/MypageProjectList";
+import { MyPageProjectListType } from "../mypage/_components/MypageProjectSection";
 import httpClient from "./httpClient";
 
 export interface ProjectResponseType {

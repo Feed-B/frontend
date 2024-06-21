@@ -6,7 +6,7 @@ import { ProjectData } from "@/app/_apis/projectListAPI";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
 
-function MypageProjectList({
+function MypageProjectSection({
   projectList,
   projectType,
 }: {
@@ -21,10 +21,10 @@ function MypageProjectList({
   }, [isVisible, projectType]);
 
   return (
-    <>
+    <section>
       <ProjectList projectList={projectList} lastRef={lastCardInfo} />
-    </>
+    </section>
   );
 }
 
-export default MypageProjectList;
+export default MypageProjectSection;

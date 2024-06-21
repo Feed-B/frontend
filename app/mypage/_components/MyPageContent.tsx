@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from "react";
 import { useQuery } from "react-query";
 import { ProjectResponseType, projectListAPI } from "@/app/_apis/projectListAPI";
-import MypageProjectList, { MyPageProjectListType } from "./MypageProjectList";
+import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory";
 import Profile from "./Profile";
 
@@ -25,7 +25,7 @@ function MyPageContent() {
       </div>
       <div className="flex w-[976px] flex-col gap-8">
         <Profile />
-        <MypageProjectList projectList={data.data?.content} projectType={selectCategory} />
+        <MypageProjectSection projectList={data.data?.content} projectType={selectCategory} />
       </div>
     </main>
   );
