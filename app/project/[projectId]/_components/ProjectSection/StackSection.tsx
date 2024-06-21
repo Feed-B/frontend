@@ -16,7 +16,7 @@ function StackSection({ stackList }: StackListProps) {
           return (
             <li className="flex items-center gap-1 rounded-[44px] bg-gray-100 p-2" key={stackItem?.id}>
               <Image src={stackItem?.image || ""} alt="기술 스택 이미지." width={20} />
-              <p className="text-sm">{stack}</p>
+              <p className="text-sm text-gray-900">{stack}</p>
             </li>
           );
         })}
