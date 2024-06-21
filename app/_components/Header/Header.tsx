@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ExampleButton from "@/app/signup/_components/ExampleButton/ExampleButton";
 import uploadIcon from "@/public/icons/upload.svg";
 import Button from "../Button/Button";
 import HeaderDropDownBox from "./HeaderDropDownBox";
@@ -19,6 +22,7 @@ function Header() {
               <span>업로드</span>
             </Button>
           </Link>
+          <ExampleButton />
           <HeaderDropDownBox />
         </div>
       </div>
