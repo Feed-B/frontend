@@ -1,18 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import shareIcon from "@/public/icons/share.svg";
 import kebabIcon from "@/public/icons/kebab.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
 import DropDown from "@/app/_components/DropDown/DropDown";
+import useOutsideClick from "@/app/_hooks/useOutsideClick";
 
 //임시 ID
 const projectId = 1;
 
 function ProjectHeader() {
   const { isOpen, toggleState } = useToggleHook();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(dropdownRef, toggleState);
 
   return (
     <header className="px-4 py-3">
@@ -33,7 +37,7 @@ function ProjectHeader() {
             onClick={toggleState}
           />
           {isOpen && (
-            <DropDown className="w-fit translate-x-10 translate-y-10">
+            <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
               <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
               <DropDown.TextItem>삭제</DropDown.TextItem>
             </DropDown>
