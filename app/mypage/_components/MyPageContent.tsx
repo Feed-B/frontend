@@ -10,7 +10,7 @@ function MyPageContent() {
   const { data } = useQuery({
     queryKey: [`projectList-${selectCategory}`],
     queryFn: async () => {
-      return await projectListAPI.getMyProjectList({ page: 1 }, selectCategory);
+      return await projectListAPI.getMyProjectList({ page: 1, size: 8 }, selectCategory);
     },
   });
 
