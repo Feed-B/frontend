@@ -17,7 +17,7 @@ const linkList = [
 
 function Project() {
   return (
-    <main className="mx-auto my-8 flex w-[1200px] flex-col gap-12">
+    <main className="mx-auto my-16 flex w-[1200px] flex-col gap-12">
       <div className="flex flex-col gap-10">
         <ProjectHeader />
         <ProjectArticle linkList={linkList} />
