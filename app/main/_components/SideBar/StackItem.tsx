@@ -12,7 +12,7 @@ interface StackItemProps {
 }
 
 function StackItem({ children, image }: StackItemProps) {
-  const { stackState, isChangeStack, isDeleteStack } = useGetStack();
+  const { projectState, isChangeStack, isDeleteStack } = useGetStack();
   const { isOpen: stackClicked, toggleState, changecloseState, changeopenState } = useToggleHook();
 
   const clickStack = () => {
@@ -26,7 +26,7 @@ function StackItem({ children, image }: StackItemProps) {
   };
 
   useEffect(() => {
-    const inStack = stackState.includes(children + "");
+    const inStack = projectState.projectTechStacks.includes(children + "");
 
     if (inStack) {
       changeopenState();
@@ -34,7 +34,7 @@ function StackItem({ children, image }: StackItemProps) {
       changecloseState();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stackState]);
+  }, [projectState]);
 
   return (
     <li

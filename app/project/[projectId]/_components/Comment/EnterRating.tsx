@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
-import { useMyCommentContext } from "../../_context/MyCommentProvider";
+import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 const ratingCategory = [
   { id: 0, name: "아이디어" },
@@ -15,8 +15,8 @@ const ratingCategory = [
 
 const MAX_STAR = 5;
 
-const WriteRating = () => {
-  const { rating, handleMouseDown, handleMouseMove, handleMouseUp } = useMyCommentContext();
+function WriteRating() {
+  const { rating, handleMouseDown, handleMouseMove, handleMouseUp } = useEnterCommentContext();
 
   return (
     <>
@@ -44,6 +44,6 @@ const WriteRating = () => {
       </div>
     </>
   );
-};
+}
 
 export default WriteRating;

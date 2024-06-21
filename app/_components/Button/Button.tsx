@@ -10,22 +10,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWith
 
 type ButtonSize = "normal" | "small";
 
-type BgColor = "black" | "mainBlue" | "secondBlue" | "white" | "stroke" | "green" | "yellow" | "kakao";
+type BgColor = "yellow" | "white" | "gray" | "stroke" | "naver" | "kakao" | "mainBlue";
 
 const buttonClasses = {
-  normal: "w-20 h-11 rounded-lg py-3 text-sm",
-  small: "w-[50px] h-11 rounded-lg py-3 text-sm",
+  normal: "min-w-20 h-11 rounded-lg px-4 py-3 text-sm",
+  small: "min-w-[50px] h-11 rounded-lg px-2 py-3 text-sm",
 };
 
 const bgColorClasses: Record<BgColor, string> = {
-  black: "bg-gray-800 text-white",
-  mainBlue: "bg-blue-500 text-white hover:bg-blue-600",
-  secondBlue: "bg-blue-100 text-blue-500",
+  yellow: "bg-yellow-500 hover:bg-yellow-600 text-black",
+  stroke: "border border-gray-200 bg-white",
   white: "border border-gray-200 bg-white",
-  stroke: "text-blue-500",
-  green: "bg-[#03C75A] text-white",
-  yellow: "bg-yellow",
+  gray: "border border-gray-200 bg-gray-100",
+  naver: "bg-[#03C75A] text-white",
   kakao: "bg-[#FEE500]",
+  mainBlue: "bg-blue-500",
 };
 
 function Button({ children, type = "button", buttonSize, bgColor, onClick, className, disabled }: ButtonProps) {
@@ -33,7 +32,11 @@ function Button({ children, type = "button", buttonSize, bgColor, onClick, class
   const bgColorClass = bgColorClasses[bgColor];
 
   return (
-    <button className={`${buttonClass} ${bgColorClass}`} type={type} onClick={onClick} disabled={disabled}>
+    <button
+      className={`${buttonClass} ${bgColorClass} whitespace-nowrap font-semibold`}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}>
       {children}
     </button>
   );

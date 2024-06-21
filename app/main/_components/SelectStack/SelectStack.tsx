@@ -6,6 +6,7 @@ import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
 import SearchBar from "../SearchBar/SearchBar";
 import StackBox from "../StackBox/StackBox";
+import ProjectSection from "../ProjectSection/ProjectSection";
 
 function SelectStack() {
   return (
@@ -18,6 +19,7 @@ function SelectStack() {
         </div>
         <StackBox />
       </section>
+      <ProjectSection />
     </StackProvider>
   );
 }

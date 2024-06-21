@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ExampleButton from "@/app/signup/_components/ExampleButton/ExampleButton";
 import uploadIcon from "@/public/icons/upload.svg";
 import Button from "../Button/Button";
 import HeaderDropDownBox from "./HeaderDropDownBox";
@@ -14,11 +17,12 @@ function Header() {
         </Link>
         <div className="flex h-full items-center gap-4">
           <Link href="/addproject">
-            <Button buttonSize="small" bgColor="mainBlue" className="flex items-center justify-center gap-1">
+            <Button buttonSize="normal" bgColor="yellow" className="flex items-center justify-center gap-1">
               <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
               <span>업로드</span>
             </Button>
           </Link>
+          <ExampleButton />
           <HeaderDropDownBox />
         </div>
       </div>
