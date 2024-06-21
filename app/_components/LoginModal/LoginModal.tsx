@@ -15,12 +15,15 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
     return null;
   }
 
+  const NAVER_OAUTH_URL = process.env.NEXT_PUBLIC_NAVER_OAUTH_URL || "default-url";
+  const KAKAO_OAUTH_URL = process.env.NEXT_PUBLIC_KAKAO_OAUTH_URL || "default-url";
+
   const handleNaverLogin = () => {
-    window.location.href = "http://3.37.64.186/oauth2/authorization/naver";
+    window.location.href = NAVER_OAUTH_URL;
   };
 
   const handleKakaoLogin = () => {
-    window.location.href = "http://3.37.64.186/oauth2/authorization/kakao";
+    window.location.href = KAKAO_OAUTH_URL;
   };
 
   return (
@@ -39,6 +42,7 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
         </h2> */}
 
         <Image src={feedbee} width={248} height={240} className="mb-[109px]" alt="피드비" priority />
+
         <Image
           src={dottedLine}
           width={679.047}
@@ -56,6 +60,7 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
           <Image src={naverIcon} alt="네이버 아이콘" width={20} height={20} priority />
           네이버 로그인
         </Button>
+
         <Button
           buttonSize="normal"
           bgColor="kakao"
