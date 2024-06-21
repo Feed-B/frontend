@@ -37,13 +37,13 @@ function TeamMemberSection() {
       <div className="flex gap-6">
         {teamMemberList.map(team => (
           <div className="flex gap-3" key={team.id}>
-            <p className="rounded bg-gray-100 p-1 text-sm font-semibold text-blue-500">{team.job}</p>
-            <div className="flex items-center gap-2 text-sm">
+            <p className="p-1 text-sm font-semibold text-blue-400">{team.job}</p>
+            <div className="flex items-center gap-2 text-sm text-gray-900">
               {team.member.map(member => (
                 <div key={member.id}>
                   {member.url ? (
                     <Link href={member.url} target="_blank">
-                      <p className="font-bold">{member.name}</p>
+                      <p className="font-medium underline">{member.name}</p>
                     </Link>
                   ) : (
                     <p>{member.name}</p>
