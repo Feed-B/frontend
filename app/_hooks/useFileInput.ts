@@ -14,7 +14,7 @@ const useHandleInputFile = () => {
   };
 
   const handleRemoveImage = () => {
-    setImage("");
+    setImage("default");
   };
 
   const handleSelectImageClick = () => {
