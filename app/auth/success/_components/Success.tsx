@@ -35,5 +35,5 @@ export default function Success() {
     }
   }, [router, searchParams, setEmail, setType]);
 
-  return <></>;
+  return <div>로딩중</div>;
 }
