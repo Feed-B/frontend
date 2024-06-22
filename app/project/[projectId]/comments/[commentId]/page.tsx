@@ -33,8 +33,8 @@ async function CommentPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <div className=" mx-auto w-[1200px]">
-        <ScrollToTopButton direction="top" />
+      <div className="mx-auto w-[1200px]">
+        <ScrollToTopButton className="fixed bottom-10 right-10" direction="top" />
         <section className="mt-10 w-full p-4">
           <div className="flex items-center justify-between">
             <CommentProfile />
