@@ -1,4 +1,3 @@
-"use client";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useKakaoStore } from "@/app/_utils/zustandStore";
