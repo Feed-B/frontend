@@ -61,3 +61,17 @@ export interface ProjectResponse {
   ];
   isMine: boolean;
 }
+
+export interface TeamMemberResponse extends Array<TeamMember> {}
+
+export interface TeamMember {
+  job: string;
+  teammateList: [
+    {
+      id: number;
+      teammateName: string;
+      job: string;
+      url: string;
+    },
+  ];
+}

@@ -21,7 +21,7 @@ function Project({ params }: Props) {
       <div className="flex flex-col gap-10">
         <ProjectHeader projectId={params.projectId} />
         <ProjectArticle projectId={params.projectId} />
-        <TeamMemberSection />
+        <TeamMemberSection projectId={params.projectId} />
         <StackSection stackList={stackList} />
         <RatingSection />
       </div>
