@@ -29,12 +29,12 @@ function ProjectList({ projectList, lastRef }: ProjectListProp) {
                 viewCount={formatViewCount(project.viewCount, 9999)}
               />
             </Link>
-            <div className="absolute bottom-0" ref={lastRef} />
           </>
         ))
       ) : (
         <EmptyCard />
       )}
+      <div ref={lastRef} />
     </div>
   );
 }

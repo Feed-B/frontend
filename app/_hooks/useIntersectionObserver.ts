@@ -28,6 +28,7 @@ export function useIntersectionObserver<T extends HTMLElement>({
 
     const currentTargetRef = targetRef.current;
     if (currentTargetRef) {
+      "";
       targetObserver.observe(currentTargetRef);
     }
 
