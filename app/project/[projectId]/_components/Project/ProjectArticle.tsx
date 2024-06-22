@@ -9,6 +9,7 @@ import Button from "@/app/_components/Button/Button";
 import DirectionButton from "@/app/_components/Button/DirectionButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import useImageIndex from "@/app/_hooks/useImageIndex";
 import LinkSection from "../ProjectSection/LinkSection";
 
 interface Props {
@@ -16,9 +17,9 @@ interface Props {
 }
 
 function ProjectArticle({ projectId }: Props) {
+  const { index, handlePrev, handleNext } = useImageIndex();
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
   if (!project) return null;
-  console.log("project.serviceUrl", project.serviceUrl);
 
   return (
     <article className="flex justify-between gap-24 px-8 py-7">
@@ -36,14 +37,29 @@ function ProjectArticle({ projectId }: Props) {
         <LinkSection linkList={project.projectLinks} />
       </div>
       <div className="relative flex">
-        <DirectionButton direction="left" className="absolute -left-5 top-1/2 z-10 -translate-y-1/2" />
-        <DirectionButton direction="right" className="absolute -right-5 top-1/2 z-10 -translate-y-1/2" />
-        <div className="relative h-[406px] w-[188px] border border-solid border-gray-300">
-          <Image src={project.imageUrlList[0].url} alt="앱 서비스 프로젝트." fill sizes="max-width" />
-        </div>
-        {/* <div className="relative h-[406px] w-[572px] border border-solid border-gray-300">
-          <Image src={pcIcon} alt="웹 서비스 프로젝트." fill sizes="max-width" />
-        </div> */}
+        {index > 0 && (
+          <DirectionButton
+            direction="left"
+            className="absolute -left-5 top-1/2 z-10 -translate-y-1/2"
+            onClick={() => handlePrev()}
+          />
+        )}
+        {index < project.imageUrlList.length - 1 && (
+          <DirectionButton
+            direction="right"
+            className="absolute -right-5 top-1/2 z-10 -translate-y-1/2"
+            onClick={() => handleNext(project.imageUrlList.length)}
+          />
+        )}
+        {project.imageType === "WEB" ? (
+          <div className="relative h-[406px] w-[572px] border border-solid border-gray-300">
+            <Image src={project.imageUrlList[index].url} alt="웹 서비스 프로젝트." fill sizes="max-width" priority />
+          </div>
+        ) : (
+          <div className="relative h-[406px] w-[188px] border border-solid border-gray-300">
+            <Image src={project.imageUrlList[index].url} alt="앱 서비스 프로젝트." fill sizes="max-width" priority />
+          </div>
+        )}
       </div>
     </article>
   );
