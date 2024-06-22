@@ -1,11 +1,20 @@
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useKakaoStore } from "@/app/_utils/zustandStore";
 
 export default function Success() {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SuccessContent router={router} />
+    </Suspense>
+  );
+}
+
+function SuccessContent({ router }: any) {
+  const searchParams = useSearchParams();
   const setEmail = useKakaoStore(state => state.setEmail);
   const setType = useKakaoStore(state => state.setType);
 
@@ -35,5 +44,5 @@ export default function Success() {
     }
   }, [router, searchParams, setEmail, setType]);
 
-  return <div>로딩중</div>;
+  return <></>;
 }
