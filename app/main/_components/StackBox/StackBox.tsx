@@ -7,14 +7,7 @@ import resetIcon from "@/public/icons/reset.svg";
 import closeIcon from "@/public/icons/crossLine.svg";
 
 function StackBox() {
-  const { projectState, setProjectState, isDeleteStack } = useGetStack();
-
-  const clearStack = () => {
-    setProjectState(prev => ({
-      ...prev,
-      stackState: [],
-    }));
-  };
+  const { projectState, isDeleteStack, clearStack } = useGetStack();
 
   return (
     <div className="flex min-h-12 w-full items-center gap-3 rounded-xl border border-solid border-[#EBEBEB] bg-white p-3">
