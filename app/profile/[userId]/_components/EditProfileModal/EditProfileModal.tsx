@@ -34,7 +34,6 @@ function EditProfileModal({ openModal, handleModalClose, profileData, userId }: 
 
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
-    isValidNickName;
 
     const submitData = {
       image: imageFile,
