@@ -27,6 +27,7 @@ interface StackContextType {
   isChangeSearchString: (searchString: string) => void;
   isChangeCondition: (sortCondition: "RECENT" | "LIKES" | "VIEWS") => void;
   resetSearchString: () => void;
+  clearStack: () => void;
 }
 
 const StackContext = createContext<StackContextType>({
@@ -44,6 +45,7 @@ const StackContext = createContext<StackContextType>({
   isChangeSearchString: () => {},
   isChangeCondition: () => {},
   resetSearchString: () => {},
+  clearStack: () => {},
 });
 
 export const useGetStack = () => useContext(StackContext);
@@ -125,6 +127,16 @@ function StackProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const clearStack = () => {
+    setProjectState(prev => {
+      setStateUpdated(true);
+      return {
+        ...prev,
+        projectTechStacks: [],
+      };
+    });
+  };
+
   return (
     <StackContext.Provider
       value={{
@@ -135,6 +147,7 @@ function StackProvider({ children }: { children: ReactNode }) {
         isChangeSearchString,
         isChangeCondition,
         resetSearchString,
+        clearStack,
       }}>
       {children}
     </StackContext.Provider>
