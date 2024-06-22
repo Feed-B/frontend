@@ -20,16 +20,16 @@ interface Props {
 function ProjectHeader({ projectId }: Props) {
   const { isOpen, toggleState } = useToggleHook();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(dropdownRef, toggleState);
 
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
-
-  useOutsideClick(dropdownRef, toggleState);
+  if (!project) return null;
 
   return (
     <header className="px-4 py-3">
       <div className="flex justify-between gap-2">
         <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
-          {project?.title}
+          {project.title}
         </h1>
         <div className="flex gap-2">
           <WishButtonAndCount isFavorite={true} wishCount={3} colorMode="bright" />
@@ -52,9 +52,9 @@ function ProjectHeader({ projectId }: Props) {
         </div>
       </div>
       <div className="flex w-full items-center gap-3">
-        <p className="text-sm font-semibold text-gray-900">{project?.authorName}</p>
-        <p className="text-[10px] text-blue-400">{project?.authorJob}</p>
-        <p className="text-sm text-gray-500">{project?.createdAt && createDate(project.createdAt)}</p>
+        <p className="text-sm font-semibold text-gray-900">{project.authorName}</p>
+        <p className="text-[10px] text-blue-400">{project.authorJob}</p>
+        <p className="text-sm text-gray-500">{createDate(project.createdAt)}</p>
       </div>
     </header>
   );
