@@ -2,14 +2,6 @@ import { ProjectListParams } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
 import { ProjectResponse, ProjectResponseType } from "./schema/projectResponse";
 
-// 임시 headers
-const headers = {
-  headers: {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDg0YjU3MyIsImlhdCI6MTcxOTA0MzQ3MywiZXhwIjoxNzE5MDY1MDczfQ.LUi2fBJ7-ys9Fnw0RhINI0_lJx9u6YUcskK9YRtFbms",
-  },
-};
-
 export const projectApi = {
   getprojectList: async ({
     page = 1,
@@ -29,6 +21,9 @@ export const projectApi = {
     });
   },
   getProject: async (projectId: number) => {
-    return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, headers.headers);
+    return await httpClient().get<ProjectResponse>(`/projects/${projectId}`);
+  },
+  getTeamMember: async (projectId: number) => {
+    return await httpClient().get<ProjectResponse>(`/projects/${projectId}/teammates`);
   },
 };
