@@ -11,6 +11,7 @@ import DropDown from "@/app/_components/DropDown/DropDown";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { createDate } from "@/app/_utils/createDate";
 
 interface Props {
   projectId: number;
@@ -53,7 +54,7 @@ function ProjectHeader({ projectId }: Props) {
       <div className="flex w-full items-center gap-3">
         <p className="text-sm font-semibold text-gray-900">{project?.authorName}</p>
         <p className="text-[10px] text-blue-400">{project?.authorJob}</p>
-        <p className="text-sm text-gray-500">{project?.createdAt}</p>
+        <p className="text-sm text-gray-500">{project?.createdAt && createDate(project.createdAt)}</p>
       </div>
     </header>
   );
