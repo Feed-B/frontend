@@ -13,7 +13,7 @@ interface ReflyCommentItemProp {
 function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
   return (
     <div className="mt-2 flex gap-3 p-2">
-      <ProfileImage imageUrl={""} className="h-6 w-6" />
+      <ProfileImage imageUrl="default" className="h-6 w-6" />
       <div>
         <div className="mb-2 flex items-center gap-1">
           <p className="text-sm font-normal text-gray-900">{replyComment.name}</p>
