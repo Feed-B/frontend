@@ -10,14 +10,16 @@ import { UserProfileType } from "@/app/_apis/ProfileAPI";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
+import { isChangeAboutMe, isImageChange, isValidNickName } from "./isValidProfileData";
 
 interface EditProfileModalProps {
   openModal: boolean;
   handleModalClose: () => void;
   profileData: UserProfileType | undefined;
+  userId: number | undefined;
 }
 
-function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
+function EditProfileModal({ openModal, handleModalClose, profileData, userId }: EditProfileModalProps) {
   const {
     inputRef: profileImageInputRef,
     image,
@@ -25,42 +27,37 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     handleRemoveImage,
     handleSelectImageClick,
     handleSetImage,
+    imageFile,
   } = useHandleInputFile();
   const nickNameValue = useTextInput();
   const aboutMeValue = useTextInput();
 
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
-    const isValidNickName =
-      nickNameValue.value !== profileData?.nickName && nickNameValue.value.length !== 0 ? true : false;
-    const isValidAboutMe = aboutMeValue.value !== profileData?.aboutMe ? true : false;
-    const imageState = !image || image === "default" ? 0 : image !== profileData?.imageUrl ? 2 : null;
+    isValidNickName;
 
     const submitData = {
-      // image관련 로직 변경 예정
-      image: image,
-      imageIdx: imageState,
+      image: imageFile,
+      imageIdx: isImageChange(profileData?.imageUrl, image),
       memberEditRequestDto: {
-        id: 1,
-        nickName: isValidNickName ? nickNameValue.value : profileData?.nickName,
-        aboutMe: isValidAboutMe ? aboutMeValue.value : profileData?.aboutMe,
+        id: userId,
+        nickName: isValidNickName(profileData?.nickName, nickNameValue.value)
+          ? nickNameValue.value
+          : profileData?.nickName,
+        aboutMe: isChangeAboutMe(profileData?.aboutMe, aboutMeValue.value) ? aboutMeValue.value : profileData?.aboutMe,
         job: "FRONTEND",
       },
     };
-    console.log(submitData);
+    console.log("submitData", submitData);
   };
 
-  const hanleInitialSetData = () => {
+  useEffect(() => {
     if (profileData?.imageUrl) {
       handleSetImage(profileData.imageUrl);
     }
     if (profileData?.nickName) {
       nickNameValue.handleSetValue(profileData?.nickName);
     }
-  };
-
-  useEffect(() => {
-    hanleInitialSetData();
   }, []);
 
   return (

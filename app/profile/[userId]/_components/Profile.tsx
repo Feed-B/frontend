@@ -21,7 +21,14 @@ function Profile() {
 
   return (
     <>
-      {isOpen && <EditProfileModal profileData={userProfileData} openModal={isOpen} handleModalClose={toggleState} />}
+      {isOpen && (
+        <EditProfileModal
+          userId={Number(userId)}
+          profileData={userProfileData}
+          openModal={isOpen}
+          handleModalClose={toggleState}
+        />
+      )}
       <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8">
         <div className="relative">
           <ProfileImage
