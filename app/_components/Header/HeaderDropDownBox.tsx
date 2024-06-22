@@ -9,7 +9,11 @@ import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
-function HeaderDropDownBox() {
+interface HeaderDropDownBoxProps {
+  handleLogout: () => void;
+}
+
+function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
   const { isOpen, toggleState } = useToggleHook();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -30,9 +34,9 @@ function HeaderDropDownBox() {
       </div>
       {isOpen && (
         <DropDown className="right-0 top-[65px] w-40" itemRef={dropdownRef}>
-          <DropDown.LinkItem href="/mypage">마이페이지</DropDown.LinkItem>
+          <DropDown.LinkItem href="/profile">마이페이지</DropDown.LinkItem>
           <DropDown.HR />
-          <DropDown.TextItem>로그아웃</DropDown.TextItem>
+          <DropDown.TextItem onClick={handleLogout}>로그아웃</DropDown.TextItem>
         </DropDown>
       )}
     </>
