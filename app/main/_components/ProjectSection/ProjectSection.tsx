@@ -25,8 +25,6 @@ function ProjectSection() {
     },
   });
 
-  console.log(data?.pages);
-
   useEffect(() => {
     if (isVisible) {
       fetchNextPage();
