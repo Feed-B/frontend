@@ -25,3 +25,39 @@ export interface CustomPageable {
   page: number;
   size: number;
 }
+
+export interface ProjectResponse {
+  projectId: number;
+  memberId: number;
+  authorName: string;
+  authorJob: string;
+  createdAt: string;
+  likeCount: number;
+  title: string;
+  content: string;
+  introductions: string;
+  serviceUrl: string;
+  imageType: string;
+  projectLinks: [
+    {
+      id: number;
+      siteType: string;
+      url: string;
+    },
+  ];
+  projectTechStacks: [
+    {
+      id: number;
+      techStack: string;
+    },
+  ];
+  thumbnailUrl: string;
+  imageUrlList: [
+    {
+      id: number;
+      url: string;
+      idx: number;
+    },
+  ];
+  isMine: boolean;
+}

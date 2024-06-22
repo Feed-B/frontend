@@ -15,11 +15,17 @@ const linkList = [
   { id: 4, tool: "etc", url: "https://www.youtube.com/" },
 ];
 
-function Project() {
+interface Props {
+  params: {
+    projectId: number;
+  };
+}
+
+function Project({ params }: Props) {
   return (
     <main className="mx-auto my-16 flex w-[1200px] flex-col gap-12">
       <div className="flex flex-col gap-10">
-        <ProjectHeader />
+        <ProjectHeader projectId={params.projectId} />
         <ProjectArticle linkList={linkList} />
         <TeamMemberSection />
         <StackSection stackList={stackList} />
