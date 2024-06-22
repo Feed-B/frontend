@@ -1,5 +1,5 @@
 import { MouseEvent, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { projectListAPI } from "@/app/_apis/projectListAPI";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory";
