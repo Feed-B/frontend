@@ -2,13 +2,13 @@
 import Link from "next/link";
 import { RefObject } from "react";
 import formatViewCount from "@/app/_utils/formViewCount";
-import { ProjectData } from "@/app/_apis/schema/projectResponse";
+import { ProjectResponseType } from "@/app/_apis/schema/projectResponse";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
 
 interface ProjectListProp {
-  projectList: ProjectData[] | undefined;
+  projectList: ProjectResponseType[] | undefined;
   lastRef?: RefObject<HTMLDivElement>;
 }
 
@@ -16,8 +16,8 @@ function ProjectList({ projectList, lastRef }: ProjectListProp) {
   return (
     <div className="relative grid grid-cols-4 gap-4">
       {projectList && projectList.length > 0 ? (
-        projectList.map(project => (
-          <>
+        projectList.map(project =>
+          project.content.map(project => (
             <Link
               href={`/project/${project.projectId}`}
               className="flex cursor-pointer flex-col gap-2.5"
@@ -29,12 +29,12 @@ function ProjectList({ projectList, lastRef }: ProjectListProp) {
                 viewCount={formatViewCount(project.viewCount, 9999)}
               />
             </Link>
-            <div className="absolute bottom-0" ref={lastRef} />
-          </>
-        ))
+          ))
+        )
       ) : (
         <EmptyCard />
       )}
+      <div className="absolute bottom-0" ref={lastRef} />
     </div>
   );
 }
