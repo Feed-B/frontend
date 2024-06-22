@@ -12,7 +12,6 @@ interface SignUpModalProps {
 
 function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps) {
   const [item, setItem] = useState(dataType === "job" ? "직무" : "");
-  // const [email, setEmail] = useState("");
 
   const handleModalCloseWidthReset = () => {
     handleModalClose();
