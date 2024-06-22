@@ -1,15 +1,24 @@
 import React from "react";
+import Link from "next/link";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 
-function CommentProfile() {
+interface CommentProfileProps {
+  userId: number;
+  userName: string;
+  userJob: string;
+}
+
+function CommentProfile({ userId, userName, userJob }: CommentProfileProps) {
   return (
-    <div className="flex items-center gap-2">
-      <ProfileImage imageUrl="default" className="h-10 w-10" />
-      <div>
-        <p className="text-sm font-semibold">일이삼사오육칠팔</p>
-        <p className="text-[10px] text-blue-500">프론트엔드</p>
+    <Link href={`/mypage/${userId}`}>
+      <div className="flex items-center gap-2">
+        <ProfileImage imageUrl="default" className="h-10 w-10" />
+        <div>
+          <p className="text-sm font-semibold">{userName}</p>
+          <p className="text-[10px] text-blue-500">{userJob}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

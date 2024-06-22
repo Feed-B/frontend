@@ -5,7 +5,7 @@ import { ProjectListParams } from "../_types/ProjectListDataType";
 export const projectQueryKeys = createQueryKeys("project", {
   list: (props: ProjectListParams) => ({
     queryKey: ["projectList"],
-    queryFn: () => projectApi.getprojectList({ ...props }),
+    queryFn: () => projectApi.getProjectList({ ...props }),
   }),
   detail: (projectId: number) => ({
     queryKey: ["projectDetail"],

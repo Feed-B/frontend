@@ -14,7 +14,7 @@ function ProjectSection() {
 
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: ["project", "list", "projectList"],
-    queryFn: ({ pageParam = 1 }) => projectApi.getprojectList({ ...projectState, page: pageParam as number }),
+    queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...projectState, page: pageParam as number }),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
