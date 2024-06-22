@@ -7,4 +7,8 @@ export const projectQueryKeys = createQueryKeys("project", {
     queryKey: ["projectList"],
     queryFn: () => projectApi.getprojectList({ ...props }),
   }),
+  detail: (projectId: number) => ({
+    queryKey: ["projectDetail"],
+    queryFn: () => projectApi.getProject(projectId),
+  }),
 });
