@@ -10,12 +10,10 @@ function httpClient() {
     return result;
   }
 
-  async function post<T, P>(url: string, data: P) {
+  async function post<T, P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
     const response = await fetch(`${BASE_URL}${url}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: JSON.stringify(data),
     });
 
@@ -23,12 +21,10 @@ function httpClient() {
     return result;
   }
 
-  async function put<T, P>(url: string, data: P) {
+  async function put<T, P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
     const response = await fetch(`${BASE_URL}${url}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: JSON.stringify(data),
     });
 
@@ -36,9 +32,10 @@ function httpClient() {
     return result;
   }
 
-  async function del<T>(url: string) {
+  async function del<T>(url: string, headers?: HeadersInit) {
     const response = await fetch(`${BASE_URL}${url}`, {
       method: "DELETE",
+      headers,
     });
 
     const result: T = await response.json();
