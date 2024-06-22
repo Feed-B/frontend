@@ -2,8 +2,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function httpClient() {
   async function get<R>(url: string, params?: Record<string, any>, headers?: HeadersInit) {
-    const urlParams = new URLSearchParams(params);
-    const response = await fetch(BASE_URL + url + urlParams.toString(), {
+    const urlParams = new URLSearchParams(params).toString;
+    const response = await fetch(`${BASE_URL}${url}?${urlParams}`, {
       headers,
     });
     const result: R = await response.json();
@@ -11,7 +11,7 @@ function httpClient() {
   }
 
   async function post<T, P>(url: string, data: P) {
-    const response = await fetch(BASE_URL + url, {
+    const response = await fetch(`${BASE_URL}${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ function httpClient() {
   }
 
   async function put<T, P>(url: string, data: P) {
-    const response = await fetch(BASE_URL + url, {
+    const response = await fetch(`${BASE_URL}${url}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ function httpClient() {
   }
 
   async function del<T>(url: string) {
-    const response = await fetch(BASE_URL + url, {
+    const response = await fetch(`${BASE_URL}${url}`, {
       method: "DELETE",
     });
 
