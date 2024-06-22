@@ -5,7 +5,7 @@ interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   inputRef?: React.LegacyRef<HTMLInputElement>;
 }
 
-function Input({ type, placeholder, name, id, maxLength, inputWidth, inputRef, onChange }: InputSectionProps) {
+function Input({ type, placeholder, name, id, maxLength, inputWidth, inputRef, value, onChange }: InputSectionProps) {
   return (
     <input
       type={type}
@@ -16,6 +16,7 @@ function Input({ type, placeholder, name, id, maxLength, inputWidth, inputRef, o
       autoComplete="off"
       maxLength={maxLength}
       ref={inputRef}
+      value={value}
       onChange={onChange}
     />
   );
