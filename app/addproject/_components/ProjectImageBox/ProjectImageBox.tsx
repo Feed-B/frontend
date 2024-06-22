@@ -107,10 +107,10 @@ function ProjectImageBox({ setImageType, handleImageFile }: ProjectImageBoxProps
                     ))}
                     {provided.placeholder}
                     {showImageUrlList.length < 5 && (
-                      <div className="hover:bg-blue-50 flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500">
-                        <div
-                          className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500"
-                          onClick={handleUploadButtonClick}>
+                      <div
+                        className="flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50"
+                        onClick={handleUploadButtonClick}>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
                           <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
                         </div>
                       </div>

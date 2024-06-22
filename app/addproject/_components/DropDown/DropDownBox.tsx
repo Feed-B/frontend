@@ -14,9 +14,10 @@ import DropDownList from "./DropDownList";
 interface DropDownProps {
   dataType: string;
   inputWidth?: string;
+  handleInputChange: (value: string) => void;
 }
 
-function DropDownBox({ dataType, inputWidth }: DropDownProps) {
+function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps) {
   const toolData = TOOL_DATA.reduce(
     (acc, { name }) => {
       acc[name] = name;
@@ -43,6 +44,7 @@ function DropDownBox({ dataType, inputWidth }: DropDownProps) {
 
   const handleItemClick = (value: string) => {
     setItem(value);
+    handleInputChange(value);
     toggleState();
   };
 
