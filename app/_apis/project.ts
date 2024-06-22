@@ -3,7 +3,7 @@ import httpClient from "./httpClient";
 import { ProjectResponse, ProjectResponseType } from "./schema/projectResponse";
 
 export const projectApi = {
-  getprojectList: async ({
+  getProjectList: async ({
     page = 1,
     size = 12,
     limit = 0,
