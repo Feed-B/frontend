@@ -3,6 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { SignUpRequest } from "@/app/_apis/schema/user";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import { signUpApi } from "@/app/_apis/signUp";
+import { useKakaoStore } from "@/app/_utils/zustandStore";
+import { setToken } from "@/app/_utils/handleToken";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import SignUpDropdownBox from "./SignUpDropdownBox";
@@ -17,6 +19,7 @@ interface SignUpFormData {
   nickName: string;
   aboutMe: string;
   dataType: string;
+  email: string;
 }
 
 const CONSTANTS = {
@@ -27,6 +30,8 @@ const CONSTANTS = {
 function SignUpForm({ item, dataType, setItem }: SignUpFormProps) {
   const { isOpen, toggleState } = useToggleHook();
 
+  const { email } = useKakaoStore();
+
   const mutation = useMutation({
     mutationFn: (userData: SignUpRequest) => {
       const response = signUpApi.postSignUp(userData);
@@ -34,6 +39,8 @@ function SignUpForm({ item, dataType, setItem }: SignUpFormProps) {
     },
     onSuccess: data => {
       console.log("Sign up Successful", data);
+      const accessToken = data.token;
+      setToken(accessToken);
     },
     onError: error => {
       console.error("Sign up failed", error);
@@ -48,7 +55,7 @@ function SignUpForm({ item, dataType, setItem }: SignUpFormProps) {
 
   const onSubmit: SubmitHandler<SignUpFormData> = async data => {
     const requestData: SignUpRequest = {
-      email: "test3@test.com",
+      email: email,
       nickName: data.nickName,
       aboutMe: data.aboutMe,
       job: item,
