@@ -7,8 +7,6 @@ import RatingSection from "./_components/ProjectSection/RatingSection";
 import MyCommentSection from "./_components/CommentSection/MyCommentSection";
 import CommentListSection from "./_components/CommentSection/CommentListSection";
 
-const stackList = ["Javascript", "Typescript", "Java"];
-
 interface Props {
   params: {
     projectId: number;
@@ -22,7 +20,7 @@ function Project({ params }: Props) {
         <ProjectHeader projectId={params.projectId} />
         <ProjectArticle projectId={params.projectId} />
         <TeamMemberSection projectId={params.projectId} />
-        <StackSection stackList={stackList} />
+        <StackSection projectId={params.projectId} />
         <RatingSection />
       </div>
       <div>
