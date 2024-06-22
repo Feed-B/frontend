@@ -1,18 +1,28 @@
 "use client";
 
-import React from "react";
-import SkillStackProvider from "../../_context/SkillStackProvider";
+import React, { useEffect } from "react";
+import { useGetSkillStack } from "../../_context/SkillStackProvider";
 import Title from "../Title";
 import SkillStackSearch from "./SkillStackSearch";
 import SelectSkillStack from "./SelectSkillStack";
 
-function SkillStackSection() {
+interface SkillStackSectionProps {
+  handleTechStackInput: (stackList: string[]) => void;
+}
+
+function SkillStackSection({ handleTechStackInput }: SkillStackSectionProps) {
+  const { selectedStacks } = useGetSkillStack();
+
+  useEffect(() => {
+    handleTechStackInput(selectedStacks);
+  }, [selectedStacks, handleTechStackInput]);
+
   return (
-    <SkillStackProvider>
+    <>
       <Title title="기술스택" name="search" label />
       <SkillStackSearch />
       <SelectSkillStack />
-    </SkillStackProvider>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { InputHTMLAttributes, useState } from "react";
+import React, { InputHTMLAttributes, useEffect, useState } from "react";
 import Image from "next/image";
 import blueDeleteIcon from "@/public/icons/blueDelete.svg";
 import grayDeleteIcon from "@/public/icons/grayDelete.svg";
@@ -10,23 +10,42 @@ import Title from "../Title";
 import Input from "../Input";
 import DropDownBox from "../DropDown/DropDownBox";
 
+interface TeammateType {
+  name: string;
+  job: string;
+  url: string;
+}
+
+interface ProjectLinkListType {
+  siteType: string;
+  url: string;
+}
+
+type AddSectionDataType = TeammateType | ProjectLinkListType;
+
 interface AddSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
   inputWidth?: string;
   dropDownType: string;
+  onInputChange: (data: AddSectionDataType[]) => void;
 }
 
 interface InputBox {
   id: number;
-  value: string;
+  url: string;
+  job: string;
+  name: string;
+  siteType: string;
 }
 
-function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddSectionProps) {
-  const [additionalInput, setAdditionalInput] = useState<InputBox[]>([{ id: 0, value: "" }]);
+function AddSection({ title, placeholder, name, inputWidth, dropDownType, onInputChange }: AddSectionProps) {
+  const [additionalInput, setAdditionalInput] = useState<InputBox[]>([
+    { id: 0, url: "", job: "", name: "", siteType: "" },
+  ]);
   const [nextId, setNextId] = useState(1);
 
   const handleAddButtonClick = () => {
-    setAdditionalInput([...additionalInput, { id: nextId, value: "" }]);
+    setAdditionalInput([...additionalInput, { id: nextId, url: "", job: "", name: "", siteType: "" }]);
     setNextId(nextId + 1);
   };
 
@@ -36,22 +55,51 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
     }
   };
 
+  const handleInputChange = (id: number, field: string, value: string) => {
+    setAdditionalInput(prevInput => prevInput.map(input => (input.id === id ? { ...input, [field]: value } : input)));
+  };
+
+  useEffect(() => {
+    const filteredInput = additionalInput.map(item => {
+      if (title === "팀원") {
+        const { name, job, url } = item;
+        return { name, job, url } as TeammateType;
+      } else {
+        const { siteType, url } = item;
+        return { siteType, url } as ProjectLinkListType;
+      }
+    });
+    onInputChange(filteredInput);
+  }, [additionalInput, onInputChange, title]);
+
   return (
     <>
       <Title title={title} name={`${name}-${additionalInput[0].id}-primary`} label />
       <div>
         {additionalInput.map(item => (
           <div key={item.id} className="mb-2 flex gap-1">
-            <DropDownBox dataType={dropDownType} />
+            <DropDownBox
+              dataType={dropDownType}
+              handleInputChange={(value: string) =>
+                handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value)
+              }
+            />
             <Input
               type="text"
               placeholder={placeholder}
               name={`${name}-primary`}
               id={`${name}-${item.id}-primary`}
               inputWidth={inputWidth}
+              onChange={e => handleInputChange(item.id, title === "팀원" ? "name" : "url", e.target.value)}
             />
             {title === "팀원" && (
-              <Input type="text" placeholder="http://" name={`${name}-secondary`} id={`${name}-${item.id}-secondary`} />
+              <Input
+                type="text"
+                placeholder="http://"
+                name={`${name}-secondary`}
+                id={`${name}-${item.id}-secondary`}
+                onChange={e => handleInputChange(item.id, "url", e.target.value)}
+              />
             )}
             <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
               <div
@@ -71,7 +119,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType }: AddS
         buttonSize="normal"
         bgColor="stroke"
         onClick={handleAddButtonClick}
-        className="flex items-center justify-center gap-1 hover:bg-[#EFF4FF]">
+        className="flex w-fit items-center justify-center gap-1 border-none text-blue-500 hover:bg-gray-100">
         <Image src={plusIcon} alt="추가하기" width={20} priority />
         {title === "팀원" ? "팀원" : "링크"} 추가하기
       </Button>

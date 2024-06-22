@@ -14,7 +14,7 @@ import DropDownList from "./DropDownList";
 interface DropDownProps {
   dataType: string;
   inputWidth?: string;
-  handleInputChange: (value: string) => void;
+  handleInputChange?: (value: string) => void;
 }
 
 function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps) {
@@ -44,7 +44,7 @@ function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps)
 
   const handleItemClick = (value: string) => {
     setItem(value);
-    handleInputChange(value);
+    handleInputChange && handleInputChange(value);
     toggleState();
   };
 
