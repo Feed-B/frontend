@@ -28,3 +28,7 @@
   -webkit-line-clamp: 12;
   -webkit-box-orient: vertical;
 }
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}

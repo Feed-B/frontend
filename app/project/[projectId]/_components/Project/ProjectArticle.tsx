@@ -16,10 +16,22 @@ interface Props {
   projectId: number;
 }
 
+interface Image {
+  width: number;
+  style: string;
+}
+
 function ProjectArticle({ projectId }: Props) {
-  const { index, handlePrev, handleNext } = useImageIndex();
+  const { index, translate, handlePrev, handleNext } = useImageIndex();
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
   if (!project) return null;
+
+  const IMAGE_TYPE: Record<string, Image> = {
+    WEB: { width: 572, style: "w-[572px]" },
+    MOBILE: { width: 188, style: "w-[188px]" },
+  };
+
+  const { width: imageWidth, style: imageWidthStyle } = IMAGE_TYPE[project.imageType];
 
   return (
     <article className="flex justify-between gap-24 px-8 py-7">
@@ -40,26 +52,28 @@ function ProjectArticle({ projectId }: Props) {
         {index > 0 && (
           <DirectionButton
             direction="left"
-            className="absolute -left-5 top-1/2 z-10 -translate-y-1/2"
-            onClick={() => handlePrev()}
+            className="absolute -left-5 top-1/2 z-10 -translate-y-1/2 transition-transform"
+            onClick={() => handlePrev(imageWidth)}
           />
         )}
         {index < project.imageUrlList.length - 1 && (
           <DirectionButton
             direction="right"
-            className="absolute -right-5 top-1/2 z-10 -translate-y-1/2"
-            onClick={() => handleNext(project.imageUrlList.length)}
+            className="absolute -right-5 top-1/2 z-10 -translate-y-1/2 transition-transform"
+            onClick={() => handleNext(imageWidth, project.imageUrlList.length)}
           />
         )}
-        {project.imageType === "WEB" ? (
-          <div className="relative h-[406px] w-[572px] border border-solid border-gray-300">
-            <Image src={project.imageUrlList[index].url} alt="웹 서비스 프로젝트." fill sizes="max-width" priority />
+        <div className={`h-[406px] ${imageWidthStyle} overflow-hidden border border-solid border-gray-300`}>
+          <div
+            className="flex h-fit w-fit gap-0 duration-500 ease-in-out"
+            style={{ transform: `translateX(-${translate}px)` }}>
+            {project.imageUrlList.map(image => (
+              <div className={`flex h-[406px] ${imageWidthStyle}`} key={image.id}>
+                <Image src={image.url} alt="서비스 프로젝트." width={imageWidth} height={406} priority />
+              </div>
+            ))}
           </div>
-        ) : (
-          <div className="relative h-[406px] w-[188px] border border-solid border-gray-300">
-            <Image src={project.imageUrlList[index].url} alt="앱 서비스 프로젝트." fill sizes="max-width" priority />
-          </div>
-        )}
+        </div>
       </div>
     </article>
   );
