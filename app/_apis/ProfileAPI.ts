@@ -1,4 +1,5 @@
 import httpClient from "./httpClient";
+import { headers } from "./projectListAPI";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -32,7 +33,7 @@ export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | 
 
 export const profileAPI = {
   getCurrentUserId: async () => {
-    return await httpClient().get<CurrentUserIdType>("/profile");
+    return await httpClient().get<CurrentUserIdType>("/profile", { "": "" }, headers.headers);
   },
   getUserData: async ({ userId }: { userId: number }) => {
     return await httpClient().get<UserDataType>(`/profile/${userId}`);

@@ -10,7 +10,7 @@ import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { MY_PAGE_TEXT } from "./constant";
 import ProfileSkeleton from "./skeletonUI/ProfileSkeleton";
 
-function Profile() {
+function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();
   const { data: userProfileData } = useQuery({
     queryKey: ["profile", userId],
@@ -41,14 +41,16 @@ function Profile() {
           </div>
           <div className="text-sm text-gray-700">{userProfileData?.aboutMe}</div>
         </div>
-        <Button
-          onClick={toggleState}
-          type="button"
-          bgColor="stroke"
-          buttonSize="normal"
-          className="absolute bottom-8 right-8 w-28">
-          {MY_PAGE_TEXT.EDIT_PROFILE}
-        </Button>
+        {isMyPage && (
+          <Button
+            onClick={toggleState}
+            type="button"
+            bgColor="stroke"
+            buttonSize="normal"
+            className="absolute bottom-8 right-8 w-28">
+            {MY_PAGE_TEXT.EDIT_PROFILE}
+          </Button>
+        )}
       </form>
     </>
   );
