@@ -3,6 +3,7 @@ import { ChangeEvent, useRef, useState } from "react";
 const useHandleInputFile = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string>("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -10,6 +11,7 @@ const useHandleInputFile = () => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setImage(imageUrl);
+      setImageFile(file);
     }
   };
 
@@ -27,7 +29,15 @@ const useHandleInputFile = () => {
     setImage(imageUrl);
   };
 
-  return { inputRef, image, handleImageChange, handleRemoveImage, handleSelectImageClick, handleSetImage };
+  return {
+    inputRef,
+    image,
+    handleImageChange,
+    handleRemoveImage,
+    handleSelectImageClick,
+    handleSetImage,
+    imageFile,
+  };
 };
 
 export default useHandleInputFile;
