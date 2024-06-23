@@ -2,6 +2,7 @@
 
 import React, { FormEvent, useCallback, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import Button from "@/app/_components/Button/Button";
 import { addProjectApi } from "@/app/_apis/addProjectApi";
 import AddSection from "../_components/AddSection/AddSection";
@@ -43,6 +44,7 @@ function AddProjectContainer() {
     thumbnail: new File([], ""),
   });
   const imageIndexList = formValues.imageList.map((_, index) => index + 1);
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -71,6 +73,7 @@ function AddProjectContainer() {
     },
     onSuccess: data => {
       console.log("Add Project Successful", data);
+      router.push("/main");
     },
     onError: error => {
       console.error("Add Project failed", error);

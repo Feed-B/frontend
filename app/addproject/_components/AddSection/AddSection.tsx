@@ -90,7 +90,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType, onInpu
               name={`${name}-primary`}
               id={`${name}-${item.id}-primary`}
               inputWidth={inputWidth}
-              onChange={e => handleInputChange(item.id, title === "팀원" ? "name" : "url", e.target.value)}
+              onChange={event => handleInputChange(item.id, title === "팀원" ? "name" : "url", event.target.value)}
             />
             {title === "팀원" && (
               <Input
@@ -98,7 +98,7 @@ function AddSection({ title, placeholder, name, inputWidth, dropDownType, onInpu
                 placeholder="http://"
                 name={`${name}-secondary`}
                 id={`${name}-${item.id}-secondary`}
-                onChange={e => handleInputChange(item.id, "url", e.target.value)}
+                onChange={event => handleInputChange(item.id, "url", event.target.value)}
               />
             )}
             <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
