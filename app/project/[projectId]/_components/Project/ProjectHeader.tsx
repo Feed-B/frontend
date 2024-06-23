@@ -12,10 +12,13 @@ import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
+import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 
 interface Props {
   projectId: number;
 }
+
+type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function ProjectHeader({ projectId }: Props) {
   const { isOpen, toggleState } = useToggleHook();
@@ -53,7 +56,7 @@ function ProjectHeader({ projectId }: Props) {
       </div>
       <div className="flex w-full items-center gap-3">
         <p className="text-sm font-semibold text-gray-900">{project.authorName}</p>
-        <p className="text-[10px] text-blue-400">{project.authorJob}</p>
+        <p className="text-xs text-blue-500">{JOB_CATEGORIES_KR[project.authorJob as JobCategory]}</p>
         <p className="text-sm text-gray-500">{createDate(project.createdAt)}</p>
       </div>
     </header>
