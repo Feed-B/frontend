@@ -57,20 +57,24 @@ function ProjectHeader({ projectId }: Props) {
         <div className="flex gap-2">
           <WishButtonAndCount projectId={projectId} isFavorite={true} wishCount={3} colorMode="bright" />
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
-          <Image
-            className="relative"
-            src={kebabIcon}
-            alt="프로젝트 메뉴."
-            width={24}
-            height={32}
-            priority
-            onClick={toggleState}
-          />
-          {isOpen && (
-            <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
-              <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
-              <DropDown.TextItem onClick={handleDeleteProject}>삭제</DropDown.TextItem>
-            </DropDown>
+          {project.isMine && (
+            <>
+              <Image
+                className="relative"
+                src={kebabIcon}
+                alt="프로젝트 메뉴."
+                width={24}
+                height={32}
+                priority
+                onClick={toggleState}
+              />
+              {isOpen && (
+                <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
+                  <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
+                  <DropDown.TextItem onClick={handleDeleteProject}>삭제</DropDown.TextItem>
+                </DropDown>
+              )}
+            </>
           )}
         </div>
       </div>
