@@ -54,7 +54,7 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
           <div className="relative flex items-center gap-2">
             <CommentCount commentCount={commentDetailData.childCommentCount} />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
-            <CommentDropbox toggleState={toggleState} />
+            <CommentDropbox toggleState={toggleState} commentId={commentId} projectId={projectId} />
           </div>
         </div>
       </section>
