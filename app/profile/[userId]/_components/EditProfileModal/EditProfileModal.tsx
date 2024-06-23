@@ -1,13 +1,14 @@
 "use client";
 import { FormEvent, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useHandleInputFile from "@/app/_hooks/useFileInput";
-import { PutUserProfileType, UserProfileType } from "@/app/_apis/ProfileAPI";
 import useTextInput from "@/app/_hooks/useTextInput";
+import { PutUserDataType, profileAPI, UserDataType } from "@/app/_apis/ProfileAPI";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -15,7 +16,7 @@ import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValida
 interface EditProfileModalProps {
   openModal: boolean;
   handleModalClose: () => void;
-  profileData: UserProfileType;
+  profileData: UserDataType;
 }
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
@@ -30,11 +31,16 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   } = useHandleInputFile();
   const nickNameValue = useTextInput();
   const aboutMeValue = useTextInput();
+  const changeProfileMutation = useMutation({
+    mutationFn: (newProfileData: PutUserDataType) => {
+      return profileAPI.putUserData({ userId: profileData.id, userData: newProfileData });
+    },
+  });
 
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
 
-    const submitData: PutUserProfileType = {
+    const submitData: PutUserDataType = {
       image: isImageChange(profileData?.imageUrl, image) === 2 ? imageFile : null,
       imageIdx: isImageChange(profileData.imageUrl, image),
       memberEditRequestDto: {
@@ -47,6 +53,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       },
     };
     console.log("submitData", submitData);
+    changeProfileMutation.mutate(submitData);
   };
 
   useEffect(() => {
