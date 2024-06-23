@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useContext, useState } from "react";
+import React, { Dispatch, ReactNode, SetStateAction, useCallback, useContext, useState } from "react";
 import { createContext } from "react";
 
 interface EnterCommentContextType {
@@ -8,6 +8,7 @@ interface EnterCommentContextType {
   handleMouseMove: (categoryId: number, rating: number) => void;
   handleMouseUp: () => void;
   comment: string;
+  setComment: Dispatch<SetStateAction<string>>;
   handleCommentChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -18,6 +19,7 @@ const EnterCommentContext = createContext<EnterCommentContextType>({
   handleMouseMove: () => {},
   handleMouseUp: () => {},
   comment: "",
+  setComment: () => {},
   handleCommentChange: () => {},
 });
 
@@ -70,6 +72,7 @@ function EnterCommentProvider({ children }: { children: ReactNode }) {
         handleMouseMove,
         handleMouseUp,
         comment,
+        setComment,
         handleCommentChange,
       }}>
       {children}
