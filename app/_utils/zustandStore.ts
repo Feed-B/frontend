@@ -1,19 +1,19 @@
 import { create } from "zustand";
 
-export type KakaoData = {
+export type LoginData = {
   email: string;
-  token: string;
+  accessToken: string;
   type: string;
 };
 
-type KaKaoStore = {
+type LoginStore = {
   email: string;
   setEmail: (email: string) => void;
   type: string;
   setType: (type: string) => void;
 };
 
-export const useKakaoStore = create<KaKaoStore>(set => ({
+export const useLoginStore = create<LoginStore>(set => ({
   email: "",
   setEmail: email => set(() => ({ email })),
   type: "",
