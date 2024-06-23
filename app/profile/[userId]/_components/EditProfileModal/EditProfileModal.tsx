@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
@@ -9,7 +9,6 @@ import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useHandleInputFile from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { PutUserDataType, profileAPI, UserDataType } from "@/app/_apis/ProfileAPI";
-import getQueryClient from "@/app/_queryFactory/getQueryClient";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -21,7 +20,7 @@ interface EditProfileModalProps {
 }
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
-  const queryClient = getQueryClient();
+  const queryClient = useQueryClient();
 
   const {
     inputRef: profileImageInputRef,
