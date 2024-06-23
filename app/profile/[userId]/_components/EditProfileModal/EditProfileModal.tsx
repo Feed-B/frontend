@@ -6,7 +6,7 @@ import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useHandleInputFile from "@/app/_hooks/useFileInput";
-import { UserProfileType } from "@/app/_apis/ProfileAPI";
+import { PutUserProfileType, UserProfileType } from "@/app/_apis/ProfileAPI";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
@@ -34,9 +34,9 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
 
-    const submitData = {
-      image: imageFile,
-      imageIdx: isImageChange(profileData?.imageUrl, image),
+    const submitData: PutUserProfileType = {
+      image: isImageChange(profileData?.imageUrl, image) === 2 ? imageFile : null,
+      imageIdx: isImageChange(profileData.imageUrl, image),
       memberEditRequestDto: {
         id: profileData?.id,
         nickName: isValidNickName(profileData.nickName, nickNameValue.value)
