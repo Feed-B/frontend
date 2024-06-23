@@ -72,6 +72,8 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     if (profileData?.nickName) {
       nickNameValue.handleSetValue(profileData?.nickName);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

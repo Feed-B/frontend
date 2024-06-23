@@ -3,7 +3,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
-// import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
 import { projectApi } from "@/app/_apis/project";
 import { useGetStack } from "../../_context/StackProvider";
@@ -38,7 +37,7 @@ function ProjectSection() {
 
   return (
     <section className="col-start-2 mt-10">
-      <ProjectList projectList={data.pages[0].content} lastRef={lastCardInfo} />
+      <ProjectList projectList={data.pages} lastRef={lastCardInfo} />
     </section>
   );
 }
