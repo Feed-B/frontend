@@ -15,8 +15,14 @@ const ratingCategory = [
 
 const MAX_STAR = 5;
 
-function WriteRating() {
-  const { rating, handleMouseDown, handleMouseMove, handleMouseUp } = useEnterCommentContext();
+interface Props {
+  ratingValue?: number[];
+}
+
+function WriteRating({ ratingValue }: Props) {
+  const { rating, setRating, handleMouseDown, handleMouseMove, handleMouseUp } = useEnterCommentContext();
+
+  if (ratingValue) setRating(ratingValue);
 
   return (
     <>
