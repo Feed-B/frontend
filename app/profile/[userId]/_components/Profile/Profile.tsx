@@ -6,9 +6,9 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
-import EditProfileModal from "./EditProfileModal/EditProfileModal";
-import { MY_PAGE_TEXT } from "./constant";
-import ProfileSkeleton from "./skeletonUI/ProfileSkeleton";
+import ProfileSkeleton from "../skeletonUI/ProfileSkeleton";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { MY_PAGE_TEXT } from "../constant";
 
 function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();

@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import { ButtonHTMLAttributes, MouseEvent } from "react";
-import { MY_PAGE_TEXT } from "./constant";
+import { MY_PAGE_TEXT } from "../constant";
 
 interface CategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSelect: boolean;
