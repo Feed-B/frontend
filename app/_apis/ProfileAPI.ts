@@ -1,10 +1,12 @@
 import httpClient from "./httpClient";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface CurrentUserIdType {
   id: number;
 }
 
-export interface UserProfileType {
+export interface UserDataType {
   id: number;
   email: string;
   nickName: string;
@@ -13,7 +15,7 @@ export interface UserProfileType {
   imageUrl: string;
 }
 
-export interface PutUserProfileType {
+export interface PutUserDataType {
   memberEditRequestDto: {
     id: number;
     nickName: string;
@@ -32,10 +34,36 @@ export const profileAPI = {
   getCurrentUserId: async () => {
     return await httpClient().get<CurrentUserIdType>("/profile");
   },
-  getUserProfile: async ({ userId }: { userId: number }) => {
-    return await httpClient().get<UserProfileType>(`/profile/${userId}`);
+  getUserData: async ({ userId }: { userId: number }) => {
+    return await httpClient().get<UserDataType>(`/profile/${userId}`);
   },
-  putUserProfile: async ({ userData }: { userData: PutUserProfileType }) => {
-    return await httpClient().put(`/profile/${userData.memberEditRequestDto.id}`, { userData });
+  putUserData: async ({ userId, userData }: { userId: number; userData: PutUserDataType }) => {
+    const formData = new FormData();
+
+    const memberEditRequestDtoBlob = new Blob([JSON.stringify(userData.memberEditRequestDto)], {
+      type: "application/json",
+    });
+    formData.append("memberEditRequestDto", memberEditRequestDtoBlob);
+
+    if (userData.image) {
+      formData.append("image", userData.image);
+    }
+    formData.append("imageIdx", userData.imageIdx.toString());
+
+    try {
+      const response = await fetch(`${BASE_URL}/profile/${userId}`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Error updating profile: " + response.statusText);
+      }
+
+      const result = await response.json();
+      console.log("Profile updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   },
 };
