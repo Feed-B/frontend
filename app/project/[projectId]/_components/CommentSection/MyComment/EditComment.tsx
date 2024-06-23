@@ -4,6 +4,7 @@ import ToolTip from "../../Comment/ToolTip";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
+import EnterButton from "../../Comment/EnterButton";
 
 function EditComment() {
   return (
@@ -16,6 +17,7 @@ function EditComment() {
         <EnterCommentProvider>
           <EnterRating />
           <EnterText />
+          <EnterButton mode="edit" />
         </EnterCommentProvider>
       </div>
     </div>

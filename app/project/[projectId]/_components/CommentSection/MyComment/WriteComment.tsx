@@ -5,6 +5,7 @@ import WriteCommentShield from "../../Shield/WriteCommentShield";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
+import EnterButton from "../../Comment/EnterButton";
 
 const isLogin = true;
 
@@ -21,6 +22,7 @@ function WriteComment() {
           <EnterCommentProvider>
             <EnterRating />
             <EnterText />
+            <EnterButton />
           </EnterCommentProvider>
         </div>
       </div>
