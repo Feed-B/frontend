@@ -8,14 +8,15 @@ interface CommentsListRequest {
   limit?: number;
 }
 
-interface CommentRequest {
-  ideaRank: number;
-  designRank: number;
-  functionRank: number;
-  completionRank: number;
-  commentRequest: {
-    parentId: number;
-    comment: string;
+interface UpadateCommentRequest {
+  comment: string;
+  projectRatingUpdateRequest: {
+    projectRatingId: number;
+    ideaRank: number;
+    designRank: number;
+    functionRank: number;
+    completionRank: number;
+    commentUpdateRequest: string;
   };
 }
 
@@ -48,7 +49,7 @@ export const commentApi = {
       },
     });
   },
-  putComment: async (commentId: number, data: CommentRequest) => {
+  putComment: async (commentId: number, data: UpadateCommentRequest) => {
     return await httpClient().put(`/projects/${commentId}`, {
       data,
     });

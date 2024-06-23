@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import {} from "react-query";
 import shareIcon from "@/public/icons/share.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
@@ -13,6 +14,7 @@ import CommentCount from "../../../_components/Comment/CommentCount";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../../_components/Comment/EnterText";
+import EnterButton from "../../../_components/Comment/EnterButton";
 import RatingBox from "./RatingBox";
 import CommentDropbox from "./CommentDropbox";
 
@@ -33,6 +35,13 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
     return <div>없음</div>;
   }
 
+  const transformedData = [
+    ratingsData.ideaRank,
+    ratingsData.designRank,
+    ratingsData.functionRank,
+    ratingsData.completionRank,
+  ];
+
   return (
     <>
       <section className="mt-10 w-full p-4">
@@ -50,10 +59,11 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
         </div>
       </section>
       {commentEditOpen ? (
-        <section>
+        <section className=" mt-4 flex min-h-[300px] flex-col gap-10">
           <EnterCommentProvider>
-            <EnterRating />
-            <EnterText />
+            <EnterText commentValue={commentDetailData.comment} />
+            <EnterRating ratingValue={transformedData} />
+            <EnterButton onClick={() => console.log()} mode="edit" />
           </EnterCommentProvider>
         </section>
       ) : (
