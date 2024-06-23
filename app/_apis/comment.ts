@@ -8,6 +8,17 @@ interface CommentsListRequest {
   limit?: number;
 }
 
+interface CommentRequest {
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  commentRequest: {
+    parentId: number;
+    comment: string;
+  };
+}
+
 interface ReflyCommentListRequest extends CommentsListRequest {
   commentId: number;
 }
@@ -25,7 +36,7 @@ export const commentApi = {
       size,
     });
   },
-  PostReflyComment: async (projectId: number, commentId: number, comment: string) => {
+  postReflyComment: async (projectId: number, commentId: number, comment: string) => {
     return await httpClient().post(`/projects/${projectId}/comments`, {
       ideaRank: 5,
       designRank: 5,
@@ -35,6 +46,11 @@ export const commentApi = {
         parentId: commentId,
         comment: comment,
       },
+    });
+  },
+  putComment: async (commentId: number, data: CommentRequest) => {
+    return await httpClient().put(`/projects/${commentId}`, {
+      data,
     });
   },
 };
