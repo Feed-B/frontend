@@ -4,21 +4,19 @@ import starIcon from "@/public/icons/fullStar.svg";
 import grayStarIcon from "@/public/icons/emptyStar.svg";
 import halfStarIcon from "@/public/icons/halfStar.svg";
 
-const TestData = {
-  totalRating: 3.4, //댓글 별점 평균 3.4
-  rating: {
-    idea: 4, //3.7
-    design: 3,
-    feature: 2,
-    perfection: 1,
-  },
-};
+interface RatingBoxProps {
+  averageRank: number;
+  completionRank: number;
+  designRank: number;
+  functionRank: number;
+  ideaRank: number;
+}
 
 const ratingLabels: { [key: string]: string } = {
-  idea: "아이디어",
-  design: "디자인",
-  feature: "기능",
-  perfection: "완성도",
+  ideaRank: "아이디어",
+  designRank: "디자인",
+  functionRank: "기능",
+  completionRank: "완성도",
 };
 
 const renderStars = (rating: number, max = 5) => {
@@ -39,16 +37,23 @@ const renderStars = (rating: number, max = 5) => {
   );
 };
 
-function RatingBox() {
+function RatingBox(props: RatingBoxProps) {
+  const rating = {
+    ideaRank: props.ideaRank,
+    designRank: props.designRank,
+    functionRank: props.functionRank,
+    completionRank: props.completionRank,
+  };
+
   return (
     <div className="flex w-full items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6">
       <div className="flex items-center gap-2">
         <p className="text-sm font-semibold text-gray-900">총점</p>
-        <p className="text-2xl font-bold text-gray-900">{TestData.totalRating}</p>
-        <div className="flex items-center">{renderStars(TestData.totalRating)}</div>
+        <p className="text-2xl font-bold text-gray-900">{props.averageRank}</p>
+        <div className="flex items-center">{renderStars(props.averageRank)}</div>
       </div>
       <div className="flex items-center gap-4">
-        {Object.entries(TestData.rating).map(([key, value]) => (
+        {Object.entries(rating).map(([key, value]) => (
           <div key={key} className="flex items-center justify-end gap-1">
             <p className="text-xs text-gray-900">{ratingLabels[key]}</p>
             {renderStars(value)}
