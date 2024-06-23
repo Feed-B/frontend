@@ -3,7 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useLoginStore } from "@/app/_utils/zustandStore";
 import { setToken } from "@/app/_utils/handleToken";
-import LoadingWrapper from "@/app/_components/Loading/Loading";
+import LoadingWrapper from "@/app/_components/LoadingWrapper/LoadingWrapper";
 
 export default function Success() {
   const router = useRouter();
