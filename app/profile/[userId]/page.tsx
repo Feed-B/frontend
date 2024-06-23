@@ -1,12 +1,15 @@
-"use client";
-import Providers from "@/app/_queryFactory/providers";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import getQueryClient from "@/app/_queryFactory/getQueryClient";
 import MyPageContent from "./_components/MyPageContent";
 
 function MyPage() {
+  const queryClient = getQueryClient();
+
+  const dehydratedState = dehydrate(queryClient);
   return (
-    <Providers>
+    <HydrationBoundary state={dehydratedState}>
       <MyPageContent />
-    </Providers>
+    </HydrationBoundary>
   );
 }
 

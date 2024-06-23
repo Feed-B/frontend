@@ -13,7 +13,7 @@ import ProfileSkeleton from "./skeletonUI/ProfileSkeleton";
 function Profile() {
   const { userId } = useParams();
   const { data: userProfileData } = useQuery({
-    queryKey: [`profile-${userId}`],
+    queryKey: ["profile", userId],
     queryFn: async () => {
       return await profileAPI.getUserData({ userId: Number(userId) });
     },
