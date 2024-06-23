@@ -1,18 +1,21 @@
 "use client";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Image from "next/image";
+import { useMutation } from "@tanstack/react-query";
 import emptyProjectListIcon from "@/public/icons/emptyWhitePot.svg";
 import fullProjectListIcon from "@/public/icons/fullDarkPot.svg";
 import emptyProjectIcon from "@/public/icons/emptyBlackPot.svg";
 import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
+import { handleLikeProject } from "@/app/_apis/handleLikeProject";
 
 interface WishButtonAndCountProps {
   isFavorite: boolean;
   wishCount: number;
   colorMode?: "bright" | "dark";
+  projectId: number;
 }
 
-function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark" }: WishButtonAndCountProps) {
+function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark", projectId }: WishButtonAndCountProps) {
   const isDarkMode = colorMode === "dark";
 
   const full = {
@@ -26,16 +29,43 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark" 
   };
 
   const [favoriteState, setFavoriteState] = useState({
-    isFavorite: isFavorite,
-    wishCountState: wishCount,
+    isFavorite: false,
+    wishCountState: 0,
+  });
+
+  useEffect(() => {
+    setFavoriteState({
+      isFavorite: isFavorite,
+      wishCountState: wishCount,
+    });
+  }, []);
+
+  const likeMutation = useMutation({
+    mutationFn: (projectId: number) => {
+      return handleLikeProject.postLikeProject({ projectId });
+    },
+  });
+  const unLikeMutatioin = useMutation({
+    mutationFn: (projectId: number) => {
+      return handleLikeProject.deleteLikeProject({ projectId });
+    },
   });
 
   const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    setFavoriteState(prevState => ({
-      isFavorite: prevState.isFavorite ? false : true,
-      wishCountState: prevState.isFavorite ? prevState.wishCountState - 1 : prevState.wishCountState + 1,
-    }));
+    if (favoriteState.isFavorite) {
+      unLikeMutatioin.mutate(projectId);
+      setFavoriteState(prevState => ({
+        isFavorite: false,
+        wishCountState: prevState.wishCountState - 1,
+      }));
+    } else {
+      likeMutation.mutate(projectId);
+      setFavoriteState(prevState => ({
+        isFavorite: true,
+        wishCountState: prevState.wishCountState + 1,
+      }));
+    }
   };
 
   return (

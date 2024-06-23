@@ -32,7 +32,7 @@ function ProjectHeader({ projectId }: Props) {
           {project.title}
         </h1>
         <div className="flex gap-2">
-          <WishButtonAndCount isFavorite={true} wishCount={3} colorMode="bright" />
+          <WishButtonAndCount projectId={projectId} isFavorite={true} wishCount={3} colorMode="bright" />
           <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
           <Image
             className="relative"

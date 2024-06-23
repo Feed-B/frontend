@@ -5,10 +5,12 @@ function HoverCard({
   stackList,
   wishCount,
   isWishProject,
+  projectId,
 }: {
   stackList: string[];
   wishCount: number;
   isWishProject: boolean;
+  projectId: number;
 }) {
   return (
     <div className="absolute inset-0 z-30 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
@@ -20,10 +22,10 @@ function HoverCard({
             ))}
           </div>
           <div className="absolute bottom-3 right-3 text-white">
-            <WishButtonAndCount isFavorite={isWishProject} wishCount={wishCount} />
+            <WishButtonAndCount projectId={projectId} isFavorite={isWishProject} wishCount={wishCount} />
           </div>
         </div>
-        <div className="from-black absolute inset-0 z-10 bg-gradient-to-t to-[rgba(0,0,0,0)] opacity-90" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black to-[rgba(0,0,0,0)] opacity-90" />
       </div>
     </div>
   );
