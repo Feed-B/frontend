@@ -20,7 +20,7 @@ export interface PutUserProfileType {
     aboutMe: string;
     job: JobType;
   };
-  image: File;
+  image: File | null;
   imageIdx: ImageIdxType;
 }
 
