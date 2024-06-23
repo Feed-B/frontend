@@ -1,26 +1,35 @@
 "use client";
 import { useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { ProjectResponseType } from "@/app/_apis/schema/projectResponse";
+import { projectListAPI } from "@/app/_apis/projectListAPI";
 import { MY_PAGE_TEXT } from "./constant";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
 
-function MypageProjectSection({
-  isMyPage,
-  projectList,
-  projectType,
-}: {
-  isMyPage: boolean;
-  projectList: ProjectResponseType;
-  projectType: MyPageProjectListType;
-}) {
+function MypageProjectSection({ isMyPage, projectType }: { isMyPage: boolean; projectType: MyPageProjectListType }) {
   const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
+  const { data, fetchNextPage } = useInfiniteQuery({
+    queryKey: ["projectList", projectType],
+    queryFn: ({ pageParam = 1 }) =>
+      projectListAPI.getMyProjectList({ page: pageParam as number, size: 8 }, projectType),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => {
+      const { customPageable } = lastPage;
+      if (customPageable.hasNext) {
+        return customPageable.page + 1;
+      }
+      return undefined;
+    },
+  });
 
   useEffect(() => {
-    console.log("isVisible", isVisible);
-  }, [isVisible, projectType]);
+    if (isVisible) {
+      fetchNextPage();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
 
   const listTitle = (isMyPage: boolean, projectType: MyPageProjectListType) => {
     if (projectType === "myProject") {
@@ -34,9 +43,9 @@ function MypageProjectSection({
     <section>
       <h3 className="mb-4 text-lg font-semibold leading-relaxed text-gray-900">
         {listTitle(isMyPage, projectType)}
-        <span className="ml-2.5">{`(${projectList.customPageable.totalElements})`}</span>
+        <span className="ml-2.5">({data?.pages[0].customPageable.totalElements})</span>
       </h3>
-      <ProjectList projectList={projectList.content} lastRef={lastCardRef} />
+      <ProjectList projectList={data?.pages} lastRef={lastCardRef} />
     </section>
   );
 }
