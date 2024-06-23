@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import shareIcon from "@/public/icons/share.svg";
 import kebabIcon from "@/public/icons/kebab.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
@@ -13,6 +14,7 @@ import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
+import { projectApi } from "@/app/_apis/project";
 
 interface Props {
   projectId: number;
@@ -23,10 +25,28 @@ type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 function ProjectHeader({ projectId }: Props) {
   const { isOpen, toggleState } = useToggleHook();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const queryClient = useQueryClient();
+  const router = useRouter();
   useOutsideClick(dropdownRef, toggleState);
+
+  const mutation = useMutation({
+    mutationFn: () => {
+      return projectApi.deleteProject(projectId);
+    },
+    onSuccess: () => {
+      queryClient.removeQueries({
+        queryKey: ["project", "detail", "projectDetail", projectId],
+      });
+    },
+  });
 
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
   if (!project) return null;
+
+  const handleDeleteProject = () => {
+    mutation.mutate();
+    router.push("/main");
+  };
 
   return (
     <header className="px-4 py-3">
@@ -49,7 +69,7 @@ function ProjectHeader({ projectId }: Props) {
           {isOpen && (
             <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
               <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
-              <DropDown.TextItem>삭제</DropDown.TextItem>
+              <DropDown.TextItem onClick={handleDeleteProject}>삭제</DropDown.TextItem>
             </DropDown>
           )}
         </div>

@@ -38,4 +38,7 @@ export const projectApi = {
   getTotalRating: async (projectId: number) => {
     return await httpClient().get<TotalRatingResponse>(`/projects/${projectId}/average-rating`);
   },
+  deleteProject: async (projectId: number) => {
+    return await httpClient().delete(`/projects/${projectId}`);
+  },
 };
