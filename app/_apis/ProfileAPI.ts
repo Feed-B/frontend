@@ -36,7 +36,7 @@ export const profileAPI = {
     return await httpClient().get<CurrentUserIdType>("/profile", { "": "" }, headers.headers);
   },
   getUserData: async ({ userId }: { userId: number }) => {
-    return await httpClient().get<UserDataType>(`/profile/${userId}`);
+    return await httpClient().get<UserDataType>(`/profile/${userId}`, { "": "" }, headers.headers);
   },
   putUserData: async ({ userId, userData }: { userId: number; userData: PutUserDataType }) => {
     const formData = new FormData();
@@ -55,6 +55,7 @@ export const profileAPI = {
       const response = await fetch(`${BASE_URL}/profile/${userId}`, {
         method: "PUT",
         body: formData,
+        headers: headers.headers,
       });
 
       if (!response.ok) {
