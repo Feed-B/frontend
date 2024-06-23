@@ -1,11 +1,10 @@
 "use client";
 
 import React, { FormEvent } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/comment";
-import getQueryClient from "@/app/_queryFactory/getQueryClient";
 
 interface CommentInputProps {
   projectId: number;
@@ -13,7 +12,7 @@ interface CommentInputProps {
 }
 
 function CommentInput({ projectId, commentId }: CommentInputProps) {
-  const queryClient = getQueryClient();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (comment: string) => {
