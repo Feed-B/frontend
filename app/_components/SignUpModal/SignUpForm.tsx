@@ -69,7 +69,6 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
     }
 
     handleModalClose();
-    console.log(requestData);
   };
 
   const handleItemClick = (value: string) => {
