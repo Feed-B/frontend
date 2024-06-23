@@ -1,13 +1,15 @@
 import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useKakaoStore } from "@/app/_utils/zustandStore";
+import { useLoginStore } from "@/app/_utils/zustandStore";
+import { setToken } from "@/app/_utils/handleToken";
+import LoadingWrapper from "@/app/_components/Loading/Loading";
 
 export default function Success() {
   const router = useRouter();
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingWrapper />}>
       <SuccessContent router={router} />
     </Suspense>
   );
@@ -15,8 +17,8 @@ export default function Success() {
 
 function SuccessContent({ router }: any) {
   const searchParams = useSearchParams();
-  const setEmail = useKakaoStore(state => state.setEmail);
-  const setType = useKakaoStore(state => state.setType);
+  const setEmail = useLoginStore(state => state.setEmail);
+  const setType = useLoginStore(state => state.setType);
 
   useEffect(() => {
     const typeQuery = searchParams.get("type");
@@ -36,7 +38,7 @@ function SuccessContent({ router }: any) {
     // 토큰이 있으면 로컬스토리지에 저장
     if (tokenQuery) {
       const accessToken = tokenQuery;
-      localStorage.setItem("accessToken", accessToken);
+      setToken(accessToken);
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {
