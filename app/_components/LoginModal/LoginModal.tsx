@@ -2,6 +2,7 @@ import Image from "next/image";
 import naverIcon from "@/public/icons/naver.svg";
 import kakaoIcon from "@/public/icons/kakao.png";
 import feedbee from "@/public/icons/feedbee.svg";
+import logoTextIcon from "@/public/icons/logoText.svg";
 import dottedLine from "@/public/images/dottedLine.svg";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
@@ -30,11 +31,10 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
     <Modal
       openModal={openModal}
       handleModalClose={handleModalClose}
-      className="max-h-[771px] w-[588px] pb-[88px] pt-[116px]">
+      className="max-h-[771px] w-[588px] pb-[88px] pt-[100px]">
       <div className="flex flex-col items-center">
-        <div className="mb-[39px] text-[56px] font-extrabold">
-          <span className="mr-2 tracking-[-8px]">FEED</span>
-          <span className="bg-yellow px-1.5 py-1">B</span>
+        <div className="mb-[74px]">
+          <Image src={logoTextIcon} width={180} alt="로고 텍스트" />
         </div>
 
         {/* <h2 className="mb-[167px] text-2xl font-bold">
@@ -47,7 +47,7 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
           src={dottedLine}
           width={679.047}
           height={252.715}
-          className="absolute bottom-[100px] -z-10"
+          className="absolute bottom-[115px] -z-10"
           alt="점선"
           priority
         />
