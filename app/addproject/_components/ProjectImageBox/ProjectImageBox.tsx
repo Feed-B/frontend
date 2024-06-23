@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import whitePlusIcon from "@/public/icons/whitePlus.svg";
@@ -11,9 +11,15 @@ import EmptyProjectImage from "./EmptyProjectImage";
 interface ImageType {
   id: string;
   url: string;
+  file: File;
 }
 
-function ProjectImageBox() {
+interface ProjectImageBoxProps {
+  setImageType: (image: string) => void;
+  handleImageFile: (fileList: File[]) => void;
+}
+
+function ProjectImageBox({ setImageType, handleImageFile }: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [selectedSize, setSelectedSize] = useState("웹");
@@ -21,22 +27,28 @@ function ProjectImageBox() {
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSize(event.target.value);
+    setImageType(event.target.value);
   };
 
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
+    const fileList = event.target.files;
 
-    if (files) {
-      const imageUrlList = Array.from(files).map(file => ({
-        id: `${file.name}-${file.lastModified}`,
+    if (fileList) {
+      const imageUrlList = Array.from(fileList).map(file => ({
+        id: `${file.name}-${file.lastModified}-${Math.random()}`,
         url: URL.createObjectURL(file),
+        file: file, // 각 이미지에 해당하는 File 객체 추가
       }));
 
       setShowImageUrlList(prevImages => {
-        const existingImageIds = prevImages.map(image => image.id);
-        const newImages = imageUrlList.filter(image => !existingImageIds.includes(image.id));
-        return [...prevImages, ...newImages].slice(0, 5); // 이미지는 최대 5개까지만 허용
+        const newImages = [...prevImages, ...imageUrlList];
+        return newImages.slice(0, 5); // 이미지는 최대 5개까지만 허용
       });
+
+      // 파일 입력 값을 리셋
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
   };
 
@@ -59,6 +71,11 @@ function ProjectImageBox() {
 
     setShowImageUrlList(reorderedImages);
   };
+
+  useEffect(() => {
+    const filesArray: File[] = showImageUrlList.map(image => image.file);
+    handleImageFile(filesArray);
+  }, [showImageUrlList, handleImageFile]);
 
   return (
     <>
@@ -90,10 +107,10 @@ function ProjectImageBox() {
                     ))}
                     {provided.placeholder}
                     {showImageUrlList.length < 5 && (
-                      <div className="flex h-[220px] w-[220px] items-center justify-center rounded-xl border border-solid border-blue-500 bg-blue-100">
-                        <div
-                          className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-blue-500"
-                          onClick={handleUploadButtonClick}>
+                      <div
+                        className="flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50"
+                        onClick={handleUploadButtonClick}>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
                           <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
                         </div>
                       </div>

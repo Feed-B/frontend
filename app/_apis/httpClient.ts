@@ -21,6 +21,19 @@ function httpClient() {
     return result;
   }
 
+  async function postFormData(url: string, data: FormData) {
+    const response = await fetch(BASE_URL + url, {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWI1ZjMyNyIsImlhdCI6MTcxOTA3NTk4MywiZXhwIjoxNzE5MDk3NTgzfQ.dumJ26XP1JbsbL8GLx9gEKjO4HLQuWTsjI3JM226TbY",
+      },
+      body: data,
+    });
+
+    return response;
+  }
+
   async function put<T, P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
     const response = await fetch(`${BASE_URL}${url}`, {
       method: "PUT",
@@ -45,6 +58,7 @@ function httpClient() {
   return {
     get,
     post,
+    postFormData,
     put,
     delete: del,
   };
