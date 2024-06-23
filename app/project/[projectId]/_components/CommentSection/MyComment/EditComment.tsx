@@ -18,8 +18,8 @@ function EditComment() {
       </div>
       <div className="flex flex-col gap-6">
         <EnterCommentProvider>
-          <EnterRating />
-          <EnterText />
+          <EnterRating ratingValue={[1, 2, 3, 4]} />
+          <EnterText commentValue="테스트중" />
           <EnterButton mode="edit" onClick={() => setView("show")} />
         </EnterCommentProvider>
       </div>

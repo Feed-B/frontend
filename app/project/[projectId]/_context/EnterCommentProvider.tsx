@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 interface EnterCommentContextType {
   rating: number[];
+  setRating: Dispatch<SetStateAction<number[]>>;
   isDragging: boolean;
   handleMouseDown: (categoryId: number, rating: number) => void;
   handleMouseMove: (categoryId: number, rating: number) => void;
@@ -14,6 +15,7 @@ interface EnterCommentContextType {
 
 const EnterCommentContext = createContext<EnterCommentContextType>({
   rating: [],
+  setRating: () => {},
   isDragging: false,
   handleMouseDown: () => {},
   handleMouseMove: () => {},
@@ -67,6 +69,7 @@ function EnterCommentProvider({ children }: { children: ReactNode }) {
     <EnterCommentContext.Provider
       value={{
         rating,
+        setRating,
         isDragging,
         handleMouseDown,
         handleMouseMove,
