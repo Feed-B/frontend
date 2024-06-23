@@ -4,8 +4,8 @@ import selectProfileIcon from "@/public/icons/blackProfile.svg";
 import defaultProfileIcon from "@/public/icons/defaultProfile.svg";
 import selectHeartIcon from "@/public/icons/fullHeart.svg";
 import defaultHeartIcon from "@/public/icons/grayHeart.svg";
+import { MY_PAGE_TEXT } from "../constant";
 import ProjectCategoryButton from "./ProjectCategoryButton";
-import { MY_PAGE_TEXT } from "./constant";
 
 interface MyPageCategory {
   selectCategory: string;
