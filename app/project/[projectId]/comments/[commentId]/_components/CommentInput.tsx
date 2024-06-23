@@ -16,7 +16,7 @@ function CommentInput({ projectId, commentId }: CommentInputProps) {
 
   const mutation = useMutation({
     mutationFn: (comment: string) => {
-      return commentApi.PostReflyComment(projectId, commentId, comment);
+      return commentApi.postReflyComment(projectId, commentId, comment);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
