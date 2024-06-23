@@ -83,3 +83,12 @@ export interface RatingsResponse {
   functionRank: number;
   completionRank: number;
 }
+
+export interface TotalRatingResponse {
+  averageRank: number;
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  rankCount: number;
+}
