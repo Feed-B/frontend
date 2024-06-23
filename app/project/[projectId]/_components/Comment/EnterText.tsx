@@ -9,7 +9,7 @@ interface Props {
   commentValue?: string;
 }
 
-function WriteText({ commentValue }: Props) {
+function EnterText({ commentValue }: Props) {
   const { comment, setComment, handleCommentChange } = useEnterCommentContext();
 
   useEffect(() => {
@@ -35,4 +35,4 @@ function WriteText({ commentValue }: Props) {
   );
 }
 
-export default WriteText;
+export default EnterText;

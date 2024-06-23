@@ -19,7 +19,7 @@ interface Props {
   ratingValue?: number[];
 }
 
-function WriteRating({ ratingValue }: Props) {
+function EnterRating({ ratingValue }: Props) {
   const { rating, setRating, handleMouseDown, handleMouseMove, handleMouseUp } = useEnterCommentContext();
 
   useEffect(() => {
@@ -55,4 +55,4 @@ function WriteRating({ ratingValue }: Props) {
   );
 }
 
-export default WriteRating;
+export default EnterRating;
