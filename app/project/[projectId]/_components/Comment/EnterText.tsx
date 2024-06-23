@@ -5,8 +5,14 @@ import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 const MAX_COMMENT_LIMIT = 150;
 
-function WriteText() {
-  const { comment, handleCommentChange } = useEnterCommentContext();
+interface Props {
+  commentValue?: string;
+}
+
+function WriteText({ commentValue }: Props) {
+  const { comment, setComment, handleCommentChange } = useEnterCommentContext();
+
+  if (commentValue) setComment(commentValue);
 
   return (
     <>
@@ -16,6 +22,7 @@ function WriteText() {
           className="h-full w-full resize-none bg-white text-sm text-gray-600 outline-none placeholder:text-gray-500"
           placeholder="댓글을 입력해주세요"
           maxLength={MAX_COMMENT_LIMIT}
+          value={comment}
         />
         <p className="mt-auto text-nowrap text-sm text-gray-500">
           {comment.length}/{MAX_COMMENT_LIMIT}
