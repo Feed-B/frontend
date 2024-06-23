@@ -18,7 +18,7 @@ const MAX_STAR = 5;
 
 function RatingSection({ projectId }: Props) {
   const { data: totalRating }: UseQueryResult<TotalRatingResponse, Error> = useQuery(
-    projectQueryKeys.rating(projectId)
+    projectQueryKeys.totalRating(projectId)
   );
   if (!totalRating) return null;
 
