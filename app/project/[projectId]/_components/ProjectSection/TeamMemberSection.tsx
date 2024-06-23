@@ -19,8 +19,6 @@ function TeamMemberSection({ projectId }: Props) {
   );
   if (!teamMember) return null;
 
-  console.log("teamMember", teamMember);
-
   return (
     <section className="px-8">
       <h3 className="mb-4 text-lg font-semibold">팀원</h3>
