@@ -38,7 +38,7 @@ function ProjectSection() {
 
   return (
     <section className="col-start-2 mt-10">
-      <ProjectList projectList={data.pages} lastRef={lastCardInfo} />
+      <ProjectList projectList={data.pages[0].content} lastRef={lastCardInfo} />
     </section>
   );
 }
