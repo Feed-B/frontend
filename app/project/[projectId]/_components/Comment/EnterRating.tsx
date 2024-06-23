@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
@@ -22,7 +22,10 @@ interface Props {
 function WriteRating({ ratingValue }: Props) {
   const { rating, setRating, handleMouseDown, handleMouseMove, handleMouseUp } = useEnterCommentContext();
 
-  if (ratingValue) setRating(ratingValue);
+  useEffect(() => {
+    if (ratingValue) setRating(ratingValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ratingValue]);
 
   return (
     <>
