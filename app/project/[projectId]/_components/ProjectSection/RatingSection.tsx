@@ -1,16 +1,30 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import fullStarIcon from "@/public/icons/fullStar.svg";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
+import { TotalRatingResponse } from "@/app/_apis/schema/projectResponse";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 
-const ratingCategory = [
-  { id: 1, name: "아이디어", rate: 4.1 },
-  { id: 2, name: "디자인", rate: 2.7 },
-  { id: 3, name: "기능", rate: 3.5 },
-  { id: 4, name: "완성도", rate: 4.8 },
-];
+interface Props {
+  projectId: number;
+}
 
-function RatingSection() {
+function RatingSection({ projectId }: Props) {
+  const { data: totalRating }: UseQueryResult<TotalRatingResponse, Error> = useQuery(
+    projectQueryKeys.rating(projectId)
+  );
+  if (!totalRating) return null;
+
+  const ratingCategory = [
+    { id: 1, name: "아이디어", rate: totalRating.ideaRank },
+    { id: 2, name: "디자인", rate: totalRating.designRank },
+    { id: 3, name: "기능", rate: totalRating.functionRank },
+    { id: 4, name: "완성도", rate: totalRating.completionRank },
+  ];
+
   const MAX_STAR = 5;
 
   const starPercent = (rate: number) => {
@@ -21,7 +35,7 @@ function RatingSection() {
   return (
     <section className="flex gap-8 px-8 py-4">
       <div className="flex min-w-fit flex-col items-center gap-3">
-        <p className="text-5xl font-bold text-gray-900">3.5</p>
+        <p className="text-5xl font-bold text-gray-900">{totalRating.averageRank}</p>
         <div className="flex">
           {/* 추후 기능 추가시 수정 예정 */}
           <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={25} />
@@ -30,7 +44,7 @@ function RatingSection() {
           <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={25} />
           <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={25} />
         </div>
-        <p className="text-sm text-gray-600">평균 별점(123명)</p>
+        <p className="text-sm text-gray-600">평균 별점({totalRating.rankCount}명)</p>
       </div>
       <div className="flex w-full flex-col gap-1">
         {ratingCategory.map(category => (
