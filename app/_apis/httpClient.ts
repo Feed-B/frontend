@@ -21,13 +21,10 @@ function httpClient() {
     return result;
   }
 
-  async function postFormData(url: string, data: FormData) {
-    const response = await fetch(BASE_URL + url, {
+  async function postFormData(url: string, data: FormData, headers: HeadersInit) {
+    const response = await fetch(`${BASE_URL}${url}`, {
       method: "POST",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMWI1ZjMyNyIsImlhdCI6MTcxOTA3NTk4MywiZXhwIjoxNzE5MDk3NTgzfQ.dumJ26XP1JbsbL8GLx9gEKjO4HLQuWTsjI3JM226TbY",
-      },
+      headers,
       body: data,
     });
 
