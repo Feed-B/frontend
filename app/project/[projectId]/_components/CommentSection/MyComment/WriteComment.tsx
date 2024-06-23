@@ -6,10 +6,13 @@ import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
 import EnterButton from "../../Comment/EnterButton";
+import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 
 const isLogin = true;
 
 function WriteComment() {
+  const { setView } = useMyCommentContext();
+
   return (
     <div className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
       {!isLogin && <WriteCommentShield />}
@@ -22,7 +25,7 @@ function WriteComment() {
           <EnterCommentProvider>
             <EnterRating />
             <EnterText />
-            <EnterButton />
+            <EnterButton onClick={() => setView("show")} />
           </EnterCommentProvider>
         </div>
       </div>

@@ -5,8 +5,11 @@ import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
 import EnterButton from "../../Comment/EnterButton";
+import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 
 function EditComment() {
+  const { setView } = useMyCommentContext();
+
   return (
     <div className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">
       <div className="mb-8 flex items-center gap-1">
@@ -17,7 +20,7 @@ function EditComment() {
         <EnterCommentProvider>
           <EnterRating />
           <EnterText />
-          <EnterButton mode="edit" />
+          <EnterButton mode="edit" onClick={() => setView("show")} />
         </EnterCommentProvider>
       </div>
     </div>
