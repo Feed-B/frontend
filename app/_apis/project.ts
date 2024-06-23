@@ -11,7 +11,7 @@ export const projectApi = {
     projectTechStacks = [],
     sortCondition = "RECENT",
   }: ProjectListParams) => {
-    return await httpClient().get<ProjectResponseType>("/projects?", {
+    return await httpClient().get<ProjectResponseType>("/projects", {
       sortCondition,
       projectTechStacks,
       searchString,

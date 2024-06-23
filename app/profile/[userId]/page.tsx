@@ -1,14 +1,12 @@
 "use client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Providers from "@/app/_queryFactory/providers";
 import MyPageContent from "./_components/MyPageContent";
 
 function MyPage() {
-  const queryClient = new QueryClient();
-
   return (
-    <QueryClientProvider client={queryClient}>
+    <Providers>
       <MyPageContent />
-    </QueryClientProvider>
+    </Providers>
   );
 }
 
