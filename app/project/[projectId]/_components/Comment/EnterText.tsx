@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
-import EnterButton from "./EnterButton";
 
 const MAX_COMMENT_LIMIT = 150;
 
@@ -22,7 +21,6 @@ function WriteText() {
           {comment.length}/{MAX_COMMENT_LIMIT}
         </p>
       </div>
-      <EnterButton />
     </>
   );
 }
