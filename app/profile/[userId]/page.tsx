@@ -1,5 +1,5 @@
 "use client";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MyPageContent from "./_components/MyPageContent";
 
 function MyPage() {
