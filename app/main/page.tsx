@@ -27,7 +27,7 @@ async function MainPage() {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <main className="mx-auto mt-[100px] grid w-[1200px] grid-cols-[230px_minmax(976px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)]">
+      <main className="mx-auto my-16 grid w-[1200px] grid-cols-[230px_minmax(976px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)]">
         <SelectStack />
       </main>
     </HydrationBoundary>
