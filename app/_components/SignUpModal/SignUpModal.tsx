@@ -33,7 +33,7 @@ function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps
           <span className="bg-yellow-500 px-1.5 py-1">B</span>
         </div>
 
-        <SignUpForm item={item} dataType={dataType} setItem={setItem} />
+        <SignUpForm item={item} dataType={dataType} setItem={setItem} handleModalClose={handleModalClose} />
       </div>
 
       <Image
