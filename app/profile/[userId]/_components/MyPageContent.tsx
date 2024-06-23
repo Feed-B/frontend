@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { projectListAPI } from "@/app/_apis/projectListAPI";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
-import MyPageCategory from "./MyPageCategory";
-import Profile from "./Profile";
+import MyPageCategory from "./MyPageCategory/MyPageCategory";
+import Profile from "./Profile/Profile";
 
 function MyPageContent() {
   const { userId } = useParams();
