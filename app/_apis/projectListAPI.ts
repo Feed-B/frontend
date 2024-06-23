@@ -3,10 +3,10 @@ import httpClient from "./httpClient";
 import { ProjectResponseType } from "./schema/projectResponse";
 
 // 임시 headers
-const headers = {
+export const headers = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZjMzZjhlYiIsImlhdCI6MTcxOTEwNzI2NCwiZXhwIjoxNzE5MTI4ODY0fQ.1XXJL2NPyJ-OaWZQ5pjRDKBZr1L6PQv6oYnO5u0kMvw",
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMmQ3YmI5YyIsImlhdCI6MTcxOTEzMzI2NCwiZXhwIjoxNzE5MTU0ODY0fQ.CDrY4s-c4qJ3NBoyeTBR2Z1Rjo726lgPVC2Ji4_Onik",
   },
 };
 
