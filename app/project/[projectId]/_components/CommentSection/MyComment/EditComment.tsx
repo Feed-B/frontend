@@ -15,7 +15,7 @@ function EditComment() {
       <div className="flex flex-col gap-6">
         <EnterCommentProvider>
           <EnterRating />
-          <EnterText mode="edit" />
+          <EnterText />
         </EnterCommentProvider>
       </div>
     </div>

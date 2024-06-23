@@ -6,7 +6,7 @@ import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
 
-const isLogin = false;
+const isLogin = true;
 
 function WriteComment() {
   return (
