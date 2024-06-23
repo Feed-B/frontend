@@ -3,9 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 import shareIcon from "@/public/icons/share.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
 import CommentCount from "../../../_components/Comment/CommentCount";
 import EnterRating from "../../../_components/Comment/EnterRating";
@@ -20,10 +22,14 @@ interface CommentSectionProps {
 }
 
 function CommentSection({ projectId, commentId }: CommentSectionProps) {
-  const { isOpen: commentEditOpen, toggleState } = useToggleHook();
-  const { data } = useQuery(commentQueryKeys.detail(projectId, commentId));
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
 
-  if (!data) {
+  const { isOpen: commentEditOpen, toggleState } = useToggleHook();
+  const { data: commentDetailData } = useQuery(commentQueryKeys.detail(projectId, commentId));
+  const { data: ratingsData } = useQuery(projectQueryKeys.ratings(projectId, Number(userId)));
+
+  if (!commentDetailData || !ratingsData) {
     return <div>없음</div>;
   }
 
@@ -31,9 +37,13 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
     <>
       <section className="mt-10 w-full p-4">
         <div className="flex items-center justify-between">
-          <CommentProfile userId={data?.authorId} userName={data.authorName} userJob={data.job} />
+          <CommentProfile
+            userId={commentDetailData?.authorId}
+            userName={commentDetailData.authorName}
+            userJob={commentDetailData.job}
+          />
           <div className="relative flex items-center gap-2">
-            <CommentCount commentCount={data.childCommentCount} />
+            <CommentCount commentCount={commentDetailData.childCommentCount} />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
             <CommentDropbox toggleState={toggleState} />
           </div>
@@ -43,13 +53,15 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
         <section>
           <EnterCommentProvider>
             <EnterRating />
-            <EnterText mode="edit" />
+            <EnterText />
           </EnterCommentProvider>
         </section>
       ) : (
         <section className="mt-4">
-          <p className="mt-4 min-h-[230px] w-full p-4 text-sm font-normal text-gray-900">{data?.comment}ㅁ</p>
-          <RatingBox />
+          <p className="mt-4 min-h-[230px] w-full p-4 text-sm font-normal text-gray-900">
+            {commentDetailData?.comment}
+          </p>
+          <RatingBox {...ratingsData} />
         </section>
       )}
     </>

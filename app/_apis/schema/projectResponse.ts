@@ -75,3 +75,11 @@ export interface TeamMember {
     },
   ];
 }
+
+export interface RatingsResponse {
+  averageRank: number;
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+}

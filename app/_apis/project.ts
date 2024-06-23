@@ -1,6 +1,6 @@
 import { ProjectListParams } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
-import { ProjectResponse, ProjectResponseType } from "./schema/projectResponse";
+import { ProjectResponse, ProjectResponseType, RatingsResponse } from "./schema/projectResponse";
 
 export const projectApi = {
   getProjectList: async ({
@@ -25,5 +25,8 @@ export const projectApi = {
   },
   getTeamMember: async (projectId: number) => {
     return await httpClient().get<ProjectResponse>(`/projects/${projectId}/teammates`);
+  },
+  getRatings: async (projectId: number, userId: number) => {
+    return await httpClient().get<RatingsResponse>(`/projects/${projectId}/ratings/${userId}`);
   },
 };
