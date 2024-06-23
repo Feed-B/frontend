@@ -38,6 +38,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
       isFavorite: isFavorite,
       wishCountState: wishCount,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const likeMutation = useMutation({

@@ -5,12 +5,7 @@ import HoverCard from "./HoverCard";
 function ProjectCard({ project }: { project: ProjectData }) {
   return (
     <div className="group relative aspect-square overflow-hidden rounded-md">
-      <HoverCard
-        projectId={project.projectId}
-        isWishProject={project.isLiked}
-        wishCount={project.likeCount}
-        stackList={project.stackList}
-      />
+      <HoverCard project={project} />
       <Image fill src={project.thumbnailUrl} alt={project.introduction} sizes="(max-width: 240px)" />
     </div>
   );
