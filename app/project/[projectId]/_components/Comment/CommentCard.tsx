@@ -21,8 +21,8 @@ function CommentCard({ comment }: CommentProps) {
   return (
     <div className="relative flex flex-col justify-between gap-4 rounded-xl bg-gray-100 p-4">
       <div className="flex items-center justify-between">
-        <CommentProfile />
-        <CommentCount />
+        <CommentProfile userId={comment.id} userJob={comment.name} userName={comment.name} />
+        <CommentCount commentCount={comment.total} />
       </div>
       <p className="text-overflow-3 h-14 text-sm text-gray-600">{comment.comment}</p>
       <div className="flex justify-between">
