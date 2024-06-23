@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import fullStarIcon from "@/public/icons/fullStar.svg";
+import halfStarIcon from "@/public/icons/halfStar.svg";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import { TotalRatingResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
@@ -11,6 +12,8 @@ import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 interface Props {
   projectId: number;
 }
+
+const MAX_STAR = 5;
 
 function RatingSection({ projectId }: Props) {
   const { data: totalRating }: UseQueryResult<TotalRatingResponse, Error> = useQuery(
@@ -25,24 +28,26 @@ function RatingSection({ projectId }: Props) {
     { id: 4, name: "완성도", rate: totalRating.completionRank },
   ];
 
-  const MAX_STAR = 5;
-
   const starPercent = (rate: number) => {
     const percent = (rate / MAX_STAR) * 100;
     return String(percent) + "%";
   };
+
+  let isInteger = true;
+  if (totalRating.averageRank % 1 !== 0) isInteger = false;
 
   return (
     <section className="flex gap-8 px-8 py-4">
       <div className="flex min-w-fit flex-col items-center gap-3">
         <p className="text-5xl font-bold text-gray-900">{totalRating.averageRank}</p>
         <div className="flex">
-          {/* 추후 기능 추가시 수정 예정 */}
-          <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={25} />
-          <Image src={fullStarIcon} alt="프로젝트 평가 별점." width={25} />
-          <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={25} />
-          <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={25} />
-          <Image src={emptyStarIcon} alt="프로젝트 평가 별점." width={25} />
+          {[...Array(Math.floor(totalRating.averageRank))].map((_, index) => (
+            <Image src={fullStarIcon} alt="노란색 별." width={25} key={index} />
+          ))}
+          {!isInteger && <Image src={halfStarIcon} alt="절반 별." width={25} />}
+          {[...Array(Math.floor(MAX_STAR - totalRating.averageRank))].map((_, index) => (
+            <Image src={emptyStarIcon} alt="회색 별." width={25} key={index} />
+          ))}
         </div>
         <p className="text-sm text-gray-600">평균 별점({totalRating.rankCount}명)</p>
       </div>
