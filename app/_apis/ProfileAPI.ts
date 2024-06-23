@@ -14,11 +14,17 @@ export interface UserProfileType {
 }
 
 export interface PutUserProfileType {
-  id: number;
-  nickName: string;
-  aboutMe: string;
-  job: JobType;
+  memberEditRequestDto: {
+    id: number;
+    nickName: string;
+    aboutMe: string;
+    job: JobType;
+  };
+  image: File;
+  imageIdx: ImageIdxType;
 }
+
+export type ImageIdxType = 0 | 1 | 2;
 
 export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | "DEVOPS";
 
@@ -29,7 +35,7 @@ export const profileAPI = {
   getUserProfile: async ({ userId }: { userId: number }) => {
     return await httpClient().get<UserProfileType>(`/profile/${userId}`);
   },
-  putUserProfile: async ({ userId, userData }: { userId: number; userData: PutUserProfileType }) => {
-    return await httpClient().put(`/profile/${userId}`, { userData });
+  putUserProfile: async ({ userData }: { userData: PutUserProfileType }) => {
+    return await httpClient().put(`/profile/${userData.memberEditRequestDto.id}`, { userData });
   },
 };

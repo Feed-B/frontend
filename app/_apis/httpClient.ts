@@ -2,7 +2,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function httpClient() {
   async function get<R>(url: string, params?: Record<string, any>, headers?: HeadersInit) {
-    const urlParams = new URLSearchParams(params).toString;
+    const urlParams = new URLSearchParams(params).toString();
     const response = await fetch(`${BASE_URL}${url}?${urlParams}`, {
       headers,
     });

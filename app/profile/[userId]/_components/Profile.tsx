@@ -1,5 +1,5 @@
 "use client";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
@@ -8,6 +8,7 @@ import Button from "@/app/_components/Button/Button";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { MY_PAGE_TEXT } from "./constant";
+import ProfileSkeleton from "./skeletonUI/ProfileSkeleton";
 
 function Profile() {
   const { userId } = useParams();
@@ -18,6 +19,10 @@ function Profile() {
     },
   });
   const { isOpen, toggleState } = useToggleHook();
+
+  if (!userProfileData) {
+    return <ProfileSkeleton />;
+  }
 
   return (
     <>
