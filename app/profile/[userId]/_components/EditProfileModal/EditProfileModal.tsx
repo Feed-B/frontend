@@ -9,6 +9,7 @@ import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useHandleInputFile from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { PutUserDataType, profileAPI, UserDataType } from "@/app/_apis/ProfileAPI";
+import getQueryClient from "@/app/_queryFactory/getQueryClient";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -20,6 +21,8 @@ interface EditProfileModalProps {
 }
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
+  const queryClient = getQueryClient();
+
   const {
     inputRef: profileImageInputRef,
     image,
@@ -31,9 +34,16 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   } = useHandleInputFile();
   const nickNameValue = useTextInput();
   const aboutMeValue = useTextInput();
+
   const changeProfileMutation = useMutation({
     mutationFn: (newProfileData: PutUserDataType) => {
       return profileAPI.putUserData({ userId: profileData.id, userData: newProfileData });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["profile", profileData.id.toString()],
+      });
+      handleModalClose();
     },
   });
 
@@ -52,7 +62,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
         job: "FRONTEND",
       },
     };
-    console.log("submitData", submitData);
+
     changeProfileMutation.mutate(submitData);
   };
 

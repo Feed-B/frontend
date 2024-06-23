@@ -59,9 +59,6 @@ export const profileAPI = {
       if (!response.ok) {
         throw new Error("Error updating profile: " + response.statusText);
       }
-
-      const result = await response.json();
-      console.log("Profile updated successfully:", result);
     } catch (error) {
       console.error("Error updating profile:", error);
     }
