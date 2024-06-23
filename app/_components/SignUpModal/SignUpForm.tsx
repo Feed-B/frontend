@@ -39,7 +39,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
       return response;
     },
     onSuccess: data => {
-      console.log("Sign up Successful", data);
+      console.log("Sign up Successful");
       const accessToken = data.token;
       setToken(accessToken);
     },
