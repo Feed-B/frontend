@@ -11,7 +11,7 @@ export const JOB_CATEGORIES = {
   ETC: "ETC",
 };
 
-export const JOB_CATEGORIES_KR = {
+export const JOB_CATEGORIES_KR: Record<string, string> = {
   ALL: "전체",
   FRONTEND: "프론트엔드",
   BACKEND: "백엔드",

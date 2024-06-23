@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRef } from "react";
-import { JOB_CATEGORIES } from "@/app/_constants/JobCategoryData";
+import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import smallArrowIcon from "@/public/icons/smallArrow.svg";
@@ -20,12 +20,17 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
   const exceptionRef = useRef<HTMLDivElement>(null);
 
   const dataMap: Record<string, Record<string, string>> = {
-    job: JOB_CATEGORIES,
+    job: JOB_CATEGORIES_KR,
   };
-
+  console.log(item);
   const data = dataMap[dataType];
 
   useOutsideClick(itemRef, toggleState, exceptionRef);
+
+  const handleItemClickInternal = (value: string) => {
+    const englishValue = Object.keys(JOB_CATEGORIES_KR).find(key => JOB_CATEGORIES_KR[key] === value) || "";
+    handleItemClick(englishValue);
+  };
 
   return (
     <div className="relative">
@@ -37,7 +42,7 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
         className={
           "mt-2 flex h-11 w-96 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
         }>
-        {item}
+        {JOB_CATEGORIES_KR[item] || item}
 
         <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
           {isOpen ? (
@@ -50,7 +55,7 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
 
       {isOpen && (
         <DropDown className="absolute w-96">
-          <DropDownList data={data} handleItemClick={handleItemClick} />
+          <DropDownList data={data} handleItemClick={handleItemClickInternal} />
         </DropDown>
       )}
     </div>
