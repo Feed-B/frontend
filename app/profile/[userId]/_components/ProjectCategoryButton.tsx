@@ -7,11 +7,10 @@ interface CategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   id: string;
   icon: StaticImageData | string;
-  text: "MY_PROJECT" | "WISH_PROJECT";
-  count: string;
+  text: "MY_PROJECT" | "WISH_PROJECT" | "PROJECT";
 }
 
-function ProjectCategoryButton({ isSelect, onClick, id, icon, text, count }: CategoryProps) {
+function ProjectCategoryButton({ isSelect, onClick, id, icon, text }: CategoryProps) {
   return (
     <button
       type="button"
@@ -22,7 +21,6 @@ function ProjectCategoryButton({ isSelect, onClick, id, icon, text, count }: Cat
         <Image width={24} src={icon} alt={MY_PAGE_TEXT[text] + " 보기"} priority />
         <p>{MY_PAGE_TEXT[text]}</p>
       </div>
-      <p>{count}</p>
     </button>
   );
 }

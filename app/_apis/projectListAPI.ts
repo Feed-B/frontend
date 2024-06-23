@@ -6,7 +6,7 @@ import { ProjectResponseType } from "./schema/projectResponse";
 export const headers = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMmQ3YmI5YyIsImlhdCI6MTcxOTEzMzI2NCwiZXhwIjoxNzE5MTU0ODY0fQ.CDrY4s-c4qJ3NBoyeTBR2Z1Rjo726lgPVC2Ji4_Onik",
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MjVjYmQyNyIsImlhdCI6MTcxOTEzODkzNiwiZXhwIjoxNzE5MTYwNTM2fQ.3Rm6NHdPxwlWrFf_zHC4WzEfHMsGNSMhIVIPrbg_gG0",
   },
 };
 
