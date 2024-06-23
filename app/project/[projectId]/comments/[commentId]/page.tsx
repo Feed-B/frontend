@@ -47,7 +47,7 @@ async function CommentPage({ params }: Props) {
         <ScrollToTopButton className="fixed bottom-10 right-10" direction="top" />
         <CommentSection projectId={params.projectId} commentId={params.commentId} />
         <section className="mt-12">
-          <CommentInput />
+          <CommentInput projectId={params.projectId} commentId={params.commentId} />
         </section>
         <ReflyCommentList projectId={params.projectId} commentId={params.commentId} />
       </div>
