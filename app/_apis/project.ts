@@ -1,5 +1,6 @@
-import { ProjectListParams, ProjectListResponse } from "../_types/ProjectListDataType";
+import { ProjectListParams } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
+import { ProjectResponse, ProjectResponseType } from "./schema/projectResponse";
 
 export const projectApi = {
   getprojectList: async ({
@@ -10,7 +11,7 @@ export const projectApi = {
     projectTechStacks = [],
     sortCondition = "RECENT",
   }: ProjectListParams) => {
-    return await httpClient().get<ProjectListResponse>("/projects?", {
+    return await httpClient().get<ProjectResponseType>("/projects", {
       sortCondition,
       projectTechStacks,
       searchString,
@@ -18,5 +19,11 @@ export const projectApi = {
       size,
       limit,
     });
+  },
+  getProject: async (projectId: number) => {
+    return await httpClient().get<ProjectResponse>(`/projects/${projectId}`);
+  },
+  getTeamMember: async (projectId: number) => {
+    return await httpClient().get<ProjectResponse>(`/projects/${projectId}/teammates`);
   },
 };

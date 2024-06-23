@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRef } from "react";
-import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
+import { JOB_CATEGORIES } from "@/app/_constants/JobCategoryData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import smallArrowIcon from "@/public/icons/smallArrow.svg";

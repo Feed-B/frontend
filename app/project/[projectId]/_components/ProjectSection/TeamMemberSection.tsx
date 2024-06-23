@@ -1,52 +1,42 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-//mock data
-const teamMemberList = [
-  {
-    id: 1,
-    job: "디자인",
-    member: [
-      {
-        id: 1,
-        name: "홍길동동",
-      },
-      {
-        id: 2,
-        name: "박이름",
-        url: "https://www.youtube.com/",
-      },
-    ],
-  },
-  {
-    id: 2,
-    job: "프론트엔드",
-    member: [
-      {
-        id: 1,
-        name: "일이삼사오육칠팔",
-        url: "https://www.naver.com/",
-      },
-    ],
-  },
-];
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { TeamMemberResponse } from "@/app/_apis/schema/projectResponse";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 
-function TeamMemberSection() {
+interface Props {
+  projectId: number;
+}
+
+type JobCategory = keyof typeof JOB_CATEGORIES_KR;
+
+function TeamMemberSection({ projectId }: Props) {
+  const { data: teamMember }: UseQueryResult<TeamMemberResponse, Error> = useQuery(
+    projectQueryKeys.teamMember(projectId)
+  );
+  if (!teamMember) return null;
+
+  console.log("teamMember", teamMember);
+
   return (
     <section className="px-8">
       <h3 className="mb-4 text-lg font-semibold">팀원</h3>
       <div className="flex gap-6">
-        {teamMemberList.map(team => (
-          <div className="flex gap-3" key={team.id}>
-            <p className="rounded bg-gray-100 p-1 text-sm font-semibold text-blue-500">{team.job}</p>
-            <div className="flex items-center gap-2 text-sm">
-              {team.member.map(member => (
+        {teamMember.map((team, index) => (
+          <div className="flex gap-3" key={index}>
+            <p className="p-1 text-sm font-semibold text-blue-400">{JOB_CATEGORIES_KR[team.job as JobCategory]}</p>
+            <div className="flex items-center gap-2 text-sm text-gray-900">
+              {team.teammateList.map(member => (
                 <div key={member.id}>
                   {member.url ? (
                     <Link href={member.url} target="_blank">
-                      <p className="font-bold">{member.name}</p>
+                      <p className="font-medium underline">{member.teammateName}</p>
                     </Link>
                   ) : (
-                    <p>{member.name}</p>
+                    <p>{member.teammateName}</p>
                   )}
                 </div>
               ))}

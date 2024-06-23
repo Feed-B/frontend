@@ -5,7 +5,7 @@ import React, { useRef, useState } from "react";
 import smallArrowIcon from "@/public/icons/smallArrow.svg";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import JOB_CATEGORIES from "@/app/_constants/JobCategoryData";
+import { JOB_CATEGORIES } from "@/app/_constants/JobCategoryData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { TOOL_DATA } from "@/app/_constants/ToolData";

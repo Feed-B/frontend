@@ -7,11 +7,19 @@ import SelectStack from "./_components/SelectStack/SelectStack";
 async function MainPage() {
   const queryClient = getQueryClient();
 
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ["project", "list", "projectList"],
     queryFn: async () => {
       const response = projectApi.getprojectList({ page: 1, size: 12 });
       return response;
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: any) => {
+      const { customPageable } = lastPage;
+      if (customPageable.hasNext) {
+        return customPageable.page + 1; // 다음 페이지 번호 반환
+      }
+      return undefined; // 더 이상 페이지가 없으면 undefined 반환
     },
   });
 
