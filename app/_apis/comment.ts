@@ -25,4 +25,16 @@ export const commentApi = {
       size,
     });
   },
+  PostReflyComment: async (projectId: number, commentId: number, comment: string) => {
+    return await httpClient().post(`/projects/${projectId}/comments`, {
+      ideaRank: 5,
+      designRank: 5,
+      functionRank: 5,
+      completionRank: 5,
+      commentRequest: {
+        parentId: commentId,
+        comment: comment,
+      },
+    });
+  },
 };
