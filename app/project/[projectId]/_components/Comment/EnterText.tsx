@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 const MAX_COMMENT_LIMIT = 150;
@@ -12,7 +12,10 @@ interface Props {
 function WriteText({ commentValue }: Props) {
   const { comment, setComment, handleCommentChange } = useEnterCommentContext();
 
-  if (commentValue) setComment(commentValue);
+  useEffect(() => {
+    if (commentValue) setComment(commentValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [commentValue]);
 
   return (
     <>
