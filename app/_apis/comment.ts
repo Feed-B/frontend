@@ -56,4 +56,7 @@ export const commentApi = {
   deleteComment: async (commentId: number) => {
     return await httpClient().delete(`/projects/comments/${commentId}`, HEADER.applicationHeaders);
   },
+  deleteReflyComment: async (reflyId: number) => {
+    return await httpClient().delete(`/projects/comments/replies/${reflyId}`, HEADER.applicationHeaders);
+  },
 };
