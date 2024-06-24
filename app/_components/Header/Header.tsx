@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import uploadIcon from "@/public/icons/upload.svg";
 import useModal from "@/app/_hooks/useModal";
-import { useLogin } from "@/app/_context/LoginProvider";
-import { getToken, removeToken } from "@/app/_utils/handleToken";
+import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import feedbee from "@/public/icons/feedbee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import LoginButton from "../LoginButton/LoginButton";
@@ -17,23 +16,7 @@ import HeaderDropDownBox from "./HeaderDropDownBox";
 function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
 
-  const { type, setType } = useLogin();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogout = () => {
-    removeToken();
-    setType("");
-    setIsLoggedIn(false);
-  };
-
-  useEffect(() => {
-    const token = getToken();
-    if (token && token.accessToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false); // 로그인 상태 없을 때 업데이트
-    }
-  }, [setType]);
+  const { type, setType, isLoggedIn, handleLogout } = useCheckLogin();
 
   useEffect(() => {
     if (type === "signUp") {
