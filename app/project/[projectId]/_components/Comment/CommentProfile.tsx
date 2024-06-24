@@ -10,7 +10,7 @@ interface CommentProfileProps {
 
 function CommentProfile({ userId, userName, userJob }: CommentProfileProps) {
   return (
-    <Link href={`/mypage/${userId}`}>
+    <Link href={`/profile/${userId}`}>
       <div className="flex items-center gap-2">
         <ProfileImage imageUrl="default" className="h-10 w-10" />
         <div>

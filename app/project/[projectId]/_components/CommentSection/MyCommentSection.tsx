@@ -27,7 +27,7 @@ const CommentContainer = ({ projectId }: Props) => {
 
   return (
     <section>
-      {view === "show" && <ShowComment myComment={myComment} />}
+      {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
       {view === "write" && <WriteComment />}
       {view === "edit" && <EditComment projectId={projectId} myComment={myComment} />}
     </section>
