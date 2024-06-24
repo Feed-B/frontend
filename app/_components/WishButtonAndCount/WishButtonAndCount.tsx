@@ -46,7 +46,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
       return handleLikeProject.postLikeProject({ projectId });
     },
   });
-  const unLikeMutatioin = useMutation({
+  const unLikeMutation = useMutation({
     mutationFn: (projectId: number) => {
       return handleLikeProject.deleteLikeProject({ projectId });
     },
@@ -55,7 +55,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
   const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (favoriteState.isFavorite) {
-      unLikeMutatioin.mutate(projectId);
+      unLikeMutation.mutate(projectId);
       setFavoriteState(prevState => ({
         isFavorite: false,
         wishCountState: prevState.wishCountState - 1,
