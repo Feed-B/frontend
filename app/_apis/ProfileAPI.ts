@@ -1,5 +1,5 @@
+import { HEADER } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
-import { headers } from "./projectListAPI";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -33,10 +33,10 @@ export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | 
 
 export const profileAPI = {
   getCurrentUserId: async () => {
-    return await httpClient().get<CurrentUserIdType>("/profile", { "": "" }, headers.headers);
+    return await httpClient().get<CurrentUserIdType>("/profile", { "": "" }, HEADER.headers);
   },
   getUserData: async (userId: number) => {
-    return await httpClient().get<UserDataType>(`/profile/${userId}`, { "": "" }, headers.headers);
+    return await httpClient().get<UserDataType>(`/profile/${userId}`, { "": "" }, HEADER.headers);
   },
   putUserData: async ({ userId, userData }: { userId: number; userData: PutUserDataType }) => {
     const formData = new FormData();
@@ -55,7 +55,7 @@ export const profileAPI = {
       const response = await fetch(`${BASE_URL}/profile/${userId}`, {
         method: "PUT",
         body: formData,
-        headers: headers.headers,
+        headers: HEADER.headers,
       });
 
       if (!response.ok) {
