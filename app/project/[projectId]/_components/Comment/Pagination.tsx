@@ -23,7 +23,7 @@ function Pagination({ projectId }: Props) {
     <>
       <div className="grid grid-cols-4 gap-x-6 gap-y-5">
         {commentList.content.map(comment => (
-          <CommentCard key={comment.authorId} comment={comment} totalComment={totalElements} />
+          <CommentCard key={comment.authorId} projectId={projectId} comment={comment} />
         ))}
       </div>
       {totalElements > 0 && (
