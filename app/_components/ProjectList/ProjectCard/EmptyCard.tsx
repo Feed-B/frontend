@@ -10,7 +10,6 @@ function EmptyCard() {
   return (
     <div className="absolute left-1/2 top-40 flex -translate-x-1/2 flex-col items-center justify-center gap-6">
       <Image width={54} height={72} src={emptyFileIcon} alt="파일 없음" />
-
       <p className="text-xl font-semibold text-gray-700">
         {projectState.searchString ? (
           <>
