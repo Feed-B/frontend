@@ -107,7 +107,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 title="닉네임"
               />
               <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
-              <DropDownBox dataType="job" handleInputChange={handleSetValue} />
+              <DropDownBox dataType="job" handleInputChange={handleSetValue} inputWidth={"w-full"} />
               <label htmlFor="introduction" className="text-base font-bold text-gray-900">
                 {MY_PAGE_TEXT.INTRODUCTION}
               </label>
@@ -116,7 +116,9 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 onChange={aboutMeValue.handleChangeValue}
                 id="introduction"
                 className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-gray-500 placeholder:text-sm"
-                placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
+                placeholder={
+                  profileData.aboutMe ? profileData.aboutMe : "자신을 표현할 간단한 소개를 적어주세요(최대 150자)"
+                }
               />
             </div>
           </div>
