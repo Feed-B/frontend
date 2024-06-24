@@ -21,6 +21,15 @@ function httpClient() {
     return result;
   }
 
+  async function postData<P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
+    const response = await fetch(`${BASE_URL}${url}`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(data),
+    });
+    return response;
+  }
+
   async function postFormData(url: string, data: FormData, headers: HeadersInit) {
     const response = await fetch(`${BASE_URL}${url}`, {
       method: "POST",
@@ -55,6 +64,7 @@ function httpClient() {
   return {
     get,
     post,
+    postData,
     postFormData,
     put,
     delete: del,
