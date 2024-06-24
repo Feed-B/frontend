@@ -8,6 +8,6 @@ export const userQueryKeys = createQueryKeys("user", {
   }),
   detail: (userId: number) => ({
     queryKey: ["profile"],
-    queryFn: () => profileAPI.getUserData({ userId }),
+    queryFn: () => profileAPI.getUserData(userId),
   }),
 });

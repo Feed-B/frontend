@@ -8,6 +8,7 @@ import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { profileAPI } from "@/app/_apis/ProfileAPI";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
@@ -24,10 +25,16 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
 
   const { data: userId } = useQuery(userQueryKeys.userId());
 
+  const { data: userdata } = useQuery({
+    queryKey: ["profile", userId],
+    queryFn: () => profileAPI.getUserData(Number(userId)),
+    enabled: !!userId,
+  });
+
   return (
     <>
       <div className="relative flex cursor-pointer items-center gap-2" onClick={toggleState}>
-        <ProfileImage imageUrl={"default"} className="h-9 w-9" />
+        <ProfileImage imageUrl={userdata?.imageUrl} className="h-9 w-9" />
         <button type="button" className="h-5 w-5" ref={buttonRef}>
           {isOpen ? (
             <Image src={SmallTopArrowIcon} alt="유저 옵션." width={20} height={20} priority />
