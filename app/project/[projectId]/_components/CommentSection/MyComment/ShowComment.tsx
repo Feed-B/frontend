@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import kebabIcon from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import useToggleHook from "@/app/_hooks/useToggleHook";
@@ -15,17 +16,18 @@ import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
 
 interface Props {
+  projectId: number;
   myComment: MyCommentResponse;
 }
 
 type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
-function ShowComment({ myComment }: Props) {
+function ShowComment({ projectId, myComment }: Props) {
   const { isOpen, toggleState } = useToggleHook();
   const { setView } = useMyCommentContext();
 
   if (!myComment.projectCommentResponseDto) return null;
-  const { authorId, authorName, job, childCommentCount, comment, averageStarRank } =
+  const { authorId, authorName, job, childCommentCount, comment, averageStarRank, commentId } =
     myComment.projectCommentResponseDto;
 
   return (
@@ -48,10 +50,12 @@ function ShowComment({ myComment }: Props) {
         <p className="text-overflow-3 h-14 text-sm text-gray-900">{comment}</p>
         <div className="flex justify-between">
           <TotalStar starRating={averageStarRank} />
-          <div className="flex items-center">
-            <p className="text-xs text-gray-900">더보기</p>
-            <Image src={arrowIcon} alt="댓글 상세보기." width={20} />
-          </div>
+          <Link href={`/project/${projectId}/comments/${commentId}?userId=${authorId}`}>
+            <div className="flex items-center">
+              <p className="text-xs text-gray-900">더보기</p>
+              <Image src={arrowIcon} alt="댓글 상세보기." width={20} />
+            </div>
+          </Link>
         </div>
       </div>
     </>
