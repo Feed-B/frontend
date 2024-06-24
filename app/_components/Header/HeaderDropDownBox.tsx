@@ -27,7 +27,7 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
 
   const { data: userdata } = useQuery({
     queryKey: ["profile", userId],
-    queryFn: () => profileAPI.getUserData(Number(userId)),
+    queryFn: () => profileAPI.getUserData(Number(userId?.id)),
     enabled: !!userId,
   });
 
@@ -45,7 +45,7 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
       </div>
       {isOpen && (
         <DropDown className="right-0 top-[65px] w-40" itemRef={dropdownRef}>
-          <DropDown.LinkItem href={`/profile/${userId}`}>마이페이지</DropDown.LinkItem>
+          <DropDown.LinkItem href={`/profile/${userId?.id}`}>마이페이지</DropDown.LinkItem>
           <DropDown.HR />
           <DropDown.TextItem onClick={handleLogout}>로그아웃</DropDown.TextItem>
         </DropDown>
