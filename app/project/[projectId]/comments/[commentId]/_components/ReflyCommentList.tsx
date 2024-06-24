@@ -36,7 +36,8 @@ function ReflyCommentList({ projectId, commentId }: ReflyCommentListProps) {
   }, [isVisible]);
 
   return (
-    <section className="relative mb-12 mt-4">
+    <section className="relative mb-12 mt-6">
+      <h3 className="mb-4">댓글 ({reflyPage?.pages[0].customPageable.totalElements})</h3>
       {reflyPage?.pages.map(reflyList =>
         reflyList.content.map((refly, index) => <ReflyCommentItem key={index} replyComment={refly} />)
       )}

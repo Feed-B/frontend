@@ -74,6 +74,6 @@ export const commentApi = {
     });
   },
   deleteComment: async (commentId: number) => {
-    return await httpClient().delete(`/projects/comments/${commentId}`);
+    return await httpClient().delete(`/projects/comments/${commentId}`, HEADER.applicationHeaders);
   },
 };
