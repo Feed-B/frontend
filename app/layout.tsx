@@ -1,4 +1,5 @@
 import LoadingWrapper from "./_components/LoadingWrapper/LoadingWrapper";
+import { LoginProvider } from "./_context/LoginProvider";
 import type { Metadata } from "next";
 import "./_styles/globals.css";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <LoadingWrapper>{children}</LoadingWrapper>
+        <LoginProvider>
+          <LoadingWrapper>{children}</LoadingWrapper>
+        </LoginProvider>
       </body>
     </html>
   );

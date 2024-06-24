@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useLoginStore } from "@/app/_utils/zustandStore";
 import { setToken } from "@/app/_utils/handleToken";
 import LoadingWrapper from "@/app/_components/LoadingWrapper/LoadingWrapper";
+import { useLogin } from "@/app/_context/LoginProvider";
 
 export default function Success() {
   const router = useRouter();
@@ -17,8 +17,7 @@ export default function Success() {
 
 function SuccessContent({ router }: any) {
   const searchParams = useSearchParams();
-  const setEmail = useLoginStore(state => state.setEmail);
-  const setType = useLoginStore(state => state.setType);
+  const { setEmail, setType } = useLogin();
 
   useEffect(() => {
     const typeQuery = searchParams.get("type");
