@@ -26,7 +26,7 @@ function Header() {
   }, [type, signUpModalOpen, setType]);
 
   return (
-    <header className="sticky top-0 h-16 w-full border-b border-solid border-gray-300 bg-white py-2 text-white">
+    <header className="sticky right-0 top-0 z-20 h-16 w-full border-b border-solid border-gray-300 bg-white py-2 text-white">
       <div className="relative m-0 mx-auto flex h-11 max-w-[1400px] items-center justify-between">
         <Link href="/main" className="flex items-center gap-2.5">
           <Image src={feedbee} width={33} height={32} alt="로고 아이콘" priority />

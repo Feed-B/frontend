@@ -16,7 +16,7 @@ export const projectQueryKeys = createQueryKeys("project", {
     queryFn: () => projectApi.getTeamMember(projectId),
   }),
   ratings: (projectId: number, userId: number) => ({
-    queryKey: ["teamMember"],
+    queryKey: ["rating"],
     queryFn: () => projectApi.getRatings(projectId, userId),
   }),
   totalRating: (projectId: number) => ({
