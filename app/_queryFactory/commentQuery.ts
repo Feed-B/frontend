@@ -25,4 +25,8 @@ export const commentQueryKeys = createQueryKeys("comment", {
     queryKey: ["reflyCommentList", props.page],
     queryFn: () => commentApi.getReflyCommentList({ ...props }),
   }),
+  myComment: (projectId: number) => ({
+    queryKey: ["myComment"],
+    queryFn: () => commentApi.getMyComment(projectId),
+  }),
 });

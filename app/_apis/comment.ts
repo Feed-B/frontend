@@ -1,5 +1,11 @@
+import { HEADER } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
-import { CommentDetailResponse, CommentsListResponse, ReflyCommentResponse } from "./schema/commentResponse";
+import {
+  CommentDetailResponse,
+  CommentsListResponse,
+  MyCommentResponse,
+  ReflyCommentResponse,
+} from "./schema/commentResponse";
 
 interface CommentsListRequest {
   projectId: number;
@@ -36,6 +42,10 @@ export const commentApi = {
       page,
       size,
     });
+  },
+
+  getMyComment: async (projectId: number) => {
+    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/comments/mine`, {}, HEADER.headers);
   },
   postReflyComment: async (projectId: number, commentId: number, comment: string) => {
     return await httpClient().post(`/projects/${projectId}/comments`, {
