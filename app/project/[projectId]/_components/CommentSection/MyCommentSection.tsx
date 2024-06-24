@@ -29,7 +29,7 @@ const CommentContainer = ({ projectId }: Props) => {
     <section>
       {view === "show" && <ShowComment myComment={myComment} />}
       {view === "write" && <WriteComment />}
-      {view === "edit" && <EditComment />}
+      {view === "edit" && <EditComment projectId={projectId} myComment={myComment} />}
     </section>
   );
 };
