@@ -54,12 +54,12 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       image: isImageChange(profileData?.imageUrl, image) === 2 ? imageFile : null,
       imageIdx: isImageChange(profileData.imageUrl, image),
       memberEditRequestDto: {
-        id: profileData?.id,
+        id: profileData.id,
         nickName: isValidNickName(profileData.nickName, nickNameValue.value)
           ? nickNameValue.value
-          : profileData?.nickName,
+          : profileData.nickName,
         aboutMe: isChangeAboutMe(profileData.aboutMe, aboutMeValue.value) ? aboutMeValue.value : profileData?.aboutMe,
-        job: jobValue as JobType,
+        job: jobValue === "" ? profileData.job : (jobValue as JobType),
       },
     };
 
@@ -71,7 +71,10 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       handleSetImage(profileData.imageUrl);
     }
     if (profileData?.nickName) {
-      nickNameValue.handleSetValue(profileData?.nickName);
+      nickNameValue.handleSetValue(profileData.nickName);
+    }
+    if (profileData.aboutMe) {
+      aboutMeValue.handleSetValue(profileData.aboutMe);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,10 +118,8 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 value={aboutMeValue.value}
                 onChange={aboutMeValue.handleChangeValue}
                 id="introduction"
-                className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-gray-500 placeholder:text-sm"
-                placeholder={
-                  profileData.aboutMe ? profileData.aboutMe : "자신을 표현할 간단한 소개를 적어주세요(최대 150자)"
-                }
+                className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-sm text-gray-800 placeholder:text-sm"
+                placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
               />
             </div>
           </div>
