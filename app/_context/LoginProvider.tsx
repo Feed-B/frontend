@@ -2,11 +2,6 @@
 
 import { ReactNode, createContext, useContext, useState } from "react";
 
-// interface LoginData {
-//   email: string;
-//   type: string;
-// }
-
 interface LoginContextType {
   email: string;
   setEmail: (email: string) => void;
