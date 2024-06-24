@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 
-const useHandleInputFile = () => {
+const useFileInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -40,4 +40,4 @@ const useHandleInputFile = () => {
   };
 };
 
-export default useHandleInputFile;
+export default useFileInput;

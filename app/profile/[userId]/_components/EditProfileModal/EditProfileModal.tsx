@@ -6,7 +6,7 @@ import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
-import useHandleInputFile from "@/app/_hooks/useFileInput";
+import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { PutUserDataType, profileAPI, UserDataType } from "@/app/_apis/ProfileAPI";
 import { MY_PAGE_TEXT } from "../constant";
@@ -30,7 +30,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     handleSelectImageClick,
     handleSetImage,
     imageFile,
-  } = useHandleInputFile();
+  } = useFileInput();
   const nickNameValue = useTextInput();
   const aboutMeValue = useTextInput();
 
