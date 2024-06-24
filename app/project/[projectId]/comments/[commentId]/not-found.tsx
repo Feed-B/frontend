@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import angryFeedB from "@/public/icons/angryFeedB.png";
@@ -14,9 +12,9 @@ function NotFound() {
           <h1 className="text-2xl font-bold text-gray-900">페이지를 찾을 수 없습니다</h1>
           <div>
             <p className="text-gray-700">찾고 계시는 댓글 페이지를 찾을 수 없습니다.</p>
-            <p className="text-gray-700">프로젝트 페이지로 이동해서 다시 시도해주세요.</p>
+            <p className="text-gray-700">메인 페이지로 이동해서 다시 시도해주세요.</p>
           </div>
-          <Link href={"/"}>
+          <Link href={"/main"}>
             <Button bgColor="yellow" buttonSize="normal">
               메인으로 이동하기
             </Button>
