@@ -24,13 +24,13 @@ const CommentContainer = ({ projectId }: Props) => {
     enabled: !!isLoggedIn,
   });
 
-  if (!myComment) return <WriteComment />;
+  if (!myComment) return <WriteComment projectId={projectId} />;
   if (myComment && myComment.exists) setView("show");
 
   return (
     <section>
       {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
-      {view === "write" && <WriteComment />}
+      {view === "write" && <WriteComment projectId={projectId} />}
       {view === "edit" && <EditComment projectId={projectId} myComment={myComment} />}
     </section>
   );

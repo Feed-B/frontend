@@ -9,7 +9,11 @@ import EnterText from "../../Comment/EnterText";
 import EnterButton from "../../Comment/EnterButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 
-function WriteComment() {
+interface Props {
+  projectId: number;
+}
+
+function WriteComment({ projectId }: Props) {
   const { setView } = useMyCommentContext();
   const { isLoggedIn } = useCheckLogin();
 
@@ -25,7 +29,7 @@ function WriteComment() {
           <EnterCommentProvider>
             <EnterRating />
             <EnterText />
-            <EnterButton onClick={() => setView("show")} />
+            <EnterButton projectId={projectId} onClick={() => setView("show")} />
           </EnterCommentProvider>
         </div>
       </div>
