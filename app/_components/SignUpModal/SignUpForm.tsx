@@ -42,6 +42,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
       console.log("Sign up Successful");
       const accessToken = data.token;
       setToken(accessToken);
+      window.location.reload(); // 회원가입 후 새로고침
     },
     onError: error => {
       console.error("Sign up failed", error);
