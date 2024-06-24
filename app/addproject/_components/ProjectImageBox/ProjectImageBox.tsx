@@ -3,27 +3,80 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
+import Resizer from "react-image-file-resizer";
 import whitePlusIcon from "@/public/icons/whitePlus.svg";
-import RadioButton from "../RadioButton";
-import ProjectImageCard from "./ProjectImageCard";
-import EmptyProjectImage from "./EmptyProjectImage";
+import EmptyProjectImage from "@/app/addproject/_components/ProjectImageBox/EmptyProjectImage";
+import ProjectImageCard from "@/app/addproject/_components/ProjectImageBox/ProjectImageCard";
+import RadioButton from "@/app/addproject/_components/RadioButton";
 
 interface ImageType {
   id: string;
   url: string;
-  file: File;
+  file?: File;
 }
 
 interface ProjectImageBoxProps {
   setImageType: (image: string) => void;
   handleImageFile: (fileList: File[]) => void;
+  initialImageType?: string;
+  initialUrlList?: string[];
 }
 
-function ProjectImageBox({ setImageType, handleImageFile }: ProjectImageBoxProps) {
+function ProjectImageBox({
+  setImageType,
+  handleImageFile,
+  initialImageType = "",
+  initialUrlList = [],
+}: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [selectedSize, setSelectedSize] = useState("웹");
+  const [selectedSize, setSelectedSize] = useState((initialImageType && initialImageType) || "웹");
   const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
+
+  useEffect(() => {
+    if (initialUrlList.length > 0) {
+      const urlList = initialUrlList.map(url => ({
+        id: url,
+        url: url,
+      }));
+      setShowImageUrlList(urlList);
+    }
+  }, [initialUrlList]);
+
+  const resizeFile = (file: Blob): Promise<File> =>
+    new Promise((resolve, reject) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        uri => {
+          if (typeof uri === "string") {
+            fetch(uri)
+              .then(res => res.blob())
+              .then(blob => {
+                const resizedFile = new File([blob], (file as File).name, {
+                  type: "image/jpeg",
+                  lastModified: Date.now(),
+                });
+                resolve(resizedFile);
+              })
+              .catch(reject);
+          } else if (uri instanceof Blob) {
+            const resizedFile = new File([uri], (file as File).name, {
+              type: "image/jpeg",
+              lastModified: Date.now(),
+            });
+            resolve(resizedFile);
+          } else {
+            reject(new Error("Unexpected type of uri"));
+          }
+        },
+        "blob"
+      );
+    });
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSize(event.target.value);
@@ -34,14 +87,19 @@ function ProjectImageBox({ setImageType, handleImageFile }: ProjectImageBoxProps
     const fileList = event.target.files;
 
     if (fileList) {
-      const imageUrlList = Array.from(fileList).map(file => ({
-        id: `${file.name}-${file.lastModified}-${Math.random()}`,
-        url: URL.createObjectURL(file),
-        file: file, // 각 이미지에 해당하는 File 객체 추가
-      }));
+      const resizedImages = await Promise.all(
+        Array.from(fileList).map(async file => {
+          const resizedFile = await resizeFile(file);
+          return {
+            id: `${file.name}-${file.lastModified}-${Math.random()}`,
+            url: URL.createObjectURL(resizedFile),
+            file: resizedFile, // 리사이징된 파일을 저장
+          };
+        })
+      );
 
       setShowImageUrlList(prevImages => {
-        const newImages = [...prevImages, ...imageUrlList];
+        const newImages = [...prevImages, ...resizedImages];
         return newImages.slice(0, 5); // 이미지는 최대 5개까지만 허용
       });
 
@@ -73,7 +131,7 @@ function ProjectImageBox({ setImageType, handleImageFile }: ProjectImageBoxProps
   };
 
   useEffect(() => {
-    const filesArray: File[] = showImageUrlList.map(image => image.file);
+    const filesArray: File[] = showImageUrlList.filter(image => image.file).map(image => image.file as File);
     handleImageFile(filesArray);
   }, [showImageUrlList, handleImageFile]);
 
