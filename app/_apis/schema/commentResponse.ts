@@ -34,6 +34,7 @@ export interface CommentDetailResponse {
 export interface ReflyCommentResponse {
   content: [
     {
+      replyId: number;
       userId: number;
       job: string;
       author: string;

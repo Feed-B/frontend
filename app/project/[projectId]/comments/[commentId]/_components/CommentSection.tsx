@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import {} from "react-query";
 import shareIcon from "@/public/icons/share.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";

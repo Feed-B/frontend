@@ -1,5 +1,7 @@
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import ReflyDropbox from "./ReflyDropbox";
 
 interface ReflyCommentItemProp {
   replyComment: {
@@ -7,12 +9,16 @@ interface ReflyCommentItemProp {
     job: string;
     author: string;
     comment: string;
+    replyId: number;
   };
 }
 
 function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
+
   return (
-    <div className="mt-2 flex gap-3 p-2">
+    <div className="relative mt-2 flex gap-3 p-2">
       <ProfileImage imageUrl="default" className="h-6 w-6" />
       <div>
         <div className="mb-2 flex items-center gap-1">
@@ -20,6 +26,9 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
           <p className="text-[10px] font-normal text-blue-400">{replyComment.job}</p>
         </div>
         <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
+      </div>
+      <div className="absolute right-0">
+        {Number(userId) === replyComment.userId && <ReflyDropbox reflyId={replyComment.replyId} />}
       </div>
     </div>
   );
