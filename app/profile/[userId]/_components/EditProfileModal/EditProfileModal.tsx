@@ -8,7 +8,7 @@ import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
-import { PutUserDataType, profileAPI, UserDataType } from "@/app/_apis/ProfileAPI";
+import { PutUserDataType, profileAPI, UserDataType, JobType } from "@/app/_apis/ProfileAPI";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -33,6 +33,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   } = useFileInput();
   const nickNameValue = useTextInput();
   const aboutMeValue = useTextInput();
+  const { value: jobValue, handleSetValue } = useTextInput();
 
   const changeProfileMutation = useMutation({
     mutationFn: (newProfileData: PutUserDataType) => {
@@ -58,7 +59,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
           ? nickNameValue.value
           : profileData?.nickName,
         aboutMe: isChangeAboutMe(profileData.aboutMe, aboutMeValue.value) ? aboutMeValue.value : profileData?.aboutMe,
-        job: "FRONTEND",
+        job: jobValue as JobType,
       },
     };
 
@@ -106,7 +107,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 title="닉네임"
               />
               <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
-              <DropDownBox dataType="job" />
+              <DropDownBox dataType="job" handleInputChange={handleSetValue} />
               <label htmlFor="introduction" className="text-base font-bold text-gray-900">
                 {MY_PAGE_TEXT.INTRODUCTION}
               </label>
