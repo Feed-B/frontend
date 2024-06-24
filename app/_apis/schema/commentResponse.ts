@@ -50,3 +50,16 @@ export interface ReflyCommentResponse {
     size: number;
   };
 }
+
+export interface MyCommentResponse {
+  exists: boolean;
+  projectCommentResponseDto?: {
+    commentId: number;
+    authorId: number;
+    authorName: string;
+    job: string;
+    comment: string;
+    averageStarRank: number;
+    childCommentCount: number;
+  };
+}
