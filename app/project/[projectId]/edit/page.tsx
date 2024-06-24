@@ -1,9 +1,15 @@
 import React from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "@/app/_queryFactory/getQueryClient";
-import AddProjectContainer from "./AddProject/AddProjectContainer";
+import EditProjectContainer from "./EditProject/EditProjectContainer";
 
-function page() {
+interface Props {
+  params: {
+    projectId: number;
+  };
+}
+
+function page({ params }: Props) {
   const queryClient = getQueryClient();
   const dehydratedState = dehydrate(queryClient);
 
@@ -12,7 +18,7 @@ function page() {
       <main className="mx-auto grid w-[1200px]">
         <h1 className="mb-4 mt-16 w-full text-start text-[28px] font-bold text-gray-900">프로젝트 수정</h1>
         <hr />
-        <AddProjectContainer />
+        <EditProjectContainer projectId={params.projectId} />
       </main>
     </HydrationBoundary>
   );
