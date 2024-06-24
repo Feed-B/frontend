@@ -25,7 +25,7 @@ function Project({ params }: Props) {
       </div>
       <div>
         <MyCommentSection projectId={params.projectId} />
-        <CommentListSection />
+        <CommentListSection projectId={params.projectId} />
       </div>
     </main>
   );
