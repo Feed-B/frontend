@@ -23,3 +23,15 @@ export const JOB_CATEGORIES_KR: Record<string, string> = {
   FULLSTACK: "풀스택",
   ETC: "기타",
 };
+
+export type JobCategoriesType =
+  | "전체"
+  | "프론트엔드"
+  | "백엔드"
+  | "디자이너"
+  | "IOS"
+  | "안드로이드"
+  | "데브옵스"
+  | "기획자"
+  | "풀스택"
+  | "기타";
