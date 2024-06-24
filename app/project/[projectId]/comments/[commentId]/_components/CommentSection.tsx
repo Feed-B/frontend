@@ -60,7 +60,7 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
           <EnterCommentProvider>
             <EnterText commentValue={commentDetailData.comment} />
             <EnterRating ratingValue={transformedData} />
-            <EnterButton onClick={() => console.log()} mode="edit" />
+            <EnterButton onClick={() => console.log()} mode="edit" projectId={projectId} />
           </EnterCommentProvider>
         </section>
       ) : (
