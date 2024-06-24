@@ -5,7 +5,7 @@ import React, { useRef, useState } from "react";
 import smallArrowIcon from "@/public/icons/smallArrow.svg";
 import smallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { JOB_CATEGORIES, JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
+import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { TOOL_DATA } from "@/app/_constants/ToolData";
@@ -27,30 +27,25 @@ function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps)
   );
 
   const dataMap: Record<string, Record<string, string>> = {
-    job: JOB_CATEGORIES,
-    tool: toolData,
-  };
-
-  const displayDataMap: Record<string, Record<string, string>> = {
     job: JOB_CATEGORIES_KR,
     tool: toolData,
   };
 
   const data = dataMap[dataType];
-  const displayData = displayDataMap[dataType];
 
   const { isOpen, toggleState } = useToggleHook();
 
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [item, setItem] = useState(dataType === "job" ? "직무" : "플랫폼");
 
   const itemRef = useRef<HTMLDivElement>(null);
   const exceptionRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(itemRef, toggleState, exceptionRef);
 
-  const handleItemClick = (key: string) => {
-    setSelectedKey(key);
-    handleInputChange && handleInputChange(key);
+  const handleItemClick = (value: string) => {
+    const englishValue = Object.keys(JOB_CATEGORIES_KR).find(key => JOB_CATEGORIES_KR[key] === value) || "";
+    setItem(value);
+    handleInputChange && handleInputChange(dataType === "job" ? englishValue : value);
     toggleState();
   };
 
@@ -58,7 +53,7 @@ function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps)
     <div className="relative">
       <div
         className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}>
-        {selectedKey ? displayData[selectedKey] : dataType === "job" ? "직무" : "플랫폼"}
+        {item}
         <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
           {isOpen ? (
             <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
@@ -69,7 +64,7 @@ function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps)
       </div>
       {isOpen && (
         <DropDown className={`absolute ${inputWidth ? inputWidth : "w-[118px]"}`} itemRef={itemRef}>
-          <DropDownList data={data} displayData={displayData} handleItemClick={handleItemClick} />
+          <DropDownList data={data} handleItemClick={handleItemClick} />
         </DropDown>
       )}
     </div>
