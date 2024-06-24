@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { SignUpRequest } from "@/app/_apis/schema/user";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import { signUpApi } from "@/app/_apis/signUp";
-import { useLoginStore } from "@/app/_utils/zustandStore";
+import { useLogin } from "@/app/_context/LoginProvider";
 import { setToken } from "@/app/_utils/handleToken";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -31,7 +31,7 @@ const CONSTANTS = {
 function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormProps) {
   const { isOpen, toggleState } = useToggleHook();
 
-  const { email } = useLoginStore();
+  const { email } = useLogin();
 
   const mutation = useMutation({
     mutationFn: (userData: SignUpRequest) => {
