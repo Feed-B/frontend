@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import crossLineIcon from "@/public/icons/crossLine.svg";
 import { FULL_STACK_DATA } from "@/app/_constants/StackData";
-import { useGetSkillStack } from "../../_context/SkillStackProvider";
+import { useGetSkillStack } from "@/app/addproject/_context/SkillStackProvider";
 
 function SelectSkillStackBox() {
   const stackData = FULL_STACK_DATA;
