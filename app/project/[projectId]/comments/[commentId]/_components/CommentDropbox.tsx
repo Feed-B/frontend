@@ -29,7 +29,7 @@ function ModalDropbox({ toggleState: editToggle, commentId, projectId }: ModalDr
 
   const mutation = useMutation({
     mutationFn: () => {
-      return commentApi.deleteCommnet(commentId);
+      return commentApi.deleteComment(commentId);
     },
     onSuccess: () => {
       queryClient.removeQueries({
