@@ -15,7 +15,7 @@ function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { data: userProfileData } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
-      return await profileAPI.getUserData({ userId: Number(userId) });
+      return await profileAPI.getUserData(Number(userId));
     },
   });
   const { isOpen, toggleState } = useToggleHook();
