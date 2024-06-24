@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import React, { useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
@@ -19,6 +21,8 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useOutsideClick(dropdownRef, toggleState, buttonRef);
+
+  const { data: userId } = useQuery(userQueryKeys.userId());
 
   return (
     <>
@@ -34,7 +38,7 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
       </div>
       {isOpen && (
         <DropDown className="right-0 top-[65px] w-40" itemRef={dropdownRef}>
-          <DropDown.LinkItem href="/profile">마이페이지</DropDown.LinkItem>
+          <DropDown.LinkItem href={`/profile/${userId}`}>마이페이지</DropDown.LinkItem>
           <DropDown.HR />
           <DropDown.TextItem onClick={handleLogout}>로그아웃</DropDown.TextItem>
         </DropDown>
