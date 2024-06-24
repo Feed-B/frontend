@@ -1,5 +1,4 @@
 import "@/app/_styles/globals.css";
-import Providers from "../../../../_queryFactory/providers";
 // import { commentApi } from "@/app/_apis/comment";
 
 interface Props {
@@ -21,5 +20,5 @@ interface Props {
 // }
 
 export default function CommentLayout({ children }: Readonly<Props>) {
-  return <Providers>{children}</Providers>;
+  return <>{children}</>;
 }

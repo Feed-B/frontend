@@ -14,9 +14,12 @@ interface ReflyCommentListProps {
 function ReflyCommentList({ projectId, commentId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
+  console.log(isVisible);
+
   const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["comment", "reflyList", "reflyCommentList"],
-    queryFn: ({ pageParam = 1 }) => commentApi.getReflyCommentList({ projectId, commentId, page: pageParam as number }),
+    queryFn: ({ pageParam = 1 }) =>
+      commentApi.getReflyCommentList({ projectId, commentId, page: pageParam as number, size: 10 }),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
@@ -35,7 +38,7 @@ function ReflyCommentList({ projectId, commentId }: ReflyCommentListProps) {
   }, [isVisible]);
 
   return (
-    <section className="mb-12 mt-4">
+    <section className="relative mb-12 mt-4">
       {reflyPage?.pages.map(reflyList =>
         reflyList.content.map((refly, index) => <ReflyCommentItem key={index} replyComment={refly} />)
       )}

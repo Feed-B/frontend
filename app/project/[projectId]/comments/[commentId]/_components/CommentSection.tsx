@@ -10,7 +10,6 @@ import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
-import CommentCount from "../../../_components/Comment/CommentCount";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../../_components/Comment/EnterText";
@@ -52,7 +51,6 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
             userJob={commentDetailData.job}
           />
           <div className="relative flex items-center gap-2">
-            <CommentCount commentCount={commentDetailData.childCommentCount} />
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
             <CommentDropbox toggleState={toggleState} commentId={commentId} projectId={projectId} />
           </div>
