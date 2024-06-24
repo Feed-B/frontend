@@ -2,8 +2,8 @@
 import { MouseEvent } from "react";
 import selectProfileIcon from "@/public/icons/blackProfile.svg";
 import defaultProfileIcon from "@/public/icons/defaultProfile.svg";
-import selectHeartIcon from "@/public/icons/fullHeart.svg";
-import defaultHeartIcon from "@/public/icons/grayHeart.svg";
+import likePotIcon from "@/public/icons/emptyBlackPot.svg";
+import unlikePotIcon from "@/public/icons/fullDarkPot.svg";
 import { MY_PAGE_TEXT } from "../constant";
 import ProjectCategoryButton from "./ProjectCategoryButton";
 
@@ -28,7 +28,7 @@ function MyPageCategory({ selectCategory, handleSelectCategory, isMyPage }: MyPa
         onClick={handleSelectCategory}
         id={"wishProject"}
         isSelect={selectCategory === "wishProject"}
-        icon={selectCategory === "wishProject" ? selectHeartIcon : defaultHeartIcon}
+        icon={selectCategory === "wishProject" ? unlikePotIcon : likePotIcon}
         text={"WISH_PROJECT"}
       />
     </div>
