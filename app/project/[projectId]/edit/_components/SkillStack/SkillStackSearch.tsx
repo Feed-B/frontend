@@ -6,7 +6,7 @@ import crossLineIcon from "@/public/icons/crossLine.svg";
 import searchIcon from "@/public/icons/search.svg";
 import { FULL_STACK_DATA } from "@/app/_constants/StackData";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-import { useGetSkillStack } from "../../_context/SkillStackProvider";
+import { useGetSkillStack } from "@/app/addproject/_context/SkillStackProvider";
 
 function SkillStackSearch() {
   const stackData = FULL_STACK_DATA;
