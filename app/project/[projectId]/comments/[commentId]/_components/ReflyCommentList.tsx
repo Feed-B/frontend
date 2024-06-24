@@ -14,8 +14,6 @@ interface ReflyCommentListProps {
 function ReflyCommentList({ projectId, commentId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
-  console.log(isVisible);
-
   const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["comment", "reflyList", "reflyCommentList"],
     queryFn: ({ pageParam = 1 }) =>
