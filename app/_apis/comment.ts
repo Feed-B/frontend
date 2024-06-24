@@ -50,13 +50,17 @@ export const commentApi = {
     return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/comments/mine`, {}, HEADER.headers);
   },
   postComment: async (projectId: number, rankList: number[], comment: string) => {
-    return await httpClient().post(`/projects/${projectId}/comments`, {
-      ideaRank: rankList[0],
-      designRank: rankList[1],
-      functionRank: rankList[2],
-      completionRank: rankList[3],
-      comment: comment,
-    });
+    return await httpClient().postData(
+      `/projects/${projectId}/comments`,
+      {
+        ideaRank: rankList[0],
+        designRank: rankList[1],
+        functionRank: rankList[2],
+        completionRank: rankList[3],
+        comment: comment,
+      },
+      HEADER.applicationHeaders
+    );
   },
   postReflyComment: async (projectId: number, commentId: number, comment: string) => {
     return await httpClient().post(

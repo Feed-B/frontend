@@ -43,7 +43,7 @@ function EditComment({ projectId, myComment }: Props) {
         <EnterCommentProvider>
           <EnterRating ratingValue={transformedData} />
           <EnterText commentValue={comment} />
-          <EnterButton mode="edit" onClick={() => setView("show")} />
+          <EnterButton projectId={projectId} mode="edit" onClick={() => setView("show")} />
         </EnterCommentProvider>
       </div>
     </div>

@@ -1,39 +1,50 @@
 "use client";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
+import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 interface Props {
-  // projectId: number;
+  projectId: number;
   mode?: "write" | "edit";
   onClick: () => void;
 }
 
-function EnterButton({ mode = "write", onClick }: Props) {
-  // const { rating, comment } = useEnterCommentContext();
-  // const queryClient = useQueryClient();
+function EnterButton({ projectId, mode = "write", onClick }: Props) {
+  const { rating, comment } = useEnterCommentContext();
+  const queryClient = useQueryClient();
 
-  // const mutation = useMutation({
-  //   mutationFn: (comment: string) => {
-  //     return commentApi.postComment(projectId, rating, comment);
-  //   },
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["comment", "list", "commentList"],
-  //     });
-  //   },
-  // });
+  const isDisabled = rating.some(element => element < 1);
 
-  // const handleSubmit = (event: { preventDefault: () => void }) => {
-  //   event.preventDefault();
-  //   if (rating.every(element => element > 0)) {
-  //     mutation.mutate(comment);
-  //   }
-  // };
+  const mutation = useMutation({
+    mutationFn: (comment: string) => {
+      return commentApi.postComment(projectId, rating, comment);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["comment", "list", "commentList"],
+      });
+      window.location.reload();
+    },
+  });
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    if (!isDisabled) {
+      mutation.mutate(comment);
+    }
+  };
 
   return (
     <div className="flex">
       {mode === "write" ? (
-        <Button className="ml-auto" buttonSize="normal" bgColor="yellow" onClick={onClick}>
+        <Button
+          className="ml-auto"
+          buttonSize="normal"
+          bgColor={isDisabled ? "gray" : "yellow"}
+          onClick={handleSubmit}
+          disabled={isDisabled}>
           등록
         </Button>
       ) : (
