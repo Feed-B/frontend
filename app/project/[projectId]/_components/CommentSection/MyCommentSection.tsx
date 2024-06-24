@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import { commentApi } from "@/app/_apis/comment";
@@ -24,12 +24,8 @@ const CommentContainer = ({ projectId }: Props) => {
     enabled: !!isLoggedIn,
   });
 
-  useEffect(() => {
-    if (myComment && myComment.exists) setView("show");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [myComment]);
-
   if (!myComment) return <WriteComment />;
+  if (myComment && myComment.exists) setView("show");
 
   return (
     <section>
