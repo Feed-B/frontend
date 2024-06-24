@@ -15,7 +15,7 @@ function EnterButton({ mode = "write", onClick }: Props) {
         </Button>
       ) : (
         <>
-          <Button className="ml-auto" buttonSize="normal" bgColor="white" onClick={onClick}>
+          <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={onClick}>
             취소
           </Button>
           <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={onClick}>

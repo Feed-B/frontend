@@ -21,7 +21,7 @@ const bgColorClasses: Record<BgColor, string> = {
   yellow: "bg-yellow-500 hover:bg-yellow-600 text-black",
   stroke: "border border-gray-200 bg-white",
   white: "border border-gray-200 bg-white",
-  gray: "border border-gray-200 bg-gray-100",
+  gray: "border border-gray-200 bg-gray-100 hover:bg-gray-200",
   naver: "bg-[#03C75A] text-white",
   kakao: "bg-[#FEE500]",
   mainBlue: "bg-blue-500",
