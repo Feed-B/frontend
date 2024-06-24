@@ -38,7 +38,13 @@ function ThumbnailBox({ setThumbnail, initialUrl }: ThumbnailBoxProps) {
       <div className="relative flex h-[232px] w-[232px] items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-gray-100">
         {showImageUrl ? (
           <div className="group relative h-full w-full">
-            <Image fill className="rounded-xl object-contain" src={showImageUrl} alt="썸네일 이미지" />
+            <Image
+              fill
+              sizes="max-width"
+              className="rounded-xl object-contain"
+              src={showImageUrl}
+              alt="썸네일 이미지"
+            />
             <div className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 group-hover:opacity-50" />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               <Button buttonSize="normal" bgColor="white" onClick={handleUploadButtonClick}>
