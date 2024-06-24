@@ -37,10 +37,6 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
           <Image src={logoTextIcon} width={180} alt="로고 텍스트" />
         </div>
 
-        {/* <h2 className="mb-[167px] text-2xl font-bold">
-          <span className="text-blue-500">로그인</span>이 필요한 서비스입니다
-        </h2> */}
-
         <Image src={feedbee} width={248} height={240} className="mb-[109px]" alt="피드비" priority />
 
         <Image
