@@ -25,7 +25,7 @@ async function CommentPage({ params }: Props) {
         projectId: params.projectId,
         commentId: params.commentId,
         page: 1,
-        size: 12,
+        size: 10,
       });
       return response;
     },
