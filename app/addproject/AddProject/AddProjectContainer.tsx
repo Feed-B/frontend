@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FormEvent, useCallback, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Button from "@/app/_components/Button/Button";
 import { addProjectApi } from "@/app/_apis/addProjectApi";
@@ -31,6 +31,8 @@ interface ProjectLinkListType {
 type AddSectionDataType = TeammateType | ProjectLinkListType;
 
 function AddProjectContainer() {
+  const queryClient = useQueryClient();
+
   const [formValues, setFormValues] = useState({
     title: "",
     introduction: "",
@@ -71,12 +73,15 @@ function AddProjectContainer() {
     mutationFn: (projectData: FormData) => {
       return addProjectApi.postProject(projectData);
     },
-    onSuccess: data => {
-      console.log("Add Project Successful", data);
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["project", "list", "projectList"],
+      });
+      console.log("Add Project Successful");
       router.push("/main");
     },
-    onError: error => {
-      console.error("Add Project failed", error);
+    onError: () => {
+      console.error("Add Project failed");
     },
   });
 
