@@ -1,16 +1,21 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Button from "@/app/_components/Button/Button";
 
 interface ThumbnailBoxProps {
   setThumbnail: (file: File) => void;
+  initialUrl?: string;
 }
 
-function ThumbnailBox({ setThumbnail }: ThumbnailBoxProps) {
+function ThumbnailBox({ setThumbnail, initialUrl }: ThumbnailBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>("");
+  const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>(initialUrl);
+
+  useEffect(() => {
+    setShowImageUrl(initialUrl);
+  }, [initialUrl]);
 
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

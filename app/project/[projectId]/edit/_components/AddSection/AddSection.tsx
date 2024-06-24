@@ -6,8 +6,8 @@ import blueDeleteIcon from "@/public/icons/blueDelete.svg";
 import grayDeleteIcon from "@/public/icons/grayDelete.svg";
 import Button from "@/app/_components/Button/Button";
 import plusIcon from "@/public/icons/plus.svg";
-import Title from "../Title";
-import Input from "../Input";
+import Input from "@/app/addproject/_components/Input";
+import Title from "@/app/addproject/_components/Title";
 import DropDownBox from "../DropDown/DropDownBox";
 
 interface TeammateType {
