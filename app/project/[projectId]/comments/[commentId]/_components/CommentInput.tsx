@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
@@ -13,6 +13,7 @@ interface CommentInputProps {
 
 function CommentInput({ projectId, commentId }: CommentInputProps) {
   const queryClient = useQueryClient();
+  const [textValue, setTextValue] = useState("");
 
   const mutation = useMutation({
     mutationFn: (comment: string) => {
@@ -22,8 +23,13 @@ function CommentInput({ projectId, commentId }: CommentInputProps) {
       queryClient.invalidateQueries({
         queryKey: ["comment", "reflyList", "reflyCommentList"],
       });
+      setTextValue("");
     },
   });
+
+  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setTextValue(event.target.value);
+  };
 
   const handelSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,10 +47,12 @@ function CommentInput({ projectId, commentId }: CommentInputProps) {
         className="w-full resize-none bg-transparent outline-none"
         placeholder="댓글을 입력해주세요"
         maxLength={REFLY_COMMENT_LENGTH}
+        value={textValue}
+        onChange={onChange}
       />
       <div className="flex flex-col justify-between">
         <p className="text-end text-sm text-gray-500">0/{REFLY_COMMENT_LENGTH}</p>
-        <Button bgColor="mainBlue" buttonSize="small" type="submit">
+        <Button bgColor="yellow" buttonSize="small" type="submit">
           등록
         </Button>
       </div>

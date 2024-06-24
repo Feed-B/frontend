@@ -1,3 +1,4 @@
+import { HEADER } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
 import { CommentDetailResponse, CommentsListResponse, ReflyCommentResponse } from "./schema/commentResponse";
 
@@ -38,16 +39,14 @@ export const commentApi = {
     });
   },
   postReflyComment: async (projectId: number, commentId: number, comment: string) => {
-    return await httpClient().post(`/projects/${projectId}/comments`, {
-      ideaRank: 5,
-      designRank: 5,
-      functionRank: 5,
-      completionRank: 5,
-      commentRequest: {
+    return await httpClient().post(
+      `/projects/${projectId}/comments/replies`,
+      {
         parentId: commentId,
         comment: comment,
       },
-    });
+      HEADER.applicationHeaders
+    );
   },
   putComment: async (commentId: number, data: UpadateCommentRequest) => {
     return await httpClient().put(`/projects/${commentId}`, {
