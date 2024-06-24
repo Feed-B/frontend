@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
@@ -17,14 +17,17 @@ interface Props {
 const CommentContainer = ({ projectId }: Props) => {
   const { view, setView } = useMyCommentContext();
   const { data: myComment }: UseQueryResult<MyCommentResponse, Error> = useQuery(commentQueryKeys.myComment(projectId));
+  useEffect(() => {
+    if (myComment && myComment.exists) {
+      setView("show");
+    }
+  }, [myComment, setView]);
+
   if (!myComment) return null;
 
-  if (myComment.exists) setView("show");
-
-  console.log("myComment.exists", myComment.exists);
   return (
     <section>
-      {view === "show" && <ShowComment />}
+      {view === "show" && <ShowComment myComment={myComment} />}
       {view === "write" && <WriteComment />}
       {view === "edit" && <EditComment />}
     </section>
