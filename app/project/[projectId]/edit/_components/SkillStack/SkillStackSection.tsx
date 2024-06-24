@@ -1,18 +1,19 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useGetSkillStack } from "../../_context/SkillStackProvider";
-import Title from "../Title";
+import Title from "@/app/addproject/_components/Title";
+import { useGetSkillStack } from "@/app/addproject/_context/SkillStackProvider";
 import SkillStackSearch from "./SkillStackSearch";
 import SelectSkillStack from "./SelectSkillStack";
 
 interface SkillStackSectionProps {
   handleTechStackInput: (stackList: string[]) => void;
+  initialStackList?: string[];
 }
 
-function SkillStackSection({ handleTechStackInput }: SkillStackSectionProps) {
+function SkillStackSection({ handleTechStackInput, initialStackList }: SkillStackSectionProps) {
   const { selectedStacks } = useGetSkillStack();
-
+  console.log("initialStackList", initialStackList);
   useEffect(() => {
     handleTechStackInput(selectedStacks);
   }, [selectedStacks, handleTechStackInput]);
