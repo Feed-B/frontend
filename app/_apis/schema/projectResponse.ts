@@ -60,6 +60,7 @@ export interface ProjectResponse {
     },
   ];
   isMine: boolean;
+  isLiked: false;
 }
 
 export interface TeamMemberResponse extends Array<TeamMember> {}

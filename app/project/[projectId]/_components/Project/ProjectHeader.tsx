@@ -57,7 +57,7 @@ function ProjectHeader({ projectId }: Props) {
         <div className="flex gap-2">
           <WishButtonAndCount
             projectId={projectId}
-            isFavorite={false}
+            isFavorite={project.isLiked}
             wishCount={project.likeCount}
             colorMode="bright"
           />
