@@ -11,7 +11,6 @@ interface CommentsListRequest {
   projectId: number;
   page?: number;
   size?: number;
-  limit?: number;
 }
 
 interface UpadateCommentRequest {
@@ -32,7 +31,11 @@ interface ReflyCommentListRequest extends CommentsListRequest {
 
 export const commentApi = {
   getCommentList: async ({ projectId, page = 1, size = 10 }: CommentsListRequest) => {
-    return await httpClient().get<CommentsListResponse>(`/${projectId}/comments`, { page, size });
+    return await httpClient().get<CommentsListResponse>(
+      `/projects/${projectId}/comments`,
+      { page, size },
+      HEADER.headers
+    );
   },
   getCommentDetail: async (projectId: number, commentId: number) => {
     return await httpClient().get<CommentDetailResponse>(`/projects/${projectId}/comments/${commentId}`);

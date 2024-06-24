@@ -5,7 +5,6 @@ interface CommentListParams {
   projectId: number;
   page?: number;
   size?: number;
-  limit?: number;
 }
 
 interface ReflyCommentListParams extends CommentListParams {
