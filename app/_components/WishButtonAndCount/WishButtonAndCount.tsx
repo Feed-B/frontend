@@ -71,12 +71,13 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
 
   return (
     <div className="flex items-center justify-center gap-0.5">
-      <button type="button" className="relative h-6 w-6" onClick={handleFavorite}>
-        <Image fill src={favoriteState.isFavorite ? full.icon : empty.icon} alt="프로젝트 찜하기." />
-      </button>
-      <p className={`min-w-5 text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}>
+      <button
+        type="button"
+        className={`flex min-w-5 items-center gap-2.5 text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}
+        onClick={handleFavorite}>
+        <Image width={24} height={24} src={favoriteState.isFavorite ? full.icon : empty.icon} alt="프로젝트 찜하기." />
         {favoriteState.wishCountState}
-      </p>
+      </button>
     </div>
   );
 }
