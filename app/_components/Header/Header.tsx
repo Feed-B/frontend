@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import uploadIcon from "@/public/icons/upload.svg";
 import useModal from "@/app/_hooks/useModal";
-import { useLoginStore } from "@/app/_utils/zustandStore";
+import { useLogin } from "@/app/_context/LoginProvider";
 import { getToken, removeToken } from "@/app/_utils/handleToken";
 import feedbee from "@/public/icons/feedbee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
@@ -17,7 +17,7 @@ import HeaderDropDownBox from "./HeaderDropDownBox";
 function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
 
-  const { type, setType } = useLoginStore();
+  const { type, setType } = useLogin();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogout = () => {
