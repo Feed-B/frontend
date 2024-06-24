@@ -121,6 +121,10 @@ function AddProjectContainer() {
     }
   };
 
+  const handleCancelClick = () => {
+    router.push("/main");
+  };
+
   return (
     <form onSubmit={handleFormSubmit} encType="multipart/form-data">
       <div className="mt-8 flex w-full flex-col gap-8">
@@ -203,7 +207,7 @@ function AddProjectContainer() {
         </section>
       </div>
       <div className="mb-16 mt-8 flex justify-end gap-2">
-        <Button buttonSize="normal" bgColor="gray" className="border-none">
+        <Button buttonSize="normal" bgColor="gray" className="border-none" onClick={handleCancelClick}>
           취소
         </Button>
         <Button type="submit" buttonSize="normal" bgColor="yellow">
