@@ -87,7 +87,7 @@ function ProjectImageBox({
     const fileList = event.target.files;
 
     if (fileList) {
-      const resizedImages = await Promise.all(
+      const resizedImageList = await Promise.all(
         Array.from(fileList).map(async file => {
           const resizedFile = await resizeFile(file);
           return {
@@ -99,8 +99,8 @@ function ProjectImageBox({
       );
 
       setShowImageUrlList(prevImages => {
-        const newImages = [...prevImages, ...resizedImages];
-        return newImages.slice(0, 5); // 이미지는 최대 5개까지만 허용
+        const newImageList = [...prevImages, ...resizedImageList];
+        return newImageList.slice(0, 5); // 이미지는 최대 5개까지만 허용
       });
 
       // 파일 입력 값을 리셋
