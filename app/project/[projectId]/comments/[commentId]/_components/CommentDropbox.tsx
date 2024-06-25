@@ -41,6 +41,12 @@ function ModalDropbox({ toggleState: editToggle, commentId, projectId }: ModalDr
   const handleDeleteComment = () => {
     mutation.mutate();
     router.push(`/project/${projectId}`);
+    toggleState();
+  };
+
+  const handleEditComment = () => {
+    editToggle();
+    toggleState();
   };
 
   return (
@@ -51,7 +57,7 @@ function ModalDropbox({ toggleState: editToggle, commentId, projectId }: ModalDr
 
       {isOpen && (
         <DropDown className="right-0 top-10" itemRef={dropdownRef}>
-          <DropDown.TextItem onClick={editToggle}>수정</DropDown.TextItem>
+          <DropDown.TextItem onClick={handleEditComment}>수정</DropDown.TextItem>
           <DropDown.TextItem onClick={handleDeleteComment}>삭제</DropDown.TextItem>
         </DropDown>
       )}
