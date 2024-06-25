@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import uploadIcon from "@/public/icons/upload.svg";
+import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import feedbee from "@/public/icons/feedbee.svg";
