@@ -35,6 +35,7 @@ function ReflyDropbox({ reflyId }: ReflyDropbox) {
 
   const handleDeleteComment = () => {
     mutation.mutate();
+    toggleState();
   };
 
   return (

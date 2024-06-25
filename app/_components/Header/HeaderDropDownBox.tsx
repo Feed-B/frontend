@@ -19,9 +19,9 @@ interface HeaderDropDownBoxProps {
 function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
   const { isOpen, toggleState } = useToggleHook();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(dropdownRef, toggleState, buttonRef);
+  useOutsideClick(dropdownRef, toggleState, divRef);
 
   const { data: userId } = useQuery(userQueryKeys.userId());
 
@@ -33,9 +33,9 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
 
   return (
     <>
-      <div className="relative flex cursor-pointer items-center gap-2" onClick={toggleState}>
+      <div className="relative flex cursor-pointer items-center gap-2" onClick={toggleState} ref={divRef}>
         <ProfileImage imageUrl={userdata?.imageUrl || "default"} className="h-9 w-9" />
-        <button type="button" className="h-5 w-5" ref={buttonRef}>
+        <button type="button" className="h-5 w-5">
           {isOpen ? (
             <Image src={SmallTopArrowIcon} alt="유저 옵션." width={20} height={20} priority />
           ) : (
@@ -45,7 +45,9 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
       </div>
       {isOpen && (
         <DropDown className="right-0 top-[65px] w-40" itemRef={dropdownRef}>
-          <DropDown.LinkItem href={`/profile/${userId?.id}`}>마이페이지</DropDown.LinkItem>
+          <DropDown.LinkItem href={`/profile/${userId?.id}`} onClick={toggleState}>
+            마이페이지
+          </DropDown.LinkItem>
           <DropDown.HR />
           <DropDown.TextItem onClick={handleLogout}>로그아웃</DropDown.TextItem>
         </DropDown>
