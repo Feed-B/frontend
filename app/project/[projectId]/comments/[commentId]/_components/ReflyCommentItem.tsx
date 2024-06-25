@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import { JOB_CATEGORIES_KR, JobCategoriesType } from "@/app/_constants/JobCategoryData";
@@ -20,7 +21,9 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
 
   return (
     <div className="relative mt-2 flex gap-3 p-2">
-      <ProfileImage imageUrl="default" className="h-6 w-6" />
+      <Link href={`/profile${userId?.id}`}>
+        <ProfileImage imageUrl="default" className="h-6 w-6" />
+      </Link>
       <div>
         <div className="mb-2 flex items-center gap-1">
           <p className="text-sm font-normal text-gray-900">{replyComment.author}</p>
