@@ -1,6 +1,7 @@
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import ReflyDropbox from "./ReflyDropbox";
 
 interface ReflyCommentItemProp {
@@ -14,8 +15,7 @@ interface ReflyCommentItemProp {
 }
 
 function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("userId");
+  const { data: userId } = useQuery(userQueryKeys.userId());
 
   return (
     <div className="relative mt-2 flex gap-3 p-2">
@@ -28,7 +28,7 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
         <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
       </div>
       <div className="absolute right-0">
-        {Number(userId) === replyComment.userId && <ReflyDropbox reflyId={replyComment.replyId} />}
+        {userId?.id === replyComment.userId && <ReflyDropbox reflyId={replyComment.replyId} />}
       </div>
     </div>
   );
