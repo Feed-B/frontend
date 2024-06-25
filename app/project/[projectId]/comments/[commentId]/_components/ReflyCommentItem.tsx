@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { JOB_CATEGORIES_KR, JobCategoriesType } from "@/app/_constants/JobCategoryData";
 import ReflyDropbox from "./ReflyDropbox";
 
 interface ReflyCommentItemProp {
@@ -23,7 +24,9 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
       <div>
         <div className="mb-2 flex items-center gap-1">
           <p className="text-sm font-normal text-gray-900">{replyComment.author}</p>
-          <p className="text-[10px] font-normal text-blue-400">{replyComment.job}</p>
+          <p className="text-[10px] font-normal text-blue-400">
+            {JOB_CATEGORIES_KR[replyComment.job as JobCategoriesType]}
+          </p>
         </div>
         <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
       </div>
