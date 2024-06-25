@@ -26,7 +26,7 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
   const { data: userId } = useQuery(userQueryKeys.userId());
 
   const { data: userdata } = useQuery({
-    queryKey: ["profile", userId?.id],
+    queryKey: ["profile", userId?.id.toString()],
     queryFn: () => profileAPI.getUserData(Number(userId?.id)),
     enabled: !!userId,
   });
