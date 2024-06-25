@@ -21,7 +21,7 @@ async function CommentPage({ params }: Props) {
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["comment", "reflyList", "reflyCommentList"],
     queryFn: async () => {
-      const response = commentApi.getReflyCommentList({
+      const response = await commentApi.getReflyCommentList({
         projectId: params.projectId,
         commentId: params.commentId,
         page: 1,

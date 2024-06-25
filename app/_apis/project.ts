@@ -18,14 +18,18 @@ export const projectApi = {
     projectTechStacks = [],
     sortCondition = "RECENT",
   }: ProjectListParams) => {
-    return await httpClient().get<ProjectResponseType>("/projects", {
-      sortCondition,
-      projectTechStacks,
-      searchString,
-      page,
-      size,
-      limit,
-    });
+    return await httpClient().get<ProjectResponseType>(
+      "/projects",
+      {
+        sortCondition,
+        projectTechStacks,
+        searchString,
+        page,
+        size,
+        limit,
+      },
+      HEADER.applicationHeaders
+    );
   },
   getProject: async (projectId: number) => {
     return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers);

@@ -1,8 +1,15 @@
 const BASE_URL = process.env.NEXT_PUBLIC_AWS_URL;
+const awsUrl = new URL(`https://${BASE_URL}`);
 
 module.exports = {
   images: {
-    domains: [BASE_URL],
+    remotePatterns: [
+      {
+        protocol: awsUrl.protocol.slice(0, -1),
+        hostname: awsUrl.hostname,
+        port: "",
+        pathname: "**",
+      },
+    ],
   },
-  // 다른 설정들이 여기에 포함될 수 있습니다.
 };

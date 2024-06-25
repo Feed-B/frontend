@@ -10,7 +10,7 @@ async function MainPage() {
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["project", "list", "projectList"],
     queryFn: async () => {
-      const response = projectApi.getProjectList({ page: 1, size: 12 });
+      const response = await projectApi.getProjectList({ page: 1, size: 12 });
       return response;
     },
     initialPageParam: 1,
