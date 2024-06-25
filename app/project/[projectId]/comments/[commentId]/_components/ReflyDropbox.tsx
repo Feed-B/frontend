@@ -23,13 +23,17 @@ function ReflyDropbox({ reflyId }: ReflyDropbox) {
   useOutsideClick(dropdownRef, toggleState, buttonRef);
 
   const mutation = useMutation({
-    mutationFn: () => {
-      return commentApi.deleteReflyComment(reflyId);
+    mutationFn: async () => {
+      const response = await commentApi.deleteReflyComment(reflyId);
+      return response;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["comment", "reflyList", "reflyCommentList"],
       });
+    },
+    onError: error => {
+      console.error("Error:", error);
     },
   });
 
