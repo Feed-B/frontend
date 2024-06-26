@@ -5,22 +5,22 @@ import { ProjectListParams } from "../_types/ProjectListDataType";
 export const projectQueryKeys = createQueryKeys("project", {
   list: (props: ProjectListParams) => ({
     queryKey: ["projectList"],
-    queryFn: () => projectApi.getProjectList({ ...props }),
+    queryFn: async () => await projectApi.getProjectList({ ...props }),
   }),
   detail: (projectId: number) => ({
     queryKey: ["projectDetail"],
-    queryFn: () => projectApi.getProject(projectId),
+    queryFn: async () => await projectApi.getProject(projectId),
   }),
   teamMember: (projectId: number) => ({
     queryKey: ["teamMember"],
-    queryFn: () => projectApi.getTeamMember(projectId),
+    queryFn: async () => await projectApi.getTeamMember(projectId),
   }),
   ratings: (projectId: number, userId: number) => ({
     queryKey: ["rating"],
-    queryFn: () => projectApi.getRatings(projectId, userId),
+    queryFn: async () => await projectApi.getRatings(projectId, userId),
   }),
   totalRating: (projectId: number) => ({
     queryKey: ["totalRating"],
-    queryFn: () => projectApi.getTotalRating(projectId),
+    queryFn: async () => await projectApi.getTotalRating(projectId),
   }),
 });
