@@ -14,18 +14,18 @@ interface ReflyCommentListParams extends CommentListParams {
 export const commentQueryKeys = createQueryKeys("comment", {
   list: (props: CommentListParams) => ({
     queryKey: ["commentList", props.page],
-    queryFn: () => commentApi.getCommentList({ ...props }),
+    queryFn: async () => await commentApi.getCommentList({ ...props }),
   }),
   detail: (projectId: number, commentId: number) => ({
     queryKey: ["commentData", commentId],
-    queryFn: () => commentApi.getCommentDetail(projectId, commentId),
+    queryFn: async () => await commentApi.getCommentDetail(projectId, commentId),
   }),
   reflyList: (props: ReflyCommentListParams) => ({
     queryKey: ["reflyCommentList", props.page],
-    queryFn: () => commentApi.getReflyCommentList({ ...props }),
+    queryFn: async () => await commentApi.getReflyCommentList({ ...props }),
   }),
   myComment: (projectId: number) => ({
     queryKey: ["myComment"],
-    queryFn: () => commentApi.getMyComment(projectId),
+    queryFn: async () => await commentApi.getMyComment(projectId),
   }),
 });
