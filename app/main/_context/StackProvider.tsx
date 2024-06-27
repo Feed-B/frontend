@@ -57,7 +57,7 @@ function StackProvider({ children }: { children: ReactNode }) {
     sortCondition: "RECENT",
     searchString: "",
     page: 1,
-    size: 12,
+    size: 16,
     limit: 0,
   });
   const [stateUpdated, setStateUpdated] = useState(false); // projectState 상태가 업데이트 된 이후에 invalidateQueries 실행을 위한 함수
