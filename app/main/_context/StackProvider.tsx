@@ -9,6 +9,7 @@ import React, {
   useState,
 } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 
 interface projectStateType {
   projectTechStacks: string[];
@@ -64,7 +65,8 @@ function StackProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (stateUpdated) {
-      reactQueryClient.invalidateQueries({ queryKey: ["project", "list", "projectList"] });
+      const projectListQuery = projectQueryKeys.list(projectState);
+      reactQueryClient.invalidateQueries({ queryKey: projectListQuery.queryKey });
       setStateUpdated(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
