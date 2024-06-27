@@ -13,8 +13,8 @@ function Loading() {
           {repeatArray.map((_, index) => (
             <div key={index} className="mt-4 flex flex-col gap-2">
               <div className="h-[230px] w-[230px] rounded-lg bg-gray-400" />
-              <div className="w-20 rounded-lg bg-gray-400" />
-              <div className="w-40 rounded-lg bg-gray-400" />
+              <div className="h-5 w-20 rounded-lg bg-gray-400" />
+              <div className="h-5 w-40 rounded-lg bg-gray-400" />
             </div>
           ))}
         </div>
