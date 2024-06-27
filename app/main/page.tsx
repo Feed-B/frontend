@@ -1,19 +1,18 @@
 import React from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
-import { projectApi } from "../_apis/project";
+import { projectQueryKeys } from "../_queryFactory/projectQuery";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 async function MainPage() {
   const queryClient = getQueryClient();
 
+  const projectListQuery = projectQueryKeys.list({ page: 1, size: 12 });
+
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["project", "list", "projectList"],
-    queryFn: async () => {
-      const response = await projectApi.getProjectList({ page: 1, size: 16 });
-      return response;
-    },
-    initialPageParam: 1,
+    queryKey: projectListQuery.queryKey,
+    queryFn: projectListQuery.queryFn,
+    initialPageParam: 1 as never,
     getNextPageParam: (lastPage: any) => {
       const { customPageable } = lastPage;
       if (customPageable.hasNext) {
