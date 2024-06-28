@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
 import AddProjectContainer from "./AddProject/AddProjectContainer";
 
-function page() {
+function AddProject() {
   const queryClient = getQueryClient();
   const dehydratedState = dehydrate(queryClient);
 
@@ -18,4 +18,4 @@ function page() {
   );
 }
 
-export default page;
+export default AddProject;
