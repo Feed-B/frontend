@@ -1,10 +1,11 @@
 "use client";
 
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { FormEvent, useCallback, useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Button from "@/app/_components/Button/Button";
 import { addProjectApi } from "@/app/_apis/addProjectApi";
+import { getToken } from "@/app/_utils/handleToken";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -129,6 +130,15 @@ function AddProjectContainer() {
   const handleCancelClick = () => {
     router.push("/main");
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const accessToken = getToken()?.accessToken;
+      if (!accessToken) {
+        router.push("/main");
+      }
+    }
+  }, [router]);
 
   return (
     <form onSubmit={handleFormSubmit} encType="multipart/form-data">
