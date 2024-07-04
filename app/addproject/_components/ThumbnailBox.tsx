@@ -2,14 +2,16 @@
 
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { UseFormRegisterReturn } from "react-hook-form";
 import Button from "@/app/_components/Button/Button";
 
 interface ThumbnailBoxProps {
   setThumbnail: (file: File) => void;
+  register?: UseFormRegisterReturn;
   initialUrl?: string;
 }
 
-function ThumbnailBox({ setThumbnail, initialUrl }: ThumbnailBoxProps) {
+function ThumbnailBox({ setThumbnail, register, initialUrl }: ThumbnailBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>(initialUrl);
 
@@ -58,7 +60,14 @@ function ThumbnailBox({ setThumbnail, initialUrl }: ThumbnailBoxProps) {
           </Button>
         )}
       </div>
-      <input type="file" id="fileInput" ref={fileInputRef} className="hidden" onChange={handleImageChange} />
+      <input
+        {...register}
+        type="file"
+        id="fileInput"
+        ref={fileInputRef}
+        className="hidden"
+        onChange={handleImageChange}
+      />
     </div>
   );
 }

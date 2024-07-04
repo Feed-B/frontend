@@ -4,6 +4,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import Resizer from "react-image-file-resizer";
+import { UseFormRegisterReturn } from "react-hook-form";
 import whitePlusIcon from "@/public/icons/whitePlus.svg";
 import EmptyProjectImage from "@/app/addproject/_components/ProjectImageBox/EmptyProjectImage";
 import ProjectImageCard from "@/app/addproject/_components/ProjectImageBox/ProjectImageCard";
@@ -20,6 +21,7 @@ interface ProjectImageBoxProps {
   handleImageFile: (fileList: File[]) => void;
   initialImageType?: string;
   initialUrlList?: string[];
+  register?: UseFormRegisterReturn;
 }
 
 function ProjectImageBox({
@@ -27,6 +29,7 @@ function ProjectImageBox({
   handleImageFile,
   initialImageType = "",
   initialUrlList = [],
+  register,
 }: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -123,11 +126,11 @@ function ProjectImageBox({
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
-    const reorderedImages = Array.from(showImageUrlList);
-    const [removed] = reorderedImages.splice(result.source.index, 1);
-    reorderedImages.splice(result.destination.index, 0, removed);
+    const reorderedImageList = Array.from(showImageUrlList);
+    const [removed] = reorderedImageList.splice(result.source.index, 1);
+    reorderedImageList.splice(result.destination.index, 0, removed);
 
-    setShowImageUrlList(reorderedImages);
+    setShowImageUrlList(reorderedImageList);
   };
 
   useEffect(() => {
@@ -137,7 +140,7 @@ function ProjectImageBox({
 
   return (
     <>
-      <div className="flex gap-3">
+      <div className="mb-4 flex gap-3">
         <RadioButton value="웹" checked={selectedSize === "웹"} onChange={handleSizeChange} />
         <RadioButton value="모바일" checked={selectedSize === "모바일"} onChange={handleSizeChange} />
       </div>
@@ -182,7 +185,15 @@ function ProjectImageBox({
           )}
         </Droppable>
       </DragDropContext>
-      <input type="file" id="fileInput" ref={fileInputRef} className="hidden" multiple onChange={handleImageChange} />
+      <input
+        {...register}
+        type="file"
+        id="fileInput"
+        ref={fileInputRef}
+        className="hidden"
+        multiple
+        onChange={handleImageChange}
+      />
     </>
   );
 }
