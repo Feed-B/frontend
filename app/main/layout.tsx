@@ -5,7 +5,7 @@ import "@/app/_styles/globals.css";
 
 export const metadata: Metadata = {
   title: "FeedB",
-  description: "FeedBd에 오신 걸 환영합니다",
+  description: "FeedB에 오신 걸 환영합니다",
 };
 
 export default function MainPageLayout({
