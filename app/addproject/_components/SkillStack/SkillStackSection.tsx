@@ -8,10 +8,20 @@ import SelectSkillStack from "./SelectSkillStack";
 
 interface SkillStackSectionProps {
   handleTechStackInput: (stackList: string[]) => void;
+  initialStackList?: string[];
 }
 
-function SkillStackSection({ handleTechStackInput }: SkillStackSectionProps) {
-  const { selectedStacks } = useGetSkillStack();
+function SkillStackSection({ handleTechStackInput, initialStackList }: SkillStackSectionProps) {
+  const { selectedStacks, isAddStack } = useGetSkillStack();
+
+  useEffect(() => {
+    if (initialStackList && initialStackList.length > 0) {
+      for (let i = 0; i < initialStackList.length; i++) {
+        isAddStack(initialStackList[i]);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     handleTechStackInput(selectedStacks);

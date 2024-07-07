@@ -15,9 +15,10 @@ interface DropDownProps {
   dataType: string;
   inputWidth?: string;
   handleInputChange?: (value: string) => void;
+  initialDropDownValue?: string;
 }
 
-function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps) {
+function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownValue }: DropDownProps) {
   const toolData = TOOL_DATA.reduce(
     (acc, { name }) => {
       acc[name] = name;
@@ -35,7 +36,14 @@ function DropDownBox({ dataType, inputWidth, handleInputChange }: DropDownProps)
 
   const { isOpen, toggleState } = useToggleHook();
 
-  const [item, setItem] = useState(dataType === "job" ? "직무" : "플랫폼");
+  const getInitialItem = () => {
+    if (initialDropDownValue) {
+      return dataType === "job" ? JOB_CATEGORIES_KR[initialDropDownValue] || "직무" : initialDropDownValue;
+    }
+    return dataType === "job" ? "직무" : "플랫폼";
+  };
+
+  const [item, setItem] = useState(getInitialItem());
 
   const itemRef = useRef<HTMLDivElement>(null);
   const exceptionRef = useRef<HTMLDivElement>(null);
