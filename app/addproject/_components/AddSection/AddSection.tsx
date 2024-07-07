@@ -30,6 +30,8 @@ interface AddSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   inputWidth?: string;
   dropDownType: string;
   onInputChange: (data: AddSectionDataType[]) => void;
+  initialTeammateList?: any[];
+  initialProjectLink?: any[];
   setError?: UseFormSetError<AddProjectFormData>;
   clearErrors?: UseFormClearErrors<AddProjectFormData>;
 }
@@ -49,12 +51,33 @@ function AddSection({
   inputWidth,
   dropDownType,
   onInputChange,
+  initialTeammateList,
+  initialProjectLink,
   setError,
   clearErrors,
 }: AddSectionProps) {
-  const [additionalInput, setAdditionalInput] = useState<InputBox[]>([
-    { id: 0, url: "", job: "", name: "", siteType: "" },
-  ]);
+  const [additionalInput, setAdditionalInput] = useState<InputBox[]>(() => {
+    if (initialTeammateList && initialTeammateList.length > 0) {
+      return initialTeammateList.map(item => ({
+        id: 0,
+        url: item.url || "",
+        job: item.job || "",
+        name: item.teammateName || "",
+        siteType: "",
+      }));
+    } else if (initialProjectLink && initialProjectLink.length > 0) {
+      return initialProjectLink.map(item => ({
+        id: 0,
+        url: item.url || "",
+        job: "",
+        name: "",
+        siteType: item.siteType || "",
+      }));
+    } else {
+      return [{ id: 0, url: "", job: "", name: "", siteType: "" }];
+    }
+  });
+
   const [nextId, setNextId] = useState(1);
 
   const handleAddButtonClick = () => {
@@ -107,12 +130,14 @@ function AddSection({
               handleInputChange={(value: string) =>
                 handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value)
               }
+              initialDropDownValue={title === "팀원" ? item.job : item.siteType}
             />
             <Input
               type="text"
               placeholder={placeholder}
               name={`${name}-primary`}
               id={`${name}-${item.id}-primary`}
+              value={title === "팀원" ? item.name : item.url}
               inputWidth={inputWidth}
               onChange={event => handleInputChange(item.id, title === "팀원" ? "name" : "url", event.target.value)}
             />
@@ -122,6 +147,7 @@ function AddSection({
                 placeholder="http://"
                 name={`${name}-secondary`}
                 id={`${name}-${item.id}-secondary`}
+                value={item.url}
                 onChange={event => handleInputChange(item.id, "url", event.target.value)}
               />
             )}
