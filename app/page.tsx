@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="">
       <section>
-        <div />
+        <div>page</div>
       </section>
     </main>
   );

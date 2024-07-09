@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     title: "피드비",
     description: "FeedB를 통해 프로젝트의 완성도를 높이고, 새로운 아이디어를 얻어보세요!",
     url: "https://feedb.vercel.app",
+    images: ["https://drive.google.com/file/d/1fH4VxoXgmruhEGfGvUvgbPeQ8AP7rkVY/view?usp=sharing"],
   },
 };
 
