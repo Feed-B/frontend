@@ -28,3 +28,9 @@
   -webkit-line-clamp: 12;
   -webkit-box-orient: vertical;
 }
+
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}
