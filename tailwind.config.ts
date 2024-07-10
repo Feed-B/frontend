@@ -8,9 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "loop-scroll": "loop-scroll 35s linear infinite",
+      },
+      keyframes: {
+        "loop-scroll": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "custom-gradient": "linear-gradient(270deg, rgba(248, 250, 251, 0.00) 0%, #F8FAFB 71.25%)",
       },
       boxShadow: {
         "check-radio-border": "0 0 0 1px #3F3F3F",
