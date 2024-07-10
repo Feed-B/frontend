@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 import sectionImage1 from "@/public/images/landingPageImage1.svg";
 import sectionImage2 from "@/public/images/landingPageImage2.svg";
 import sectionImage3 from "@/public/images/landingPageImage3.svg";
@@ -54,13 +55,15 @@ export default async function Home() {
                 FeedB를 통해 완성도를 높이고, 새로운 아이디어를 얻어보세요!
               </p>
             </div>
-            <Button
-              buttonSize="normal"
-              bgColor="yellow"
-              type="button"
-              className="mt-5 flex items-center px-6 py-4 pt-5 text-base">
-              5분안에 프로젝트 공유하기
-            </Button>
+            <Link href={"/main"}>
+              <Button
+                buttonSize="normal"
+                bgColor="yellow"
+                type="button"
+                className="mt-5 flex items-center px-6 py-4 pt-5 text-base">
+                5분안에 프로젝트 공유하기
+              </Button>
+            </Link>
           </div>
           <Image src={sectionImage1} alt="피드백 이미지" width={555} priority />
         </section>
@@ -77,13 +80,15 @@ export default async function Home() {
         <Section>
           <SubTitle>프로젝트 공유와 피드백</SubTitle>
           <Description>프로젝트 리뷰로 피드백을 받고, 별점을 통해 전반적인 만족도를 확인하세요.</Description>
-          <Button
-            buttonSize="normal"
-            bgColor="yellow"
-            type="button"
-            className="flex items-center px-6 py-4 pt-5 text-base">
-            내 프로젝트 공유하기
-          </Button>
+          <Link href={"/main"}>
+            <Button
+              buttonSize="normal"
+              bgColor="yellow"
+              type="button"
+              className="flex items-center px-6 py-4 pt-5 text-base">
+              내 프로젝트 공유하기
+            </Button>
+          </Link>
           <Image className="mb-[97px]" src={sectionImage2} alt="메인 페이지 이미지" width={1093} priority />
         </Section>
         <Section>
@@ -92,25 +97,29 @@ export default async function Home() {
             개별 별점을 평균내어 종합 별점으로 제공해드립니다. 이를 통해 프로젝트에 대한 전체적인 평가를 한눈에 파악할
             수 있습니다.
           </Description>
-          <Button
-            buttonSize="normal"
-            bgColor="yellow"
-            type="button"
-            className="flex items-center px-6 py-4 pt-5 text-base">
-            피드비 시작하기
-          </Button>
+          <Link href={"/main"}>
+            <Button
+              buttonSize="normal"
+              bgColor="yellow"
+              type="button"
+              className="flex items-center px-6 py-4 pt-5 text-base">
+              피드비 시작하기
+            </Button>
+          </Link>
           <Image className="mt-[81px]" src={sectionImage3} alt="프로젝트 상세 이미지" width={1000} priority />
         </Section>
         <Section>
           <SubTitle>프로젝트에 대한 토론</SubTitle>
           <Description>프로젝트 리뷰를 남기면 모든 사용자와 프로젝트에 대한 대화를 나눌 수 있어요.</Description>
-          <Button
-            buttonSize="normal"
-            bgColor="yellow"
-            type="button"
-            className="flex items-center px-6 py-4 pt-5 text-base">
-            피드비 시작하기
-          </Button>
+          <Link href={"/main"}>
+            <Button
+              buttonSize="normal"
+              bgColor="yellow"
+              type="button"
+              className="flex items-center px-6 py-4 pt-5 text-base">
+              피드비 시작하기
+            </Button>
+          </Link>
           <Image className="mt-12" src={sectionImage4} alt="피드백 이미지" width={1130} priority />
         </Section>
         <Section>
@@ -119,13 +128,15 @@ export default async function Home() {
             FeedB와 함께라면 프로젝트 진행이 더 이상 혼자가 아닙니다. 다양한 의견을 통해 프로젝트를 개선하고, 새로운
             아이디어를 얻어보세요!
           </Description>
-          <Button
-            buttonSize="normal"
-            bgColor="yellow"
-            type="button"
-            className="flex items-center px-6 py-4 pt-5 text-base">
-            피드비 시작하기
-          </Button>
+          <Link href={"/main"}>
+            <Button
+              buttonSize="normal"
+              bgColor="yellow"
+              type="button"
+              className="flex items-center px-6 py-4 pt-5 text-base">
+              피드비 시작하기
+            </Button>
+          </Link>
           <Image className="mt-16" src={sectionImage5} alt="피드백 이미지" width={1130} priority />
         </Section>
       </main>
