@@ -78,7 +78,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-[86px]">
       <Input
         title="닉네임*"
         type="text"
@@ -123,9 +123,11 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
         />
       </div>
 
-      <Button type="submit" buttonSize="normal" bgColor="yellow" className="mt-16 font-semibold">
-        완료
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit" buttonSize="normal" bgColor="yellow" className="mt-[54px] font-semibold">
+          완료
+        </Button>
+      </div>
     </form>
   );
 }
