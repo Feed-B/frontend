@@ -15,6 +15,15 @@ const useCheckLogin = () => {
     }
   }, [setType]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      removeToken();
+      console.log("logout");
+    }, 10000); // 30분
+
+    return () => clearTimeout(timeout);
+  });
+
   const handleLogout = () => {
     removeToken();
     setType("");
