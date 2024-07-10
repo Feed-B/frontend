@@ -13,18 +13,18 @@ import getQueryClient from "./_queryFactory/getQueryClient";
 import { projectQueryKeys } from "./_queryFactory/projectQuery";
 import LandingProjectList from "./_components/LandingProjectList/LandingProjectList";
 
-const Section = ({ children, className }: { children: ReactNode; className?: string }) => {
+function Section({ children, className }: { children: ReactNode; className?: string }) {
   const sectionClass = twMerge("mx-auto flex w-full flex-col items-center gap-3 " + className);
   return <section className={sectionClass}>{children}</section>;
-};
+}
 
-const SubTitle = ({ children }: { children: ReactNode }) => {
+function SubTitle({ children }: { children: ReactNode }) {
   return <h2 className="mt-24 text-center text-5xl font-semibold text-black">{children}</h2>;
-};
+}
 
-const Description = ({ children }: { children: ReactNode }) => {
+function Description({ children }: { children: ReactNode }) {
   return <h2 className="mb-3 text-center text-xl font-normal text-gray-700">{children}</h2>;
-};
+}
 
 export default async function Home() {
   const queryClient = getQueryClient();
