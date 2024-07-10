@@ -3,11 +3,11 @@ import { ReactNode } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import sectionImage1 from "@/public/images/landingPageImage1.svg";
-import sectionImage2 from "@/public/images/landingPageImage2.svg";
-import sectionImage3 from "@/public/images/landingPageImage3.svg";
-import sectionImage4 from "@/public/images/landingPageImage4.svg";
-import sectionImage5 from "@/public/images/landingPageImage5.svg";
+import landingMainSection from "@/public/images/landingMainSection.svg";
+import landingProjectSection from "@/public/images/landingProjectSection.svg";
+import landingEvaluationSection from "@/public/images/landingEvaluationSection.svg";
+import landingDebateSection from "@/public/images/landingDebateSection.svg";
+import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
 import Button from "./_components/Button/Button";
 import getQueryClient from "./_queryFactory/getQueryClient";
 import { projectQueryKeys } from "./_queryFactory/projectQuery";
@@ -65,7 +65,7 @@ export default async function Home() {
               </Button>
             </Link>
           </div>
-          <Image src={sectionImage1} alt="피드백 이미지" width={555} priority />
+          <Image src={landingMainSection} alt="피드백 이미지" width={555} priority />
         </section>
         <Section className="relative h-[650px] overflow-hidden">
           <SubTitle>프로젝트 등록과 공유</SubTitle>
@@ -73,8 +73,8 @@ export default async function Home() {
             <Description>여러분의 프로젝트를 손쉽게 등록하고 공유할 수 있습니다.</Description>
             <Description>텍스트, 이미지 등 다양한 형식을 파일을 업로드하여 프로젝트를 소개하세요</Description>
           </div>
-          <div className="bg-custom-gradient absolute left-0 z-10 h-full w-20" />
-          <div className="bg-custom-gradient absolute right-0 z-10 h-full w-20 rotate-180" />
+          <div className="absolute left-0 z-10 h-full w-20 bg-custom-gradient" />
+          <div className="absolute right-0 z-10 h-full w-20 rotate-180 bg-custom-gradient" />
           <LandingProjectList />
         </Section>
         <Section>
@@ -89,7 +89,7 @@ export default async function Home() {
               내 프로젝트 공유하기
             </Button>
           </Link>
-          <Image className="mb-[97px]" src={sectionImage2} alt="메인 페이지 이미지" width={1093} priority />
+          <Image className="mb-[97px]" src={landingProjectSection} alt="메인 페이지 이미지" width={1093} priority />
         </Section>
         <Section>
           <SubTitle>다양한 기준으로 프로젝트 평가</SubTitle>
@@ -106,7 +106,13 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image className="mt-[81px]" src={sectionImage3} alt="프로젝트 상세 이미지" width={1000} priority />
+          <Image
+            className="mt-[81px]"
+            src={landingEvaluationSection}
+            alt="프로젝트 상세 이미지"
+            width={1000}
+            priority
+          />
         </Section>
         <Section>
           <SubTitle>프로젝트에 대한 토론</SubTitle>
@@ -120,7 +126,7 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image className="mt-12" src={sectionImage4} alt="피드백 이미지" width={1130} priority />
+          <Image className="mt-12" src={landingDebateSection} alt="피드백 이미지" width={1130} priority />
         </Section>
         <Section>
           <SubTitle>지금 프로젝트를 공유하고 피드백 받기</SubTitle>
@@ -137,7 +143,7 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image className="mt-16" src={sectionImage5} alt="피드백 이미지" width={1130} priority />
+          <Image className="mt-16" src={landingFeedBackSection} alt="피드백 이미지" width={1130} priority />
         </Section>
       </main>
     </HydrationBoundary>
