@@ -3,7 +3,6 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
 import { projectQueryKeys } from "../_queryFactory/projectQuery";
 import SelectStack from "./_components/SelectStack/SelectStack";
-import Loading from "./loading";
 
 async function MainPage() {
   const queryClient = getQueryClient();
@@ -30,7 +29,6 @@ async function MainPage() {
       <main className="mx-auto my-16 grid w-[1200px] grid-cols-[230px_minmax(976px,_1fr)] grid-rows-[100px_minmax(800px,_1fr)]">
         <SelectStack />
       </main>
-      <Loading />
     </HydrationBoundary>
   );
 }
