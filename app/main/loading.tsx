@@ -4,9 +4,9 @@ function Loading() {
   const repeatArray = Array.from({ length: 12 });
 
   return (
-    <div className="my-16 flex animate-pulse justify-center gap-11">
-      <div className="w-[230px] rounded-lg bg-gray-400" />
-      <div className="flex w-[980px] flex-col gap-3 ">
+    <div className="mb-16 mt-[70px] flex animate-pulse justify-center gap-11">
+      <div className="w-[200px] rounded-lg bg-gray-400" />
+      <div className="flex w-[980px] flex-col gap-4">
         <div className="h-10 w-[980px] rounded-lg bg-gray-400" />
         <div className="h-10 w-[980px] rounded-lg bg-gray-400" />
         <div className="flex flex-wrap gap-5">
