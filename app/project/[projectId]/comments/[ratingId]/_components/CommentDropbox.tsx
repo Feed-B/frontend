@@ -12,11 +12,11 @@ import { commentApi } from "@/app/_apis/comment";
 
 interface ModalDropboxProps {
   toggleState: () => void;
-  commentId: number;
+  ratingId: number;
   projectId: number;
 }
 
-function ModalDropbox({ toggleState: editToggle, commentId, projectId }: ModalDropboxProps) {
+function ModalDropbox({ toggleState: editToggle, ratingId, projectId }: ModalDropboxProps) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -29,11 +29,11 @@ function ModalDropbox({ toggleState: editToggle, commentId, projectId }: ModalDr
 
   const mutation = useMutation({
     mutationFn: () => {
-      return commentApi.deleteComment(commentId);
+      return commentApi.deleteComment(ratingId);
     },
     onSuccess: () => {
       queryClient.removeQueries({
-        queryKey: ["comment", "detail", "commentData", commentId],
+        queryKey: ["comment", "detail", "commentData", ratingId],
       });
     },
   });
