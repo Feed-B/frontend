@@ -8,7 +8,7 @@ import {
 } from "./schema/commentResponse";
 
 interface CommentsListRequest {
-  projectId: number;
+  projectId?: number;
   page?: number;
   size?: number;
 }
@@ -26,7 +26,7 @@ interface UpadateCommentRequest {
 }
 
 interface ReflyCommentListRequest extends CommentsListRequest {
-  commentId: number;
+  ratingId: number;
 }
 
 export const commentApi = {
@@ -37,12 +37,12 @@ export const commentApi = {
       HEADER.headers
     );
   },
-  getCommentDetail: async (projectId: number, commentId: number) => {
-    return await httpClient().get<CommentDetailResponse>(`/projects/${projectId}/comments/${commentId}`);
+  getCommentDetail: async (ratingId: number) => {
+    return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`);
   },
-  getReflyCommentList: async ({ projectId, commentId, page = 1, size = 10 }: ReflyCommentListRequest) => {
+  getReflyCommentList: async ({ ratingId, page = 1, size = 10 }: ReflyCommentListRequest) => {
     return await httpClient().get<ReflyCommentResponse>(
-      `/projects/${projectId}/comments/${commentId}/replies`,
+      `/projects/${ratingId}/comments`,
       {
         page,
         size,

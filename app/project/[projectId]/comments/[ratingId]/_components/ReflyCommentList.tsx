@@ -7,17 +7,15 @@ import { commentApi } from "@/app/_apis/comment";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {
-  projectId: number;
-  commentId: number;
+  ratingId: number;
 }
 
-function ReflyCommentList({ projectId, commentId }: ReflyCommentListProps) {
+function ReflyCommentList({ ratingId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
   const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["comment", "reflyList", "reflyCommentList"],
-    queryFn: ({ pageParam = 1 }) =>
-      commentApi.getReflyCommentList({ projectId, commentId, page: pageParam as number, size: 10 }),
+    queryFn: ({ pageParam = 1 }) => commentApi.getReflyCommentList({ ratingId, page: pageParam as number, size: 10 }),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;

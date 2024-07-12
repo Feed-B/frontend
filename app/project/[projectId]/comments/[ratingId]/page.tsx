@@ -8,7 +8,7 @@ import CommentSection from "./_components/CommentSection";
 
 interface Props {
   params: {
-    commentId: number;
+    ratingId: number;
     projectId: number;
   };
 }
@@ -18,12 +18,12 @@ async function CommentPage({ params }: Props) {
 
   const reflyCommentListQuery = commentQueryKeys.reflyList({
     projectId: params.projectId,
-    commentId: params.commentId,
+    ratingId: params.ratingId,
     page: 1,
     size: 10,
   });
 
-  await queryClient.prefetchQuery(commentQueryKeys.detail(params.projectId, params.commentId));
+  await queryClient.prefetchQuery(commentQueryKeys.detail(params.ratingId));
   await queryClient.prefetchInfiniteQuery({
     queryKey: reflyCommentListQuery.queryKey,
     queryFn: reflyCommentListQuery.queryFn,
@@ -43,11 +43,11 @@ async function CommentPage({ params }: Props) {
     <HydrationBoundary state={dehydratedState}>
       <div className="mx-auto w-[1200px]">
         <ScrollToTopButton className="fixed bottom-10 right-10" direction="top" />
-        <CommentSection projectId={params.projectId} commentId={params.commentId} />
+        <CommentSection projectId={params.projectId} ratingId={params.ratingId} />
         <section className="mt-12">
-          <CommentInput projectId={params.projectId} commentId={params.commentId} />
+          <CommentInput projectId={params.projectId} commentId={params.ratingId} />
         </section>
-        <ReflyCommentList projectId={params.projectId} commentId={params.commentId} />
+        <ReflyCommentList ratingId={params.ratingId} />
       </div>
     </HydrationBoundary>
   );
