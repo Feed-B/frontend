@@ -66,11 +66,11 @@ export const commentApi = {
       HEADER.applicationHeaders
     );
   },
-  postReflyComment: async (projectId: number, commentId: number, comment: string) => {
+  postReflyComment: async (ratingId: number, comment: string) => {
     return await httpClient().post(
-      `/projects/${projectId}/comments/replies`,
+      `/projects/${ratingId}/comments`,
       {
-        parentId: commentId,
+        parentId: ratingId,
         comment: comment,
       },
       HEADER.applicationHeaders

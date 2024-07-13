@@ -24,9 +24,6 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
   const { isOpen: commentEditOpen, toggleState } = useToggleHook();
   const { data: commentDetailData } = useQuery(commentQueryKeys.detail(ratingId));
 
-  console.log(ratingId);
-  console.log(commentDetailData);
-
   if (!commentDetailData) {
     return <DetailLoading />;
   }
