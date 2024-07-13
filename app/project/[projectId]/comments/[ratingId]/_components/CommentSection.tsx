@@ -51,6 +51,7 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
             userId={commentDetailData?.authorId}
             userName={commentDetailData.authorName}
             userJob={commentDetailData.job}
+            userProfileImageUrl={commentDetailData.authorProfileImageUrl}
           />
           <div className="relative flex items-center gap-2">
             <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
