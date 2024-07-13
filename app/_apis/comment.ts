@@ -14,15 +14,12 @@ interface CommentsListRequest {
 }
 
 interface UpadateCommentRequest {
+  projectRatingId: number;
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
   comment: string;
-  projectRatingUpdateRequest: {
-    projectRatingId: number;
-    ideaRank: number;
-    designRank: number;
-    functionRank: number;
-    completionRank: number;
-    commentUpdateRequest: string;
-  };
 }
 
 interface ReflyCommentListRequest extends CommentsListRequest {
@@ -81,8 +78,8 @@ export const commentApi = {
       data,
     });
   },
-  deleteComment: async (commentId: number) => {
-    return await httpClient().delete(`/projects/comments/${commentId}`, HEADER.applicationHeaders);
+  deleteComment: async (ratingId: number) => {
+    return await httpClient().delete(`/projects/comments/${ratingId}`, HEADER.applicationHeaders);
   },
   deleteReflyComment: async (reflyId: number) => {
     return await httpClient().delete(`/projects/comments/replies/${reflyId}`, HEADER.applicationHeaders);
