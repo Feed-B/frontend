@@ -10,10 +10,10 @@ import CommentProfile from "../../../_components/Comment/CommentProfile";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../../_components/Comment/EnterText";
-import EnterButton from "../../../_components/Comment/EnterButton";
 import RatingBox from "./RatingBox";
 import CommentDropbox from "./CommentDropbox";
 import DetailLoading from "./DetailLoading";
+import CommentEditButton from "./CommentEditButton";
 
 interface CommentSectionProps {
   projectId: number;
@@ -64,7 +64,7 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
           <EnterCommentProvider>
             <EnterText commentValue={commentDetailData.comment} />
             <EnterRating ratingValue={transformedData} />
-            <EnterButton onClick={() => console.log()} mode="edit" projectId={projectId} />
+            <CommentEditButton onClick={toggleState} ratingId={ratingId} />
           </EnterCommentProvider>
         </section>
       ) : (
