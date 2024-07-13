@@ -7,17 +7,16 @@ import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/comment";
 
 interface CommentInputProps {
-  projectId: number;
-  commentId: number;
+  ratingId: number;
 }
 
-function CommentInput({ projectId, commentId }: CommentInputProps) {
+function CommentInput({ ratingId }: CommentInputProps) {
   const queryClient = useQueryClient();
   const [textValue, setTextValue] = useState("");
 
   const mutation = useMutation({
     mutationFn: (comment: string) => {
-      return commentApi.postReflyComment(projectId, commentId, comment);
+      return commentApi.postReflyComment(ratingId, comment);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
