@@ -7,15 +7,16 @@ interface CommentProfileProps {
   userId: number;
   userName: string;
   userJob: string;
+  userProfileImageUrl: string;
 }
 
 type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
-function CommentProfile({ userId, userName, userJob }: CommentProfileProps) {
+function CommentProfile({ userId, userName, userJob, userProfileImageUrl }: CommentProfileProps) {
   return (
     <Link href={`/profile/${userId}`}>
       <div className="flex items-center gap-2">
-        <ProfileImage imageUrl="default" className="h-10 w-10" />
+        <ProfileImage imageUrl={userProfileImageUrl || "default"} className="h-10 w-10" />
         <div>
           <p className="text-sm font-semibold">{userName}</p>
           <p className="text-[10px] text-blue-500">{JOB_CATEGORIES_KR[userJob as JobCategory]}</p>

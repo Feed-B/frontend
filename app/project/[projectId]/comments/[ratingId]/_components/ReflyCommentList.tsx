@@ -37,7 +37,7 @@ function ReflyCommentList({ ratingId }: ReflyCommentListProps) {
     <section className="relative mb-12 mt-6">
       <h3 className="mb-4">댓글 ({reflyPage?.pages[0].customPageable.totalElements})</h3>
       {reflyPage?.pages.map(reflyList =>
-        reflyList.content.map(refly => <ReflyCommentItem key={refly.replyId} replyComment={refly} />)
+        reflyList.content.map(refly => <ReflyCommentItem key={refly.commentId} replyComment={refly} />)
       )}
       <div className="absolute bottom-0" ref={lastCardInfo} />
     </section>

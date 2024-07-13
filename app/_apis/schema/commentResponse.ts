@@ -34,16 +34,18 @@ export interface CommentDetailResponse {
   designRank: number;
   functionRank: number;
   completionRank: number;
+  authorProfileImageUrl: string;
 }
 
 export interface ReflyCommentResponse {
   content: [
     {
-      replyId: number;
-      userId: number;
+      commentId: number;
+      authorId: number;
       job: string;
-      author: string;
+      authorName: string;
       comment: string;
+      authorProfileImageUrl: string;
     },
   ];
   customPageable: {

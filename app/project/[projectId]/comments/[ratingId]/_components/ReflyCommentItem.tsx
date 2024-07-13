@@ -8,11 +8,12 @@ import ReflyDropbox from "./ReflyDropbox";
 
 interface ReflyCommentItemProp {
   replyComment: {
-    userId: number;
+    authorId: number;
     job: string;
-    author: string;
+    authorName: string;
     comment: string;
-    replyId: number;
+    commentId: number;
+    authorProfileImageUrl: string;
   };
 }
 
@@ -22,11 +23,11 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
   return (
     <div className="relative mt-2 flex gap-3 p-2">
       <Link href={`/profile${userId?.id}`}>
-        <ProfileImage imageUrl="default" className="h-6 w-6" />
+        <ProfileImage imageUrl={replyComment.authorProfileImageUrl || "default"} className="h-6 w-6" />
       </Link>
       <div>
         <div className="mb-2 flex items-center gap-1">
-          <p className="text-sm font-normal text-gray-900">{replyComment.author}</p>
+          <p className="text-sm font-normal text-gray-900">{replyComment.authorName}</p>
           <p className="text-[10px] font-normal text-blue-400">
             {JOB_CATEGORIES_KR[replyComment.job as JobCategoriesType]}
           </p>
@@ -34,7 +35,7 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
         <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
       </div>
       <div className="absolute right-0">
-        {userId?.id === replyComment.userId && <ReflyDropbox reflyId={replyComment.replyId} />}
+        {userId?.id === replyComment.authorId && <ReflyDropbox reflyId={replyComment.commentId} />}
       </div>
     </div>
   );
