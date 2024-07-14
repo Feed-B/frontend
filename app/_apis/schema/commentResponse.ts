@@ -67,13 +67,18 @@ export interface ReflyCommentResponse {
 
 export interface MyCommentResponse {
   exists: boolean;
-  projectCommentResponseDto?: {
-    commentId: number;
+  projectRating: {
+    ratingId: number;
+    averageRank: number;
+    ideaRank: number;
+    designRank: number;
+    functionRank: number;
+    completionRank: number;
+    comment: string;
+    childCommentCount: number;
+    authorProfileImageUrl: string;
     authorId: number;
     authorName: string;
-    job: string;
-    comment: string;
-    averageStarRank: number;
-    childCommentCount: number;
+    memberJob: string;
   };
 }
