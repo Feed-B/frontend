@@ -36,6 +36,8 @@ function SuccessContent({ router }: any) {
     if (tokenQuery) {
       const accessToken = tokenQuery;
       setToken(accessToken);
+      const timestamp = Date.now();
+      localStorage.setItem("tokenTimestamp", timestamp.toString());
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {
