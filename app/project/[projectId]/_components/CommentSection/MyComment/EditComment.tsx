@@ -17,21 +17,19 @@ interface Props {
 
 function EditComment({ projectId, myComment }: Props) {
   const { setView } = useMyCommentContext();
-  const { data: ratingsData } = useQuery(
-    projectQueryKeys.ratings(projectId, Number(myComment.projectCommentResponseDto?.authorId))
-  );
+  const { data: ratingData } = useQuery(projectQueryKeys.rating(projectId, Number(myComment.projectRating?.authorId)));
 
-  if (!ratingsData) return null;
+  if (!ratingData) return null;
 
   const transformedData = [
-    ratingsData.ideaRank,
-    ratingsData.designRank,
-    ratingsData.functionRank,
-    ratingsData.completionRank,
+    ratingData.ideaRank,
+    ratingData.designRank,
+    ratingData.functionRank,
+    ratingData.completionRank,
   ];
 
-  if (!myComment.projectCommentResponseDto) return null;
-  const { comment } = myComment.projectCommentResponseDto;
+  if (!myComment.projectRating) return null;
+  const { comment } = myComment.projectRating;
 
   return (
     <div className="relative flex flex-col rounded-xl border border-solid border-gray-300 bg-gray-100 p-6">

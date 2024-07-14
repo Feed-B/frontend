@@ -44,7 +44,7 @@ export const commentApi = {
     );
   },
   getMyComment: async (projectId: number) => {
-    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/comments/mine`, {}, HEADER.headers);
+    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers);
   },
   postComment: async (projectId: number, rankList: number[], comment: string) => {
     return await httpClient().postData(
