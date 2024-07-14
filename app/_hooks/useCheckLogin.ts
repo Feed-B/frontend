@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLogin } from "../_context/LoginProvider";
-import { getToken, removeToken } from "../_utils/handleToken";
+import { checkTokenExpiry, getToken, removeToken } from "../_utils/handleToken";
 
 const useCheckLogin = () => {
   const { type, setType } = useLogin();
@@ -16,12 +16,7 @@ const useCheckLogin = () => {
   }, [setType]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      removeToken();
-      console.log("logout");
-    }, 10000); // 30분
-
-    return () => clearTimeout(timeout);
+    checkTokenExpiry();
   });
 
   const handleLogout = () => {
