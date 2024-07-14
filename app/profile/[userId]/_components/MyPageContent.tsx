@@ -33,7 +33,7 @@ function MyPageContent() {
       </div>
       <div className="flex w-[976px] flex-col gap-8">
         <Profile isMyPage={isMyPage} />
-        <MypageProjectSection isMyPage={isMyPage} projectType={selectCategory} />
+        <MypageProjectSection isMyPage={isMyPage} projectType={selectCategory} userId={Number(userId)} />
       </div>
     </main>
   );
