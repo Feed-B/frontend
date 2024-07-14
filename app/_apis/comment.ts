@@ -2,12 +2,12 @@ import { HEADER } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
 import {
   CommentDetailResponse,
-  CommentsListResponse,
+  CommentListResponse,
   MyCommentResponse,
   ReflyCommentResponse,
 } from "./schema/commentResponse";
 
-interface CommentsListRequest {
+interface CommentListRequest {
   projectId?: number;
   page?: number;
   size?: number;
@@ -22,17 +22,13 @@ interface UpadateCommentRequest {
   comment: string;
 }
 
-interface ReflyCommentListRequest extends CommentsListRequest {
+interface ReflyCommentListRequest extends CommentListRequest {
   ratingId: number;
 }
 
 export const commentApi = {
-  getCommentList: async ({ projectId, page = 1, size = 10 }: CommentsListRequest) => {
-    return await httpClient().get<CommentsListResponse>(
-      `/projects/${projectId}/comments`,
-      { page, size },
-      HEADER.headers
-    );
+  getCommentList: async ({ projectId }: CommentListRequest) => {
+    return await httpClient().get<CommentListResponse>(`/projects/${projectId}/ratings`, {}, HEADER.headers);
   },
   getCommentDetail: async (ratingId: number) => {
     return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`);
