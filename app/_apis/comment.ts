@@ -13,6 +13,14 @@ interface CommentListRequest {
   size?: number;
 }
 
+interface UploadCommentRequest {
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  comment: string;
+}
+
 interface UpadateCommentRequest {
   projectRatingId: number;
   ideaRank: number;
@@ -46,15 +54,16 @@ export const commentApi = {
   getMyComment: async (projectId: number) => {
     return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers);
   },
-  postComment: async (projectId: number, rankList: number[], comment: string) => {
+  postComment: async (projectId: number, data: UploadCommentRequest) => {
     return await httpClient().postData(
-      `/projects/${projectId}/comments`,
+      `/projects/${projectId}/ratings`,
       {
-        ideaRank: rankList[0],
-        designRank: rankList[1],
-        functionRank: rankList[2],
-        completionRank: rankList[3],
-        comment: comment,
+        // ideaRank: rankList[0],
+        // designRank: rankList[1],
+        // functionRank: rankList[2],
+        // completionRank: rankList[3],
+        // comment: comment,
+        data,
       },
       HEADER.applicationHeaders
     );
