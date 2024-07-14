@@ -34,3 +34,27 @@
     animation-play-state: paused;
   }
 }
+
+.scroll-hide {
+  -ms-overflow-style: none; /* IE, Edge 브라우저 */
+  scrollbar-width: none; /* Firefox */
+
+  /* Chrome, Safari 등 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Tailwind CSS 클래스를 이용한 적용 */
+.zoom-in-animation {
+  animation: zoomIn 0.6s ease-out forwards;
+}
