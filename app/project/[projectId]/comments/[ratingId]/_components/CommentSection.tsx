@@ -22,9 +22,13 @@ interface CommentSectionProps {
 
 function CommentSection({ projectId, ratingId }: CommentSectionProps) {
   const { isOpen: commentEditOpen, toggleState } = useToggleHook();
-  const { data: commentDetailData } = useQuery(commentQueryKeys.detail(ratingId));
+  const { data: commentDetailData, isPending } = useQuery(commentQueryKeys.detail(ratingId));
 
   if (!commentDetailData) {
+    return <p>데이터를 가져오는데 실패했습니다. 죄송합니다.</p>;
+  }
+
+  if (isPending) {
     return <DetailLoading />;
   }
 
