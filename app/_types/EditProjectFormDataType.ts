@@ -1,4 +1,15 @@
-import { ProjectLinkListType, TeammateType } from "./AddProjectFormDataType";
+export interface TeammateType {
+  id?: number;
+  name: string;
+  job: string;
+  url: string;
+}
+
+export interface ProjectLinkListType {
+  id?: number;
+  siteType: string;
+  url: string;
+}
 
 export interface EditProjectFormData {
   title: string;
@@ -8,7 +19,7 @@ export interface EditProjectFormData {
   projectTechStackList: any[];
   teammateList: TeammateType[];
   projectLinkList: ProjectLinkListType[];
-  thumbnail: File;
+  thumbnail: File | null;
   thumbnailUrl: string;
   imageType: string;
   imageList: File[];
