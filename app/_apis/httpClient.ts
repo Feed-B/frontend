@@ -66,6 +66,16 @@ function httpClient() {
     }
   }
 
+  async function putFormData(url: string, data: FormData, headers: HeadersInit) {
+    const response = await fetch(`${BASE_URL}${url}`, {
+      method: "PUT",
+      headers,
+      body: data,
+    });
+
+    return response;
+  }
+
   async function del(url: string, headers?: HeadersInit) {
     try {
       const response = await fetch(`${BASE_URL}${url}`, {
@@ -97,6 +107,7 @@ function httpClient() {
     postData,
     postFormData,
     put,
+    putFormData,
     delete: del,
   };
 }
