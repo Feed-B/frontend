@@ -3,8 +3,8 @@ import httpClient from "./httpClient";
 import { EditProjectResponse } from "./schema/editProjectResponse";
 
 export const editProjectApi = {
-  postProject: async (projectData: FormData) => {
-    return await httpClient().postFormData("/projects", projectData, HEADER.headers);
+  putProject: async (projectId: number, projectData: FormData) => {
+    return await httpClient().putFormData(`/projects/${projectId}`, projectData, HEADER.headers);
   },
   getProject: async (projectId: number) => {
     return await httpClient().get<EditProjectResponse>(`/projects/${projectId}/edits`, {}, HEADER.headers);
