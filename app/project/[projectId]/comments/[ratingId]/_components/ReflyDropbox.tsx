@@ -49,7 +49,7 @@ function ReflyDropbox({ reflyId }: ReflyDropbox) {
       </button>
 
       {isOpen && (
-        <DropDown className="right-0 top-10" itemRef={dropdownRef}>
+        <DropDown className="animate-dropdown-grow right-0 top-10" itemRef={dropdownRef}>
           <DropDown.TextItem>수정</DropDown.TextItem>
           <DropDown.TextItem onClick={handleDeleteComment}>삭제</DropDown.TextItem>
         </DropDown>

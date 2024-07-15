@@ -10,11 +10,29 @@ const config: Config = {
     extend: {
       animation: {
         "loop-scroll": "loop-scroll 35s linear infinite",
+        positionUp: "positionUp 2s ease-in-out infinite",
+        "dropdown-grow": "dropdown-grow 0.2s ease-in-out forwards",
       },
       keyframes: {
         "loop-scroll": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        positionUp: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-30%)" },
+        },
+        "dropdown-grow": {
+          "0%": {
+            transform: "scale(0)",
+            transformOrigin: "top right",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "scale(1)",
+            transformOrigin: "top right",
+            opacity: "1",
+          },
         },
       },
       backgroundImage: {

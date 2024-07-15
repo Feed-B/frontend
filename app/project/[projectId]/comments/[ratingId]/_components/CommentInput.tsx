@@ -50,7 +50,9 @@ function CommentInput({ ratingId }: CommentInputProps) {
         onChange={onChange}
       />
       <div className="flex flex-col justify-between">
-        <p className="text-end text-sm text-gray-500">0/{REFLY_COMMENT_LENGTH}</p>
+        <p className="text-end text-sm text-gray-500">
+          {textValue.length}/{REFLY_COMMENT_LENGTH}
+        </p>
         <Button bgColor="yellow" buttonSize="small" type="submit">
           등록
         </Button>
