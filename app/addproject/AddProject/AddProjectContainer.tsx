@@ -37,7 +37,7 @@ function AddProjectContainer() {
 
   const [formValues, setFormValues] = useState({
     imageType: "웹",
-    imageList: [] as File[],
+    imageList: [] as any[],
   });
   const imageIndexList = formValues.imageList.map((_, index) => index + 1);
 
@@ -71,14 +71,22 @@ function AddProjectContainer() {
 
   const handleTeammateChange = useCallback(
     (updatedTeammateList: AddSectionDataType[]) => {
-      setValue("teammateList", updatedTeammateList as TeammateType[]);
+      const filteredTeammateList = updatedTeammateList.map(item => {
+        const { name, job, url } = item as TeammateType;
+        return { name, job, url };
+      });
+      setValue("teammateList", filteredTeammateList);
     },
     [setValue]
   );
 
   const handleProjectLinkChange = useCallback(
     (updatedLinkList: AddSectionDataType[]) => {
-      setValue("projectLinkList", updatedLinkList as ProjectLinkListType[]);
+      const filteredLinkList = updatedLinkList.map(item => {
+        const { siteType, url } = item as ProjectLinkListType;
+        return { siteType, url };
+      });
+      setValue("projectLinkList", filteredLinkList);
     },
     [setValue]
   );
@@ -119,8 +127,6 @@ function AddProjectContainer() {
   });
 
   const handleFormSubmit = async (data: AddProjectFormData) => {
-    console.log("data", data);
-
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
 
@@ -136,7 +142,7 @@ function AddProjectContainer() {
     };
 
     formData.append("projectRequestDto", new Blob([JSON.stringify(projectRequestDto)], { type: "application/json" }));
-    formValues.imageList.forEach(file => formData.append("images", file));
+    formValues.imageList.forEach(imageData => formData.append("images", imageData.file));
     formData.append("imageIndexes", JSON.stringify(imageIndexList));
     formData.append("thumbnail", thumbnailData);
     formData.append("thumbnailIndex", new Blob([JSON.stringify(THUMBNAIL_INDEX)], { type: "application/json" }));

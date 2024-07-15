@@ -18,7 +18,7 @@ interface ImageType {
 
 interface ProjectImageBoxProps {
   setImageType: (image: string) => void;
-  handleImageFile: (fileList: File[]) => void;
+  handleImageFile: (fileList: any[]) => void;
   initialImageType?: string;
   initialUrlList?: string[];
   register?: UseFormRegisterReturn;
@@ -32,19 +32,22 @@ function ProjectImageBox({
   register,
 }: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const [selectedSize, setSelectedSize] = useState((initialImageType && initialImageType) || "웹");
+  const [selectedSize, setSelectedSize] = useState(initialImageType || "웹");
   const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
 
   useEffect(() => {
     if (initialUrlList.length > 0) {
       const urlList = initialUrlList.map(url => ({
-        id: url,
+        id: `${url}-${Math.random()}`,
         url: url,
       }));
       setShowImageUrlList(urlList);
     }
   }, [initialUrlList]);
+
+  useEffect(() => {
+    setSelectedSize(initialImageType || "웹");
+  }, [initialImageType]);
 
   const resizeFile = (file: Blob): Promise<File> =>
     new Promise((resolve, reject) => {
@@ -134,8 +137,7 @@ function ProjectImageBox({
   };
 
   useEffect(() => {
-    const filesArray: File[] = showImageUrlList.filter(image => image.file).map(image => image.file as File);
-    handleImageFile(filesArray);
+    handleImageFile(showImageUrlList);
   }, [showImageUrlList, handleImageFile]);
 
   return (
