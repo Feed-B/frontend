@@ -15,7 +15,6 @@ function CommentEditButton({ ratingId, onClick }: Props) {
   const queryClient = useQueryClient();
 
   const editCommentData = {
-    projectRatingId: ratingId,
     ideaRank: rating[0],
     designRank: rating[1],
     functionRank: rating[2],
@@ -29,7 +28,7 @@ function CommentEditButton({ ratingId, onClick }: Props) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["comment", "commentData", ratingId],
+        queryKey: ["comment", "detail", "commentData", ratingId],
       });
     },
   });
