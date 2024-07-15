@@ -1,10 +1,12 @@
 export interface TeammateType {
+  id?: number;
   name: string;
   job: string;
   url: string;
 }
 
 export interface ProjectLinkListType {
+  id?: number;
   siteType: string;
   url: string;
 }
