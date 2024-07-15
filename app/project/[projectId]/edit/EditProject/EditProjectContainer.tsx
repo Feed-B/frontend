@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Button from "@/app/_components/Button/Button";
@@ -11,21 +11,17 @@ import Title from "@/app/addproject/_components/Title";
 import ThumbnailBox from "@/app/addproject/_components/ThumbnailBox";
 import ProjectImageBox from "@/app/addproject/_components/ProjectImageBox/ProjectImageBox";
 import SkillStackProvider from "@/app/addproject/_context/SkillStackProvider";
-import { ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
+import { ProjectLinkListType, TeammateType } from "@/app/_types/EditProjectFormDataType";
 import { EditProjectFormData } from "@/app/_types/EditProjectFormDataType";
 import Input from "@/app/_components/Input/Input";
 import AddSection from "@/app/addproject/_components/AddSection/AddSection";
 import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStackSection";
+import { editProjectApi } from "@/app/_apis/editProjectApi";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
-// const THUMBNAIL_INDEX = 1;
 
-interface Props {
-  projectId: number;
-}
-
-type AddSectionDataType = TeammateType | ProjectLinkListType;
+type EditSectionDataType = TeammateType | ProjectLinkListType;
 
 const ErrorMessage = ({ error }: any) => {
   return (
@@ -35,25 +31,23 @@ const ErrorMessage = ({ error }: any) => {
   );
 };
 
-function AddProjectContainer({ projectId }: Props) {
+function EditProjectContainer({ projectId }: { projectId: number }) {
+  const queryClient = useQueryClient();
   const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery(
     editProjectQueryKeys.detail(projectId)
   );
 
   const router = useRouter();
 
-  const [formValues, setFormValues] = useState({
-    // imageType: "웹",
-    imageList: [] as File[],
-  });
+  const [imageList, setImageList] = useState([] as any[]);
 
-  console.log("formValues", formValues);
+  const [imageType, setImageType] = useState("웹");
 
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     setValue,
-    // getValues,
+    getValues,
     setError,
     clearErrors,
     formState: { errors },
@@ -69,12 +63,35 @@ function AddProjectContainer({ projectId }: Props) {
       setValue("introduction", project.introduction || "");
       setValue("content", project.content || "");
       setValue("serviceUrl", project.serviceUrl || "");
+      setImageType((project.imageType === "WEB" ? "웹" : "모바일") || "웹");
     }
   }, [project, setValue]);
 
+  useEffect(() => {
+    if (imageList.length === 0) {
+      setError && setError("imageList", { type: "manual", message: "최소 한 개 이상의 이미지를 추가해주세요" });
+    } else if (imageList.length > 0) {
+      clearErrors("imageList");
+    }
+  }, [clearErrors, imageList.length, setError]);
+
   const handleTechStackInput = useCallback(
-    (stackList: string[]) => {
-      setValue("projectTechStackList", stackList);
+    (stackList: any[]) => {
+      const existingStackList =
+        project?.techStacks?.reduce(
+          (acc, stack) => {
+            acc[stack.techStack] = stack.id;
+            return acc;
+          },
+          {} as Record<string, number>
+        ) || {};
+
+      const updatedStackList = stackList.map(stack => {
+        return { id: existingStackList[stack] || 0, techStack: stack };
+      });
+
+      setValue("projectTechStackList", updatedStackList);
+
       if (stackList.length > 0) clearErrors("projectTechStackList");
       else if (setError && stackList.length === 0) {
         setError("projectTechStackList", {
@@ -83,33 +100,41 @@ function AddProjectContainer({ projectId }: Props) {
         });
       }
     },
-    [clearErrors, setValue, setError]
+    [project?.techStacks, setValue, clearErrors, setError]
   );
 
   const handleTeammateChange = useCallback(
-    (updatedTeammateList: AddSectionDataType[]) => {
-      setValue("teammateList", updatedTeammateList as TeammateType[]);
+    (updatedTeammateList: EditSectionDataType[]) => {
+      const initialTeammateIdList = project?.projectTeammates?.map(teammate => teammate.id) || [];
+
+      const filteredTeammateList = updatedTeammateList.map(item => {
+        const { id, name, job, url } = item as TeammateType;
+        const newId = id && initialTeammateIdList.includes(id) ? id : 0;
+        return { id: newId, name, job, url };
+      });
+
+      setValue("teammateList", filteredTeammateList);
     },
-    [setValue]
+    [project?.projectTeammates, setValue]
   );
 
   const handleProjectLinkChange = useCallback(
-    (updatedLinkList: AddSectionDataType[]) => {
-      setValue("projectLinkList", updatedLinkList as ProjectLinkListType[]);
+    (updatedLinkList: EditSectionDataType[]) => {
+      const initialLinkIdList = project?.projectLinks?.map(link => link.id) || [];
+
+      const filteredLinkList = updatedLinkList.map(item => {
+        const { id, siteType, url } = item as ProjectLinkListType;
+        const newId = id && initialLinkIdList.includes(id) ? id : 0;
+        return { id: newId, siteType, url };
+      });
+      setValue("projectLinkList", filteredLinkList);
     },
-    [setValue]
+    [project?.projectLinks, setValue]
   );
 
-  const handleImageFile = useCallback(
-    (fileList: File[]) => {
-      setFormValues(prevState => ({ ...prevState, imageList: fileList }));
-      setValue("imageList", fileList);
-      if (fileList.length > 0) {
-        clearErrors("imageList");
-      }
-    },
-    [clearErrors, setValue]
-  );
+  const handleImageFile = useCallback((fileList: any[]) => {
+    setImageList(fileList);
+  }, []);
 
   const handleThumbnailFile = useCallback(
     (file: File) => {
@@ -121,6 +146,60 @@ function AddProjectContainer({ projectId }: Props) {
     [clearErrors, setValue]
   );
 
+  const putMutation = useMutation({
+    mutationFn: (projectData: FormData) => editProjectApi.putProject(projectId, projectData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["project", "list", "projectList"],
+      });
+      console.log("Edit Project Successful");
+      router.push(`/project/${projectId}`);
+    },
+    onError: () => {
+      console.error("Edit Project failed");
+    },
+  });
+
+  const handleFormSubmit = async (data: EditProjectFormData) => {
+    const formData = new FormData();
+    const thumbnailData = getValues("thumbnail");
+
+    const projectRequestDto = {
+      title: data.title,
+      introduction: data.introduction,
+      content: data.content,
+      serviceUrl: data.serviceUrl,
+      imageType: imageType === "웹" ? "WEB" : "MOBILE",
+      projectTechStacks: data.projectTechStackList,
+      projectTeammates: data.teammateList,
+      projectLinks: data.projectLinkList,
+    };
+    const initialImageUrlList = project?.imageUrlList || [];
+    const imageIndexList: number[] = new Array(imageList.length).fill(0);
+    const imageFiles: (File | "")[] = new Array(imageList.length).fill("");
+
+    imageList.forEach((image, index) => {
+      const initialIndex = initialImageUrlList.findIndex(url => url === image.url);
+      if (initialIndex !== -1) {
+        imageIndexList[index] = initialIndex + 1;
+      } else {
+        imageFiles[index] = image.file;
+      }
+    });
+
+    formData.append("projectRequestDto", new Blob([JSON.stringify(projectRequestDto)], { type: "application/json" }));
+    imageFiles.forEach(image => formData.append("images", image));
+    formData.append("imageIndexes", JSON.stringify(imageIndexList));
+    formData.append("thumbnail", thumbnailData || "");
+    formData.append("thumbnailIndex", new Blob([JSON.stringify(thumbnailData ? 0 : 1)], { type: "application/json" }));
+    try {
+      await putMutation.mutateAsync(formData);
+      console.log("Project uploaded successfully");
+    } catch (error) {
+      console.error("Error occurred during mutation", error);
+    }
+  };
+
   const handleCancelClick = () => {
     router.push(`/project/${projectId}`);
   };
@@ -128,20 +207,12 @@ function AddProjectContainer({ projectId }: Props) {
   if (!project) return <div>Loading...</div>;
 
   return (
-    <form
-      // onSubmit={handleFormSubmit}
-      encType="multipart/form-data">
+    <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data">
       <div className="mt-8 flex w-full flex-col gap-8">
         <section className="flex w-fit flex-col gap-4">
           <Title title="썸네일" />
           <div>
-            <ThumbnailBox
-              register={register("thumbnail", {
-                required: "썸네일을 추가해주세요",
-              })}
-              setThumbnail={handleThumbnailFile}
-              initialUrl={project?.thumbnailUrl || ""}
-            />
+            <ThumbnailBox setThumbnail={handleThumbnailFile} initialUrl={project?.thumbnailUrl || ""} />
             {errors.thumbnail && <ErrorMessage error={errors.thumbnail} />}
           </div>
         </section>
@@ -215,12 +286,9 @@ function AddProjectContainer({ projectId }: Props) {
           <Title title="이미지" />
           <div>
             <ProjectImageBox
-              register={register("imageList", {
-                required: "최소 한 개 이상의 이미지를 추가해주세요",
-              })}
-              setImageType={imageType => setFormValues(prevState => ({ ...prevState, imageType }))}
+              setImageType={imageType => setImageType(imageType)}
               handleImageFile={handleImageFile}
-              initialImageType={project?.imageType === "MOBILE" ? "모바일" : "웹"}
+              initialImageType={imageType}
               initialUrlList={project?.imageUrlList}
             />
             {errors.imageList && <ErrorMessage error={errors.imageList} />}
@@ -272,4 +340,4 @@ function AddProjectContainer({ projectId }: Props) {
   );
 }
 
-export default AddProjectContainer;
+export default EditProjectContainer;

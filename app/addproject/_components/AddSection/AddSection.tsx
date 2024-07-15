@@ -13,12 +13,14 @@ import Input from "../Input";
 import DropDownBox from "../DropDown/DropDownBox";
 
 interface TeammateType {
+  id?: number;
   name: string;
   job: string;
   url: string;
 }
 
 interface ProjectLinkListType {
+  id?: number;
   siteType: string;
   url: string;
 }
@@ -59,7 +61,7 @@ function AddSection({
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>(() => {
     if (initialTeammateList && initialTeammateList.length > 0) {
       return initialTeammateList.map(item => ({
-        id: 0,
+        id: item.id || 0,
         url: item.url || "",
         job: item.job || "",
         name: item.teammateName || "",
@@ -67,7 +69,7 @@ function AddSection({
       }));
     } else if (initialProjectLink && initialProjectLink.length > 0) {
       return initialProjectLink.map(item => ({
-        id: 0,
+        id: item.id || 0,
         url: item.url || "",
         job: "",
         name: "",
@@ -96,16 +98,7 @@ function AddSection({
   };
 
   useEffect(() => {
-    const filteredInput = additionalInput.map(item => {
-      if (title === "팀원") {
-        const { name, job, url } = item;
-        return { name, job, url } as TeammateType;
-      } else {
-        const { siteType, url } = item;
-        return { siteType, url } as ProjectLinkListType;
-      }
-    });
-    onInputChange(filteredInput);
+    onInputChange(additionalInput);
 
     if (title === "팀원") {
       let hasError = false;
