@@ -62,7 +62,7 @@ export const commentApi = {
       HEADER.applicationHeaders
     );
   },
-  postReflyComment: async (ratingId: number, comment: string) => {
+  postReflyComment: async (ratingId: number | undefined, comment: string) => {
     return await httpClient().post(
       `/projects/${ratingId}/comments`,
       {
@@ -77,6 +77,15 @@ export const commentApi = {
       `/projects/ratings/${ratingId}`,
       {
         ...data,
+      },
+      HEADER.applicationHeaders
+    );
+  },
+  putReflyComment: async (commentId: number | undefined, comment: string) => {
+    return await httpClient().put(
+      `/projects/comments/${commentId}`,
+      {
+        comment: comment,
       },
       HEADER.applicationHeaders
     );

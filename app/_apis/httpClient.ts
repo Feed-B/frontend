@@ -40,15 +40,25 @@ function httpClient() {
     return response;
   }
 
-  async function put<T, P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
-    const response = await fetch(`${BASE_URL}${url}`, {
-      method: "PUT",
-      headers: headers,
-      body: JSON.stringify(data),
-    });
+  async function put<P>(url: string, data: P, headers: HeadersInit = { "Content-Type": "application/json" }) {
+    try {
+      const response = await fetch(`${BASE_URL}${url}`, {
+        method: "PUT",
+        headers: headers,
+        body: JSON.stringify(data),
+      });
 
-    const result: T = await response.json();
-    return result;
+      // 서버 응답이 성공적이지 않을 때 예외 던지기
+      if (!response.ok) {
+        const errorMessage = await response.text(); // 서버가 보낸 오류 메시지 가져오기
+        throw new Error(errorMessage);
+      }
+
+      return response;
+    } catch (error: any) {
+      console.error("Error:", error);
+      throw error; // 상위 호출자에게 예외 전달
+    }
   }
 
   async function del(url: string, headers?: HeadersInit) {
