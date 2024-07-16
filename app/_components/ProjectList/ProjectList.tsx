@@ -21,7 +21,7 @@ function ProjectList({ projectList, lastRef, isPending }: ProjectListProp) {
   }
   return (
     <div className="relative grid grid-cols-4 gap-4">
-      {projectList && projectList[0].content.length !== 0 ? (
+      {projectList && projectList[0].content.length > 0 ? (
         projectList.map(project =>
           project.content.map(project => (
             <Link
