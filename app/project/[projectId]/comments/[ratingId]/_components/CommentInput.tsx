@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/comment";
+import { useToast } from "@/app/_context/ToastContext";
 
 interface CommentInputProps {
   ratingId?: number;
@@ -17,6 +18,8 @@ interface CommentInputProps {
 function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: CommentInputProps) {
   const queryClient = useQueryClient();
   const [textValue, setTextValue] = useState("");
+
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (commentValue) {
@@ -33,6 +36,11 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
         queryKey: ["comment", "reflyList", "reflyCommentList"],
       });
       setTextValue("");
+      addToast("댓글이 생성되었습니다", "success");
+    },
+    onError: error => {
+      console.error("Error:", error);
+      addToast("댓글이 생성 오류가 발생했습니다", "error");
     },
   });
 
@@ -46,6 +54,11 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
         queryKey: ["comment", "reflyList", "reflyCommentList"],
       });
       setTextValue("");
+      addToast("댓글이 수정되었습니다", "success");
+    },
+    onError: error => {
+      console.error("Error:", error);
+      addToast("댓글이 수정 오류가 발생했습니다", "error");
     },
   });
 

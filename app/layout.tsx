@@ -1,6 +1,7 @@
 import LoadingWrapper from "./_components/LoadingWrapper/LoadingWrapper";
 import Providers from "./_queryFactory/providers";
 import { LoginProvider } from "./_context/LoginProvider";
+import { ToastProvider } from "./_context/ToastContext";
 import type { Metadata } from "next";
 import "./_styles/globals.css";
 
@@ -28,9 +29,11 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <LoginProvider>
-          <Providers>
-            <LoadingWrapper>{children}</LoadingWrapper>
-          </Providers>
+          <ToastProvider>
+            <Providers>
+              <LoadingWrapper>{children}</LoadingWrapper>
+            </Providers>
+          </ToastProvider>
         </LoginProvider>
       </body>
     </html>
