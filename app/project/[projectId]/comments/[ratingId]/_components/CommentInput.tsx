@@ -49,7 +49,6 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
       return commentApi.putReflyComment(commentId, comment);
     },
     onSuccess: () => {
-      console.log("test");
       queryClient.invalidateQueries({
         queryKey: ["comment", "reflyList", "reflyCommentList"],
       });

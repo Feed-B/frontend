@@ -43,6 +43,7 @@ const config: Config = {
       boxShadow: {
         "check-radio-border": "0 0 0 1px #3F3F3F",
         "default-radio-border": "0 0 0 1px #D1D1D1",
+        "custom-shadow": "4px 4px 24px 0px rgba(0, 0, 0, 0.04)",
       },
     },
     screens: {

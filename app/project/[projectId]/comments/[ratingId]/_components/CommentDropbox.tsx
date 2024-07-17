@@ -11,13 +11,13 @@ import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { commentApi } from "@/app/_apis/comment";
 import { useToast } from "@/app/_context/ToastContext";
 
-interface ModalDropboxProps {
+interface CommentDropboxProps {
   toggleState: () => void;
   ratingId: number;
   projectId: number;
 }
 
-function ModalDropbox({ toggleState: editToggle, ratingId, projectId }: ModalDropboxProps) {
+function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: CommentDropboxProps) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -73,4 +73,4 @@ function ModalDropbox({ toggleState: editToggle, ratingId, projectId }: ModalDro
   );
 }
 
-export default ModalDropbox;
+export default CommentDropbox;
