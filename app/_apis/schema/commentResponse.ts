@@ -1,15 +1,18 @@
-export interface CommentsListResponse {
-  content: [
-    {
-      commentId: number;
-      authorId: number;
-      authorName: string;
-      job: string;
-      comment: string;
-      averageStarRank: number;
-      childCommentCount: number;
-    },
-  ];
+export interface CommentList {
+  ratingId: number;
+  averageRank: number;
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  comment: string;
+  childCommentCount: number;
+  authorProfileImageUrl: string;
+  authorId: number;
+  authorName: string;
+  memberJob: string;
+  //API 수정되면 추가
+  /* 
   customPageable: {
     first: boolean;
     last: boolean;
@@ -19,7 +22,10 @@ export interface CommentsListResponse {
     page: number;
     size: number;
   };
+  */
 }
+
+export interface CommentListResponse extends Array<CommentList> {}
 
 export interface CommentDetailResponse {
   authorId: number;
@@ -61,13 +67,18 @@ export interface ReflyCommentResponse {
 
 export interface MyCommentResponse {
   exists: boolean;
-  projectCommentResponseDto?: {
-    commentId: number;
+  projectRating: {
+    ratingId: number;
+    averageRank: number;
+    ideaRank: number;
+    designRank: number;
+    functionRank: number;
+    completionRank: number;
+    comment: string;
+    childCommentCount: number;
+    authorProfileImageUrl: string;
     authorId: number;
     authorName: string;
-    job: string;
-    comment: string;
-    averageStarRank: number;
-    childCommentCount: number;
+    memberJob: string;
   };
 }

@@ -17,9 +17,17 @@ function EnterButton({ projectId, mode = "write", onClick }: Props) {
 
   const isDisabled = rating.some(element => element < 1);
 
+  const postCommentData = {
+    ideaRank: rating[0],
+    designRank: rating[1],
+    functionRank: rating[2],
+    completionRank: rating[3],
+    comment: comment,
+  };
+
   const mutation = useMutation({
-    mutationFn: (comment: string) => {
-      return commentApi.postComment(projectId, rating, comment);
+    mutationFn: () => {
+      return commentApi.postComment(projectId, { ...postCommentData });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -32,7 +40,7 @@ function EnterButton({ projectId, mode = "write", onClick }: Props) {
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (!isDisabled) {
-      mutation.mutate(comment);
+      mutation.mutate();
     }
   };
 

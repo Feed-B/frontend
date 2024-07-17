@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLogin } from "../_context/LoginProvider";
-import { getToken, removeToken } from "../_utils/handleToken";
+import { checkTokenExpiry, getToken, removeToken } from "../_utils/handleToken";
 
 const useCheckLogin = () => {
   const { type, setType } = useLogin();
@@ -14,6 +14,10 @@ const useCheckLogin = () => {
       setIsLoggedIn(false); // 로그인 상태 없을 때 업데이트
     }
   }, [setType]);
+
+  useEffect(() => {
+    checkTokenExpiry();
+  });
 
   const handleLogout = () => {
     removeToken();

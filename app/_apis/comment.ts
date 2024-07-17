@@ -2,15 +2,23 @@ import { HEADER } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
 import {
   CommentDetailResponse,
-  CommentsListResponse,
+  CommentListResponse,
   MyCommentResponse,
   ReflyCommentResponse,
 } from "./schema/commentResponse";
 
-interface CommentsListRequest {
+interface CommentListRequest {
   projectId?: number;
   page?: number;
   size?: number;
+}
+
+interface UploadCommentRequest {
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  comment: string;
 }
 
 interface UpadateCommentRequest {
@@ -21,17 +29,13 @@ interface UpadateCommentRequest {
   comment: string;
 }
 
-interface ReflyCommentListRequest extends CommentsListRequest {
+interface ReflyCommentListRequest extends CommentListRequest {
   ratingId: number;
 }
 
 export const commentApi = {
-  getCommentList: async ({ projectId, page = 1, size = 10 }: CommentsListRequest) => {
-    return await httpClient().get<CommentsListResponse>(
-      `/projects/${projectId}/comments`,
-      { page, size },
-      HEADER.headers
-    );
+  getCommentList: async ({ projectId }: CommentListRequest) => {
+    return await httpClient().get<CommentListResponse>(`/projects/${projectId}/ratings`, {}, HEADER.headers);
   },
   getCommentDetail: async (ratingId: number) => {
     return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`);
@@ -47,17 +51,18 @@ export const commentApi = {
     );
   },
   getMyComment: async (projectId: number) => {
-    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/comments/mine`, {}, HEADER.headers);
+    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers);
   },
-  postComment: async (projectId: number, rankList: number[], comment: string) => {
+  postComment: async (projectId: number, data: UploadCommentRequest) => {
     return await httpClient().postData(
-      `/projects/${projectId}/comments`,
+      `/projects/${projectId}/ratings`,
       {
-        ideaRank: rankList[0],
-        designRank: rankList[1],
-        functionRank: rankList[2],
-        completionRank: rankList[3],
-        comment: comment,
+        // ideaRank: rankList[0],
+        // designRank: rankList[1],
+        // functionRank: rankList[2],
+        // completionRank: rankList[3],
+        // comment: comment,
+        data,
       },
       HEADER.applicationHeaders
     );

@@ -32,12 +32,12 @@ function SuccessContent({ router }: any) {
       setType(typeQuery);
     }
 
-    console.log(typeQuery);
-
     // 토큰이 있으면 로컬스토리지에 저장
     if (tokenQuery) {
       const accessToken = tokenQuery;
       setToken(accessToken);
+      const timestamp = Date.now();
+      localStorage.setItem("tokenTimestamp", timestamp.toString());
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {

@@ -4,13 +4,15 @@ import httpClient from "./httpClient";
 import { ProjectResponseType } from "./schema/projectResponse";
 
 export const projectListAPI = {
-  getMyProjectList: async ({ page = 1, size = 24, limit = 100 }, selectDataType: MyPageProjectListType) => {
+  getMyProjectList: async (
+    { page = 1, size = 24, userId }: { page: number; size: number; userId: number },
+    selectDataType: MyPageProjectListType
+  ) => {
     return await httpClient().get<ProjectResponseType>(
-      `/projects/mine${selectDataType === "wishProject" ? "/likes" : ""}?page=${page}&size=${size}&limit=${limit}`,
+      `/${userId}/projects${selectDataType === "wishProject" ? "/likes" : ""}`,
       {
-        page,
-        size,
-        limit,
+        page: page,
+        size: size,
       },
       HEADER.headers
     );

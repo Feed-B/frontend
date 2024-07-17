@@ -8,12 +8,20 @@ import { MY_PAGE_TEXT } from "./constant";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
 
-function MypageProjectSection({ isMyPage, projectType }: { isMyPage: boolean; projectType: MyPageProjectListType }) {
+function MypageProjectSection({
+  isMyPage,
+  projectType,
+  userId,
+}: {
+  isMyPage: boolean;
+  projectType: MyPageProjectListType;
+  userId: number;
+}) {
   const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isPending } = useInfiniteQuery({
     queryKey: ["projectList", projectType],
     queryFn: ({ pageParam = 1 }) =>
-      projectListAPI.getMyProjectList({ page: pageParam as number, size: 8 }, projectType),
+      projectListAPI.getMyProjectList({ page: pageParam as number, size: 8, userId: userId }, projectType),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
@@ -45,7 +53,7 @@ function MypageProjectSection({ isMyPage, projectType }: { isMyPage: boolean; pr
         {listTitle(isMyPage, projectType)}
         <span className="ml-2.5">({data?.pages[0].customPageable.totalElements})</span>
       </h3>
-      <ProjectList projectList={data?.pages} lastRef={lastCardRef} />
+      <ProjectList projectList={data?.pages} lastRef={lastCardRef} isPending={isPending} />
     </section>
   );
 }

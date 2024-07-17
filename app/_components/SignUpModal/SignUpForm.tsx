@@ -78,7 +78,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-[86px]">
       <Input
         title="닉네임*"
         type="text"
@@ -119,13 +119,15 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
               message: `소개는 ${CONSTANTS.INTRODUCTION_MAX_LENGTH}자를 초과할 수 없습니다`,
             },
           })}
-          className="h-40 w-96 rounded-lg border border-gray-200 px-2 py-2 text-sm focus:border-gray-900 focus:outline-none"
+          className="h-40 w-96 resize-none rounded-lg border border-gray-200 px-2 py-2 text-sm focus:border-gray-900 focus:outline-none"
         />
       </div>
 
-      <Button type="submit" buttonSize="normal" bgColor="yellow" className="mt-16 font-semibold">
-        완료
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit" buttonSize="normal" bgColor="yellow" className="mt-[54px] font-semibold">
+          완료
+        </Button>
+      </div>
     </form>
   );
 }
