@@ -13,22 +13,35 @@ interface ToastProps {
 
 const Toast = ({ message, type, onClose }: ToastProps) => {
   const [show, setShow] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
+    // 컴포넌트가 마운트되면 표시 애니메이션을 시작합니다.
     setShow(true);
-    const timer = setTimeout(() => {
-      setShow(false);
-      setTimeout(onClose, 500); // CSS 애니메이션 시간이랑 맞추기 위해 딜레이
-    }, 3000); // 3초 후 자동으로 닫힘
 
-    return () => clearTimeout(timer);
-  }, [onClose]);
+    // 3초 후에 토스트를 사라지기 시작하게 설정합니다.
+    const hideTimeout = setTimeout(() => {
+      setIsExiting(true); // 애니메이션 시작
+    }, 3000);
+
+    // 애니메이션이 끝난 후에 onClose 호출
+    const onCloseTimeout = setTimeout(() => {
+      if (isExiting) {
+        onClose();
+      }
+    }, 3500); // 애니메이션이 끝난 후 추가로 0.5초 후 호출
+
+    return () => {
+      clearTimeout(hideTimeout);
+      clearTimeout(onCloseTimeout);
+    };
+  }, [isExiting, onClose]);
 
   const backgroundColor = type === "success" ? "border-blue-500 bg-blue-100" : "border-red-500 bg-red-100";
 
   return (
     <div
-      className={`transform transition-all duration-500 ease-in-out ${show ? "translate-y-0 scale-100 opacity-100" : "translate-y-5 scale-95 opacity-0"} ${backgroundColor} mb-2 flex items-center gap-2 rounded-xl border border-solid p-4`}>
+      className={`transform transition-all duration-500 ease-in-out ${show ? (isExiting ? "translate-y-5 scale-95 opacity-0" : "translate-y-0 scale-100 opacity-100") : "translate-y-5 scale-95 opacity-0"}  ${backgroundColor} mb-2 flex items-center gap-2 rounded-xl border border-solid p-4`}>
       {type === "success" ? (
         <Image src={checkCircle} alt="성공" width={24} priority />
       ) : (
