@@ -32,7 +32,7 @@ export default function RootLayout({
       <head>
         <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
       </head>
-      <body className="overflow-hidden">
+      <body>
         <div id="modal" />
         <Providers>
           <LoginProvider>

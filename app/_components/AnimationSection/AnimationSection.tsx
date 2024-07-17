@@ -49,11 +49,11 @@ function AnimationSection({ children, className }: { children: ReactNode; classN
 
   useEffect(() => {
     window.addEventListener("wheel", handleWheelEvent);
-    document.body.classList.add("scrollbar-hide");
+    document.body.classList.add("overflow-hidden");
 
     return () => {
       window.removeEventListener("wheel", handleWheelEvent);
-      document.body.classList.remove("scrollbar-hide");
+      document.body.classList.remove("overflow-hidden");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
