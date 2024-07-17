@@ -41,7 +41,7 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
 
   return (
     <div
-      className={`transform transition-all duration-500 ease-in-out ${show ? (isExiting ? "translate-y-5 scale-95 opacity-0" : "translate-y-0 scale-100 opacity-100") : "translate-y-5 scale-95 opacity-0"}  ${backgroundColor} mb-2 flex items-center gap-2 rounded-xl border border-solid p-4`}>
+      className={`transform transition-all duration-500 ease-in-out ${show ? (isExiting ? "-translate-y-10 scale-95 opacity-0" : "translate-y-0 scale-100 opacity-100") : "translate-y-5 scale-95 opacity-0"}  ${backgroundColor} mb-2 flex items-center gap-2 rounded-xl border border-solid p-4`}>
       {type === "success" ? (
         <Image src={checkCircle} alt="성공" width={24} priority />
       ) : (
