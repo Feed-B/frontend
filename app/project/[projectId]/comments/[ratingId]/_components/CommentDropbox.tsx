@@ -59,12 +59,16 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
 
   return (
     <>
-      <button type="button" onClick={toggleState} className="h-5 w-5" ref={buttonRef}>
+      <button
+        type="button"
+        onClick={toggleState}
+        className="h-10 w-10 rounded-lg p-2 hover:bg-gray-100"
+        ref={buttonRef}>
         <Image src={KebabDropDown} alt="댓글 모달 메뉴" width={24} />
       </button>
 
       {isOpen && (
-        <DropDown className="right-0 top-10 animate-dropdown-grow" itemRef={dropdownRef}>
+        <DropDown className="right-0 top-11 animate-dropdown-grow" itemRef={dropdownRef}>
           <DropDown.TextItem onClick={handleEditComment}>수정</DropDown.TextItem>
           <DropDown.TextItem onClick={handleDeleteComment}>삭제</DropDown.TextItem>
         </DropDown>

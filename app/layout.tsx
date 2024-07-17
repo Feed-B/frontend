@@ -1,3 +1,4 @@
+import Script from "next/script";
 import LoadingWrapper from "./_components/LoadingWrapper/LoadingWrapper";
 import Providers from "./_queryFactory/providers";
 import { LoginProvider } from "./_context/LoginProvider";
@@ -27,6 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
+      </head>
       <body>
         <LoginProvider>
           <ToastProvider>

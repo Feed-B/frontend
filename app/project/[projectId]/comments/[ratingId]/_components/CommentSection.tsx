@@ -57,7 +57,7 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
             userProfileImageUrl={commentDetailData.authorProfileImageUrl}
           />
           <div className="relative flex items-center gap-2">
-            <SocialDropBox />
+            <SocialDropBox projectId={projectId} />
             <CommentDropbox toggleState={toggleState} ratingId={ratingId} projectId={projectId} />
           </div>
         </div>

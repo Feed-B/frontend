@@ -55,7 +55,11 @@ function ReflyDropbox({ reflyId, toggleState }: ReflyDropbox) {
 
   return (
     <>
-      <button type="button" onClick={dropboxToggle} className="h-5 w-5" ref={buttonRef}>
+      <button
+        type="button"
+        onClick={dropboxToggle}
+        className="h-10 w-10 rounded-lg p-2 hover:bg-gray-100"
+        ref={buttonRef}>
         <Image src={KebabDropDown} alt="대댓글 모달 메뉴" width={24} />
       </button>
 
