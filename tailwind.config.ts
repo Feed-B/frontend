@@ -8,6 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      scrollbar: {
+        hide: {
+          "scrollbar-width": "none",
+          /* Internet Explorer 10+ */
+          "-ms-overflow-style": "none",
+          /* WebKit 기반 브라우저들 (Chrome, Safari, Edge) */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      },
       animation: {
         "loop-scroll": "loop-scroll 35s linear infinite",
         positionUp: "positionUp 2s ease-in-out infinite",

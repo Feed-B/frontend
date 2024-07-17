@@ -31,7 +31,7 @@ function ShowComment({ projectId, myComment }: Props) {
       <h3 className="mb-4 text-lg font-semibold">내가 쓴 글</h3>
       <div className="relative flex flex-col gap-4 rounded-xl border border-solid border-gray-300 bg-gray-100 p-4">
         <div className="flex justify-between">
-          <CommentProfile userId={authorId} userName={authorName} userJob={job} />
+          <CommentProfile userId={authorId} userName={authorName} userJob={job} userProfileImageUrl="" />
           <div className="flex items-center gap-2">
             <CommentCount size="large" commentCount={childCommentCount} />
             <Image className="relative" src={kebabIcon} alt="댓글 메뉴." width={24} onClick={toggleState} />

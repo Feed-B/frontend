@@ -26,7 +26,12 @@ function CommentCard({ projectId, comment }: CommentProps) {
     <Link href={`/project/${projectId}/comments/${comment.commentId}?userId=${comment.authorId}`}>
       <div className="relative flex flex-col justify-between gap-4 rounded-xl bg-gray-100 p-4 hover:bg-gray-200">
         <div className="flex items-center justify-between">
-          <CommentProfile userId={comment.authorId} userJob={comment.job} userName={comment.authorName} />
+          <CommentProfile
+            userId={comment.authorId}
+            userJob={comment.job}
+            userName={comment.authorName}
+            userProfileImageUrl=""
+          />
           <CommentCount commentCount={comment.childCommentCount} />
         </div>
         <p className="text-overflow-3 h-14 text-sm text-gray-600">{comment.comment}</p>

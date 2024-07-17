@@ -1,5 +1,4 @@
 import Providers from "@/app/_queryFactory/providers";
-import Header from "@/app/_components/Header/Header";
 import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
 
@@ -13,11 +12,5 @@ export default function MainPageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <Providers>
-      <div id="modal" />
-      <Header />
-      {children}
-    </Providers>
-  );
+  return <Providers>{children}</Providers>;
 }

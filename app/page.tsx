@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 import landingMainSection from "@/public/images/landingMainSection.svg";
 import landingProjectSection from "@/public/images/landingProjectSection.svg";
 import landingEvaluationSection from "@/public/images/landingEvaluationSection.svg";
@@ -12,6 +13,11 @@ import getQueryClient from "./_queryFactory/getQueryClient";
 import { projectQueryKeys } from "./_queryFactory/projectQuery";
 import LandingProjectList from "./_components/LandingProjectList/LandingProjectList";
 import AnimationSection from "./_components/AnimationSection/AnimationSection";
+
+function Section({ children, className }: { children: ReactNode; className?: string }) {
+  const sectionClass = twMerge("mx-auto flex w-full gap-3 h-screen  " + className);
+  return <section className={sectionClass}>{children}</section>;
+}
 
 function SubTitle({ children }: { children: ReactNode }) {
   return <h2 className="mt-24 text-center text-5xl font-semibold text-black">{children}</h2>;
@@ -34,9 +40,9 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <main className="scroll-hide h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-gray-100">
-        <AnimationSection className="justify-center gap-[164px]">
-          <div className="mt-[120px]">
+      <AnimationSection className="h-screen w-full overflow-hidden scroll-smooth bg-gray-100">
+        <Section className="flex justify-center gap-[164px] bg-gray-100">
+          <div className="mt-[200px]">
             <h1 className="text-[56px] font-semibold">
               사이드 프로젝트에
               <br />
@@ -61,8 +67,8 @@ export default async function Home() {
             </Link>
           </div>
           <Image className="zoom-in-animation" src={landingMainSection} alt="피드백 이미지" width={555} priority />
-        </AnimationSection>
-        <AnimationSection className="flex-col">
+        </Section>
+        <Section className="relative flex-col items-center bg-gray-100">
           <SubTitle>프로젝트 등록과 공유</SubTitle>
           <div className="mb-3 flex flex-col">
             <Description>
@@ -74,8 +80,8 @@ export default async function Home() {
           <div className="absolute left-0 z-10 h-full w-20 bg-custom-gradient" />
           <div className="absolute right-0 z-10 h-full w-20 rotate-180 bg-custom-gradient" />
           <LandingProjectList />
-        </AnimationSection>
-        <AnimationSection className="flex-col items-center justify-center">
+        </Section>
+        <Section className="flex-col items-center justify-center bg-gray-100">
           <SubTitle>프로젝트 공유와 피드백</SubTitle>
           <Description>프로젝트 리뷰로 피드백을 받고, 별점을 통해 전반적인 만족도를 확인하세요.</Description>
           <Link href={"/main"}>
@@ -88,8 +94,8 @@ export default async function Home() {
             </Button>
           </Link>
           <Image src={landingProjectSection} alt="메인 페이지 이미지" width={1092} priority />
-        </AnimationSection>
-        <AnimationSection className="flex-col items-center justify-center">
+        </Section>
+        <Section className="flex-col items-center justify-center bg-gray-100 ">
           <SubTitle>다양한 기준으로 프로젝트 평가</SubTitle>
           <Description>
             개별 별점을 평균내어 종합 별점으로 제공해드립니다. 이를 통해 프로젝트에 대한 전체적인 평가를 한눈에 파악할
@@ -111,8 +117,8 @@ export default async function Home() {
             width={1000}
             priority
           />
-        </AnimationSection>
-        <AnimationSection className="flex-col items-center justify-center">
+        </Section>
+        <Section className="flex-col items-center justify-center bg-gray-100">
           <SubTitle>프로젝트에 대한 토론</SubTitle>
           <Description>프로젝트 리뷰를 남기면 모든 사용자와 프로젝트에 대한 대화를 나눌 수 있어요.</Description>
           <Link href={"/main"}>
@@ -125,8 +131,8 @@ export default async function Home() {
             </Button>
           </Link>
           <Image className="mt-12" src={landingDebateSection} alt="피드백 이미지" width={1130} priority />
-        </AnimationSection>
-        <AnimationSection className="flex-col items-center justify-center">
+        </Section>
+        <Section className="flex-col items-center justify-center bg-gray-100">
           <SubTitle>지금 프로젝트를 공유하고 피드백 받기</SubTitle>
           <Description>
             FeedB와 함께라면 프로젝트 진행이 더 이상 혼자가 아닙니다. 다양한 의견을 통해 프로젝트를 개선하고, 새로운
@@ -142,8 +148,8 @@ export default async function Home() {
             </Button>
           </Link>
           <Image className="mt-16" src={landingFeedBackSection} alt="피드백 이미지" width={1130} priority />
-        </AnimationSection>
-      </main>
+        </Section>
+      </AnimationSection>
     </HydrationBoundary>
   );
 }

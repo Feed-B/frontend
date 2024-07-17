@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Header from "./_components/Header/Header";
 import LoadingWrapper from "./_components/LoadingWrapper/LoadingWrapper";
 import Providers from "./_queryFactory/providers";
 import { LoginProvider } from "./_context/LoginProvider";
@@ -31,14 +32,16 @@ export default function RootLayout({
       <head>
         <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
       </head>
-      <body>
-        <LoginProvider>
-          <ToastProvider>
-            <Providers>
+      <body className="overflow-hidden">
+        <div id="modal" />
+        <Providers>
+          <LoginProvider>
+            <ToastProvider>
+              <Header />
               <LoadingWrapper>{children}</LoadingWrapper>
-            </Providers>
-          </ToastProvider>
-        </LoginProvider>
+            </ToastProvider>
+          </LoginProvider>
+        </Providers>
       </body>
     </html>
   );

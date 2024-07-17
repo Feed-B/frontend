@@ -12,7 +12,7 @@ function LandingProjectList() {
     return null;
   }
   return (
-    <div className="overflow-hidde group absolute bottom-32 left-0">
+    <div className="overflow-hidde group absolute bottom-[300px] left-0">
       <div className="group-hover:paused flex animate-loop-scroll gap-6 pr-6">
         {[...data.content, ...data.content].map((project, index) => (
           <div
