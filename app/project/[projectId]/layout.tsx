@@ -1,5 +1,4 @@
 import Providers from "@/app/_queryFactory/providers";
-import ToastContainer from "@/app/_components/Toast/ToastContainer";
 import Header from "@/app/_components/Header/Header";
 import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
@@ -19,7 +18,6 @@ export default function ProjectLayout({
       <div id="modal" />
       <Header />
       {children}
-      <ToastContainer />
     </Providers>
   );
 }
