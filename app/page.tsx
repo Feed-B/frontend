@@ -95,7 +95,7 @@ export default async function Home() {
           </Link>
           <Image src={landingProjectSection} alt="메인 페이지 이미지" width={1092} priority />
         </Section>
-        <Section className="flex-col items-center justify-center bg-gray-100 ">
+        <Section className="flex-col items-center justify-center bg-gray-100">
           <SubTitle>다양한 기준으로 프로젝트 평가</SubTitle>
           <Description>
             개별 별점을 평균내어 종합 별점으로 제공해드립니다. 이를 통해 프로젝트에 대한 전체적인 평가를 한눈에 파악할

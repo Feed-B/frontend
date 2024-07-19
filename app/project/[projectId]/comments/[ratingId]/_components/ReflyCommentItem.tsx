@@ -27,7 +27,7 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
   return (
     <div className="relative mt-2 flex gap-3 p-2">
       {/* Profile Image */}
-      <Link href={`/profile/${userId?.id}`} passHref>
+      <Link href={`/profile/${userId?.id}`}>
         <ProfileImage imageUrl={replyComment.authorProfileImageUrl || "default"} className="h-6 w-6" />
       </Link>
 
