@@ -1,5 +1,6 @@
 import Script from "next/script";
 import Header from "./_components/Header/Header";
+import ToastContainer from "./_components/Toast/ToastContainer";
 import Providers from "./_queryFactory/providers";
 import { LoginProvider } from "./_context/LoginProvider";
 import { ToastProvider } from "./_context/ToastContext";
@@ -38,6 +39,7 @@ export default function RootLayout({
             <ToastProvider>
               <Header />
               {children}
+              <ToastContainer />
             </ToastProvider>
           </LoginProvider>
         </Providers>
