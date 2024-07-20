@@ -4,14 +4,14 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
-import { CommentList } from "@/app/_apis/schema/commentResponse";
+import { Comment } from "@/app/_types/CommentType";
 import CommentProfile from "./CommentProfile";
 import CommentCount from "./CommentCount";
 import TotalStar from "./TotalStar";
 
 interface CommentProps {
   projectId: number;
-  comment: CommentList;
+  comment: Comment;
 }
 
 function CommentCard({ projectId, comment }: CommentProps) {
