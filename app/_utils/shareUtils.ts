@@ -1,9 +1,12 @@
 import { projectApi } from "../_apis/project";
 
-const url: string = window.location.href;
-
 export const copyLink = async () => {
-  await navigator.clipboard.writeText(url);
+  if (typeof window !== "undefined") {
+    const url: string = window.location.href;
+    await navigator.clipboard.writeText(url);
+  } else {
+    console.error("window is not defined");
+  }
 };
 
 // Kakao
