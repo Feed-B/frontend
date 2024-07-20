@@ -2,7 +2,6 @@ import React from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import ToastContainer from "@/app/_components/Toast/ToastContainer";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
 import CommentSection from "./_components/CommentSection";
@@ -50,7 +49,6 @@ async function CommentPage({ params }: Props) {
         </section>
         <ReflyCommentList ratingId={params.ratingId} />
       </div>
-      <ToastContainer />
     </HydrationBoundary>
   );
 }
