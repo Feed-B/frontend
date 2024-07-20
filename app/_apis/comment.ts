@@ -34,8 +34,15 @@ interface ReflyCommentListRequest extends CommentListRequest {
 }
 
 export const commentApi = {
-  getCommentList: async ({ projectId }: CommentListRequest) => {
-    return await httpClient().get<CommentListResponse>(`/projects/${projectId}/ratings`, {}, HEADER.headers);
+  getCommentList: async ({ projectId, page = 1, size = 8 }: CommentListRequest) => {
+    return await httpClient().get<CommentListResponse>(
+      `/projects/${projectId}/ratings`,
+      {
+        page,
+        size,
+      },
+      HEADER.headers
+    );
   },
   getCommentDetail: async (ratingId: number) => {
     return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`);
