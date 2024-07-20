@@ -1,5 +1,5 @@
 const ACCESS_TOKEN = "accessToken";
-const TOKEN_EXPIRY_TIME = 10000; // 토큰 만료 시간
+const TOKEN_EXPIRY_TIME = 6000000; // 토큰 만료 시간
 
 export const setToken = (accessToken: string) => {
   if (typeof window !== "undefined") {
