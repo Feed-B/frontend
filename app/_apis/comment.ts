@@ -57,11 +57,6 @@ export const commentApi = {
     return await httpClient().postData(
       `/projects/${projectId}/ratings`,
       {
-        // ideaRank: rankList[0],
-        // designRank: rankList[1],
-        // functionRank: rankList[2],
-        // completionRank: rankList[3],
-        // comment: comment,
         data,
       },
       HEADER.applicationHeaders
