@@ -1,18 +1,20 @@
-export interface CommentList {
-  ratingId: number;
-  averageRank: number;
-  ideaRank: number;
-  designRank: number;
-  functionRank: number;
-  completionRank: number;
-  comment: string;
-  childCommentCount: number;
-  authorProfileImageUrl: string;
-  authorId: number;
-  authorName: string;
-  memberJob: string;
-  //API 수정되면 추가
-  /* 
+export interface CommentListResponse {
+  content: [
+    {
+      ratingId: number;
+      averageRank: number;
+      ideaRank: number;
+      designRank: number;
+      functionRank: number;
+      completionRank: number;
+      comment: string;
+      childCommentCount: number;
+      authorProfileImageUrl: string;
+      authorId: number;
+      authorName: string;
+      memberJob: string;
+    },
+  ];
   customPageable: {
     first: boolean;
     last: boolean;
@@ -22,10 +24,7 @@ export interface CommentList {
     page: number;
     size: number;
   };
-  */
 }
-
-export interface CommentListResponse extends Array<CommentList> {}
 
 export interface CommentDetailResponse {
   authorId: number;
