@@ -29,7 +29,7 @@ function WriteComment({ projectId }: Props) {
           <EnterCommentProvider>
             <EnterRating />
             <EnterText />
-            <EnterButton projectId={projectId} onClick={() => setView("show")} />
+            <EnterButton projectId={projectId} showComment={() => setView("show")} />
           </EnterCommentProvider>
         </div>
       </div>

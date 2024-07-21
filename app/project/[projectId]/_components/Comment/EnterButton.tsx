@@ -9,10 +9,11 @@ import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 interface Props {
   projectId: number;
   mode?: "write" | "edit";
-  onClick: () => void;
+  showComment: () => void;
+  editComment?: () => void;
 }
 
-function EnterButton({ projectId, mode = "write", onClick }: Props) {
+function EnterButton({ projectId, mode = "write", showComment, editComment }: Props) {
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
 
@@ -46,6 +47,7 @@ function EnterButton({ projectId, mode = "write", onClick }: Props) {
     event.preventDefault();
     if (!isDisabled) {
       mutation.mutate();
+      showComment();
     }
   };
 
@@ -62,10 +64,10 @@ function EnterButton({ projectId, mode = "write", onClick }: Props) {
         </Button>
       ) : (
         <>
-          <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={() => onClick}>
+          <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={showComment}>
             취소
           </Button>
-          <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={() => onClick}>
+          <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={editComment}>
             수정
           </Button>
         </>
