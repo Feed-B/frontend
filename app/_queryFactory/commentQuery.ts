@@ -2,7 +2,7 @@ import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { commentApi } from "../_apis/comment";
 
 interface CommentListParams {
-  projectId: number;
+  projectId?: number;
   page?: number;
   size?: number;
 }
