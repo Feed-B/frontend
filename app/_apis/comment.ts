@@ -64,7 +64,7 @@ export const commentApi = {
     return await httpClient().postData(
       `/projects/${projectId}/ratings`,
       {
-        data,
+        ...data,
       },
       HEADER.applicationHeaders
     );

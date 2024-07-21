@@ -3,6 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
+import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 interface Props {
@@ -25,15 +26,19 @@ function EnterButton({ projectId, mode = "write", onClick }: Props) {
     comment: comment,
   };
 
+  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
+
   const mutation = useMutation({
     mutationFn: () => {
       return commentApi.postComment(projectId, { ...postCommentData });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["comment", "list", "commentList"],
+        queryKey: commentListQuery.queryKey,
       });
-      window.location.reload();
+    },
+    onError: error => {
+      console.error("Error:", error);
     },
   });
 
