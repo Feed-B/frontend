@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import { commentApi } from "@/app/_apis/comment";
@@ -48,9 +48,11 @@ function MyCommentSection({ projectId }: Props) {
     enabled: !!isLoggedIn,
   });
 
+  useEffect(() => {
+    if (myComment && myComment.exists) setView("show");
+  }, [view, setView, myComment]);
+
   if (!myComment) return <WriteComment projectId={projectId} />;
-  if (myComment && myComment.exists) setView("show");
-  console.log("myComment.exists", myComment.exists);
 
   return (
     <section>
