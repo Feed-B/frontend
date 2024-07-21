@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
     openGraph: {
       title: `${projectData.title}`,
       description: `${projectData.content}`,
-      url: "https://feedb.vercel.app/",
+      url: process.env.NEXT_PUBLIC_SERVICE_URL,
       siteName: "FeedB",
       images: [
         {

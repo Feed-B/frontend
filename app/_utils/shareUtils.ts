@@ -1,6 +1,6 @@
 import { projectApi } from "../_apis/project";
 
-const BASE_URL = "https://feedb.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SERVICE_URL;
 
 export const copyLink = async () => {
   if (typeof window !== "undefined") {
