@@ -34,8 +34,6 @@ const CommentContainer = ({ projectId }: Props) => {
 
   if (!myComment) return <WriteComment projectId={projectId} />;
 
-  console.log("myComment", myComment);
-
   return (
     <section>
       {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
