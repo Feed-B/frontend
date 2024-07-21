@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type viewType = "show" | "write" | "edit";
 
-const useCommentMode = () => {
+const useCommentView = () => {
   const [view, setView] = useState<viewType>("write");
 
   // const toggleState = () => {
@@ -20,4 +20,4 @@ const useCommentMode = () => {
   return { view, setView };
 };
 
-export default useCommentMode;
+export default useCommentView;
