@@ -10,10 +10,9 @@ interface Props {
   projectId: number;
   mode?: "write" | "edit";
   showComment: () => void;
-  editComment?: () => void;
 }
 
-function EnterButton({ projectId, mode = "write", showComment, editComment }: Props) {
+function WriteButton({ projectId, showComment }: Props) {
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
 
@@ -53,27 +52,16 @@ function EnterButton({ projectId, mode = "write", showComment, editComment }: Pr
 
   return (
     <div className="flex">
-      {mode === "write" ? (
-        <Button
-          className="ml-auto"
-          buttonSize="normal"
-          bgColor={isDisabled ? "gray" : "yellow"}
-          onClick={handleSubmit}
-          disabled={isDisabled}>
-          등록
-        </Button>
-      ) : (
-        <>
-          <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={showComment}>
-            취소
-          </Button>
-          <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={editComment}>
-            수정
-          </Button>
-        </>
-      )}
+      <Button
+        className="ml-auto"
+        buttonSize="normal"
+        bgColor={isDisabled ? "gray" : "yellow"}
+        onClick={handleSubmit}
+        disabled={isDisabled}>
+        등록
+      </Button>
     </div>
   );
 }
 
-export default EnterButton;
+export default WriteButton;

@@ -6,7 +6,7 @@ import WriteCommentShield from "../../Shield/WriteCommentShield";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
-import EnterButton from "../../Comment/EnterButton";
+import WriteButton from "../../Comment/WriteButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 
 interface Props {
@@ -29,7 +29,7 @@ function WriteComment({ projectId }: Props) {
           <EnterCommentProvider>
             <EnterRating />
             <EnterText />
-            <EnterButton projectId={projectId} showComment={() => setView("show")} />
+            <WriteButton projectId={projectId} showComment={() => setView("show")} />
           </EnterCommentProvider>
         </div>
       </div>
