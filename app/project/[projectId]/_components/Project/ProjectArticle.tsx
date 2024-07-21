@@ -46,7 +46,7 @@ function ProjectArticle({ projectId }: Props) {
             </Button>
           </Link>
         </div>
-        <LinkSection linkList={project.projectLinks} />
+        {project.projectLinks[0].siteType && <LinkSection linkList={project.projectLinks} />}
       </div>
       <div className="relative flex">
         {index > 0 && (
