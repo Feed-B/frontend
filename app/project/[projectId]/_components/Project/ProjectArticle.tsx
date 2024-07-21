@@ -38,7 +38,7 @@ function ProjectArticle({ projectId }: Props) {
       <div className="flex flex-col justify-between">
         <div className="flex flex-col gap-4">
           <h2 className="text-base font-medium text-gray-900">{project.introductions}</h2>
-          <p className="text-overflow-12 text-sm text-gray-600">{project.content}</p>
+          <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
           <Link href={project.serviceUrl} target="_blank">
             <Button bgColor="yellow" className="flex items-center gap-1 p-3" buttonSize={"small"}>
               <p>서비스 바로가기</p>
