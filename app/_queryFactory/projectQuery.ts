@@ -15,10 +15,6 @@ export const projectQueryKeys = createQueryKeys("project", {
     queryKey: ["teamMember"],
     queryFn: async () => await projectApi.getTeamMember(projectId),
   }),
-  rating: (projectId: number, userId: number) => ({
-    queryKey: ["rating"],
-    queryFn: async () => await projectApi.getRatings(projectId, userId),
-  }),
   totalRating: (projectId: number) => ({
     queryKey: ["totalRating"],
     queryFn: async () => await projectApi.getTotalRating(projectId),

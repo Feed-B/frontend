@@ -6,7 +6,6 @@ import {
   ProjectResponseType,
   TeamMemberResponse,
   TotalRatingResponse,
-  RatingsResponse,
 } from "./schema/projectResponse";
 
 export const projectApi = {
@@ -36,9 +35,6 @@ export const projectApi = {
   },
   getTeamMember: async (projectId: number) => {
     return await httpClient().get<TeamMemberResponse>(`/projects/${projectId}/teammates`);
-  },
-  getRatings: async (projectId: number, userId: number) => {
-    return await httpClient().get<RatingsResponse>(`/projects/${projectId}/ratings/${userId}`);
   },
   getTotalRating: async (projectId: number) => {
     return await httpClient().get<TotalRatingResponse>(`/projects/${projectId}/average-rating`);
