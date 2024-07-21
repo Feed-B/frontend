@@ -77,14 +77,6 @@ export interface TeamMember {
   ];
 }
 
-export interface RatingsResponse {
-  averageRank: number;
-  ideaRank: number;
-  designRank: number;
-  functionRank: number;
-  completionRank: number;
-}
-
 export interface TotalRatingResponse {
   averageRank: number;
   ideaRank: number;

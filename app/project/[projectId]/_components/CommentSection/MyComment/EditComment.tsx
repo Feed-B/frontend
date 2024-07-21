@@ -1,8 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import ToolTip from "../../Comment/ToolTip";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
@@ -17,15 +15,12 @@ interface Props {
 
 function EditComment({ projectId, myComment }: Props) {
   const { setView } = useMyCommentContext();
-  const { data: ratingData } = useQuery(projectQueryKeys.rating(projectId, Number(myComment.projectRating?.authorId)));
 
-  if (!ratingData) return null;
-
-  const transformedData = [
-    ratingData.ideaRank,
-    ratingData.designRank,
-    ratingData.functionRank,
-    ratingData.completionRank,
+  const getRatingData = [
+    myComment.projectRating.ideaRank,
+    myComment.projectRating.designRank,
+    myComment.projectRating.functionRank,
+    myComment.projectRating.completionRank,
   ];
 
   if (!myComment.projectRating) return null;
@@ -39,7 +34,7 @@ function EditComment({ projectId, myComment }: Props) {
       </div>
       <div className="flex flex-col gap-6">
         <EnterCommentProvider>
-          <EnterRating ratingValue={transformedData} />
+          <EnterRating ratingValue={getRatingData} />
           <EnterText commentValue={comment} />
           <EnterButton projectId={projectId} mode="edit" onClick={() => setView("show")} />
         </EnterCommentProvider>
