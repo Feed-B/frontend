@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { useToast } from "@/app/_context/ToastContext";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 function WriteButton({ projectId, showComment }: Props) {
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
 
   const isDisabled = rating.some(element => element < 1);
 
@@ -26,6 +29,7 @@ function WriteButton({ projectId, showComment }: Props) {
     comment: comment,
   };
 
+  const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
   const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
 
@@ -35,14 +39,19 @@ function WriteButton({ projectId, showComment }: Props) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
+        queryKey: projectRatingQuery.queryKey,
+      });
+      queryClient.invalidateQueries({
         queryKey: commentQuery.queryKey,
       });
       queryClient.invalidateQueries({
         queryKey: commentListQuery.queryKey,
       });
+      addToast("프로젝트 리뷰가 작성되었습니다", "success");
     },
     onError: error => {
       console.error("Error:", error);
+      addToast("프로젝트 리뷰 작성이 실패했습니다.", "error");
     },
   });
 
