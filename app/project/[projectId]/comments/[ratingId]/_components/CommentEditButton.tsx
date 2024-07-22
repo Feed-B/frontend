@@ -5,14 +5,16 @@ import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import revalidatePathAction from "@/app/_utils/revalidationAction";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
 
 interface Props {
   ratingId: number;
   onClick: () => void;
+  projectId: number;
 }
 
-function CommentEditButton({ ratingId, onClick }: Props) {
+function CommentEditButton({ projectId, ratingId, onClick }: Props) {
   const { rating, comment } = useEnterCommentContext();
   const { addToast } = useToast();
 
@@ -35,6 +37,7 @@ function CommentEditButton({ ratingId, onClick }: Props) {
         queryKey: commentQueryKeys.detail(ratingId).queryKey,
       });
       addToast("프로젝트 리뷰가 수정되었습니다", "success");
+      revalidatePathAction(`project/${projectId}/comments/${ratingId}`);
     },
     onError: error => {
       console.error("Error:", error);

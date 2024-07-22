@@ -67,7 +67,7 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
           <EnterCommentProvider>
             <EnterText commentValue={commentDetailData.comment} />
             <EnterRating ratingValue={transformedData} />
-            <CommentEditButton onClick={toggleState} ratingId={ratingId} />
+            <CommentEditButton onClick={toggleState} projectId={projectId} ratingId={ratingId} />
           </EnterCommentProvider>
         </section>
       ) : (
