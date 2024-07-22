@@ -14,7 +14,7 @@ interface Props {
   showComment: () => void;
 }
 
-function WriteButton({ projectId, ratingId, showComment }: Props) {
+function EditButton({ projectId, ratingId, showComment }: Props) {
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
   const { addToast } = useToast();
@@ -28,6 +28,7 @@ function WriteButton({ projectId, ratingId, showComment }: Props) {
   };
 
   const commentQuery = commentQueryKeys.myComment(projectId);
+  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -36,6 +37,9 @@ function WriteButton({ projectId, ratingId, showComment }: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: commentQuery.queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: commentListQuery.queryKey,
       });
       addToast("프로젝트 리뷰가 수정되었습니다", "success");
     },
@@ -63,4 +67,4 @@ function WriteButton({ projectId, ratingId, showComment }: Props) {
   );
 }
 
-export default WriteButton;
+export default EditButton;
