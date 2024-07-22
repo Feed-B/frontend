@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { setToken } from "@/app/_utils/handleToken";
 import LoadingWrapper from "@/app/_components/LoadingWrapper/LoadingWrapper";
@@ -7,15 +7,16 @@ import { useLogin } from "@/app/_context/LoginProvider";
 
 export default function Success() {
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <Suspense fallback={<LoadingWrapper />}>
-      <SuccessContent router={router} />
+      <SuccessContent router={router} pathname={pathname} />
     </Suspense>
   );
 }
 
-function SuccessContent({ router }: any) {
+function SuccessContent({ router, pathname }: any) {
   const searchParams = useSearchParams();
   const { setEmail, setType } = useLogin();
 
@@ -41,9 +42,9 @@ function SuccessContent({ router }: any) {
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {
-      router.push("/main");
+      router.push(pathname);
     }
-  }, [router, searchParams, setEmail, setType]);
+  }, [router, searchParams, setEmail, setType, pathname]);
 
   return <></>;
 }
