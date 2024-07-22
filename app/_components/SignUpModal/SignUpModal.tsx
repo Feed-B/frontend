@@ -21,8 +21,11 @@ function SignUpModal({ openModal, handleModalClose, dataType }: SignUpModalProps
   }
 
   return (
-    <Modal openModal={openModal} handleModalClose={handleModalCloseWidthReset} className="max-h-[612px] w-[432px] p-6">
-      <div className="flex flex-col items-center">
+    <Modal
+      openModal={openModal}
+      handleModalClose={handleModalCloseWidthReset}
+      className="max-h-[612px] w-[432px] p-6 mb:w-[360px]">
+      <div>
         <SignUpForm item={item} dataType={dataType} setItem={setItem} handleModalClose={handleModalClose} />
       </div>
     </Modal>
