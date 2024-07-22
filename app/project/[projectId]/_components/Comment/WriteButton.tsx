@@ -26,6 +26,7 @@ function WriteButton({ projectId, showComment }: Props) {
     comment: comment,
   };
 
+  const commentQuery = commentQueryKeys.myComment(projectId);
   const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
 
   const mutation = useMutation({
@@ -33,6 +34,9 @@ function WriteButton({ projectId, showComment }: Props) {
       return commentApi.postComment(projectId, { ...postCommentData });
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: commentQuery.queryKey,
+      });
       queryClient.invalidateQueries({
         queryKey: commentListQuery.queryKey,
       });
