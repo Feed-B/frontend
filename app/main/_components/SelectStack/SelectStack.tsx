@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
+import SkeletonProjectList from "@/app/_components/ProjectList/SkeletonUI/SkeletonProjectList";
 import StackProvider from "../../_context/StackProvider";
 import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
@@ -19,7 +20,14 @@ function SelectStack() {
         </div>
         <StackBox />
       </section>
-      <ProjectSection />
+      <Suspense
+        fallback={
+          <div className="mt-10">
+            <SkeletonProjectList />
+          </div>
+        }>
+        <ProjectSection />
+      </Suspense>
     </StackProvider>
   );
 }

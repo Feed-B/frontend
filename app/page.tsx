@@ -15,7 +15,7 @@ import LandingProjectList from "./_components/LandingProjectList/LandingProjectL
 import AnimationSection from "./_components/AnimationSection/AnimationSection";
 
 function Section({ children, className }: { children: ReactNode; className?: string }) {
-  const sectionClass = twMerge("mx-auto flex w-full gap-3 h-screen  " + className);
+  const sectionClass = twMerge("mx-auto flex w-full gap-3 h-screen " + className);
   return <section className={sectionClass}>{children}</section>;
 }
 
