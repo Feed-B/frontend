@@ -31,31 +31,7 @@ export const projectApi = {
       HEADER.applicationHeaders
     );
   },
-  getDelayProjectList: async ({
-    page = 1,
-    size = 12,
-    limit = 0,
-    searchString = "",
-    projectTechStacks = [],
-    sortCondition = "RECENT",
-  }: ProjectListParams) => {
-    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-    await delay(500);
 
-    // API 호출
-    return await httpClient().get<ProjectResponseType>(
-      "/projects",
-      {
-        sortCondition,
-        projectTechStacks,
-        searchString,
-        page,
-        size,
-        limit,
-      },
-      HEADER.applicationHeaders
-    );
-  },
   getProject: async (projectId: number) => {
     return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers);
   },

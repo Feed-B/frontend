@@ -16,7 +16,8 @@ function ProjectSection() {
 
   const { data, fetchNextPage } = useSuspenseInfiniteQuery({
     queryKey: projectListQuery.queryKey,
-    queryFn: ({ pageParam = 1 }) => projectApi.getDelayProjectList({ ...projectState, page: pageParam }),
+    queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...projectState, page: pageParam }),
+
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
@@ -33,10 +34,6 @@ function ProjectSection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
-
-  if (!data) {
-    return;
-  }
 
   return (
     <section className="col-start-2 mt-10">
