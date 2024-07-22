@@ -40,7 +40,7 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
 
       <div
         className={
-          "mt-2 flex h-11 w-96 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900"
+          "mt-2 flex h-11 w-96 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900 mb:w-[327px]"
         }>
         {JOB_CATEGORIES_KR[item] || item}
 
@@ -54,7 +54,7 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
       </div>
 
       {isOpen && (
-        <DropDown className="absolute w-96">
+        <DropDown className="absolute w-96 mb:w-[327px]">
           <DropDownList data={data} handleItemClick={handleItemClickInternal} />
         </DropDown>
       )}
