@@ -2,6 +2,7 @@
 
 import React, { Suspense } from "react";
 import SkeletonProjectList from "@/app/_components/ProjectList/SkeletonUI/SkeletonProjectList";
+import DeferredComponent from "@/app/_components/ProjectList/SkeletonUI/DeferredComponent";
 import StackProvider from "../../_context/StackProvider";
 import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
@@ -22,9 +23,9 @@ function SelectStack() {
       </section>
       <Suspense
         fallback={
-          <div className="mt-10">
+          <DeferredComponent className="mt-10">
             <SkeletonProjectList />
-          </div>
+          </DeferredComponent>
         }>
         <ProjectSection />
       </Suspense>
