@@ -6,7 +6,6 @@ import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import MyCommentProvider from "../../_context/MyCommentProvider";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
-// import useCommentView from "@/app/_hooks/useCommentView";
 import ShowComment from "./MyComment/ShowComment";
 import WriteComment from "./MyComment/WriteComment";
 import EditComment from "./MyComment/EditComment";
@@ -27,9 +26,6 @@ const CommentContainer = ({ projectId }: Props) => {
     enabled: !!isLoggedIn,
   });
 
-  // if (!myComment) return <WriteComment projectId={projectId} />;
-  // if (myComment && myComment.exists) setView("show");
-
   useEffect(() => {
     if (myComment && myComment.exists && view !== "edit") setView("show");
   }, [view, setView, myComment]);
@@ -46,29 +42,10 @@ const CommentContainer = ({ projectId }: Props) => {
 };
 
 function MyCommentSection({ projectId }: Props) {
-  // const { view, setView } = useCommentView();
-  // const { isLoggedIn } = useCheckLogin();
-
-  // const { data: myComment } = useQuery({
-  //   queryKey: ["myComment"],
-  //   queryFn: () => commentApi.getMyComment(projectId),
-  //   enabled: !!isLoggedIn,
-  // });
-
-  // useEffect(() => {
-  //   if (myComment && myComment.exists) setView("show");
-  // }, [view, setView, myComment]);
-
-  // if (!myComment) return <WriteComment projectId={projectId} />;
-
   return (
     <section>
       <MyCommentProvider>
         <CommentContainer projectId={projectId} />
-
-        {/* {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
-      {view === "write" && <WriteComment projectId={projectId} />}
-      {view === "edit" && <EditComment projectId={projectId} myComment={myComment} />} */}
       </MyCommentProvider>
     </section>
   );
