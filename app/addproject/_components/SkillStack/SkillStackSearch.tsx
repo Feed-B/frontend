@@ -78,17 +78,18 @@ function SkillStackSearch() {
       {!isHidden && (
         <div ref={dropdownRef}>
           <ul className="absolute z-20 flex h-32 w-full flex-col items-start gap-1 overflow-y-auto rounded border border-solid border-gray-200 bg-white">
-            {stackData.map(data => (
-              <li
-                key={data.id}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleAddStack(data.name)}
-                hidden={!data.name.includes(search)}
-                className="w-full cursor-pointer p-2 text-base font-medium text-gray-900 hover:bg-gray-100">
-                {data.name}
-              </li>
-            ))}
+            {stackData
+              .filter(data => data.name.toLowerCase().includes(search.toLowerCase()))
+              .map(data => (
+                <li
+                  key={data.id}
+                  onMouseOver={handleMouseOver}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => handleAddStack(data.name)}
+                  className="w-full cursor-pointer p-2 text-base font-medium text-gray-900 hover:bg-gray-100">
+                  {data.name}
+                </li>
+              ))}
           </ul>
         </div>
       )}
