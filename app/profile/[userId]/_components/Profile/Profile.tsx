@@ -5,24 +5,20 @@ import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
-import { profileAPI } from "@/app/_apis/ProfileAPI";
 import { JOB_CATEGORIES_KR, JobCategoriesType } from "@/app/_constants/JobCategoryData";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import ProfileSkeleton from "../skeletonUI/ProfileSkeleton";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { MY_PAGE_TEXT } from "../constant";
 
 function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();
-  const { data: userProfileData, isPending } = useQuery({
-    queryKey: ["profile", userId],
-    queryFn: async () => {
-      return await profileAPI.getUserData(Number(userId));
-    },
-  });
+  const { data: userProfileData, isPending } = useQuery(userQueryKeys.detail(Number(userId)));
   const { isOpen, toggleState } = useToggleHook();
 
   if (!userProfileData) {
-    throw Error("유저 정보를 불러오는데 실패했습니다.");
+    console.error("유저 정보를 불러오는데 실패했습니다.");
+    return;
   }
 
   if (isPending) {
