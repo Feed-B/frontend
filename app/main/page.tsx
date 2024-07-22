@@ -2,11 +2,11 @@ import React from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
 import { projectQueryKeys } from "../_queryFactory/projectQuery";
-import revalidatePathaction from "../_utils/revalidationAction";
+import revalidatePathAction from "../_utils/revalidationAction";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 async function MainPage() {
-  revalidatePathaction("/main");
+  revalidatePathAction("/main");
   const queryClient = getQueryClient();
 
   const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
