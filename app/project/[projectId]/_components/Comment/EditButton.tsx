@@ -5,6 +5,7 @@ import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { useToast } from "@/app/_context/ToastContext";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
 
 interface Props {
@@ -27,6 +28,7 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
     comment: comment,
   };
 
+  const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
   const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
 
@@ -35,6 +37,9 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
       return commentApi.putComment(ratingId, { ...putCommentData });
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: projectRatingQuery.queryKey,
+      });
       queryClient.invalidateQueries({
         queryKey: commentQuery.queryKey,
       });
