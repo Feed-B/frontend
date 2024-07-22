@@ -29,7 +29,7 @@ function Pagination({ projectId }: Props) {
       {totalElements > 0 && (
         <div className="mt-8 flex justify-center gap-4">
           <button>
-            <Image src={previousIcon} alt={"이전 페이지."} width={24} />
+            <Image src={previousIcon} alt="이전 페이지." width={24} />
           </button>
           <div className="flex gap-4 text-gray-900">
             <p className="rounded bg-gray-200 px-2 py-1">1</p>
@@ -39,7 +39,7 @@ function Pagination({ projectId }: Props) {
             <p className="rounded px-2 py-1 hover:bg-gray-100">5</p> */}
           </div>
           <button>
-            <Image src={nextIcon} alt={"다음 페이지."} width={24} />
+            <Image src={nextIcon} alt="다음 페이지." width={24} />
           </button>
         </div>
       )}
