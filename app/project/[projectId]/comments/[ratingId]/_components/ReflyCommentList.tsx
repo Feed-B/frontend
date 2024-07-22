@@ -9,9 +9,10 @@ import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {
   ratingId: number;
+  projectId: number;
 }
 
-function ReflyCommentList({ ratingId }: ReflyCommentListProps) {
+function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
   const reflyCommentListQuery = commentQueryKeys.reflyList({ ratingId: ratingId });
@@ -40,7 +41,9 @@ function ReflyCommentList({ ratingId }: ReflyCommentListProps) {
     <section className="relative mb-12 mt-6">
       <h3 className="mb-4">댓글 ({reflyPage?.pages[0].customPageable.totalElements})</h3>
       {reflyPage?.pages.map(reflyList =>
-        reflyList.content.map(refly => <ReflyCommentItem key={refly.commentId} replyComment={refly} />)
+        reflyList.content.map(refly => (
+          <ReflyCommentItem key={refly.commentId} replyComment={refly} projectId={projectId} />
+        ))
       )}
       <div className="absolute bottom-0" ref={lastCardInfo} />
     </section>

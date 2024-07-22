@@ -17,9 +17,10 @@ interface ReflyCommentItemProp {
     commentId: number;
     authorProfileImageUrl: string;
   };
+  projectId: number;
 }
 
-function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
+function ReflyCommentItem({ replyComment, projectId }: ReflyCommentItemProp) {
   const { isOpen: reflyCommentEditOpen, toggleState } = useToggleHook();
 
   const { data: userId } = useQuery(userQueryKeys.userId());
@@ -44,6 +45,7 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
             toggleState={toggleState}
             commentValue={replyComment.comment}
             commentId={replyComment.commentId}
+            projectId={projectId}
           />
         ) : (
           <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
@@ -51,7 +53,7 @@ function ReflyCommentItem({ replyComment }: ReflyCommentItemProp) {
       </div>
       {!reflyCommentEditOpen && userId?.id === replyComment.authorId && (
         <div className="absolute right-0">
-          <ReflyDropbox reflyId={replyComment.commentId} toggleState={toggleState} />
+          <ReflyDropbox projectId={projectId} reflyId={replyComment.commentId} toggleState={toggleState} />
         </div>
       )}
     </div>
