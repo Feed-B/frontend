@@ -18,7 +18,14 @@ export const metadata: Metadata = {
     title: "피드비",
     description: "FeedB를 통해 프로젝트의 완성도를 높이고, 새로운 아이디어를 얻어보세요!",
     url: process.env.NEXT_PUBLIC_SERVICE_URL,
-    images: ["https://drive.google.com/file/d/1fH4VxoXgmruhEGfGvUvgbPeQ8AP7rkVY/view?usp=sharing"],
+    siteName: "FeedB",
+    images: [
+      {
+        url: "https://drive.google.com/file/d/1fH4VxoXgmruhEGfGvUvgbPeQ8AP7rkVY/view?usp=sharing",
+        width: 1920,
+        height: 1080,
+      },
+    ],
   },
 };
 
