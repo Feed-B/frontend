@@ -28,7 +28,7 @@ function ShowComment({ projectId, myComment }: Props) {
 
   return (
     <>
-      <h3 className="mb-4 text-lg font-semibold">내가 쓴 글</h3>
+      <h3 className="mb-4 text-lg font-semibold">내가 쓴 리뷰</h3>
       <div className="relative flex flex-col gap-4 rounded-xl border border-solid border-gray-300 bg-gray-100 p-4">
         <div className="flex justify-between">
           <CommentProfile
