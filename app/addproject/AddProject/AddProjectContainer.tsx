@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { notFound, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -163,15 +163,7 @@ function AddProjectContainer() {
     }
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (!accessToken) {
-        notFound();
-      }
-    }
-  }, [router, accessToken]);
-
-  if (!accessToken) return null;
+  if (!accessToken) notFound();
 
   return (
     <>
