@@ -4,11 +4,11 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../../_components/Comment/EnterText";
-import SocialDropBox from "../../../_components/SocialDropBox/SocialDropBox";
 import RatingBox from "./RatingBox";
 import CommentDropbox from "./CommentDropbox";
 import DetailLoading from "./DetailLoading";
@@ -22,6 +22,7 @@ interface CommentSectionProps {
 function CommentSection({ projectId, ratingId }: CommentSectionProps) {
   const { isOpen: commentEditOpen, toggleState } = useToggleHook();
   const { data: commentDetailData, isPending } = useQuery(commentQueryKeys.detail(ratingId));
+  const { data: userId } = useQuery(userQueryKeys.userId());
 
   if (!commentDetailData) {
     return <p>데이터를 가져오는데 실패했습니다. 죄송합니다.</p>;
@@ -57,8 +58,9 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
             userProfileImageUrl={commentDetailData.authorProfileImageUrl}
           />
           <div className="relative flex items-center gap-2">
-            <SocialDropBox projectId={projectId} />
-            <CommentDropbox toggleState={toggleState} ratingId={ratingId} projectId={projectId} />
+            {userId?.id === commentDetailData.authorId && (
+              <CommentDropbox toggleState={toggleState} ratingId={ratingId} projectId={projectId} />
+            )}
           </div>
         </div>
       </section>
