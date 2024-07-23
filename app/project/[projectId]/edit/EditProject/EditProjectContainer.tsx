@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { notFound } from "next/navigation";
 import Button from "@/app/_components/Button/Button";
 import { editProjectQueryKeys } from "@/app/_queryFactory/editProjectQuery";
 import { EditProjectResponse } from "@/app/_apis/schema/editProjectResponse";
@@ -19,6 +20,7 @@ import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStac
 import { editProjectApi } from "@/app/_apis/editProjectApi";
 import CancelModal from "@/app/addproject/_components/CancelModal/CancelModal";
 import useModal from "@/app/_hooks/useModal";
+import { getToken } from "@/app/_utils/handleToken";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -38,6 +40,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery(
     editProjectQueryKeys.detail(projectId)
   );
+
+  const accessToken = getToken()?.accessToken;
 
   const router = useRouter();
 
@@ -171,6 +175,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const handleFormSubmit = async (data: EditProjectFormData) => {
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
+    const teammateData = data.teammateList.filter(item => item.name.trim() !== "" && item.job.trim() !== "");
+    const projectLinkData = data.projectLinkList.filter(item => item.siteType.trim() !== "" && item.url.trim() !== "");
 
     const projectRequestDto = {
       title: data.title,
@@ -179,8 +185,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       serviceUrl: data.serviceUrl,
       imageType: imageType === "웹" ? "WEB" : "MOBILE",
       projectTechStacks: data.projectTechStackList,
-      projectTeammates: data.teammateList,
-      projectLinks: data.projectLinkList,
+      projectTeammates: teammateData,
+      projectLinks: projectLinkData,
     };
     const initialImageUrlList = project?.imageUrlList || [];
     const imageIndexList: number[] = new Array(imageList.length).fill(0);
@@ -208,7 +214,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     }
   };
 
-  if (!project) return <div>Loading...</div>;
+  if (!accessToken) notFound();
 
   return (
     <>

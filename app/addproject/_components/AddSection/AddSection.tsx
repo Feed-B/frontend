@@ -58,27 +58,33 @@ function AddSection({
   setError,
   clearErrors,
 }: AddSectionProps) {
-  const [additionalInput, setAdditionalInput] = useState<InputBox[]>(() => {
+  const [additionalInput, setAdditionalInput] = useState<InputBox[]>([]);
+
+  useEffect(() => {
     if (initialTeammateList && initialTeammateList.length > 0) {
-      return initialTeammateList.map(item => ({
-        id: item.id || 0,
-        url: item.url || "",
-        job: item.job || "",
-        name: item.teammateName || "",
-        siteType: "",
-      }));
+      setAdditionalInput(
+        initialTeammateList.map(item => ({
+          id: item.id || 0,
+          url: item.url || "",
+          job: item.job || "",
+          name: item.teammateName || "",
+          siteType: "",
+        }))
+      );
     } else if (initialProjectLink && initialProjectLink.length > 0) {
-      return initialProjectLink.map(item => ({
-        id: item.id || 0,
-        url: item.url || "",
-        job: "",
-        name: "",
-        siteType: item.siteType || "",
-      }));
+      setAdditionalInput(
+        initialProjectLink.map(item => ({
+          id: item.id || 0,
+          url: item.url || "",
+          job: "",
+          name: "",
+          siteType: item.siteType || "",
+        }))
+      );
     } else {
-      return [{ id: 0, url: "", job: "", name: "", siteType: "" }];
+      setAdditionalInput([{ id: 0, url: "", job: "", name: "", siteType: "" }]);
     }
-  });
+  }, [initialTeammateList, initialProjectLink]);
 
   const [nextId, setNextId] = useState(1);
 
@@ -102,7 +108,7 @@ function AddSection({
 
     if (title === "팀원") {
       let hasError = false;
-      if (!additionalInput[0].name || !additionalInput[0].job) {
+      if (!additionalInput[0]?.name || !additionalInput[0]?.job) {
         setError && setError("teammateList", { type: "manual", message: "최소 한 개 이상의 팀원 정보를 추가해주세요" });
         hasError = true;
       }
@@ -114,7 +120,7 @@ function AddSection({
 
   return (
     <>
-      <Title title={title} name={`${name}-${additionalInput[0].id}-primary`} label />
+      <Title title={title} name={`${name}-${additionalInput[0]?.id}-primary`} label />
       <div>
         {additionalInput.map(item => (
           <div key={item.id} className="mb-2 flex gap-1">

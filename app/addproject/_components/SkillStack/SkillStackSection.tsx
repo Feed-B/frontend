@@ -16,12 +16,11 @@ function SkillStackSection({ handleTechStackInput, initialStackList }: SkillStac
 
   useEffect(() => {
     if (initialStackList && initialStackList.length > 0) {
-      for (let i = 0; i < initialStackList.length; i++) {
-        isAddStack(initialStackList[i]);
-      }
+      initialStackList.forEach(stack => {
+        isAddStack(stack);
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initialStackList, isAddStack]);
 
   useEffect(() => {
     handleTechStackInput(selectedStacks);
