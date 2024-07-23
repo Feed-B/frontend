@@ -72,7 +72,7 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
         </section>
       ) : (
         <section className="mt-4">
-          <p className="mt-4 min-h-[230px] w-full p-4 text-sm font-normal text-gray-900">
+          <p className="mt-4 min-h-[230px] w-full whitespace-pre-wrap p-4 text-sm font-normal text-gray-900">
             {commentDetailData?.comment}
           </p>
           <RatingBox {...ratingData} />

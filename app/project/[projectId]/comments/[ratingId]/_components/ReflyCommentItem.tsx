@@ -48,7 +48,7 @@ function ReflyCommentItem({ replyComment, projectId }: ReflyCommentItemProp) {
             projectId={projectId}
           />
         ) : (
-          <p className="text-sm font-normal text-gray-600">{replyComment.comment}</p>
+          <p className="whitespace-pre-wrap text-sm font-normal text-gray-600">{replyComment.comment}</p>
         )}
       </div>
       {!reflyCommentEditOpen && userId?.id === replyComment.authorId && (
