@@ -1,5 +1,4 @@
 import Providers from "@/app/_queryFactory/providers";
-import Header from "@/app/_components/Header/Header";
 import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
 
@@ -13,10 +12,5 @@ export default function AddProjectLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <Providers>
-      <Header />
-      {children}
-    </Providers>
-  );
+  return <Providers>{children}</Providers>;
 }
