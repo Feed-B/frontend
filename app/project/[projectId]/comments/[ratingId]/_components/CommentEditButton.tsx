@@ -5,7 +5,7 @@ import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import revalidatePathAction from "@/app/_utils/revalidationAction";
+import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
 
 interface Props {

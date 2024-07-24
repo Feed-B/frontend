@@ -28,7 +28,8 @@ export const projectApi = {
         size,
         limit,
       },
-      HEADER.applicationHeaders
+      HEADER.applicationHeaders,
+      ["pojectList"]
     );
   },
 

@@ -11,7 +11,7 @@ import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { commentApi } from "@/app/_apis/comment";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import revalidatePathAction from "@/app/_utils/revalidationAction";
+import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 
 interface CommentDropboxProps {
   toggleState: () => void;
