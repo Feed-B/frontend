@@ -7,7 +7,7 @@ import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/comment";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import { revalidatePathAction } from "@/app/_utils/revalidationAction";
+import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 
 interface CommentInputProps {
   projectId?: number;
@@ -18,7 +18,7 @@ interface CommentInputProps {
   commentValue?: string;
 }
 
-function CommentInput({ ratingId, commentId, type, toggleState, commentValue, projectId }: CommentInputProps) {
+function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: CommentInputProps) {
   const queryClient = useQueryClient();
   const [textValue, setTextValue] = useState("");
 
@@ -42,7 +42,7 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue, pr
       });
       setTextValue("");
       addToast("댓글이 생성되었습니다", "success");
-      revalidatePathAction(`project/${projectId}/comments/${ratingId}`);
+      revalidateTagAction("reflyCommentList");
     },
     onError: error => {
       console.error("Error:", error);
@@ -60,7 +60,7 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue, pr
       });
       setTextValue("");
       addToast("댓글이 수정되었습니다", "success");
-      revalidatePathAction(`project/${projectId}/comments/${ratingId}`);
+      revalidateTagAction("reflyCommentList");
     },
     onError: error => {
       console.error("Error:", error);
