@@ -38,7 +38,9 @@ export const commentApi = {
     return await httpClient().get<CommentListResponse>(`/projects/${projectId}/ratings`, {}, HEADER.headers);
   },
   getCommentDetail: async (ratingId: number) => {
-    return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`);
+    return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
+      "commentDetail",
+    ]);
   },
   getReflyCommentList: async ({ ratingId, page = 1, size = 10 }: ReflyCommentListRequest) => {
     return await httpClient().get<ReflyCommentResponse>(
@@ -47,7 +49,8 @@ export const commentApi = {
         page,
         size,
       },
-      HEADER.applicationHeaders
+      HEADER.applicationHeaders,
+      ["reflyCommentList"]
     );
   },
   getMyComment: async (projectId: number) => {
