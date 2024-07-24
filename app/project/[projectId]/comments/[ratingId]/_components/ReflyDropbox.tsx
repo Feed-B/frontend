@@ -9,7 +9,7 @@ import KebabDropDown from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import revalidatePathAction from "@/app/_utils/revalidationAction";
+import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 
 interface ReflyDropbox {
   reflyId: number;

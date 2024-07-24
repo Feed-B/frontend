@@ -1,10 +1,13 @@
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function httpClient() {
-  async function get<R>(url: string, params?: Record<string, any>, headers?: HeadersInit) {
+  async function get<R>(url: string, params?: Record<string, any>, headers?: HeadersInit, tags = [""]) {
     const urlParams = new URLSearchParams(params).toString();
     const response = await fetch(`${BASE_URL}${url}?${urlParams}`, {
       headers,
+      next: {
+        tags: [...tags],
+      },
     });
     const result: R = await response.json();
     return result;
