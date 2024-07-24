@@ -10,6 +10,7 @@ import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
 import useModal from "@/app/_hooks/useModal";
+import { useToast } from "@/app/_context/ToastContext";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -36,6 +37,7 @@ function AddProjectContainer() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const accessToken = getToken()?.accessToken;
+  const { addToast } = useToast();
 
   const [formValues, setFormValues] = useState({
     imageType: "웹",
@@ -128,6 +130,7 @@ function AddProjectContainer() {
       });
       console.log("Add Project Successful");
       router.push("/main");
+      addToast("프로젝트가 생성되었습니다", "success");
     },
     onError: () => {
       console.error("Add Project failed");

@@ -21,6 +21,7 @@ import { editProjectApi } from "@/app/_apis/editProjectApi";
 import CancelModal from "@/app/addproject/_components/CancelModal/CancelModal";
 import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
+import { useToast } from "@/app/_context/ToastContext";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -48,6 +49,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const [imageList, setImageList] = useState([] as any[]);
 
   const [imageType, setImageType] = useState("웹");
+
+  const { addToast } = useToast();
 
   const {
     openModal: isCancelModalOpen,
@@ -166,6 +169,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       });
       console.log("Edit Project Successful");
       router.push(`/project/${projectId}`);
+      addToast("프로젝트가 수정되었습니다", "success");
     },
     onError: () => {
       console.error("Edit Project failed");
