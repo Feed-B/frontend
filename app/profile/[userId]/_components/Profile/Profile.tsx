@@ -13,12 +13,11 @@ import { MY_PAGE_TEXT } from "../constant";
 
 function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();
-  const { data: userProfileData, isPending } = useQuery(userQueryKeys.detail(Number(userId)));
+  const { data: userProfileData, isPending, isError } = useQuery(userQueryKeys.detail(Number(userId)));
   const { isOpen, toggleState } = useToggleHook();
 
-  if (!userProfileData) {
-    console.error("유저 정보를 불러오는데 실패했습니다.");
-    return;
+  if (isError) {
+    throw new Error("유저 정보를 불러오는데 실패했습니다.");
   }
 
   if (isPending) {
