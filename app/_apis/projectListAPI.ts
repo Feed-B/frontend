@@ -3,9 +3,15 @@ import { MyPageProjectListType } from "../profile/[userId]/_components/MypagePro
 import httpClient from "./httpClient";
 import { ProjectResponseType } from "./schema/projectResponse";
 
+export interface GetMyProjectListParams {
+  page?: number;
+  size?: number;
+  userId: number;
+}
+
 export const projectListAPI = {
   getMyProjectList: async (
-    { page = 1, size = 24, userId }: { page: number; size: number; userId: number },
+    { page = 1, size = 24, userId }: GetMyProjectListParams,
     selectDataType: MyPageProjectListType
   ) => {
     return await httpClient().get<ProjectResponseType>(
