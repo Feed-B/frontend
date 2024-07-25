@@ -10,10 +10,7 @@ export interface GetMyProjectListParams {
 }
 
 export const projectListAPI = {
-  getMyProjectList: async (
-    { page = 1, size = 24, userId }: GetMyProjectListParams,
-    selectDataType: MyPageProjectListType
-  ) => {
+  getMyProjectList: async ({ page, size, userId }: GetMyProjectListParams, selectDataType: MyPageProjectListType) => {
     return await httpClient().get<ProjectResponseType>(
       `/${userId}/projects${selectDataType === "wishProject" ? "/likes" : ""}`,
       {
