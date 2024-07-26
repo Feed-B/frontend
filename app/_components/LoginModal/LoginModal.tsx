@@ -20,10 +20,12 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
 
   const handleNaverLogin = () => {
     window.location.href = NAVER_OAUTH_URL;
+    handleModalClose();
   };
 
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_OAUTH_URL;
+    handleModalClose();
   };
 
   return (
