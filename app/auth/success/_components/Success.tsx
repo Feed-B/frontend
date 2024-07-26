@@ -42,7 +42,7 @@ function SuccessContent({ router, pathname }: any) {
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {
-      router.push(pathname);
+      router.back();
     }
   }, [router, searchParams, setEmail, setType, pathname]);
 
