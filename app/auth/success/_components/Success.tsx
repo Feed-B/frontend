@@ -18,7 +18,7 @@ export default function Success() {
 
 function SuccessContent({ router, pathname }: any) {
   const searchParams = useSearchParams();
-  const { setEmail, setType } = useLogin();
+  const { url, setEmail, setType } = useLogin();
 
   useEffect(() => {
     const typeQuery = searchParams.get("type");
@@ -42,8 +42,9 @@ function SuccessContent({ router, pathname }: any) {
     }
 
     if (typeQuery === "signUp" || typeQuery === "login") {
-      router.back();
+      router.push(url);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, searchParams, setEmail, setType, pathname]);
 
   return <></>;
