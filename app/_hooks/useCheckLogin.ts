@@ -23,7 +23,6 @@ const useCheckLogin = () => {
     removeToken();
     setType("");
     setIsLoggedIn(false);
-    window.location.reload();
   };
 
   return { type, setType, isLoggedIn, handleLogout };
