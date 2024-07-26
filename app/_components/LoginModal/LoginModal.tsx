@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import naverIcon from "@/public/icons/naver.svg";
 import kakaoIcon from "@/public/icons/kakao.png";
 import feedbee from "@/public/icons/feedbee.svg";
@@ -10,9 +11,10 @@ import Modal from "../Modal/Modal";
 interface LoginModalProps {
   openModal: boolean;
   handleModalClose: () => void;
-  pathName: string;
 }
-function LoginModal({ openModal, handleModalClose, pathName }: LoginModalProps) {
+function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
+  const pathName = usePathname();
+
   const { setUrl } = useLogin();
 
   if (!openModal) {
