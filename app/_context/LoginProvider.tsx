@@ -7,6 +7,8 @@ interface LoginContextType {
   setEmail: (email: string) => void;
   type: string;
   setType: (type: string) => void;
+  url: string;
+  setUrl: (type: string) => void;
 }
 
 const LoginContext = createContext<LoginContextType | undefined>(undefined);
@@ -14,8 +16,11 @@ const LoginContext = createContext<LoginContextType | undefined>(undefined);
 export function LoginProvider({ children }: { children: ReactNode }) {
   const [email, setEmail] = useState("");
   const [type, setType] = useState("");
+  const [url, setUrl] = useState("");
 
-  return <LoginContext.Provider value={{ email, setEmail, type, setType }}>{children}</LoginContext.Provider>;
+  return (
+    <LoginContext.Provider value={{ email, setEmail, type, setType, url, setUrl }}>{children}</LoginContext.Provider>
+  );
 }
 
 export function useLogin() {

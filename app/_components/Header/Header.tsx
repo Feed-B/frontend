@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
@@ -18,6 +19,7 @@ function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
 
   const { type, setType, isLoggedIn, handleLogout, setIsLoggedIn } = useCheckLogin();
+  const pathName = usePathname();
 
   useEffect(() => {
     if (type === "signUp") {
@@ -54,7 +56,7 @@ function Header() {
               <HeaderDropDownBox handleLogout={handleLogout} />
             </>
           ) : (
-            <LoginButton />
+            <LoginButton pathName={pathName} />
           )}
         </div>
       </div>
