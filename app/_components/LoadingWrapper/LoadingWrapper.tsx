@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import feedbee from "@/public/icons/feedbee.svg";
+import feedbee from "@/public/beeIcons/yellowBee.svg";
 
 interface props {
   children?: ReactNode;

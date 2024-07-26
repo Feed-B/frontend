@@ -6,7 +6,7 @@ import Link from "next/link";
 import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
-import feedbee from "@/public/icons/feedbee.svg";
+import feedbee from "@/public/beeIcons/yellowBee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import { getToken } from "@/app/_utils/handleToken";
 import LoginButton from "../LoginButton/LoginButton";

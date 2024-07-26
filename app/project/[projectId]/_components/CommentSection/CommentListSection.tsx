@@ -13,7 +13,7 @@ function CommentListSection({ projectId }: Props) {
   return (
     <>
       <section className={`mt-10 ${!isLoggedIn && "blur-sm"}`}>
-        <h3 className="mb-4 text-lg font-bold text-gray-900">프로젝트 리뷰</h3>
+        <h3 className="mb-4 text-lg font-bold text-gray-900">모든 리뷰</h3>
         <Pagination projectId={projectId} />
         {!isLoggedIn && <div className="absolute left-0 top-0 z-10 h-full w-full" />}
       </section>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import naverIcon from "@/public/icons/naver.svg";
 import kakaoIcon from "@/public/icons/kakao.png";
-import feedbee from "@/public/icons/feedbee.svg";
+import feedbee from "@/public/beeIcons/yellowBee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import { useLogin } from "@/app/_context/LoginProvider";
 import Button from "../Button/Button";
