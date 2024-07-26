@@ -3,11 +3,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import kebabIcon from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
+import { commentApi } from "@/app/_apis/comment";
+import { useToast } from "@/app/_context/ToastContext";
+import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import TotalStar from "../../Comment/TotalStar";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 import CommentProfile from "../../Comment/CommentProfile";
@@ -19,12 +24,45 @@ interface Props {
 }
 
 function ShowComment({ projectId, myComment }: Props) {
+  const queryClient = useQueryClient();
   const { isOpen, toggleState } = useToggleHook();
   const { setView } = useMyCommentContext();
+  const { addToast } = useToast();
+
+  const projectRatingQuery = projectQueryKeys.totalRating(projectId);
+  const commentQuery = commentQueryKeys.myComment(projectId);
+  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
+
+  const mutation = useMutation({
+    mutationFn: () => {
+      return commentApi.deleteComment(ratingId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: projectRatingQuery.queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: commentQuery.queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: commentListQuery.queryKey,
+      });
+      addToast("프로젝트 리뷰가 삭제되었습니다", "success");
+    },
+    onError: error => {
+      console.error("Error:", error);
+      addToast("프로젝트 리뷰 삭제 오류가 발생했습니다", "error");
+    },
+  });
 
   if (!myComment.projectRating) return null;
   const { authorId, authorName, memberJob, childCommentCount, comment, averageRank, ratingId, authorProfileImageUrl } =
     myComment.projectRating;
+
+  const handleDeleteComment = () => {
+    mutation.mutate();
+    setView("write");
+  };
 
   return (
     <>
@@ -43,7 +81,7 @@ function ShowComment({ projectId, myComment }: Props) {
             {isOpen && (
               <DropDown className="w-fit translate-x-4 translate-y-16">
                 <DropDown.TextItem onClick={() => setView("edit")}>수정</DropDown.TextItem>
-                <DropDown.TextItem>삭제</DropDown.TextItem>
+                <DropDown.TextItem onClick={handleDeleteComment}>삭제</DropDown.TextItem>
               </DropDown>
             )}
           </div>
