@@ -14,6 +14,8 @@ interface Props {
   projectId: number;
 }
 
+const UNIT_PAGE = 5;
+
 function Pagination({ projectId }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const { data: commentList }: UseQueryResult<CommentListResponse, Error> = useQuery(
@@ -22,9 +24,21 @@ function Pagination({ projectId }: Props) {
 
   if (!commentList) return null;
 
-  const { totalElements } = commentList.customPageable;
+  const { totalPages, totalElements, first, last } = commentList.customPageable;
 
-  console.log("commentList.customPageable", commentList.customPageable);
+  const moveNextPage = () => {
+    if (!last) setCurrentPage(prev => prev + 1);
+  };
+
+  const movePreviousPage = () => {
+    if (!first) setCurrentPage(prev => prev - 1);
+  };
+
+  const groupPage = Math.ceil(currentPage / UNIT_PAGE);
+  const startPage = (groupPage - 1) * UNIT_PAGE + 1;
+  const endPage = Math.min(groupPage * UNIT_PAGE, totalPages);
+
+  const pageList = Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
 
   return (
     <>
@@ -35,37 +49,20 @@ function Pagination({ projectId }: Props) {
       </div>
       {totalElements > 0 ? (
         <div className="mt-8 flex justify-center gap-4">
-          <button onClick={() => setCurrentPage(prev => prev - 1)}>
+          <button onClick={movePreviousPage}>
             <Image src={previousIcon} alt="이전 페이지." width={24} />
           </button>
           <div className="flex gap-4 text-gray-900">
-            <p
-              className={`rounded px-2 py-1  ${currentPage === 1 ? "bg-gray-200" : "hover:bg-gray-100"}`}
-              onClick={() => setCurrentPage(1)}>
-              1
-            </p>
-            <p
-              className={`rounded px-2 py-1  ${currentPage === 2 ? "bg-gray-200" : "hover:bg-gray-100"}`}
-              onClick={() => setCurrentPage(2)}>
-              2
-            </p>
-            <p
-              className={`rounded px-2 py-1  ${currentPage === 3 ? "bg-gray-200" : "hover:bg-gray-100"}`}
-              onClick={() => setCurrentPage(3)}>
-              3
-            </p>
-            <p
-              className={`rounded px-2 py-1  ${currentPage === 4 ? "bg-gray-200" : "hover:bg-gray-100"}`}
-              onClick={() => setCurrentPage(4)}>
-              4
-            </p>
-            <p
-              className={`rounded px-2 py-1  ${currentPage === 5 ? "bg-gray-200" : "hover:bg-gray-100"}`}
-              onClick={() => setCurrentPage(5)}>
-              5
-            </p>
+            {pageList.map(page => (
+              <p
+                key={page}
+                className={`rounded px-2 py-1 ${currentPage === page ? "bg-gray-200" : "hover:bg-gray-100"}`}
+                onClick={() => setCurrentPage(page)}>
+                {page}
+              </p>
+            ))}
           </div>
-          <button onClick={() => setCurrentPage(prev => prev + 1)}>
+          <button onClick={moveNextPage}>
             <Image src={nextIcon} alt="다음 페이지." width={24} />
           </button>
         </div>
