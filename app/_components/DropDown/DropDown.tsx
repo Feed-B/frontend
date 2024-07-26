@@ -15,13 +15,13 @@ function DropDown({ children, className, itemRef }: DropDownProps) {
   );
 }
 
-function LinkItem({ children, className, href }: DropDownLinkProps) {
+function LinkItem({ children, className, href, onClick }: DropDownLinkProps) {
   const DefaultLinkItemClass =
     "text-nowrap block cursor-pointer p-2 text-gray-900 font-semibold hover:bg-gray-100 rounded";
   const LinkItemClass = twMerge(DefaultLinkItemClass, className);
 
   return (
-    <Link href={href} className={LinkItemClass}>
+    <Link href={href} className={LinkItemClass} onClick={onClick}>
       {children}
     </Link>
   );
