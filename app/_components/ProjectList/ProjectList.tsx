@@ -7,18 +7,13 @@ import { ProjectResponseType } from "@/app/_apis/schema/projectResponse";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
-import SkeletonProjectList from "./SkeletonUI/SkeletonProjectList";
 
 interface ProjectListProp {
   projectList: ProjectResponseType[] | undefined;
   lastRef?: RefObject<HTMLDivElement>;
-  isPending?: boolean;
 }
 
-function ProjectList({ projectList, lastRef, isPending }: ProjectListProp) {
-  if (isPending) {
-    return <SkeletonProjectList />;
-  }
+function ProjectList({ projectList, lastRef }: ProjectListProp) {
   return (
     <div className="relative grid grid-cols-4 gap-4">
       {projectList && projectList[0].content.length > 0 ? (

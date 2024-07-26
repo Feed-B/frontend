@@ -21,7 +21,7 @@ function MypageProjectSection({
   const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
   const projectListQuery = profileProjectListKeys.profileList({ userId: userId }, projectType);
 
-  const { data, fetchNextPage, isPending } = useInfiniteQuery({
+  const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: projectListQuery.queryKey,
     queryFn: ({ pageParam = 1 }) =>
       projectListAPI.getMyProjectList({ page: pageParam, size: 16, userId: userId }, projectType),
@@ -50,17 +50,13 @@ function MypageProjectSection({
     }
   };
 
-  if (!data) {
-    return <section className="col-start-2 mt-10">로딩 중...</section>;
-  }
-
   return (
     <section>
       <h3 className="mb-4 text-lg font-semibold leading-relaxed text-gray-900">
         {listTitle(isMyPage, projectType)}
-        <span className="ml-2.5">({data.pages[0].customPageable.totalElements})</span>
+        <span className="ml-2.5">({data?.pages[0].customPageable.totalElements})</span>
       </h3>
-      <ProjectList projectList={data.pages} lastRef={lastCardRef} isPending={isPending} />
+      <ProjectList projectList={data?.pages} lastRef={lastCardRef} />
     </section>
   );
 }
