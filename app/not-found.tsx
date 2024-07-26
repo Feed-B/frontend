@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import angryFeedB from "@/public/icons/angryFeedB.png";
+import angryFeedB from "@/public/beeIcons/redBee.svg";
 import Button from "./_components/Button/Button";
 
 function NotFound() {
