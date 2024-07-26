@@ -39,7 +39,7 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
       queryClient.removeQueries({
         queryKey: commentQueryKeys.detail(ratingId).queryKey,
       });
-      addToast("프로젝트 리뷰가 삭제되었습니다", "error");
+      addToast("프로젝트 리뷰가 삭제되었습니다", "success");
       revalidateTagAction("commentDetail");
     },
     onError: error => {
