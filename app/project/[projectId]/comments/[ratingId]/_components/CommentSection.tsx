@@ -52,9 +52,9 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
       <section className="mt-10 w-full p-4">
         <div className="flex items-center justify-between">
           <CommentProfile
-            userId={commentDetailData?.authorId}
+            userId={commentDetailData.authorId}
             userName={commentDetailData.authorName}
-            userJob={commentDetailData.job}
+            userJob={commentDetailData.memberJob}
             userProfileImageUrl={commentDetailData.authorProfileImageUrl}
           />
           <div className="relative flex items-center gap-2">

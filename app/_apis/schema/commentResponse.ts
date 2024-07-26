@@ -29,7 +29,7 @@ export interface CommentListResponse {
 export interface CommentDetailResponse {
   authorId: number;
   authorName: string;
-  job: string;
+  memberJob: string;
   comment: string;
   averageStarRank: number;
   childCommentCount: number;
