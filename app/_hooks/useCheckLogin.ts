@@ -25,7 +25,7 @@ const useCheckLogin = () => {
     setIsLoggedIn(false);
   };
 
-  return { type, setType, isLoggedIn, handleLogout };
+  return { type, setType, isLoggedIn, handleLogout, setIsLoggedIn };
 };
 
 export default useCheckLogin;
