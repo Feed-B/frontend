@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import grayBee from "@/public/beeIcons/grayBee.svg";
 import previousIcon from "@/public/icons/blackArrowLeft.svg";
 import nextIcon from "@/public/icons/blackArrowRight.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
@@ -18,7 +19,16 @@ function Pagination({ projectId }: Props) {
   );
 
   if (!commentList) return null;
+  if (commentList.customPageable.totalElements === 0)
+    return (
+      <div className="m-12 flex flex-col items-center gap-4">
+        <Image src={grayBee} alt="울고 있는 회색 벌." />
+        <p className="text-xl text-gray-600">첫 번째 리뷰를 남겨주세요</p>
+      </div>
+    );
+
   const { totalElements } = commentList.customPageable;
+
   return (
     <>
       <div className="grid grid-cols-4 gap-x-6 gap-y-5">
