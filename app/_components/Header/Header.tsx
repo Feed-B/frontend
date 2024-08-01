@@ -9,6 +9,7 @@ import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import feedbee from "@/public/beeIcons/yellowBee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import { useLogin } from "@/app/_context/LoginProvider";
+// import { getToken } from "@/app/_utils/handleToken";
 import LoginButton from "../LoginButton/LoginButton";
 import Button from "../Button/Button";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -18,7 +19,7 @@ function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
   const { token } = useLogin();
 
-  const { type, setType, handleLogout } = useCheckLogin();
+  const { isLoggedIn, setIsLoggedIn, type, setType, handleLogout } = useCheckLogin();
 
   useEffect(() => {
     if (type === "signUp") {
@@ -26,6 +27,15 @@ function Header() {
       setType("");
     }
   }, [type, signUpModalOpen, setType]);
+
+  useEffect(() => {
+    // const accessToken = getToken();
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  });
 
   return (
     <header className="sticky right-0 top-0 z-[49] h-16 w-full border-b border-solid border-gray-300 bg-white py-2 text-white">
@@ -35,7 +45,7 @@ function Header() {
           <Image src={logoTextIcon} alt="로고 텍스트" priority />
         </Link>
         <div className="flex h-full items-center gap-4">
-          {token ? (
+          {isLoggedIn ? (
             <>
               <Link href="/addproject">
                 <Button buttonSize="normal" bgColor="yellow" className="flex items-center justify-center gap-1">
