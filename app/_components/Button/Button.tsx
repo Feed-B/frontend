@@ -8,13 +8,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWith
   bgColor: BgColor;
 }
 
-type ButtonSize = "normal" | "small";
+type ButtonSize = "large" | "normal" | "small";
 
 type BgColor = "yellow" | "white" | "gray" | "stroke" | "naver" | "kakao" | "mainBlue";
 
 const buttonClasses = {
-  normal: "min-w-20 h-11 rounded-lg px-4 py-3 text-sm",
-  small: "min-w-[50px] h-11 rounded-lg px-2 py-3 text-sm",
+  large: "min-w-20 h-48 px-6 py-4 rounded-lg text-base font-bold",
+  normal: "min-w-20 h-10 rounded-lg px-4 py-3 text-sm",
+  small: "min-w-[50px] h-9 rounded-lg px-3 py-2 text-sm",
 };
 
 const bgColorClasses: Record<BgColor, string> = {
