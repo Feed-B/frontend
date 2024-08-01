@@ -7,9 +7,9 @@ import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import feedbee from "@/public/beeIcons/yellowBee.svg";
+import { getToken } from "@/app/_utils/handleToken";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import { useLogin } from "@/app/_context/LoginProvider";
-// import { getToken } from "@/app/_utils/handleToken";
 import LoginButton from "../LoginButton/LoginButton";
 import Button from "../Button/Button";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -29,13 +29,13 @@ function Header() {
   }, [type, signUpModalOpen, setType]);
 
   useEffect(() => {
-    // const accessToken = getToken();
-    if (token) {
+    const accessToken = getToken();
+    if (token || (accessToken && accessToken.accessToken)) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
-  });
+  }, [token, setIsLoggedIn]);
 
   return (
     <header className="sticky right-0 top-0 z-[49] h-16 w-full border-b border-solid border-gray-300 bg-white py-2 text-white">
