@@ -100,7 +100,9 @@ function AddSection({
   };
 
   const handleInputChange = (id: number, field: string, value: string) => {
-    setAdditionalInput(prevInput => prevInput.map(input => (input.id === id ? { ...input, [field]: value } : input)));
+    setAdditionalInput(prevInput =>
+      prevInput.map(input => (input.id === id ? { ...input, [field]: value.trim() } : input))
+    );
   };
 
   useEffect(() => {

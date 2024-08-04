@@ -140,6 +140,8 @@ function AddProjectContainer() {
   const handleFormSubmit = async (data: AddProjectFormData) => {
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
+    const teammateData = data.teammateList.filter(item => item.name.trim() !== "" && item.job.trim() !== "");
+    const projectLinkData = data.projectLinkList.filter(item => item.siteType.trim() !== "" && item.url.trim() !== "");
 
     const projectRequestDto = {
       title: data.title,
@@ -148,8 +150,8 @@ function AddProjectContainer() {
       serviceUrl: data.serviceUrl,
       imageType: formValues.imageType === "웹" ? "WEB" : "MOBILE",
       projectTechStacks: data.projectTechStackList,
-      projectTeammates: data.teammateList,
-      projectLinks: data.projectLinkList,
+      projectTeammates: teammateData,
+      projectLinks: projectLinkData,
     };
 
     formData.append("projectRequestDto", new Blob([JSON.stringify(projectRequestDto)], { type: "application/json" }));
