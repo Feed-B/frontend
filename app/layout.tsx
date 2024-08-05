@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "FeedB",
     images: [
       {
-        url: "https://drive.google.com/file/d/1fH4VxoXgmruhEGfGvUvgbPeQ8AP7rkVY/view?usp=sharing",
+        url: "/images/openGraph.svg",
         width: 1920,
         height: 1080,
       },
