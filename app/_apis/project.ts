@@ -45,6 +45,6 @@ export const projectApi = {
     return await httpClient().delete(`/projects/${projectId}`, HEADER.headers);
   },
   postProjectView: async (projectId: number) => {
-    return await httpClient().post(`/${projectId}/views`, {}, HEADER.headers);
+    return await httpClient().postData(`/${projectId}/views`, {}, HEADER.headers);
   },
 };
