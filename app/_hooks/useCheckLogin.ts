@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLogin } from "../_context/LoginProvider";
-import { checkTokenExpiry, removeToken } from "../_utils/handleToken";
+import { checkTokenExpiry, removeRedirectUrl, removeToken } from "../_utils/handleToken";
 
 const useCheckLogin = () => {
   const { type, setType } = useLogin();
@@ -14,6 +14,7 @@ const useCheckLogin = () => {
     removeToken();
     setType("");
     setIsLoggedIn(false);
+    removeRedirectUrl();
   };
 
   return { type, setType, isLoggedIn, handleLogout, setIsLoggedIn };

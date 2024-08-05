@@ -1,24 +1,23 @@
 import { Suspense } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { setToken as setLocalStorageToken } from "@/app/_utils/handleToken";
+import { getRedirectUrl, setToken as setLocalStorageToken } from "@/app/_utils/handleToken";
 import LoadingWrapper from "@/app/_components/LoadingWrapper/LoadingWrapper";
 import { useLogin } from "@/app/_context/LoginProvider";
 
 export default function Success() {
   const router = useRouter();
-  const pathname = usePathname();
 
   return (
     <Suspense fallback={<LoadingWrapper />}>
-      <SuccessContent router={router} pathname={pathname} />
+      <SuccessContent router={router} />
     </Suspense>
   );
 }
 
-function SuccessContent({ router, pathname }: any) {
+function SuccessContent({ router }: any) {
   const searchParams = useSearchParams();
-  const { url, setEmail, setType, setToken } = useLogin();
+  const { setEmail, setType, setToken } = useLogin();
 
   useEffect(() => {
     const typeQuery = searchParams.get("type");
@@ -43,11 +42,13 @@ function SuccessContent({ router, pathname }: any) {
       localStorage.setItem("tokenTimestamp", timestamp.toString());
     }
 
+    const redirectUrl = getRedirectUrl();
+
     if (typeQuery === "signUp" || typeQuery === "login") {
-      router.push(url);
+      router.push(redirectUrl);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, searchParams, setEmail, setType, pathname]);
+  }, [router, searchParams, setEmail, setType]);
 
   return <></>;
 }
