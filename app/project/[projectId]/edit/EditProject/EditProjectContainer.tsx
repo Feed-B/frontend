@@ -20,7 +20,7 @@ import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStac
 import { editProjectApi } from "@/app/_apis/editProjectApi";
 import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
-import CancelModal from "@/app/_components/CancelModal/CancelModal";
+import CancelModal from "@/app/_components/Modal/WarningModal";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
