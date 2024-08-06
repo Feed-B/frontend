@@ -37,7 +37,7 @@ function ReflyDropbox({ reflyId, toggleState }: ReflyDropbox) {
       queryClient.invalidateQueries({
         queryKey: commentQueryKeys.reflyList({ ratingId: reflyId }).queryKey,
       });
-      addToast("댓글이 삭제되었습니다", "error");
+      addToast("댓글이 삭제되었습니다", "success");
       revalidateTagAction("reflyCommentList");
     },
     onError: error => {
