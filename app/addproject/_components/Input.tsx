@@ -4,7 +4,7 @@ interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   inputWidth?: string;
 }
 
-function Input({ type, placeholder, name, id, value, inputWidth, onChange }: InputSectionProps) {
+function Input({ type, placeholder, name, id, value, inputWidth, onChange, onBlur }: InputSectionProps) {
   return (
     <input
       type={type}
@@ -15,6 +15,7 @@ function Input({ type, placeholder, name, id, value, inputWidth, onChange }: Inp
       value={value}
       autoComplete="off"
       onChange={onChange}
+      onBlur={onBlur}
     />
   );
 }

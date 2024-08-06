@@ -36,6 +36,8 @@ interface AddSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   initialProjectLink?: any[];
   setError?: UseFormSetError<AddProjectFormData>;
   clearErrors?: UseFormClearErrors<AddProjectFormData>;
+  touchedTeammate?: boolean;
+  setTouchedTeammate?: (isTouch: boolean) => void;
 }
 
 interface InputBox {
@@ -57,6 +59,8 @@ function AddSection({
   initialProjectLink,
   setError,
   clearErrors,
+  touchedTeammate,
+  setTouchedTeammate,
 }: AddSectionProps) {
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>([]);
   const [nextId, setNextId] = useState(1);
@@ -76,6 +80,7 @@ function AddSection({
       setAdditionalInput(additionalInput.filter(item => item.id !== id));
     } else {
       setAdditionalInput([{ id: nextId, url: "", job: "", name: "", siteType: "" }]);
+      setTouchedTeammate && setTouchedTeammate(true);
       setNextId(nextId + 1);
     }
   };
@@ -113,7 +118,7 @@ function AddSection({
   }, [initialTeammateList, initialProjectLink]);
 
   useEffect(() => {
-    const hasError = title === "팀원" && additionalInput.every(input => !input.name || !input.job);
+    const hasError = touchedTeammate && title === "팀원" && additionalInput.every(input => !input.name || !input.job);
     onInputChange(additionalInput);
 
     if (hasError) {
@@ -121,7 +126,7 @@ function AddSection({
     } else {
       clearErrors && clearErrors("teammateList");
     }
-  }, [additionalInput, onInputChange, title, setError, clearErrors]);
+  }, [additionalInput, onInputChange, title, setError, clearErrors, touchedTeammate]);
 
   return (
     <>
@@ -131,9 +136,10 @@ function AddSection({
           <div key={item.id} className="mb-2 flex gap-1">
             <DropDownBox
               dataType={dropDownType}
-              handleInputChange={(value: string) =>
-                handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value)
-              }
+              handleInputChange={(value: string) => {
+                setTouchedTeammate && setTouchedTeammate(true);
+                handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value);
+              }}
               initialDropDownValue={title === "팀원" ? item.job : item.siteType}
             />
             <Input
@@ -144,6 +150,7 @@ function AddSection({
               value={title === "팀원" ? item.name : item.url}
               inputWidth={inputWidth}
               onChange={event => handleInputChange(item.id, title === "팀원" ? "name" : "url", event.target.value)}
+              onBlur={() => setTouchedTeammate && setTouchedTeammate(true)}
             />
             {title === "팀원" && (
               <Input

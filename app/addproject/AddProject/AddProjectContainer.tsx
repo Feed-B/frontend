@@ -43,6 +43,9 @@ function AddProjectContainer() {
     imageType: "웹",
     imageList: [] as any[],
   });
+  const [touchedStack, setTouchedStack] = useState(false);
+  const [touchedTeammate, setTouchedTeammate] = useState(false);
+
   const imageIndexList = formValues.imageList.map((_, index) => index + 1);
 
   const {
@@ -69,14 +72,14 @@ function AddProjectContainer() {
     (stackList: string[]) => {
       setValue("projectTechStackList", stackList);
       if (stackList.length > 0) clearErrors("projectTechStackList");
-      else if (setError && stackList.length === 0) {
+      else if (setError && touchedStack && stackList.length === 0) {
         setError("projectTechStackList", {
           type: "manual",
           message: "최소 한 개 이상의 기술 스택을 추가해주세요",
         });
       }
     },
-    [clearErrors, setValue, setError]
+    [setValue, clearErrors, setError, touchedStack]
   );
 
   const handleTeammateChange = useCallback(
@@ -136,8 +139,15 @@ function AddProjectContainer() {
       console.error("Add Project failed");
     },
   });
-
   const handleFormSubmit = async (data: AddProjectFormData) => {
+    setTouchedStack(true);
+    setTouchedTeammate(true);
+
+    const hasError =
+      data.teammateList.every(input => !input.name || !input.job) || data.projectTechStackList.length === 0;
+
+    if (hasError) return;
+
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
     const teammateData = data.teammateList.filter(item => item.name.trim() !== "" && item.job.trim() !== "");
@@ -267,7 +277,7 @@ function AddProjectContainer() {
           </section>
           <section className="flex w-[690px] flex-col gap-4">
             <SkillStackProvider>
-              <SkillStackSection handleTechStackInput={handleTechStackInput} />
+              <SkillStackSection handleTechStackInput={handleTechStackInput} setTouchedStack={setTouchedStack} />
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
           </section>
@@ -281,6 +291,8 @@ function AddProjectContainer() {
               inputWidth="w-[114px]"
               dropDownType="job"
               onInputChange={handleTeammateChange}
+              touchedTeammate={touchedTeammate}
+              setTouchedTeammate={setTouchedTeammate}
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
