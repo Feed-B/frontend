@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { useState } from "react";
 import grayBee from "@/public/beeIcons/grayBee.svg";
 import previousIcon from "@/public/icons/blackArrowLeft.svg";
 import nextIcon from "@/public/icons/blackArrowRight.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { CommentListResponse } from "@/app/_apis/schema/commentResponse";
+import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
 import CommentCard from "./CommentCard";
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 const UNIT_PAGE = 5;
 
 function Pagination({ projectId }: Props) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { currentPage, setCurrentPage } = useCurrentPageContext();
   const { data: commentList }: UseQueryResult<CommentListResponse, Error> = useQuery(
     commentQueryKeys.list({ projectId: projectId, page: currentPage })
   );
@@ -27,11 +27,11 @@ function Pagination({ projectId }: Props) {
   const { totalPages, totalElements, first, last } = commentList.customPageable;
 
   const moveNextPage = () => {
-    if (!last) setCurrentPage(prev => prev + 1);
+    if (!last) setCurrentPage((prev: number) => prev + 1);
   };
 
   const movePreviousPage = () => {
-    if (!first) setCurrentPage(prev => prev - 1);
+    if (!first) setCurrentPage((prev: number) => prev - 1);
   };
 
   const groupPage = Math.ceil(currentPage / UNIT_PAGE);
