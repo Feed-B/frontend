@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import shareIcon from "@/public/icons/share.svg";
 import kebabIcon from "@/public/icons/kebab.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
@@ -15,6 +14,7 @@ import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import { projectApi } from "@/app/_apis/project";
+import SocialDropBox from "../SocialDropBox/SocialDropBox";
 
 interface Props {
   projectId: number;
@@ -61,7 +61,7 @@ function ProjectHeader({ projectId }: Props) {
             wishCount={project.likeCount}
             colorMode="bright"
           />
-          <Image src={shareIcon} alt="프로젝트 공유하기." width={24} height={32} priority />
+          <SocialDropBox projectId={projectId} />
           {project.isMine && (
             <>
               <Image
