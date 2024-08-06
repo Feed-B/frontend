@@ -16,7 +16,7 @@ import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import { projectApi } from "@/app/_apis/project";
 import { useToast } from "@/app/_context/ToastContext";
 import useModal from "@/app/_hooks/useModal";
-import DeleteModal from "@/app/_components/WarningModal/DeleteModal";
+import WarningModal from "@/app/_components/WarningModal/WarningModal";
 import SocialDropBox from "../SocialDropBox/SocialDropBox";
 
 interface Props {
@@ -70,7 +70,9 @@ function ProjectHeader({ projectId }: Props) {
 
   return (
     <>
-      {deleteModal && <DeleteModal handleDeleteClick={handleDeleteProject} closeModal={closeDeleteModal} />}
+      {deleteModal && (
+        <WarningModal mode="delete" handleDeleteClick={handleDeleteProject} closeModal={closeDeleteModal} />
+      )}
       <header className="px-4 py-3">
         <div className="flex justify-between gap-2">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
