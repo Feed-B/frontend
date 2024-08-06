@@ -24,10 +24,13 @@ type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function ProjectHeader({ projectId }: Props) {
   const { isOpen, toggleState } = useToggleHook();
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const queryClient = useQueryClient();
   const router = useRouter();
-  useOutsideClick(dropdownRef, toggleState);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useOutsideClick(dropdownRef, toggleState, buttonRef);
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -64,15 +67,16 @@ function ProjectHeader({ projectId }: Props) {
           <SocialDropBox projectId={projectId} />
           {project.isMine && (
             <>
-              <Image
-                className="relative"
-                src={kebabIcon}
-                alt="프로젝트 메뉴."
-                width={24}
-                height={32}
-                priority
-                onClick={toggleState}
-              />
+              <button className="relative" type="button" onClick={toggleState} ref={buttonRef}>
+                <Image
+                  className="cursor-pointer rounded-lg hover:bg-gray-100"
+                  src={kebabIcon}
+                  alt="프로젝트 메뉴."
+                  width={24}
+                  height={32}
+                  priority
+                />
+              </button>
               {isOpen && (
                 <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
                   <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
