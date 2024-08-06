@@ -14,6 +14,7 @@ import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import { projectApi } from "@/app/_apis/project";
+import { useToast } from "@/app/_context/ToastContext";
 import SocialDropBox from "../SocialDropBox/SocialDropBox";
 
 interface Props {
@@ -24,6 +25,8 @@ type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function ProjectHeader({ projectId }: Props) {
   const { isOpen, toggleState } = useToggleHook();
+  const { addToast } = useToast();
+
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -37,9 +40,14 @@ function ProjectHeader({ projectId }: Props) {
       return projectApi.deleteProject(projectId);
     },
     onSuccess: () => {
-      queryClient.removeQueries({
-        queryKey: ["project", "detail", "projectDetail", projectId],
+      queryClient.invalidateQueries({
+        queryKey: projectQueryKeys.list({}).queryKey,
       });
+      addToast("프로젝트가 삭제되었습니다", "success");
+    },
+    onError: error => {
+      console.error("Error:", error);
+      addToast("프로젝트 삭제 오류가 발생했습니다", "error");
     },
   });
 
