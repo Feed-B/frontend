@@ -22,17 +22,11 @@ interface Props {
 type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function ProjectHeader({ projectId }: Props) {
-  // const { isOpen, toggleState } = useToggleHook();
   const { addToast } = useToast();
   const { openModal: deleteModal, handleModalOpen: openDeleteModal, handleModalClose: closeDeleteModal } = useModal();
 
   const queryClient = useQueryClient();
   const router = useRouter();
-
-  // const dropdownRef = useRef<HTMLDivElement>(null);
-  // const buttonRef = useRef<HTMLButtonElement>(null);
-
-  // useOutsideClick(dropdownRef, toggleState, buttonRef);
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -81,26 +75,7 @@ function ProjectHeader({ projectId }: Props) {
               colorMode="bright"
             />
             <SocialDropBox projectId={projectId} />
-            {
-              project.isMine && <MenuDropBox projectId={projectId} handleDelete={handleDeleteModal} />
-              // <>
-              //   <button className="relative" type="button" onClick={toggleState} ref={buttonRef}>
-              //     <Image
-              //       className="cursor-pointer rounded-lg hover:bg-gray-100"
-              //       src={kebabIcon}
-              //       alt="프로젝트 메뉴."
-              //       width={24}
-              //       priority
-              //     />
-              //   </button>
-              //   {isOpen && (
-              //     <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
-              //       <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
-              //       <DropDown.TextItem onClick={handelDeleteModal}>삭제</DropDown.TextItem>
-              //     </DropDown>
-              //   )}
-              // </>
-            }
+            {project.isMine && <MenuDropBox projectId={projectId} handleDelete={handleDeleteModal} />}
           </div>
         </div>
         <div className="flex h-6 w-full items-center gap-3">
