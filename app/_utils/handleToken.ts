@@ -1,4 +1,5 @@
 const ACCESS_TOKEN = "accessToken";
+const REDIRECT_URL = "redirectUrl";
 const TOKEN_EXPIRY_TIME = 6000000; // 토큰 만료 시간
 
 export const setToken = (accessToken: string) => {
@@ -32,4 +33,16 @@ export const checkTokenExpiry = () => {
       console.log("Access token has expired and has been removed.");
     }
   }
+};
+
+export const setRedirectUrl = (url: string) => {
+  localStorage.setItem(REDIRECT_URL, url);
+};
+
+export const getRedirectUrl = () => {
+  return localStorage.getItem(REDIRECT_URL);
+};
+
+export const removeRedirectUrl = () => {
+  localStorage.removeItem(REDIRECT_URL);
 };

@@ -7,6 +7,7 @@ import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
+import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
 
 interface Props {
   projectId: number;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function EditButton({ projectId, ratingId, showComment }: Props) {
+  const { currentPage, setCurrentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
   const { addToast } = useToast();
@@ -30,7 +32,7 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
 
   const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
-  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
+  const commentListQuery = commentQueryKeys.list({ projectId, page: currentPage });
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -46,6 +48,7 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
       queryClient.invalidateQueries({
         queryKey: commentListQuery.queryKey,
       });
+      setCurrentPage(1);
       addToast("프로젝트 리뷰가 수정되었습니다", "success");
     },
     onError: error => {

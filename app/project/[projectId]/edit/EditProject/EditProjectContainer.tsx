@@ -18,10 +18,10 @@ import Input from "@/app/_components/Input/Input";
 import AddSection from "@/app/addproject/_components/AddSection/AddSection";
 import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStackSection";
 import { editProjectApi } from "@/app/_apis/editProjectApi";
-import CancelModal from "@/app/addproject/_components/CancelModal/CancelModal";
 import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
 import { useToast } from "@/app/_context/ToastContext";
+import CancelModal from "@/app/_components/Modal/WarningModal";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;

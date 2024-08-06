@@ -4,9 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import kebabIcon from "@/public/icons/kebab.svg";
-import DropDown from "@/app/_components/DropDown/DropDown";
-import useToggleHook from "@/app/_hooks/useToggleHook";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import { commentApi } from "@/app/_apis/comment";
@@ -17,6 +14,8 @@ import TotalStar from "../../Comment/TotalStar";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
+import MenuDropBox from "../../MenuDropBox/MenuDropBox";
+import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface Props {
   projectId: number;
@@ -24,14 +23,14 @@ interface Props {
 }
 
 function ShowComment({ projectId, myComment }: Props) {
+  const { currentPage, setCurrentPage } = useCurrentPageContext();
   const queryClient = useQueryClient();
-  const { isOpen, toggleState } = useToggleHook();
   const { setView } = useMyCommentContext();
   const { addToast } = useToast();
 
   const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
-  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
+  const commentListQuery = commentQueryKeys.list({ projectId, page: currentPage });
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -47,6 +46,7 @@ function ShowComment({ projectId, myComment }: Props) {
       queryClient.invalidateQueries({
         queryKey: commentListQuery.queryKey,
       });
+      setCurrentPage(1);
       addToast("프로젝트 리뷰가 삭제되었습니다", "success");
     },
     onError: error => {
@@ -77,13 +77,12 @@ function ShowComment({ projectId, myComment }: Props) {
           />
           <div className="flex items-center gap-2">
             <CommentCount size="large" commentCount={childCommentCount} />
-            <Image className="relative" src={kebabIcon} alt="댓글 메뉴." width={24} onClick={toggleState} />
-            {isOpen && (
-              <DropDown className="w-fit translate-x-4 translate-y-16">
-                <DropDown.TextItem onClick={() => setView("edit")}>수정</DropDown.TextItem>
-                <DropDown.TextItem onClick={handleDeleteComment}>삭제</DropDown.TextItem>
-              </DropDown>
-            )}
+            <MenuDropBox
+              mode="comment"
+              projectId={projectId}
+              handleEditClick={() => setView("edit")}
+              handleDelete={handleDeleteComment}
+            />
           </div>
         </div>
         <p className="text-overflow-3 h-14 text-sm text-gray-900">{comment}</p>

@@ -44,7 +44,7 @@ async function CommentPage({ params }: Props) {
   return (
     <HydrationBoundary state={dehydratedState}>
       <div className="mx-auto w-[1200px]">
-        <ScrollToTopButton className="fixed bottom-10 right-10 hover:animate-positionUp" direction="top" />
+        <ScrollToTopButton className="fixed bottom-10 right-10 z-20 hover:animate-positionUp" direction="top" />
         <CommentSection projectId={params.projectId} ratingId={params.ratingId} />
         <section className="mt-12">
           <CommentInput projectId={params.projectId} ratingId={params.ratingId} type="post" />
