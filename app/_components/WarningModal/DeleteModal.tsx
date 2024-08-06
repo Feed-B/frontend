@@ -1,25 +1,18 @@
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import feedbeeIcon from "@/public/icons/feedbee3.svg";
+import feedbeeIcon from "@/public/beeIcons/redBee.svg";
 import warningIcon from "@/public/icons/warning.svg";
 import ModalPortal from "@/app/_utils/ModalPortal";
 import Button from "@/app/_components/Button/Button";
 
-interface CancelModalProps {
+interface DeleteModalProps {
+  handleDeleteClick: () => void;
   closeModal: () => void;
 }
 
-function CancelModal({ closeModal }: CancelModalProps) {
-  const router = useRouter();
-
-  const handleStayClick = () => {
+function DeleteModal({ handleDeleteClick, closeModal }: DeleteModalProps) {
+  const handleCancelClick = () => {
     closeModal();
-  };
-
-  const handleLeaveClick = () => {
-    closeModal();
-    router.back();
   };
 
   return (
@@ -31,15 +24,15 @@ function CancelModal({ closeModal }: CancelModalProps) {
             <Image src={warningIcon} alt="경고" width={40} height={40} />
           </div>
           <div className="text-center">
-            <p className="text-xl font-semibold">작성중인 내용이 있습니다. 나가시겠습니까?</p>
-            <p className="text-base text-gray-600">페이지를 벗어날 경우, 지금까지 작성한 내용이 사라집니다.</p>
+            <p className="text-xl font-semibold">정말 이 프로젝트를 삭제하시겠습니까?</p>
+            <p className="text-base text-gray-600">페이지를 삭제할 경우, 되돌릴 수 없습니다.</p>
           </div>
           <div className="flex gap-2">
-            <Button className="w-20" buttonSize="normal" bgColor="yellow" onClick={handleStayClick}>
-              머무르기
+            <Button className="w-20" buttonSize="normal" bgColor="yellow" onClick={handleDeleteClick}>
+              삭제
             </Button>
-            <Button className="w-20" buttonSize="normal" bgColor="gray" onClick={handleLeaveClick}>
-              나가기
+            <Button className="w-20" buttonSize="normal" bgColor="gray" onClick={handleCancelClick}>
+              취소
             </Button>
           </div>
         </div>
@@ -49,4 +42,4 @@ function CancelModal({ closeModal }: CancelModalProps) {
   );
 }
 
-export default CancelModal;
+export default DeleteModal;
