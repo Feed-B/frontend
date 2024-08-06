@@ -59,6 +59,32 @@ function AddSection({
   clearErrors,
 }: AddSectionProps) {
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>([]);
+  const [nextId, setNextId] = useState(1);
+
+  const inputBoxLength = additionalInput.length > 1;
+  const hasInputData =
+    (title === "팀원" && !additionalInput[0]?.job && !additionalInput[0]?.name && !additionalInput[0]?.url) ||
+    (title === "추가 링크" && !additionalInput[0]?.siteType && !additionalInput[0]?.url);
+
+  const handleAddButtonClick = () => {
+    setAdditionalInput([...additionalInput, { id: nextId, url: "", job: "", name: "", siteType: "" }]);
+    setNextId(nextId + 1);
+  };
+
+  const handleDeleteButtonClick = (id: number) => {
+    if (inputBoxLength) {
+      setAdditionalInput(additionalInput.filter(item => item.id !== id));
+    } else {
+      setAdditionalInput([{ id: nextId, url: "", job: "", name: "", siteType: "" }]);
+      setNextId(nextId + 1);
+    }
+  };
+
+  const handleInputChange = (id: number, field: string, value: string) => {
+    setAdditionalInput(prevInput =>
+      prevInput.map(input => (input.id === id ? { ...input, [field]: value.trim() } : input))
+    );
+  };
 
   useEffect(() => {
     if (initialTeammateList && initialTeammateList.length > 0) {
@@ -86,37 +112,14 @@ function AddSection({
     }
   }, [initialTeammateList, initialProjectLink]);
 
-  const [nextId, setNextId] = useState(1);
-
-  const handleAddButtonClick = () => {
-    setAdditionalInput([...additionalInput, { id: nextId, url: "", job: "", name: "", siteType: "" }]);
-    setNextId(nextId + 1);
-  };
-
-  const handleDeleteButtonClick = (id: number) => {
-    if (additionalInput.length > 1) {
-      setAdditionalInput(additionalInput.filter(item => item.id !== id));
-    }
-  };
-
-  const handleInputChange = (id: number, field: string, value: string) => {
-    setAdditionalInput(prevInput =>
-      prevInput.map(input => (input.id === id ? { ...input, [field]: value.trim() } : input))
-    );
-  };
-
   useEffect(() => {
+    const hasError = title === "팀원" && additionalInput.every(input => !input.name || !input.job);
     onInputChange(additionalInput);
 
-    if (title === "팀원") {
-      let hasError = false;
-      if (!additionalInput[0]?.name || !additionalInput[0]?.job) {
-        setError && setError("teammateList", { type: "manual", message: "최소 한 개 이상의 팀원 정보를 추가해주세요" });
-        hasError = true;
-      }
-      if (!hasError) {
-        clearErrors && clearErrors("teammateList");
-      }
+    if (hasError) {
+      setError && setError("teammateList", { type: "manual", message: "최소 한 개 이상의 팀원 정보를 추가해주세요" });
+    } else {
+      clearErrors && clearErrors("teammateList");
     }
   }, [additionalInput, onInputChange, title, setError, clearErrors]);
 
@@ -154,10 +157,12 @@ function AddSection({
             )}
             <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
               <div
-                className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${additionalInput.length > 1 ? "border-blue-500" : "border-gray-400"}`}>
+                className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${
+                  inputBoxLength ? "border-blue-500" : hasInputData ? "border-gray-400" : "border-blue-500"
+                }`}>
                 <Image
                   width={17}
-                  src={additionalInput.length > 1 ? blueDeleteIcon : grayDeleteIcon}
+                  src={inputBoxLength ? blueDeleteIcon : hasInputData ? grayDeleteIcon : blueDeleteIcon}
                   alt="삭제 버튼"
                   priority
                 />
