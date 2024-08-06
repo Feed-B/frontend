@@ -16,7 +16,7 @@ import ThumbnailBox from "../_components/ThumbnailBox";
 import ProjectImageBox from "../_components/ProjectImageBox/ProjectImageBox";
 import Title from "../_components/Title";
 import SkillStackProvider from "../_context/SkillStackProvider";
-import WarningModal from "../../_components/WarningModal/WarningModal";
+import WarningModal from "../../_components/Modal/WarningModal";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;

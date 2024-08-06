@@ -16,7 +16,7 @@ import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import { projectApi } from "@/app/_apis/project";
 import { useToast } from "@/app/_context/ToastContext";
 import useModal from "@/app/_hooks/useModal";
-import WarningModal from "@/app/_components/WarningModal/WarningModal";
+import WarningModal from "@/app/_components/Modal/WarningModal";
 import SocialDropBox from "../SocialDropBox/SocialDropBox";
 
 interface Props {
