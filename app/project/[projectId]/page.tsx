@@ -6,6 +6,7 @@ import StackSection from "./_components/ProjectSection/StackSection";
 import RatingSection from "./_components/ProjectSection/RatingSection";
 import MyCommentSection from "./_components/CommentSection/MyCommentSection";
 import CommentListSection from "./_components/CommentSection/CommentListSection";
+import CurrentPageProvider from "./_context/CurrentPageProvider";
 
 interface Props {
   params: {
@@ -23,10 +24,10 @@ function Project({ params }: Props) {
         <StackSection projectId={params.projectId} />
         <RatingSection projectId={params.projectId} />
       </div>
-      <div>
+      <CurrentPageProvider>
         <MyCommentSection projectId={params.projectId} />
         <CommentListSection projectId={params.projectId} />
-      </div>
+      </CurrentPageProvider>
     </main>
   );
 }
