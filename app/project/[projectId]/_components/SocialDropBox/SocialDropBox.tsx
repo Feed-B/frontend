@@ -33,12 +33,15 @@ function SocialDropBox({ projectId }: { projectId: number }) {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={toggleState}
-        className="h-10 w-10 rounded-lg p-2 hover:bg-gray-100"
-        ref={buttonRef}>
-        <Image className="cursor-pointer" src={shareIcon} alt="프로젝트 공유하기." width={24} height={24} priority />
+      <button type="button" onClick={toggleState} ref={buttonRef}>
+        <Image
+          className="cursor-pointer rounded-lg hover:bg-gray-100"
+          src={shareIcon}
+          alt="프로젝트 공유하기."
+          width={24}
+          height={24}
+          priority
+        />
         {isOpen && (
           <DropDown className="-ml-32 mt-2 flex" itemRef={dropdownRef}>
             <DropDown.SocialItem onClick={handleShareKakao}>
