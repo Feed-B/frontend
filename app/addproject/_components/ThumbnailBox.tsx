@@ -46,6 +46,7 @@ function ThumbnailBox({ setThumbnail, register, initialUrl }: ThumbnailBoxProps)
               className="rounded-xl object-contain"
               src={showImageUrl}
               alt="썸네일 이미지"
+              priority
             />
             <div className="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 group-hover:opacity-50" />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

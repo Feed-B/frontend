@@ -10,6 +10,7 @@ import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
 import useModal from "@/app/_hooks/useModal";
+import { useToast } from "@/app/_context/ToastContext";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -36,11 +37,15 @@ function AddProjectContainer() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const accessToken = getToken()?.accessToken;
+  const { addToast } = useToast();
 
   const [formValues, setFormValues] = useState({
     imageType: "웹",
     imageList: [] as any[],
   });
+  const [touchedStack, setTouchedStack] = useState(false);
+  const [touchedTeammate, setTouchedTeammate] = useState(false);
+
   const imageIndexList = formValues.imageList.map((_, index) => index + 1);
 
   const {
@@ -67,14 +72,14 @@ function AddProjectContainer() {
     (stackList: string[]) => {
       setValue("projectTechStackList", stackList);
       if (stackList.length > 0) clearErrors("projectTechStackList");
-      else if (setError && stackList.length === 0) {
+      else if (setError && touchedStack && stackList.length === 0) {
         setError("projectTechStackList", {
           type: "manual",
           message: "최소 한 개 이상의 기술 스택을 추가해주세요",
         });
       }
     },
-    [clearErrors, setValue, setError]
+    [setValue, clearErrors, setError, touchedStack]
   );
 
   const handleTeammateChange = useCallback(
@@ -128,6 +133,7 @@ function AddProjectContainer() {
       });
       console.log("Add Project Successful");
       router.push("/main");
+      addToast("프로젝트가 생성되었습니다", "success");
     },
     onError: () => {
       console.error("Add Project failed");
@@ -135,8 +141,18 @@ function AddProjectContainer() {
   });
 
   const handleFormSubmit = async (data: AddProjectFormData) => {
+    setTouchedStack(true);
+    setTouchedTeammate(true);
+
+    const hasError =
+      data.teammateList.every(input => !input.name || !input.job) || data.projectTechStackList.length === 0;
+
+    if (hasError) return;
+
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
+    const teammateData = data.teammateList.filter(item => item.name.trim() !== "" && item.job.trim() !== "");
+    const projectLinkData = data.projectLinkList.filter(item => item.siteType.trim() !== "" && item.url.trim() !== "");
 
     const projectRequestDto = {
       title: data.title,
@@ -145,8 +161,8 @@ function AddProjectContainer() {
       serviceUrl: data.serviceUrl,
       imageType: formValues.imageType === "웹" ? "WEB" : "MOBILE",
       projectTechStacks: data.projectTechStackList,
-      projectTeammates: data.teammateList,
-      projectLinks: data.projectLinkList,
+      projectTeammates: teammateData,
+      projectLinks: projectLinkData,
     };
 
     formData.append("projectRequestDto", new Blob([JSON.stringify(projectRequestDto)], { type: "application/json" }));
@@ -262,7 +278,7 @@ function AddProjectContainer() {
           </section>
           <section className="flex w-[690px] flex-col gap-4">
             <SkillStackProvider>
-              <SkillStackSection handleTechStackInput={handleTechStackInput} />
+              <SkillStackSection handleTechStackInput={handleTechStackInput} setTouchedStack={setTouchedStack} />
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
           </section>
@@ -276,6 +292,8 @@ function AddProjectContainer() {
               inputWidth="w-[114px]"
               dropDownType="job"
               onInputChange={handleTeammateChange}
+              touchedTeammate={touchedTeammate}
+              setTouchedTeammate={setTouchedTeammate}
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>

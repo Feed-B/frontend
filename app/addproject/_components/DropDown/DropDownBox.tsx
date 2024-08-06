@@ -60,9 +60,11 @@ function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownV
   return (
     <div className="relative">
       <div
-        className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}>
+        className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} cursor-pointer items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}
+        onClick={toggleState}
+        ref={exceptionRef}>
         {item}
-        <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
+        <div className="h-5 w-5 cursor-pointer">
           {isOpen ? (
             <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
           ) : (

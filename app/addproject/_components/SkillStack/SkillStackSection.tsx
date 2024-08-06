@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useGetSkillStack } from "../../_context/SkillStackProvider";
 import Title from "../Title";
 import SkillStackSearch from "./SkillStackSearch";
@@ -9,16 +9,19 @@ import SelectSkillStack from "./SelectSkillStack";
 interface SkillStackSectionProps {
   handleTechStackInput: (stackList: string[]) => void;
   initialStackList?: string[];
+  setTouchedStack?: (isTouch: boolean) => void;
 }
 
-function SkillStackSection({ handleTechStackInput, initialStackList }: SkillStackSectionProps) {
+function SkillStackSection({ handleTechStackInput, initialStackList, setTouchedStack }: SkillStackSectionProps) {
   const { selectedStacks, isAddStack } = useGetSkillStack();
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
-    if (initialStackList && initialStackList.length > 0) {
+    if (!hasInitialized.current && initialStackList && initialStackList.length > 0) {
       initialStackList.forEach(stack => {
         isAddStack(stack);
       });
+      hasInitialized.current = true;
     }
   }, [initialStackList, isAddStack]);
 
@@ -29,7 +32,7 @@ function SkillStackSection({ handleTechStackInput, initialStackList }: SkillStac
   return (
     <>
       <Title title="기술스택" name="search" label />
-      <SkillStackSearch />
+      <SkillStackSearch setTouchedStack={setTouchedStack} />
       <SelectSkillStack />
     </>
   );
