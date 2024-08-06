@@ -38,23 +38,22 @@ function SocialDropBox({ projectId }: { projectId: number }) {
         onClick={toggleState}
         className="h-10 w-10 rounded-lg p-2 hover:bg-gray-100"
         ref={buttonRef}>
-        <Image className="cursor-pointer" src={shareIcon} alt="공유하기." width={24} />
+        <Image className="cursor-pointer" src={shareIcon} alt="프로젝트 공유하기." width={24} height={24} priority />
+        {isOpen && (
+          <DropDown className="-ml-32 mt-2 flex" itemRef={dropdownRef}>
+            <DropDown.SocialItem onClick={handleShareKakao}>
+              <Image className="cursor-pointer" src={kakaoImage} alt="카톡 공유하기." width={44} />
+              <p>카카오톡</p>
+            </DropDown.SocialItem>
+            <DropDown.SocialItem onClick={handleCopyLink}>
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 p-[10px]">
+                <Image className="cursor-pointer" src={urlCircle} alt="URL 복사하기." width={24} />
+              </div>
+              <p>URL 복사</p>
+            </DropDown.SocialItem>
+          </DropDown>
+        )}
       </button>
-
-      {isOpen && (
-        <DropDown className="right-8 top-11 flex animate-dropdown-grow" itemRef={dropdownRef}>
-          <DropDown.SocialItem onClick={handleShareKakao}>
-            <Image className="cursor-pointer" src={kakaoImage} alt="카톡공유." width={44} />
-            <p>카카오톡</p>
-          </DropDown.SocialItem>
-          <DropDown.SocialItem onClick={handleCopyLink}>
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 p-[10px]">
-              <Image className="cursor-pointer" src={urlCircle} alt="URL복사." width={24} />
-            </div>
-            <p>URL 복사</p>
-          </DropDown.SocialItem>
-        </DropDown>
-      )}
     </>
   );
 }
