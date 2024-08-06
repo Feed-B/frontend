@@ -37,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content="6a3b830c55bbf7e49d2df7be3a9440cbae79d570" />
         <Script src="https://developers.kakao.com/sdk/js/kakao.js" strategy="beforeInteractive" />
       </head>
       <body>
