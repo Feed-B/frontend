@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "FeedB",
     images: [
       {
-        url: "/images/openGraph.svg",
+        url: "/images/openGraph.png",
         width: 1920,
         height: 1080,
       },
