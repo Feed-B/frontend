@@ -47,8 +47,9 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const router = useRouter();
 
   const [imageList, setImageList] = useState([] as any[]);
-
   const [imageType, setImageType] = useState("웹");
+  const [touchedStack, setTouchedStack] = useState(false);
+  const [touchedTeammate, setTouchedTeammate] = useState(false);
 
   const { addToast } = useToast();
 
@@ -108,14 +109,14 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       setValue("projectTechStackList", updatedStackList);
 
       if (stackList.length > 0) clearErrors("projectTechStackList");
-      else if (setError && stackList.length === 0) {
+      else if (setError && touchedStack && stackList.length === 0) {
         setError("projectTechStackList", {
           type: "manual",
           message: "최소 한 개 이상의 기술 스택을 추가해주세요",
         });
       }
     },
-    [project?.techStacks, setValue, clearErrors, setError]
+    [project?.techStacks, setValue, clearErrors, setError, touchedStack]
   );
 
   const handleTeammateChange = useCallback(
@@ -177,6 +178,14 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   });
 
   const handleFormSubmit = async (data: EditProjectFormData) => {
+    setTouchedStack(true);
+    setTouchedTeammate(true);
+
+    const hasError =
+      data.teammateList.every(input => !input.name || !input.job) || data.projectTechStackList.length === 0;
+
+    if (hasError) return;
+
     const formData = new FormData();
     const thumbnailData = getValues("thumbnail");
     const teammateData = data.teammateList.filter(item => item.name.trim() !== "" && item.job.trim() !== "");
@@ -314,6 +323,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
               <SkillStackSection
                 handleTechStackInput={handleTechStackInput}
                 initialStackList={project?.techStacks?.map(stack => stack.techStack)}
+                setTouchedStack={setTouchedStack}
               />
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
@@ -329,6 +339,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
               dropDownType="job"
               onInputChange={handleTeammateChange}
               initialTeammateList={project?.projectTeammates}
+              touchedTeammate={touchedTeammate}
+              setTouchedTeammate={setTouchedTeammate}
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>

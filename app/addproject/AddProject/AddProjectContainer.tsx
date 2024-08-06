@@ -139,6 +139,7 @@ function AddProjectContainer() {
       console.error("Add Project failed");
     },
   });
+
   const handleFormSubmit = async (data: AddProjectFormData) => {
     setTouchedStack(true);
     setTouchedTeammate(true);
