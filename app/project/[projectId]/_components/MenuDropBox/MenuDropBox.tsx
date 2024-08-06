@@ -20,23 +20,19 @@ function MenuDropBox({ mode = "project", handleEditClick, projectId, handleDelet
 
   useOutsideClick(dropdownRef, toggleState, buttonRef);
 
-  const handleDeleteProject = () => {
-    toggleState;
-    handleDelete();
-  };
-
-  const handleDeleteComment = () => {
+  const handleDeleteMode = (isProject: boolean) => {
+    if (isProject) toggleState;
     handleDelete();
   };
 
   const menuMode = {
     project: {
       editDropDown: <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>,
-      handleDeleteClick: handleDeleteProject,
+      handleDeleteClick: () => handleDeleteMode(true),
     },
     comment: {
       editDropDown: <DropDown.TextItem onClick={handleEditClick}>수정</DropDown.TextItem>,
-      handleDeleteClick: handleDeleteComment,
+      handleDeleteClick: () => handleDeleteMode(false),
     },
   };
 
