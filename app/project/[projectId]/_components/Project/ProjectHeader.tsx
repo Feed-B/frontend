@@ -87,7 +87,7 @@ function ProjectHeader({ projectId }: Props) {
           )}
         </div>
       </div>
-      <div className="flex w-full items-center gap-3">
+      <div className="flex h-6 w-full items-center gap-3">
         <p className="text-sm font-semibold text-gray-900">{project.authorName}</p>
         <p className="text-xs text-blue-500">{JOB_CATEGORIES_KR[project.authorJob as JobCategory]}</p>
         <p className="text-sm text-gray-500">{createDate(project.createdAt)}</p>
