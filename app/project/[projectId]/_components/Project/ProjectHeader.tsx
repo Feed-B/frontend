@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
+import React from "react";
 import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import kebabIcon from "@/public/icons/kebab.svg";
-import useToggleHook from "@/app/_hooks/useToggleHook";
 import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
-import DropDown from "@/app/_components/DropDown/DropDown";
-import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
@@ -17,7 +12,8 @@ import { projectApi } from "@/app/_apis/project";
 import { useToast } from "@/app/_context/ToastContext";
 import useModal from "@/app/_hooks/useModal";
 import WarningModal from "@/app/_components/Modal/WarningModal";
-import SocialDropBox from "../SocialDropBox/SocialDropBox";
+import SocialDropBox from "../MenuDropBox/SocialDropBox";
+import MenuDropBox from "../MenuDropBox/MenuDropBox";
 
 interface Props {
   projectId: number;
@@ -26,17 +22,17 @@ interface Props {
 type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function ProjectHeader({ projectId }: Props) {
-  const { isOpen, toggleState } = useToggleHook();
+  // const { isOpen, toggleState } = useToggleHook();
   const { addToast } = useToast();
   const { openModal: deleteModal, handleModalOpen: openDeleteModal, handleModalClose: closeDeleteModal } = useModal();
 
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  // const dropdownRef = useRef<HTMLDivElement>(null);
+  // const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useOutsideClick(dropdownRef, toggleState, buttonRef);
+  // useOutsideClick(dropdownRef, toggleState, buttonRef);
 
   const mutation = useMutation({
     mutationFn: () => {
@@ -57,9 +53,8 @@ function ProjectHeader({ projectId }: Props) {
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
   if (!project) return null;
 
-  const handelDeleteModal = () => {
+  const handleDeleteModal = () => {
     openDeleteModal();
-    toggleState();
   };
 
   const handleDeleteProject = () => {
@@ -86,26 +81,26 @@ function ProjectHeader({ projectId }: Props) {
               colorMode="bright"
             />
             <SocialDropBox projectId={projectId} />
-            {project.isMine && (
-              <>
-                <button className="relative" type="button" onClick={toggleState} ref={buttonRef}>
-                  <Image
-                    className="cursor-pointer rounded-lg hover:bg-gray-100"
-                    src={kebabIcon}
-                    alt="프로젝트 메뉴."
-                    width={24}
-                    height={32}
-                    priority
-                  />
-                </button>
-                {isOpen && (
-                  <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
-                    <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
-                    <DropDown.TextItem onClick={handelDeleteModal}>삭제</DropDown.TextItem>
-                  </DropDown>
-                )}
-              </>
-            )}
+            {
+              project.isMine && <MenuDropBox projectId={projectId} handleDelete={handleDeleteModal} />
+              // <>
+              //   <button className="relative" type="button" onClick={toggleState} ref={buttonRef}>
+              //     <Image
+              //       className="cursor-pointer rounded-lg hover:bg-gray-100"
+              //       src={kebabIcon}
+              //       alt="프로젝트 메뉴."
+              //       width={24}
+              //       priority
+              //     />
+              //   </button>
+              //   {isOpen && (
+              //     <DropDown className="w-fit translate-x-10 translate-y-10" itemRef={dropdownRef}>
+              //       <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>
+              //       <DropDown.TextItem onClick={handelDeleteModal}>삭제</DropDown.TextItem>
+              //     </DropDown>
+              //   )}
+              // </>
+            }
           </div>
         </div>
         <div className="flex h-6 w-full items-center gap-3">
