@@ -46,7 +46,6 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     },
   });
 
-  console.log(userQueryKeys.detail(profileData.id).queryKey);
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
 
