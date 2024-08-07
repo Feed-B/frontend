@@ -1,25 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import feedbee from "@/public/beeIcons/yellowBee.svg";
-import { getToken } from "@/app/_utils/handleToken";
 import logoTextIcon from "@/public/icons/logoText.svg";
+import { getToken } from "@/app/_utils/handleToken";
 import { useLogin } from "@/app/_context/LoginProvider";
 import LoginButton from "../LoginButton/LoginButton";
 import Button from "../Button/Button";
 import SignUpModal from "../SignUpModal/SignUpModal";
 import HeaderDropDownBox from "./HeaderDropDownBox";
+import HeaderSkeleton from "./HeaderSkeleton";
 
 function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
-  const { token } = useLogin();
 
+  const { token } = useLogin();
   const { isLoggedIn, setIsLoggedIn, type, setType, handleLogout } = useCheckLogin();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (type === "signUp") {
@@ -35,6 +37,7 @@ function Header() {
     } else {
       setIsLoggedIn(false);
     }
+    setLoading(false);
   }, [token, setIsLoggedIn]);
 
   return (
@@ -45,7 +48,9 @@ function Header() {
           <Image src={logoTextIcon} alt="로고 텍스트" priority />
         </Link>
         <div className="flex h-full items-center gap-4">
-          {isLoggedIn ? (
+          {loading ? (
+            <HeaderSkeleton />
+          ) : isLoggedIn ? (
             <>
               <Link href="/addproject">
                 <Button buttonSize="normal" bgColor="yellow" className="flex items-center justify-center gap-1">
