@@ -19,6 +19,7 @@ export const metadata: Metadata = {
         url: "https://i.ibb.co/d5ftBLK/feedbopengraph.jpg",
         width: 1200,
         height: 628,
+        alt: "FeedB Image",
       },
     ],
   },
