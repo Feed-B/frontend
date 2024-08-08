@@ -22,6 +22,8 @@ import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
 import CancelModal from "@/app/_components/Modal/WarningModal";
 import { useToast } from "@/app/_context/ToastContext";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+// import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -166,14 +168,17 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     mutationFn: (projectData: FormData) => editProjectApi.putProject(projectId, projectData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["project", "list", "projectList"],
+        queryKey: projectQueryKeys.detail(projectId).queryKey,
       });
-      console.log("Edit Project Successful");
+      queryClient.invalidateQueries({
+        queryKey: projectQueryKeys.teamMember(projectId).queryKey,
+      });
+      // revalidateTagAction("pojectList");
       router.push(`/project/${projectId}`);
       addToast("프로젝트가 수정되었습니다", "success");
     },
     onError: () => {
-      console.error("Edit Project failed");
+      addToast("프로젝트 수정에 실패했습니다", "error");
     },
   });
 
@@ -281,6 +286,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                     message: `내용은 ${DESCRIPTION_MAX_LENGTH}자를 초과할 수 없습니다`,
                   },
                 })}
+                maxLength={DESCRIPTION_MAX_LENGTH}
                 className="h-52 w-[690px] resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none"
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
