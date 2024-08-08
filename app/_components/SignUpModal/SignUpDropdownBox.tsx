@@ -40,11 +40,13 @@ function SignUpDropdownBox({ dataType, item, isOpen, toggleState, handleItemClic
 
       <div
         className={
-          "mt-2 flex h-11 w-96 items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900 mb:w-[327px]"
-        }>
+          "mt-2 flex h-11 w-96 cursor-pointer items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900 mb:w-[327px]"
+        }
+        onClick={toggleState}
+        ref={exceptionRef}>
         {JOB_CATEGORIES_KR[item] || item}
 
-        <div className="h-5 w-5 cursor-pointer" onClick={toggleState} ref={exceptionRef}>
+        <div className="h-5 w-5 cursor-pointer">
           {isOpen ? (
             <Image src={smallTopArrowIcon} alt="드롭다운 열기" width={20} height={20} priority />
           ) : (
