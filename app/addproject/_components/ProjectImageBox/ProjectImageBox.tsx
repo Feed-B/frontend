@@ -9,6 +9,7 @@ import whitePlusIcon from "@/public/icons/whitePlus.svg";
 import EmptyProjectImage from "@/app/addproject/_components/ProjectImageBox/EmptyProjectImage";
 import ProjectImageCard from "@/app/addproject/_components/ProjectImageBox/ProjectImageCard";
 import RadioButton from "@/app/addproject/_components/RadioButton";
+import { useToast } from "@/app/_context/ToastContext";
 
 interface ImageType {
   id: string;
@@ -34,6 +35,7 @@ function ProjectImageBox({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedSize, setSelectedSize] = useState(initialImageType || "웹");
   const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (initialUrlList.length > 0) {
@@ -53,10 +55,10 @@ function ProjectImageBox({
     new Promise((resolve, reject) => {
       Resizer.imageFileResizer(
         file,
-        300,
-        300,
+        1000,
+        1000,
         "JPEG",
-        100,
+        80,
         0,
         uri => {
           if (typeof uri === "string") {
@@ -90,9 +92,15 @@ function ProjectImageBox({
   };
 
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const MAX_FILE_NUMBER = 5; // 최대 이미지 수
     const fileList = event.target.files;
 
     if (fileList) {
+      if (showImageUrlList.length + fileList.length > MAX_FILE_NUMBER) {
+        addToast("이미지는 최대 5장까지만 업로드할 수 있습니다", "error");
+        return;
+      }
+
       const resizedImageList = await Promise.all(
         Array.from(fileList).map(async file => {
           const resizedFile = await resizeFile(file);
@@ -104,10 +112,7 @@ function ProjectImageBox({
         })
       );
 
-      setShowImageUrlList(prevImages => {
-        const newImageList = [...prevImages, ...resizedImageList];
-        return newImageList.slice(0, 5); // 이미지는 최대 5개까지만 허용
-      });
+      setShowImageUrlList(prevImages => [...prevImages, ...resizedImageList]);
 
       // 파일 입력 값을 리셋
       if (fileInputRef.current) {
