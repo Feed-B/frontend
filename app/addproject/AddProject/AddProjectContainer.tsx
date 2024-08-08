@@ -11,6 +11,8 @@ import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
 import useModal from "@/app/_hooks/useModal";
 import { useToast } from "@/app/_context/ToastContext";
+import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+// import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -129,14 +131,14 @@ function AddProjectContainer() {
     mutationFn: (projectData: FormData) => addProjectApi.postProject(projectData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["project", "list", "projectList"],
+        queryKey: projectQueryKeys.list({}).queryKey,
       });
-      console.log("Add Project Successful");
+      // revalidateTagAction("pojectList");
       router.push("/main");
       addToast("프로젝트가 생성되었습니다", "success");
     },
     onError: () => {
-      console.error("Add Project failed");
+      addToast("프로젝트 생성에 실패했습니다", "error");
     },
   });
 
@@ -238,6 +240,7 @@ function AddProjectContainer() {
                     message: `내용은 ${DESCRIPTION_MAX_LENGTH}자를 초과할 수 없습니다`,
                   },
                 })}
+                maxLength={DESCRIPTION_MAX_LENGTH}
                 className="h-52 w-[690px] resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none"
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
