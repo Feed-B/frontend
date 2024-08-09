@@ -11,6 +11,8 @@ import { useGetStack } from "../../_context/StackProvider";
 function ProjectSection() {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
+  const projectListQuery = projectQueryKeys.list({ page: 1, size: 12 });
+
   const { projectState } = useGetStack();
   const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
 
