@@ -57,12 +57,6 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
   const handleEditComment = () => {
     editToggle();
     toggleState();
-    toggleState();
-  };
-
-  const handleEditComment = () => {
-    editToggle();
-    toggleState();
   };
 
   return (
