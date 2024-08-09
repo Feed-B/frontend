@@ -60,6 +60,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
 
   const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    event.stopPropagation();
     if (currentUserId) {
       if (favoriteState.isFavorite) {
         unLikeMutation.mutate(projectId);
