@@ -4,6 +4,7 @@ import { ProjectData } from "@/app/_apis/schema/projectResponse";
 import { projectApi } from "@/app/_apis/project";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { getToken } from "@/app/_utils/handleToken";
+import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 import HoverCard from "./HoverCard";
 
 function ProjectCard({ project }: { project: ProjectData }) {
@@ -29,6 +30,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
     const token = getToken();
     if (token) {
       projectPostViewmutation.mutate();
+      revalidatePathAction("/main");
     }
   };
 
