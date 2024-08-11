@@ -12,7 +12,7 @@ import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_ty
 import useModal from "@/app/_hooks/useModal";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
-// import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -133,7 +133,7 @@ function AddProjectContainer() {
       queryClient.invalidateQueries({
         queryKey: projectQueryKeys.list({}).queryKey,
       });
-      // revalidateTagAction("pojectList");
+      revalidateTagAction("pojectList");
       router.push("/main");
       addToast("프로젝트가 생성되었습니다", "success");
     },
