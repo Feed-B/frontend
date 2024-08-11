@@ -47,6 +47,8 @@ function ProjectHeader({ projectId }: Props) {
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
   if (!project) return null;
 
+  console.log("project.isMine", project.isMine);
+
   const handleDeleteModal = () => {
     openDeleteModal();
   };
