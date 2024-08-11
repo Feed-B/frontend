@@ -29,7 +29,7 @@ const CommentContainer = ({ projectId }: Props) => {
   useEffect(() => {
     if (myComment && myComment.exists && view !== "edit") setView("show");
     if (myComment && !myComment.exists && view !== "edit") setView("write");
-  }, [view, setView, myComment]);
+  }, [view, setView, myComment, isLoggedIn]);
 
   if (!myComment) return <WriteComment projectId={projectId} />;
 
