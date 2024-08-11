@@ -33,10 +33,10 @@ export const projectApi = {
   },
 
   getProject: async (projectId: number) => {
-    return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers);
+    return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers, ["projectDetail"]);
   },
   getTeamMember: async (projectId: number) => {
-    return await httpClient().get<TeamMemberResponse>(`/projects/${projectId}/teammates`);
+    return await httpClient().get<TeamMemberResponse>(`/projects/${projectId}/teammates`, ["projectTeamMember"]);
   },
   getTotalRating: async (projectId: number) => {
     return await httpClient().get<TotalRatingResponse>(`/projects/${projectId}/average-rating`);

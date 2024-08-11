@@ -23,6 +23,7 @@ import { getToken } from "@/app/_utils/handleToken";
 import CancelModal from "@/app/_components/Modal/WarningModal";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 // import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 
 const TITLE_MAX_LENGTH = 50;
@@ -173,7 +174,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       queryClient.invalidateQueries({
         queryKey: projectQueryKeys.teamMember(projectId).queryKey,
       });
-      // revalidateTagAction("pojectList");
+      revalidateTagAction("pojectDetail");
+      revalidateTagAction("pojectTeamMember");
       router.push(`/project/${projectId}`);
       addToast("프로젝트가 수정되었습니다", "success");
     },
