@@ -12,6 +12,7 @@ import { projectApi } from "@/app/_apis/project";
 import { useToast } from "@/app/_context/ToastContext";
 import useModal from "@/app/_hooks/useModal";
 import WarningModal from "@/app/_components/Modal/WarningModal";
+import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import SocialDropBox from "../MenuDropBox/SocialDropBox";
 import MenuDropBox from "../MenuDropBox/MenuDropBox";
 
@@ -36,6 +37,7 @@ function ProjectHeader({ projectId }: Props) {
       queryClient.invalidateQueries({
         queryKey: projectQueryKeys.list({}).queryKey,
       });
+      revalidateTagAction("pojectList");
       addToast("프로젝트가 삭제되었습니다", "success");
     },
     onError: error => {
