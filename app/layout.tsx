@@ -4,6 +4,7 @@ import ToastContainer from "./_components/Toast/ToastContainer";
 import Providers from "./_queryFactory/providers";
 import { LoginProvider } from "./_context/LoginProvider";
 import { ToastProvider } from "./_context/ToastContext";
+import GoogleAnalytics from "./googleAnalytics";
 import type { Metadata } from "next";
 import "./_styles/globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
       </head>
       <body>
         <div id="modal" />
+        <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_ID} />
         <Providers>
           <LoginProvider>
             <ToastProvider>
