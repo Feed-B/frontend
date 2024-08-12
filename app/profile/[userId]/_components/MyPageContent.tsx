@@ -1,8 +1,9 @@
 "use client";
 import { useParams } from "next/navigation";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { getToken } from "@/app/_utils/handleToken";
+import { profileAPI } from "@/app/_apis/ProfileAPI";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory/MyPageCategory";
 import Profile from "./Profile/Profile";
@@ -10,8 +11,30 @@ import Profile from "./Profile/Profile";
 function MyPageContent() {
   const { userId } = useParams();
   const [selectCategory, setSelectCategory] = useState<MyPageProjectListType>("myProject");
+  const [loading, setLoading] = useState(false);
 
-  const { data: currentUserId } = useQuery(userQueryKeys.userId());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const headers = {
+    Authorization: "Bearer ",
+  };
+
+  useEffect(() => {
+    const accessToken = getToken();
+    if (accessToken && accessToken.accessToken) {
+      Object.assign(headers, {
+        Authorization: "Bearer " + accessToken.accessToken,
+      });
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [headers]);
+
+  const { data: currentUserId } = useQuery({
+    queryKey: ["id"],
+    queryFn: async () => await profileAPI.getUserId(headers),
+    enabled: loading && !!headers?.Authorization,
+  });
 
   if (!currentUserId) {
     return;
