@@ -21,11 +21,17 @@ function LoginModal({ openModal, handleModalClose }: LoginModalProps) {
   const handleNaverLogin = () => {
     window.location.href = NAVER_OAUTH_URL;
     handleModalClose();
+    window.addEventListener("load", function () {
+      window.location.reload();
+    });
   };
 
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_OAUTH_URL;
     handleModalClose();
+    window.addEventListener("load", function () {
+      window.location.reload();
+    });
   };
 
   return (
