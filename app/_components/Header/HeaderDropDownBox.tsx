@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-// import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
-import { getToken } from "@/app/_utils/handleToken";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
@@ -21,32 +20,10 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
   const { isOpen, toggleState } = useToggleHook();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const headers = {
-    Authorization: "Bearer ",
-  };
-
-  useEffect(() => {
-    const accessToken = getToken();
-    if (accessToken && accessToken.accessToken) {
-      Object.assign(headers, {
-        Authorization: "Bearer " + accessToken.accessToken,
-      });
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [headers]);
 
   useOutsideClick(dropdownRef, toggleState, divRef);
 
-  const { data: userId } = useQuery({
-    queryKey: ["id"],
-    queryFn: async () => await profileAPI.getUserId(headers),
-    enabled: loading && !!headers?.Authorization,
-  });
+  const { data: userId } = useQuery(userQueryKeys.userId());
 
   const { data: userdata } = useQuery({
     queryKey: ["profile", userId?.id.toString()],
