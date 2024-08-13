@@ -1,4 +1,4 @@
-import { HEADER } from "../_constants/HeaderToken";
+import { getHeaders } from "../_constants/HeaderToken";
 import { MyPageProjectListType } from "../profile/[userId]/_components/MypageProjectSection";
 import httpClient from "./httpClient";
 import { ProjectResponseType } from "./schema/projectResponse";
@@ -11,6 +11,7 @@ export interface GetMyProjectListParams {
 
 export const projectListAPI = {
   getMyProjectList: async ({ page, size, userId }: GetMyProjectListParams, selectDataType: MyPageProjectListType) => {
+    const HEADER = getHeaders();
     return await httpClient().get<ProjectResponseType>(
       `/${userId}/projects${selectDataType === "wishProject" ? "/likes" : ""}`,
       {

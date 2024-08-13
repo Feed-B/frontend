@@ -1,4 +1,4 @@
-import { HEADER } from "../_constants/HeaderToken";
+import { getHeaders } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
 import {
   CommentDetailResponse,
@@ -35,6 +35,7 @@ interface ReflyCommentListRequest extends CommentListRequest {
 
 export const commentApi = {
   getCommentList: async ({ projectId, page = 1, size = 8 }: CommentListRequest) => {
+    const HEADER = getHeaders();
     return await httpClient().get<CommentListResponse>(
       `/projects/${projectId}/ratings`,
       {
@@ -45,11 +46,13 @@ export const commentApi = {
     );
   },
   getCommentDetail: async (ratingId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
       "commentDetail",
     ]);
   },
   getReflyCommentList: async ({ ratingId, page = 1, size = 10 }: ReflyCommentListRequest) => {
+    const HEADER = getHeaders();
     return await httpClient().get<ReflyCommentResponse>(
       `/projects/${ratingId}/comments`,
       {
@@ -61,9 +64,11 @@ export const commentApi = {
     );
   },
   getMyComment: async (projectId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers);
   },
   postComment: async (projectId: number, data: UploadCommentRequest) => {
+    const HEADER = getHeaders();
     return await httpClient().postData(
       `/projects/${projectId}/ratings`,
       {
@@ -73,6 +78,7 @@ export const commentApi = {
     );
   },
   postReflyComment: async (ratingId: number | undefined, comment: string) => {
+    const HEADER = getHeaders();
     return await httpClient().post(
       `/projects/${ratingId}/comments`,
       {
@@ -83,6 +89,7 @@ export const commentApi = {
     );
   },
   putComment: async (ratingId: number, data: UpadateCommentRequest) => {
+    const HEADER = getHeaders();
     return await httpClient().put(
       `/projects/ratings/${ratingId}`,
       {
@@ -92,6 +99,7 @@ export const commentApi = {
     );
   },
   putReflyComment: async (commentId: number | undefined, comment: string) => {
+    const HEADER = getHeaders();
     return await httpClient().put(
       `/projects/comments/${commentId}`,
       {
@@ -101,9 +109,11 @@ export const commentApi = {
     );
   },
   deleteComment: async (ratingId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().delete(`/projects/ratings/${ratingId}`, HEADER.applicationHeaders);
   },
   deleteReflyComment: async (reflyId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().delete(`/projects/comments/${reflyId}`, HEADER.applicationHeaders);
   },
 };
