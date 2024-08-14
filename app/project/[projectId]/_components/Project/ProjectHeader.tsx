@@ -37,7 +37,6 @@ function ProjectHeader({ projectId }: Props) {
       queryClient.invalidateQueries({
         queryKey: projectQueryKeys.list({}).queryKey,
       });
-      revalidateTagAction("pojectList");
       addToast("프로젝트가 삭제되었습니다", "success");
     },
     onError: error => {
@@ -56,6 +55,7 @@ function ProjectHeader({ projectId }: Props) {
   const handleDeleteProject = () => {
     mutation.mutate();
     router.push("/main");
+    revalidateTagAction("projectList");
     closeDeleteModal();
   };
 
