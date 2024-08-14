@@ -42,7 +42,8 @@ export const commentApi = {
         page,
         size,
       },
-      HEADER.headers
+      HEADER.headers,
+      ["commentList"]
     );
   },
   getCommentDetail: async (ratingId: number) => {
@@ -65,7 +66,9 @@ export const commentApi = {
   },
   getMyComment: async (projectId: number) => {
     const HEADER = getHeaders();
-    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers);
+    return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers, [
+      "myComment",
+    ]);
   },
   postComment: async (projectId: number, data: UploadCommentRequest) => {
     const HEADER = getHeaders();
