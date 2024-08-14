@@ -7,6 +7,7 @@ import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
+import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface Props {
   ratingId: number;
@@ -14,7 +15,8 @@ interface Props {
   projectId: number;
 }
 
-function CommentEditButton({ ratingId, onClick }: Props) {
+function CommentEditButton({ ratingId, onClick, projectId }: Props) {
+  const { currentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
   const { addToast } = useToast();
 
@@ -36,8 +38,16 @@ function CommentEditButton({ ratingId, onClick }: Props) {
       queryClient.invalidateQueries({
         queryKey: commentQueryKeys.detail(ratingId).queryKey,
       });
+      queryClient.invalidateQueries({
+        queryKey: commentQueryKeys.myComment(projectId).queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: commentQueryKeys.list({ projectId, page: currentPage }).queryKey,
+      });
       addToast("프로젝트 리뷰가 수정되었습니다", "success");
       revalidateTagAction("commentDetail");
+      revalidateTagAction("commentList");
+      revalidateTagAction("myComment");
     },
     onError: error => {
       console.error("Error:", error);
