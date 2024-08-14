@@ -48,9 +48,6 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
         queryKey: commentQueryKeys.list({ projectId, page: currentPage }).queryKey,
       });
       addToast("프로젝트 리뷰가 삭제되었습니다", "success");
-      revalidateTagAction("commentDetail");
-      revalidateTagAction("commentList");
-      revalidateTagAction("myComment");
     },
     onError: error => {
       console.error("Error:", error);
@@ -61,6 +58,9 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
   const handleDeleteComment = () => {
     mutation.mutate();
     router.push(`/project/${projectId}`);
+    revalidateTagAction("commentDetail");
+    revalidateTagAction("commentList");
+    revalidateTagAction("myComment");
     toggleState();
   };
 
