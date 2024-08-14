@@ -56,11 +56,11 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
   });
 
   const handleDeleteComment = () => {
-    mutation.mutate();
-    router.push(`/project/${projectId}`);
     revalidateTagAction("commentDetail");
     revalidateTagAction("commentList");
     revalidateTagAction("myComment");
+    mutation.mutate();
+    router.push(`/project/${projectId}`);
     toggleState();
   };
 
