@@ -10,6 +10,7 @@ import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
 import { handleLikeProject } from "@/app/_apis/handleLikeProject";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import useModal from "@/app/_hooks/useModal";
+import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import LoginModal from "../LoginModal/LoginModal";
 
 interface WishButtonAndCountProps {
@@ -21,7 +22,9 @@ interface WishButtonAndCountProps {
 
 function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark", projectId }: WishButtonAndCountProps) {
   const isDarkMode = colorMode === "dark";
-  const { data: currentUserId } = useQuery(userQueryKeys.userId());
+  const { isLoggedIn } = useCheckLogin();
+
+  const { data: currentUserId } = useQuery({ ...userQueryKeys.userId(), enabled: isLoggedIn });
   const { openModal, handleModalOpen, handleModalClose } = useModal();
 
   const full = {
@@ -44,6 +47,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
       isFavorite: isFavorite,
       wishCountState: wishCount,
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,7 +65,7 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
   const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    if (currentUserId) {
+    if (isLoggedIn && currentUserId) {
       if (favoriteState.isFavorite) {
         unLikeMutation.mutate(projectId);
         setFavoriteState(prevState => ({
