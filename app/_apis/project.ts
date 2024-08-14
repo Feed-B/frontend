@@ -1,4 +1,4 @@
-import { HEADER } from "../_constants/HeaderToken";
+import { getHeaders } from "../_constants/HeaderToken";
 import { ProjectListParams } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
 import {
@@ -17,6 +17,7 @@ export const projectApi = {
     projectTechStacks = [],
     sortCondition = "RECENT",
   }: ProjectListParams) => {
+    const HEADER = getHeaders();
     return await httpClient().get<ProjectResponseType>(
       "/projects",
       {
@@ -33,18 +34,23 @@ export const projectApi = {
   },
 
   getProject: async (projectId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers, ["projectDetail"]);
   },
   getTeamMember: async (projectId: number) => {
-    return await httpClient().get<TeamMemberResponse>(`/projects/${projectId}/teammates`, ["projectTeamMember"]);
+    return await httpClient().get<TeamMemberResponse>(`/projects/${projectId}/teammates`, {}, {}, [
+      "projectTeamMember",
+    ]);
   },
   getTotalRating: async (projectId: number) => {
     return await httpClient().get<TotalRatingResponse>(`/projects/${projectId}/average-rating`);
   },
   deleteProject: async (projectId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().delete(`/projects/${projectId}`, HEADER.headers);
   },
   postProjectView: async (projectId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().postData(`/${projectId}/views`, {}, HEADER.headers);
   },
 };

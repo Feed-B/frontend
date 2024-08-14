@@ -1,15 +1,19 @@
 import { getToken } from "../_utils/handleToken";
 
-export const HEADER = {
-  headers: {
-    Authorization: "Bearer " + getToken()?.accessToken,
-  },
-  multipartHeaders: {
-    Authorization: "Bearer " + getToken()?.accessToken,
-    "Content-Type": "multipart/form-data",
-  },
-  applicationHeaders: {
-    Authorization: "Bearer " + getToken()?.accessToken,
-    "Content-Type": "application/json",
-  },
+export const getHeaders = () => {
+  const token = getToken()?.accessToken;
+
+  return {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    multipartHeaders: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "multipart/form-data",
+    },
+    applicationHeaders: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  };
 };

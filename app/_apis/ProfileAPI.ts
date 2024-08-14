@@ -1,4 +1,4 @@
-import { HEADER } from "../_constants/HeaderToken";
+import { getHeaders } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -33,13 +33,17 @@ export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | 
 
 export const profileAPI = {
   getCurrentUserId: async () => {
-    return await httpClient().get<CurrentUserIdType>("/profile", { "": "" }, HEADER.headers);
+    const HEADER = getHeaders();
+    const test = await httpClient().get<CurrentUserIdType>("/profile", {}, HEADER.headers);
+    return test;
   },
   getUserData: async (userId: number) => {
+    const HEADER = getHeaders();
     return await httpClient().get<UserDataType>(`/profile/${userId}`, { "": "" }, HEADER.headers);
   },
   putUserData: async ({ userId, userData }: { userId: number; userData: PutUserDataType }) => {
     const formData = new FormData();
+    const HEADER = getHeaders();
 
     const memberEditRequestDtoBlob = new Blob([JSON.stringify(userData.memberEditRequestDto)], {
       type: "application/json",

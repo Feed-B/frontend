@@ -12,6 +12,7 @@ import { commentApi } from "@/app/_apis/comment";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface CommentDropboxProps {
   toggleState: () => void;
@@ -20,6 +21,7 @@ interface CommentDropboxProps {
 }
 
 function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: CommentDropboxProps) {
+  const { currentPage } = useCurrentPageContext();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -39,8 +41,16 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
       queryClient.removeQueries({
         queryKey: commentQueryKeys.detail(ratingId).queryKey,
       });
+      queryClient.invalidateQueries({
+        queryKey: commentQueryKeys.myComment(projectId).queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: commentQueryKeys.list({ projectId, page: currentPage }).queryKey,
+      });
       addToast("프로젝트 리뷰가 삭제되었습니다", "success");
       revalidateTagAction("commentDetail");
+      revalidateTagAction("commentList");
+      revalidateTagAction("myComment");
     },
     onError: error => {
       console.error("Error:", error);

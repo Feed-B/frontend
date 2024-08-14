@@ -7,8 +7,8 @@ import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
+import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../ProfileImage/ProfileImage";
 
