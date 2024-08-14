@@ -53,9 +53,9 @@ function ProjectHeader({ projectId }: Props) {
   };
 
   const handleDeleteProject = () => {
+    revalidateTagAction("projectList");
     mutation.mutate();
     router.push("/main");
-    revalidateTagAction("projectList");
     closeDeleteModal();
   };
 
