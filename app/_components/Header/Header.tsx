@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import uploadIcon from "@/public/icons/blackUpload.svg";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
@@ -18,10 +19,21 @@ import HeaderSkeleton from "./HeaderSkeleton";
 
 function Header() {
   const { openModal: isSignUpModal, handleModalClose: signUpModalClose, handleModalOpen: signUpModalOpen } = useModal();
-
   const { token } = useLogin();
   const { isLoggedIn, setIsLoggedIn, type, setType, handleLogout } = useCheckLogin();
+
   const [loading, setLoading] = useState(true);
+  const [buttonActive, setButtonActive] = useState(true);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname.includes("edit") || pathname.includes("addproject")) {
+      setButtonActive(false);
+    } else {
+      setButtonActive(true);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (type === "signUp") {
@@ -53,10 +65,12 @@ function Header() {
           ) : isLoggedIn ? (
             <>
               <Link href="/addproject">
-                <Button buttonSize="normal" bgColor="yellow" className="flex items-center justify-center gap-1">
-                  <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
-                  <span>업로드</span>
-                </Button>
+                {buttonActive && (
+                  <Button buttonSize="normal" bgColor="yellow" className="flex items-center justify-center gap-1">
+                    <Image src={uploadIcon} alt="프로젝트 업로드" width={20} priority />
+                    <span>업로드</span>
+                  </Button>
+                )}
               </Link>
               <HeaderDropDownBox handleLogout={handleLogout} />
             </>
