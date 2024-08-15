@@ -174,8 +174,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       queryClient.invalidateQueries({
         queryKey: projectQueryKeys.teamMember(projectId).queryKey,
       });
-      revalidateTagAction("pojectDetail");
-      revalidateTagAction("pojectTeamMember");
+      revalidateTagAction("projectDetail");
+      revalidateTagAction("projectTeamMember");
       router.push(`/project/${projectId}`);
       addToast("프로젝트가 수정되었습니다", "success");
     },
