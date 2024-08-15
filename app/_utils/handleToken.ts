@@ -9,6 +9,14 @@ export const setToken = (accessToken: string) => {
   }
 };
 
+export const setTokenInCookie = (accessToken: string, expireDays: number = 7) => {
+  if (typeof window !== "undefined") {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + expireDays * 24 * 60 * 60 * 1000); // expireDays일 후에 만료되도록 설정
+    document.cookie = `ACCESS_TOKEN=${accessToken}; expires=${expires.toUTCString()}; path=/;`;
+  }
+};
+
 export const getToken = () => {
   if (typeof window !== "undefined") {
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
