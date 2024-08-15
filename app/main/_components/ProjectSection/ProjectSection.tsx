@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
@@ -13,7 +13,7 @@ function ProjectSection() {
   const { projectState } = useGetStack();
   const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
 
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage } = useSuspenseInfiniteQuery({
     queryKey: projectListQuery.queryKey,
     queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...projectState, page: pageParam }),
 
@@ -33,10 +33,6 @@ function ProjectSection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
-
-  if (!data) {
-    return;
-  }
 
   return (
     <section className="col-start-2 mt-10">
