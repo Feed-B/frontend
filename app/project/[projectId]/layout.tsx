@@ -1,11 +1,51 @@
 import Providers from "@/app/_queryFactory/providers";
-import type { Metadata } from "next";
+import { projectApi } from "@/app/_apis/project";
 import "@/app/_styles/globals.css";
 
-export const metadata: Metadata = {
-  title: "FeedB",
-  description: "제 프로젝트를 소개합니다!",
-};
+interface Props {
+  params: {
+    projectId: number;
+  };
+  children: React.ReactNode;
+}
+
+export async function generateMetadata({ params }: Props) {
+  const projectData = await projectApi.getProject(params.projectId);
+
+  return {
+    title: projectData.title,
+    description: projectData.introductions,
+    keywords: [...projectData.projectTechStacks],
+    category: "사이드 프로젝트",
+    openGraph: {
+      title: projectData.title,
+      description: projectData.content,
+      url: process.env.NEXT_PUBLIC_SERVICE_URL,
+      siteName: "FeedB",
+      images: [
+        {
+          url: projectData.thumbnailUrl,
+          width: 500,
+          height: 500,
+          alt: projectData.title + "사이드 프로젝트 Image",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: projectData.title,
+      description: projectData.introductions,
+      images: [
+        {
+          url: projectData.thumbnailUrl,
+          width: 500,
+          height: 500,
+          alt: projectData.title + "사이드 프로젝트 Image",
+        },
+      ],
+    },
+  };
+}
 
 export default function ProjectLayout({
   children,

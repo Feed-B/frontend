@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${commentData.authorName} | 피드백 `,
     openGraph: {
-      title: `${projectData.title}`,
-      description: `${projectData.content}`,
+      title: projectData.title,
+      description: projectData.content,
       url: process.env.NEXT_PUBLIC_SERVICE_URL,
       siteName: "FeedB",
       images: [
@@ -26,6 +26,19 @@ export async function generateMetadata({ params }: Props) {
           url: projectData.thumbnailUrl,
           width: 500,
           height: 500,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: projectData.title,
+      description: projectData.introductions,
+      images: [
+        {
+          url: projectData.thumbnailUrl,
+          width: 500,
+          height: 500,
+          alt: projectData.title + "사이드 프로젝트 Image",
         },
       ],
     },
