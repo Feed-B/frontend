@@ -1,28 +1,31 @@
 import React from "react";
+import { cookies } from "next/headers";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_queryFactory/getQueryClient";
-// import { projectQueryKeys } from "../_queryFactory/projectQuery";
+import { projectQueryKeys } from "../_queryFactory/projectQuery";
 import { revalidateTagAction } from "../_utils/revalidationAction";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 async function MainPage() {
   revalidateTagAction("pojectList");
   const queryClient = getQueryClient();
+  const cookieStore = cookies();
+  const ACCESS_TOKEN = cookieStore.get("ACCESS_TOKEN");
 
-  // const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
+  const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 }, ACCESS_TOKEN?.value);
 
-  // await queryClient.prefetchInfiniteQuery({
-  //   queryKey: projectListQuery.queryKey,
-  //   queryFn: projectListQuery.queryFn,
-  //   initialPageParam: 1 as never,
-  //   getNextPageParam: (lastPage: any) => {
-  //     const { customPageable } = lastPage;
-  //     if (customPageable.hasNext) {
-  //       return customPageable.page + 1; // 다음 페이지 번호 반환
-  //     }
-  //     return undefined; // 더 이상 페이지가 없으면 undefined 반환
-  //   },
-  // });
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: projectListQuery.queryKey,
+    queryFn: projectListQuery.queryFn,
+    initialPageParam: 1 as never,
+    getNextPageParam: (lastPage: any) => {
+      const { customPageable } = lastPage;
+      if (customPageable.hasNext) {
+        return customPageable.page + 1; // 다음 페이지 번호 반환
+      }
+      return undefined; // 더 이상 페이지가 없으면 undefined 반환
+    },
+  });
 
   const dehydratedState = dehydrate(queryClient);
 
