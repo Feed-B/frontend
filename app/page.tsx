@@ -86,7 +86,7 @@ export default async function Home() {
               내 프로젝트 공유하기
             </Button>
           </Link>
-          <Image src={landingProjectSection} alt="프로젝트 상세 페이지 이미지" width={900} priority />
+          <Image src={landingProjectSection} alt="프로젝트 상세 페이지 이미지" width={900} />
         </section>
         <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black">다양한 기준으로 프로젝트 평가</h2>
@@ -103,13 +103,7 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image
-            className="mt-[81px]"
-            src={landingEvaluationSection}
-            alt="프로젝트 별점 평가 이미지"
-            width={1000}
-            priority
-          />
+          <Image className="mt-[81px]" src={landingEvaluationSection} alt="프로젝트 별점 평가 이미지" width={1000} />
         </section>
         <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black">프로젝트에 대한 토론</h2>
@@ -125,7 +119,7 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image className="mt-12" src={landingDebateSection} alt="프로젝트 댓글 이미지" width={1130} priority />
+          <Image className="mt-12" src={landingDebateSection} alt="프로젝트 댓글 이미지" width={1130} />
         </section>
         <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black">지금 프로젝트를 공유하고 피드백 받기</h2>
@@ -142,7 +136,7 @@ export default async function Home() {
               피드비 시작하기
             </Button>
           </Link>
-          <Image className="mt-16" src={landingFeedBackSection} alt="프로젝트 피드백 이미지" width={1130} priority />
+          <Image className="mt-16" src={landingFeedBackSection} alt="프로젝트 피드백 이미지" width={1130} />
         </section>
       </AnimationSection>
     </HydrationBoundary>
