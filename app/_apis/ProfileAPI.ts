@@ -34,8 +34,7 @@ export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | 
 export const profileAPI = {
   getCurrentUserId: async () => {
     const HEADER = getHeaders();
-    const test = await httpClient().get<CurrentUserIdType>("/profile", {}, HEADER.headers);
-    return test;
+    return await httpClient().get<CurrentUserIdType>("/profile", {}, HEADER.headers);
   },
   getUserData: async (userId: number) => {
     const HEADER = getHeaders();
