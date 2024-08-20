@@ -207,7 +207,7 @@ function AddProjectContainer() {
                 message: `제목은 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="프로젝트 이름 *"
+            title="프로젝트 이름"
             type="text"
             name="title"
             placeholder="제목을 입력해주세요"
@@ -222,7 +222,7 @@ function AddProjectContainer() {
                 message: `소개는 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="소개 *"
+            title="소개"
             type="text"
             name="introduction"
             placeholder={`소개를 입력해주세요 (최대 ${TITLE_MAX_LENGTH}자)`}
@@ -259,7 +259,7 @@ function AddProjectContainer() {
                 message: "유효한 URL을 입력해주세요",
               },
             })}
-            title="프로젝트 링크 *"
+            title="프로젝트 링크"
             type="text"
             name="serviceUrl"
             placeholder="http://"
@@ -310,7 +310,7 @@ function AddProjectContainer() {
             />
           </section>
         </div>
-        <div className="mb-16 mt-8 flex justify-end gap-2">
+        <div className="mb-16 mt-8 flex justify-center gap-2">
           <Button buttonSize="normal" bgColor="gray" className="border-none" onClick={openCancelModal}>
             취소
           </Button>
