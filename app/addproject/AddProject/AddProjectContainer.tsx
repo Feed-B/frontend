@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { notFound, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import Button from "@/app/_components/Button/Button";
 import { addProjectApi } from "@/app/_apis/addProjectApi";
 import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
@@ -20,6 +19,7 @@ import ProjectImageBox from "../_components/ProjectImageBox/ProjectImageBox";
 import Title from "../_components/Title";
 import SkillStackProvider from "../_context/SkillStackProvider";
 import WarningModal from "../../_components/Modal/WarningModal";
+import ProgressBox from "../_components/ProgressBox";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -36,6 +36,8 @@ const ErrorMessage = ({ error }: any) => {
 };
 
 function AddProjectContainer() {
+  const [progress, setProgress] = useState(0);
+
   const queryClient = useQueryClient();
   const router = useRouter();
   const accessToken = getToken()?.accessToken;
@@ -69,6 +71,36 @@ function AddProjectContainer() {
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
+
+  useEffect(() => {
+    const {
+      thumbnail,
+      title,
+      introduction,
+      content,
+      serviceUrl,
+      imageList,
+      projectTechStackList,
+      teammateList,
+      projectLinkList,
+    } = watch();
+
+    const filledFields = [
+      thumbnail,
+      title && title.trim() !== "",
+      introduction && introduction.trim() !== "",
+      content && content.trim() !== "",
+      serviceUrl && serviceUrl.trim() !== "",
+      imageList && imageList.length > 0,
+      projectTechStackList && projectTechStackList.length > 0,
+      teammateList && teammateList.some(item => item.name.trim() !== "" && item.job.trim() !== ""),
+      projectLinkList && projectLinkList.some(item => item.siteType.trim() !== "" && item.url.trim() !== ""),
+    ].filter(Boolean).length;
+
+    const newProgress = (filledFields / 9) * 100;
+    setProgress(newProgress);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch()]);
 
   const handleTechStackInput = useCallback(
     (stackList: string[]) => {
@@ -175,7 +207,6 @@ function AddProjectContainer() {
 
     try {
       await postMutation.mutateAsync(formData);
-      console.log("Project uploaded successfully");
     } catch (error) {
       console.error("Error occurred during mutation", error);
     }
@@ -213,6 +244,7 @@ function AddProjectContainer() {
             placeholder="제목을 입력해주세요"
             inputSize="large"
             error={errors.title}
+            onChange={e => setValue("title", e.target.value)}
           />
           <Input
             register={register("introduction", {
@@ -228,6 +260,7 @@ function AddProjectContainer() {
             placeholder={`소개를 입력해주세요 (최대 ${TITLE_MAX_LENGTH}자)`}
             inputSize="large"
             error={errors.introduction}
+            onChange={e => setValue("introduction", e.target.value)}
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -265,6 +298,7 @@ function AddProjectContainer() {
             placeholder="http://"
             inputSize="large"
             error={errors.serviceUrl}
+            onChange={e => setValue("serviceUrl", e.target.value)}
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -300,7 +334,7 @@ function AddProjectContainer() {
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="mb-24 flex w-[690px] flex-col gap-4">
             <AddSection
               title="추가 링크"
               placeholder="http://"
@@ -310,14 +344,7 @@ function AddProjectContainer() {
             />
           </section>
         </div>
-        <div className="mb-16 mt-8 flex justify-center gap-2">
-          <Button buttonSize="normal" bgColor="gray" className="border-none" onClick={openCancelModal}>
-            취소
-          </Button>
-          <Button type="submit" buttonSize="normal" bgColor="yellow">
-            등록
-          </Button>
-        </div>
+        <ProgressBox progress={progress} openCancelModal={openCancelModal} />
       </form>
       {isCancelModalOpen && <WarningModal closeModal={closeCancelModal} />}
     </>

@@ -5,7 +5,6 @@ import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { notFound } from "next/navigation";
-import Button from "@/app/_components/Button/Button";
 import { editProjectQueryKeys } from "@/app/_queryFactory/editProjectQuery";
 import { EditProjectResponse } from "@/app/_apis/schema/editProjectResponse";
 import Title from "@/app/addproject/_components/Title";
@@ -24,7 +23,7 @@ import CancelModal from "@/app/_components/Modal/WarningModal";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
-// import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import ProgressBox from "@/app/addproject/_components/ProgressBox";
 
 const TITLE_MAX_LENGTH = 50;
 const DESCRIPTION_MAX_LENGTH = 150;
@@ -40,6 +39,8 @@ const ErrorMessage = ({ error }: any) => {
 };
 
 function EditProjectContainer({ projectId }: { projectId: number }) {
+  const [progress, setProgress] = useState(0);
+
   const queryClient = useQueryClient();
   const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery(
     editProjectQueryKeys.detail(projectId)
@@ -75,6 +76,26 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
+
+  useEffect(() => {
+    const { title, introduction, content, serviceUrl, projectTechStackList, teammateList, projectLinkList } = watch();
+
+    const filledFields = [
+      project?.thumbnailUrl,
+      title && title.trim() !== "",
+      introduction && introduction.trim() !== "",
+      content && content.trim() !== "",
+      serviceUrl && serviceUrl.trim() !== "",
+      imageList && imageList.length > 0,
+      projectTechStackList && projectTechStackList.length > 0,
+      teammateList && teammateList.some(item => item.name.trim() !== "" && item.job.trim() !== ""),
+      projectLinkList && projectLinkList.some(item => item.siteType.trim() !== "" && item.url.trim() !== ""),
+    ].filter(Boolean).length;
+
+    const newProgress = (filledFields / 9) * 100;
+    setProgress(newProgress);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch()]);
 
   useEffect(() => {
     if (project) {
@@ -228,7 +249,6 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     formData.append("thumbnailIndex", new Blob([JSON.stringify(thumbnailData ? 0 : 1)], { type: "application/json" }));
     try {
       await putMutation.mutateAsync(formData);
-      console.log("Project uploaded successfully");
     } catch (error) {
       console.error("Error occurred during mutation", error);
     }
@@ -255,12 +275,13 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                 message: `제목은 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="프로젝트 이름 *"
+            title="프로젝트 이름"
             type="text"
             name="title"
             placeholder="제목을 입력해주세요"
             inputSize="large"
             error={errors.title}
+            onChange={e => setValue("title", e.target.value)}
           />
           <Input
             register={register("introduction", {
@@ -270,12 +291,13 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                 message: `소개는 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="소개 *"
+            title="소개"
             type="text"
             name="introduction"
             placeholder={`소개를 입력해주세요 (최대 ${TITLE_MAX_LENGTH}자)`}
             inputSize="large"
             error={errors.introduction}
+            onChange={e => setValue("introduction", e.target.value)}
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -307,12 +329,13 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                 message: "유효한 URL을 입력해주세요",
               },
             })}
-            title="프로젝트 링크 *"
+            title="프로젝트 링크"
             type="text"
             name="serviceUrl"
             placeholder="http://"
             inputSize="large"
             error={errors.serviceUrl}
+            onChange={e => setValue("serviceUrl", e.target.value)}
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -352,7 +375,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="mb-24 flex w-[690px] flex-col gap-4">
             <AddSection
               title="추가 링크"
               placeholder="http://"
@@ -363,14 +386,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             />
           </section>
         </div>
-        <div className="mb-16 mt-8 flex justify-end gap-2">
-          <Button buttonSize="normal" bgColor="gray" className="border-none" onClick={openCancelModal}>
-            취소
-          </Button>
-          <Button type="submit" buttonSize="normal" bgColor="yellow">
-            등록
-          </Button>
-        </div>
+        <ProgressBox progress={progress} openCancelModal={openCancelModal} />
       </form>
       {isCancelModalOpen && <CancelModal closeModal={closeCancelModal} />}
     </>
