@@ -24,19 +24,10 @@ import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import ProgressBox from "@/app/addproject/_components/ProgressBox";
-
-const TITLE_MAX_LENGTH = 50;
-const DESCRIPTION_MAX_LENGTH = 150;
+import ErrorMessage from "@/app/addproject/_components/ErrorMessage";
+import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
 
 type EditSectionDataType = TeammateType | ProjectLinkListType;
-
-const ErrorMessage = ({ error }: any) => {
-  return (
-    <div className="h-4">
-      <p className="text-sm text-red-500">{error.message}</p>
-    </div>
-  );
-};
 
 function EditProjectContainer({ projectId }: { projectId: number }) {
   const [progress, setProgress] = useState(0);

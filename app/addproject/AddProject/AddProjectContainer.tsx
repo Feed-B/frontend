@@ -12,6 +12,7 @@ import useModal from "@/app/_hooks/useModal";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -20,20 +21,11 @@ import Title from "../_components/Title";
 import SkillStackProvider from "../_context/SkillStackProvider";
 import WarningModal from "../../_components/Modal/WarningModal";
 import ProgressBox from "../_components/ProgressBox";
+import ErrorMessage from "../_components/ErrorMessage";
 
-const TITLE_MAX_LENGTH = 50;
-const DESCRIPTION_MAX_LENGTH = 150;
 const THUMBNAIL_INDEX = 1;
 
 type AddSectionDataType = TeammateType | ProjectLinkListType;
-
-const ErrorMessage = ({ error }: any) => {
-  return (
-    <div className="h-4">
-      <p className="text-sm text-red-500">{error.message}</p>
-    </div>
-  );
-};
 
 function AddProjectContainer() {
   const [progress, setProgress] = useState(0);
