@@ -71,16 +71,19 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   useEffect(() => {
     const { title, introduction, content, serviceUrl, projectTechStackList, teammateList, projectLinkList } = watch();
 
+    const isFilled = (field: string) => field && field.trim() !== "";
+    const isNonEmptyArray = (arr: any) => Array.isArray(arr) && arr.length > 0;
+
     const filledFields = [
       project?.thumbnailUrl,
-      title && title.trim() !== "",
-      introduction && introduction.trim() !== "",
-      content && content.trim() !== "",
-      serviceUrl && serviceUrl.trim() !== "",
-      imageList && imageList.length > 0,
-      projectTechStackList && projectTechStackList.length > 0,
-      teammateList && teammateList.some(item => item.name.trim() !== "" && item.job.trim() !== ""),
-      projectLinkList && projectLinkList.some(item => item.siteType.trim() !== "" && item.url.trim() !== ""),
+      isFilled(title),
+      isFilled(introduction),
+      isFilled(content),
+      isFilled(serviceUrl),
+      isNonEmptyArray(imageList),
+      isNonEmptyArray(projectTechStackList),
+      isNonEmptyArray(teammateList) && teammateList.some(item => isFilled(item.name) && isFilled(item.job)),
+      isNonEmptyArray(projectLinkList) && projectLinkList.some(item => isFilled(item.siteType) && isFilled(item.url)),
     ].filter(Boolean).length;
 
     const newProgress = (filledFields / 9) * 100;
