@@ -6,6 +6,7 @@ import Button from "@/app/_components/Button/Button";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
 import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
@@ -19,6 +20,8 @@ function CommentEditButton({ ratingId, onClick, projectId }: Props) {
   const { currentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
   const { addToast } = useToast();
+
+  const { windowWidth } = useBrowserSize();
 
   const queryClient = useQueryClient();
 
@@ -64,10 +67,18 @@ function CommentEditButton({ ratingId, onClick, projectId }: Props) {
   return (
     <div className="flex">
       <>
-        <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={onClick}>
+        <Button
+          className="ml-auto"
+          buttonSize={windowWidth < 480 ? "small" : "normal"}
+          bgColor="gray"
+          onClick={onClick}>
           취소
         </Button>
-        <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={editComment}>
+        <Button
+          className="ml-2"
+          buttonSize={windowWidth < 480 ? "small" : "normal"}
+          bgColor="yellow"
+          onClick={editComment}>
           수정
         </Button>
       </>

@@ -89,7 +89,9 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
   };
 
   return (
-    <form onSubmit={handelSubmit} className="flex min-h-32 gap-1 rounded-lg border border-solid border-gray-200 p-3">
+    <form
+      onSubmit={handelSubmit}
+      className="flex min-h-32 gap-1 rounded-lg border border-solid border-gray-200 p-3 mb:min-h-[250px] tbc:min-h-[200px] tbr:min-h-[150px]">
       <textarea
         name="comment"
         className="w-full resize-none bg-transparent outline-none"
