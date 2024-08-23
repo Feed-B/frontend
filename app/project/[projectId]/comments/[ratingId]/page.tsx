@@ -43,14 +43,14 @@ async function CommentPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <div className="mx-auto w-[1200px]">
+      <main className="mx-auto w-[80%] max-w-[1200px] pc:w-[60%] pc:min-w-[1200px]">
         <ScrollToTopButton className="fixed bottom-10 right-10 z-20 hover:animate-positionUp" direction="top" />
         <CommentSection projectId={params.projectId} ratingId={params.ratingId} />
         <section className="mt-12">
           <CommentInput projectId={params.projectId} ratingId={params.ratingId} type="post" />
         </section>
         <ReflyCommentList ratingId={params.ratingId} projectId={params.projectId} />
-      </div>
+      </main>
     </HydrationBoundary>
   );
 }
