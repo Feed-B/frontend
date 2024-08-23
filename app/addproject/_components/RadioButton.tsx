@@ -14,7 +14,7 @@ function RadioButton({ value, checked, onChange }: InputHTMLAttributes<HTMLInput
         onChange={onChange}
         className={RadioButtonStyle}
       />
-      <span className="ml-1 text-xs font-medium text-gray-900">{value}</span>
+      <span className="ml-1 text-sm font-normal text-gray-900">{value}</span>
     </label>
   );
 }
