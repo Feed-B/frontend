@@ -10,6 +10,7 @@ import EmptyProjectImage from "@/app/addproject/_components/ProjectImageBox/Empt
 import ProjectImageCard from "@/app/addproject/_components/ProjectImageBox/ProjectImageCard";
 import RadioButton from "@/app/addproject/_components/RadioButton";
 import { useToast } from "@/app/_context/ToastContext";
+import AddImageButton from "./AddImageButton";
 
 interface ImageType {
   id: string;
@@ -155,8 +156,7 @@ function ProjectImageBox({
         <Droppable droppableId="cardLists" direction="horizontal">
           {provided => (
             <div className="cardLists" {...provided.droppableProps} ref={provided.innerRef}>
-              <div
-                className={`flex h-[252px] ${showImageUrlList.length > 0 ? "w-full" : "w-[690px]"} items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4`}>
+              <div className="flex w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-24 tbc:justify-start tbc:p-3 tbr:h-[156px] tbr:justify-start pc:h-[252px]">
                 {showImageUrlList.length > 0 ? (
                   <div className="flex h-full w-full flex-row items-start gap-4">
                     {showImageUrlList.map((image, index) => (
@@ -175,13 +175,16 @@ function ProjectImageBox({
                     ))}
                     {provided.placeholder}
                     {showImageUrlList.length < 5 && (
-                      <div
-                        className="flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50"
-                        onClick={handleUploadButtonClick}>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
-                          <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
+                      <>
+                        <div
+                          className="flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50 mb:hidden tbc:hidden tbr:hidden"
+                          onClick={handleUploadButtonClick}>
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
+                            <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
+                          </div>
                         </div>
-                      </div>
+                        <AddImageButton count={showImageUrlList.length + 1} onClick={handleUploadButtonClick} />
+                      </>
                     )}
                   </div>
                 ) : (
