@@ -13,7 +13,7 @@ function ProjectCardInfo(
   ref: Ref<HTMLDivElement>
 ) {
   return (
-    <div className="relative" ref={ref}>
+    <div className="relative mb:w-[150px] tbc:w-[200px] tbr:w-[232px]" ref={ref}>
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
           <h6 className="max-w-[192px] overflow-hidden text-ellipsis whitespace-nowrap text-base font-bold">
