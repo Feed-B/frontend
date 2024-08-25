@@ -15,13 +15,13 @@ interface ProjectListProp {
 
 function ProjectList({ projectList, lastRef }: ProjectListProp) {
   return (
-    <div className="relative grid grid-cols-4 gap-4">
+    <div className="relative grid grid-cols-4 gap-4 mb:grid-cols-2 mb:gap-5 tbc:grid-cols-2 tbc:gap-5 tbr:grid-cols-3 tbr:gap-5">
       {projectList && projectList[0].content.length > 0 ? (
         projectList.map(project =>
           project.content.map(project => (
             <Link
               href={`/project/${project.projectId}`}
-              className="flex cursor-pointer flex-col gap-2.5"
+              className="flex cursor-pointer flex-col gap-2.5 tbc:mb-5 tbr:mb-7"
               key={project.projectId}>
               <ProjectCard project={project} />
               <ProjectCardInfo

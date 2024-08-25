@@ -35,7 +35,9 @@ function ProjectCard({ project }: { project: ProjectData }) {
   };
 
   return (
-    <div className="group relative aspect-square overflow-hidden rounded-md" onClick={handlePostView}>
+    <div
+      className="group relative aspect-square overflow-hidden rounded-md mb:w-[150px] tbc:w-[200px] tbr:w-[232px]"
+      onClick={handlePostView}>
       <HoverCard project={project} />
       <Image fill src={project.thumbnailUrl} alt={project.introduction} sizes="(max-width: 240px)" priority />
     </div>

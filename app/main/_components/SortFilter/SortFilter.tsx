@@ -6,7 +6,7 @@ function SortFilter() {
   const { projectState, isChangeCondition } = useGetStack();
 
   return (
-    <div className="flex h-6 items-center gap-3">
+    <div className="flex h-6 items-center gap-3 mb:hidden tbc:hidden tbr:hidden">
       <button
         className={`border-r border-solid pr-2 text-lg font-bold leading-4 ${projectState.sortCondition === "RECENT" ? "text-[#3F3F3F]" : "text-gray-400"}`}
         onClick={() => isChangeCondition("RECENT")}>
