@@ -22,6 +22,7 @@ const config: Config = {
       animation: {
         "loop-scroll": "loop-scroll 35s linear infinite",
         positionUp: "positionUp 2s ease-in-out infinite",
+        modalPositionUp: "modalPositionUp 1s",
         "dropdown-grow": "dropdown-grow 0.2s ease-in-out forwards",
       },
       keyframes: {
@@ -32,6 +33,10 @@ const config: Config = {
         positionUp: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-30%)" },
+        },
+        modalPositionUp: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
         },
         "dropdown-grow": {
           "0%": {
