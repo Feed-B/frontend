@@ -19,7 +19,7 @@ function Project({ params }: Props) {
   revalidatePathAction(`project/${params.projectId}`);
 
   return (
-    <main className="mx-auto my-16 flex w-[1200px] flex-col gap-12">
+    <main className="mx-auto my-16 flex w-[1200px] flex-col gap-20">
       <div className="flex flex-col gap-10">
         <ProjectHeader projectId={params.projectId} />
         <ProjectArticle projectId={params.projectId} />
@@ -27,10 +27,12 @@ function Project({ params }: Props) {
         <StackSection projectId={params.projectId} />
         <RatingSection projectId={params.projectId} />
       </div>
-      <CurrentPageProvider>
-        <MyCommentSection projectId={params.projectId} />
-        <CommentListSection projectId={params.projectId} />
-      </CurrentPageProvider>
+      <div className="flex flex-col gap-8">
+        <CurrentPageProvider>
+          <MyCommentSection projectId={params.projectId} />
+          <CommentListSection projectId={params.projectId} />
+        </CurrentPageProvider>
+      </div>
     </main>
   );
 }
