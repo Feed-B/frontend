@@ -34,7 +34,8 @@ function RatingSection({ projectId }: Props) {
   if (averageRank % 1 !== 0) isInteger = false;
 
   return (
-    <section className="flex gap-8 px-8 py-4">
+    <section className="flex flex-col gap-2 px-8 py-4 pc:flex-row pc:gap-8">
+      {/* 평균 별점 */}
       <div className="flex min-w-fit flex-col items-center gap-3">
         <p className="text-5xl font-bold text-gray-900">{averageRank}</p>
         <div className="flex">
@@ -48,12 +49,13 @@ function RatingSection({ projectId }: Props) {
         </div>
         <p className="text-sm text-gray-600">평균 별점({rankCount}명)</p>
       </div>
-      <div className="flex w-full flex-col gap-1">
+      {/* 상세 별점 */}
+      <div className="flex w-full flex-col justify-between">
         {ratingCategory.map(category => (
           <div className="flex items-center justify-between gap-3" key={category.id}>
             <p className="min-w-[72px] text-right text-sm text-gray-900">{category.name}</p>
-            <div className="h-3 w-full rounded bg-gray-200">
-              <div className={"h-3 rounded bg-yellow-500"} style={{ width: starPercent(category.rate) }} />
+            <div className="h-5 w-full rounded bg-gray-200 pc:h-3">
+              <div className={"h-5 rounded bg-yellow-500 pc:h-3"} style={{ width: starPercent(category.rate) }} />
             </div>
             <p className="min-w-6 text-right text-base font-bold text-blue-500">
               {category.rate.toString().padEnd(3, ".0")}
