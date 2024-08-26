@@ -34,7 +34,7 @@ function ProjectArticle({ projectId }: Props) {
   const { width: imageWidth, style: imageWidthStyle } = IMAGE_TYPE[project.imageType];
 
   return (
-    <article className="flex justify-between gap-24 px-8 py-7">
+    <article className="flex gap-24 px-8 py-7">
       {/* 이미지 */}
       <div className="flex flex-col justify-between">
         <div className="relative flex">
@@ -52,7 +52,8 @@ function ProjectArticle({ projectId }: Props) {
               onClick={() => handleNext(imageWidth, project.imageUrlList.length)}
             />
           )}
-          <div className={`h-[406px] ${imageWidthStyle} overflow-hidden border border-solid border-gray-300`}>
+          <div
+            className={`h-[406px] ${imageWidthStyle} overflow-hidden rounded-xl border border-solid border-gray-300`}>
             <div
               className="flex h-fit w-fit gap-0 duration-500 ease-in-out"
               style={{ transform: `translateX(-${translate}px)` }}>
@@ -66,15 +67,17 @@ function ProjectArticle({ projectId }: Props) {
         </div>
       </div>
       {/* 프로젝트 본문 */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-base font-medium text-gray-900">{project.introductions}</h2>
-        <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
-        <Link href={project.serviceUrl} target="_blank">
-          <Button bgColor="yellow" className="flex items-center gap-1 p-3" buttonSize={"small"}>
-            <p>서비스 바로가기</p>
-            <Image src={shortcutIcon} alt="배포 사이트 바로가기." width={12} priority />
-          </Button>
-        </Link>
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-4">
+          <h2 className="text-base font-bold text-gray-600">{project.introductions}</h2>
+          <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
+          <Link href={project.serviceUrl} target="_blank">
+            <Button bgColor="yellow" className="flex items-center gap-1 p-3" buttonSize={"small"}>
+              <p>서비스 바로가기</p>
+              <Image src={shortcutIcon} alt="배포 사이트 바로가기." width={12} priority />
+            </Button>
+          </Link>
+        </div>
         {project.projectLinks[0]?.siteType && <LinkSection linkList={project.projectLinks} />}
       </div>
     </article>
