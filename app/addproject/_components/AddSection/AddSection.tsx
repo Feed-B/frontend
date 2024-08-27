@@ -50,7 +50,6 @@ interface InputBox {
 
 function AddSection({
   title,
-  placeholder,
   name,
   inputWidth,
   dropDownType,
@@ -133,46 +132,50 @@ function AddSection({
       <Title title={title} name={`${name}-${additionalInput[0]?.id}-primary`} label />
       <div>
         {additionalInput.map(item => (
-          <div key={item.id} className="mb-2 flex gap-1">
-            <DropDownBox
-              dataType={dropDownType}
-              handleInputChange={(value: string) => {
-                setTouchedTeammate && setTouchedTeammate(true);
-                handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value);
-              }}
-              initialDropDownValue={title === "팀원" ? item.job : item.siteType}
-            />
-            <Input
-              type="text"
-              placeholder={placeholder}
-              name={`${name}-primary`}
-              id={`${name}-${item.id}-primary`}
-              value={title === "팀원" ? item.name : item.url}
-              inputWidth={inputWidth}
-              onChange={event => handleInputChange(item.id, title === "팀원" ? "name" : "url", event.target.value)}
-              onBlur={() => setTouchedTeammate && setTouchedTeammate(true)}
-            />
-            {title === "팀원" && (
+          <div key={item.id} className="mb-2 flex flex-col gap-1 pc:flex-row">
+            <div className="flex gap-1">
+              <DropDownBox
+                dataType={dropDownType}
+                handleInputChange={(value: string) => {
+                  setTouchedTeammate && setTouchedTeammate(true);
+                  handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value);
+                }}
+                initialDropDownValue={title === "팀원" ? item.job : item.siteType}
+              />
+              {title === "팀원" && (
+                <Input
+                  type="text"
+                  placeholder="이름"
+                  name={`${name}-name`}
+                  id={`${name}-${item.id}-name`}
+                  value={item.name}
+                  inputWidth={inputWidth}
+                  onChange={event => handleInputChange(item.id, "name", event.target.value)}
+                  onBlur={() => setTouchedTeammate && setTouchedTeammate(true)}
+                />
+              )}
+            </div>
+            <div className="flex w-full gap-1">
               <Input
                 type="text"
                 placeholder="http://"
-                name={`${name}-secondary`}
-                id={`${name}-${item.id}-secondary`}
+                name={`${name}-url`}
+                id={`${name}-${item.id}-url`}
                 value={item.url}
                 onChange={event => handleInputChange(item.id, "url", event.target.value)}
               />
-            )}
-            <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
-              <div
-                className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${
-                  inputBoxLength ? "border-blue-500" : hasInputData ? "border-gray-400" : "border-blue-500"
-                }`}>
-                <Image
-                  width={17}
-                  src={inputBoxLength ? blueDeleteIcon : hasInputData ? grayDeleteIcon : blueDeleteIcon}
-                  alt="삭제 버튼"
-                  priority
-                />
+              <div className="min-w-11" onClick={() => handleDeleteButtonClick(item.id)}>
+                <div
+                  className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-solid ${
+                    inputBoxLength ? "border-blue-500" : hasInputData ? "border-gray-400" : "border-blue-500"
+                  }`}>
+                  <Image
+                    width={17}
+                    src={inputBoxLength ? blueDeleteIcon : hasInputData ? grayDeleteIcon : blueDeleteIcon}
+                    alt="삭제 버튼"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>

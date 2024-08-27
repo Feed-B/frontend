@@ -9,8 +9,10 @@ function AddProject() {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <main className="mx-auto grid w-[1200px]">
-        <h1 className="mb-4 mt-16 w-full text-start text-[28px] font-bold text-gray-900">프로젝트 업로드</h1>
+      <main className="mx-auto px-5 pc:max-w-[1264px]">
+        <h1 className="mb-4 mt-16 w-full text-start text-[28px] font-bold text-gray-900 mb:mb-2 mb:mt-8 mb:text-xl mb:font-semibold">
+          프로젝트 업로드
+        </h1>
         <hr />
         <AddProjectContainer />
       </main>
