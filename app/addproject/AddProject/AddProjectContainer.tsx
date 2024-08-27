@@ -211,8 +211,8 @@ function AddProjectContainer() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data">
-        <div className="mt-8 flex w-full flex-col gap-8">
+      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data" className="w-full">
+        <div className="mb-40 mt-8 flex w-full flex-col gap-8 pc:mb-32">
           <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" />
             <div>
@@ -269,7 +269,7 @@ function AddProjectContainer() {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className="h-52 w-[690px] resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none"
+                className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none pc:w-[968px]"
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
@@ -308,20 +308,19 @@ function AddProjectContainer() {
               {errors.imageList && <ErrorMessage error={errors.imageList} />}
             </div>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
             <SkillStackProvider>
               <SkillStackSection handleTechStackInput={handleTechStackInput} setTouchedStack={setTouchedStack} />
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
             <AddSection
               setError={setError}
               clearErrors={clearErrors}
               title="팀원"
-              placeholder="이름"
               name="projectTeammates"
-              inputWidth="w-[114px]"
+              inputWidth="w-[118px]"
               dropDownType="job"
               onInputChange={handleTeammateChange}
               touchedTeammate={touchedTeammate}
@@ -329,10 +328,9 @@ function AddProjectContainer() {
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="mb-24 flex w-[690px] flex-col gap-4">
+          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
             <AddSection
               title="추가 링크"
-              placeholder="http://"
               name="projectLinks"
               dropDownType="tool"
               onInputChange={handleProjectLinkChange}
