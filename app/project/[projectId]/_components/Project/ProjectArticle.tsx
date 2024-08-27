@@ -34,7 +34,7 @@ function ProjectArticle({ projectId }: Props) {
   const { width: imageWidth, style: imageWidthStyle } = IMAGE_TYPE[project.imageType];
 
   return (
-    <article className="flex gap-24 px-8 py-7">
+    <article className="flex flex-col gap-4 pc:flex-row pc:gap-24 pc:py-7">
       {/* 이미지 */}
       <div className="flex flex-col justify-between">
         <div className="relative flex">
@@ -52,6 +52,7 @@ function ProjectArticle({ projectId }: Props) {
               onClick={() => handleNext(imageWidth, project.imageUrlList.length)}
             />
           )}
+
           <div
             className={`h-[406px] ${imageWidthStyle} overflow-hidden rounded-xl border border-solid border-gray-300`}>
             <div
@@ -66,8 +67,9 @@ function ProjectArticle({ projectId }: Props) {
           </div>
         </div>
       </div>
+
       {/* 프로젝트 본문 */}
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col gap-6 pc:justify-between">
         <div className="flex flex-col gap-4">
           <h2 className="text-base font-bold text-gray-600">{project.introductions}</h2>
           <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>

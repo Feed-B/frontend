@@ -64,7 +64,7 @@ function ProjectHeader({ projectId }: Props) {
       {deleteModal && (
         <WarningModal mode="delete" handleDeleteClick={handleDeleteProject} closeModal={closeDeleteModal} />
       )}
-      <header className="px-4 py-3">
+      <header className="py-3 pc:-mx-4">
         <div className="flex justify-between gap-2">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
             {project.title}
@@ -81,8 +81,8 @@ function ProjectHeader({ projectId }: Props) {
           </div>
         </div>
         <div className="flex h-6 w-full items-center gap-3">
-          <p className="text-sm font-semibold text-gray-900">{project.authorName}</p>
-          <p className="text-xs text-blue-500">{JOB_CATEGORIES_KR[project.authorJob as JobCategory]}</p>
+          <p className="text-nowrap text-sm font-semibold text-gray-900">{project.authorName}</p>
+          <p className="text-nowrap text-xs text-blue-500">{JOB_CATEGORIES_KR[project.authorJob as JobCategory]}</p>
           <p className="text-sm text-gray-500">{createDate(project.createdAt)}</p>
         </div>
       </header>
