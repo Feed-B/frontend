@@ -28,13 +28,13 @@ function ReflyCommentItem({ replyComment, projectId }: ReflyCommentItemProp) {
   return (
     <div className="relative mt-2 flex gap-3 p-2">
       {/* Profile Image */}
-      <Link href={`/profile/${userId?.id}`}>
+      <Link href={`/profile/${replyComment.authorId}`}>
         <ProfileImage imageUrl={replyComment.authorProfileImageUrl || "default"} className="h-6 w-6" />
       </Link>
 
       <div className="w-full">
         <div className="mb-2 flex items-center gap-1">
-          <Link href={`/profile/${userId?.id}`} passHref>
+          <Link href={`/profile/${replyComment.authorId}`} passHref>
             <p className="text-sm font-normal text-gray-900">{replyComment.authorName}</p>
           </Link>
           <p className="text-[10px] font-normal text-blue-400">{JOB_CATEGORIES_KR[replyComment.job]}</p>
