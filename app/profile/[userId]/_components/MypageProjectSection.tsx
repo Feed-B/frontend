@@ -51,7 +51,7 @@ function MypageProjectSection({
   };
 
   return (
-    <section>
+    <section className="flex flex-col">
       <h3 className="mb-4 text-lg font-semibold leading-relaxed text-gray-900">
         {listTitle(isMyPage, projectType)}
         <span className="ml-2.5">({data?.pages[0].customPageable.totalElements})</span>
