@@ -83,11 +83,29 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
     <Modal
       openModal={openModal}
       handleModalClose={handleModalClose}
-      className="mb:fixed mb:h-screen mb:w-screen mb:overflow-x-hidden mb:overflow-y-scroll mb:rounded-none mb:bg-white">
-      <form onSubmit={handleCompletedProfile} className="flex flex-col items-center gap-8">
-        <div className="flex flex-col items-center justify-center gap-8 px-12 pt-[90px]">
-          <div className="flex gap-16 mb:flex-col mb:gap-5">
-            <div className="flex flex-col items-center gap-5">
+      className="overflow-y-scroll 
+      mb:fixed mb:h-screen mb:w-screen mb:overflow-x-hidden mb:overflow-y-scroll mb:rounded-none 
+      tbc:fixed tbc:h-screen tbc:w-screen tbc:overflow-x-hidden tbc:overflow-y-scroll tbc:rounded-none
+      tbr:fixed tbr:h-screen tbr:w-screen tbr:overflow-x-hidden tbr:overflow-y-scroll tbr:rounded-none
+      ">
+      <form
+        onSubmit={handleCompletedProfile}
+        className="flex flex-col items-center gap-8 
+        tbc:h-full tbc:justify-between
+        tbr:h-full tbr:justify-between
+        ">
+        <div
+          className="flex flex-col items-center justify-center gap-8 px-12 pt-[90px] 
+        tbc:w-full
+        tbr:w-full
+        ">
+          <div
+            className="flex gap-16 
+          mb:flex-col mb:gap-5 
+          tbc:w-[95%] tbc:flex-col tbc:justify-start tbc:gap-5
+          tbr:w-[95%] tbr:flex-col tbr:justify-start tbr:gap-5
+          ">
+            <div className="flex flex-col items-center">
               <div className="relative inline-block">
                 <DeleteImageButton onClick={handleRemoveImage} className="absolute right-0" />
                 <ProfileImage imageUrl={image ? image : "default"} className="h-[124px] w-[124px]" />
@@ -112,6 +130,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 type="text"
                 placeholder={profileData?.nickName}
                 title="닉네임"
+                className="tbc:w-full tbr:w-full"
               />
               <p className="text-base font-bold text-gray-900">{MY_PAGE_TEXT.JOB}</p>
               <DropDownBox dataType="job" handleInputChange={handleSetValue} inputWidth={"w-full"} />
@@ -122,7 +141,10 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
                 value={aboutMeValue.value}
                 onChange={aboutMeValue.handleChangeValue}
                 id="introduction"
-                className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-sm text-gray-800 placeholder:text-sm"
+                className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-sm text-gray-800 placeholder:text-sm 
+                tbc:w-full
+                tbr:w-full
+                "
                 placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
               />
             </div>
@@ -141,8 +163,8 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             onClick={handleCompletedProfile}
             type="button"
             buttonSize="normal"
-            bgColor="yellow"
-            className="flex items-center justify-center bg-yellow-500 font-semibold">
+            bgColor="mainBlue"
+            className="flex items-center justify-center text-white">
             {MY_PAGE_TEXT.COMPLETE_EDIT}
           </Button>
         </div>
