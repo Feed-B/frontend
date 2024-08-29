@@ -23,7 +23,7 @@ function MyPageContent() {
   const isMyPage = currentUserId.id === Number(userId) ? true : false;
 
   return (
-    <main className="mx-auto mt-[64px] grid max-w-[1200px] grid-cols-[180px_1fr] grid-rows-2 gap-x-11 gap-y-8 mb:mt-4 mb:grid-cols-1 mb:grid-rows-3 mb:gap-y-6 mb:p-5">
+    <main className="mx-auto mt-[64px] grid max-w-[1200px] grid-cols-[180px_1fr] grid-rows-2 gap-x-11 gap-y-8 mb:mt-4 mb:grid-cols-1 mb:grid-rows-[minmax(120px,_1fr)_88px_1fr] mb:gap-y-6 mb:p-5">
       <div className="col-span-1 row-span-2 mb:row-start-2 mb:row-end-3">
         <MyPageCategory
           isMyPage={isMyPage}
@@ -34,7 +34,7 @@ function MyPageContent() {
       <div className="col-span-1">
         <Profile isMyPage={isMyPage} />
       </div>
-      <div className="col-span-1 mb:-mt-10">
+      <div className="col-span-1">
         <MypageProjectSection isMyPage={isMyPage} projectType={selectCategory} userId={Number(userId)} />
       </div>
     </main>

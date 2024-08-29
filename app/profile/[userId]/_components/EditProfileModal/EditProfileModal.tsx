@@ -80,13 +80,18 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   }, []);
 
   return (
-    <Modal openModal={openModal} handleModalClose={handleModalClose}>
+    <Modal
+      openModal={openModal}
+      handleModalClose={handleModalClose}
+      className="mb:fixed mb:h-screen mb:w-screen mb:overflow-x-hidden mb:overflow-y-scroll mb:rounded-none mb:bg-white">
       <form onSubmit={handleCompletedProfile} className="flex flex-col items-center gap-8">
         <div className="flex flex-col items-center justify-center gap-8 px-12 pt-[90px]">
-          <div className="flex gap-16">
-            <div className="relative flex flex-col items-center gap-5">
-              <DeleteImageButton onClick={handleRemoveImage} className="absolute right-0" />
-              <ProfileImage imageUrl={image ? image : "default"} className="h-[124px] w-[124px]" />
+          <div className="flex gap-16 mb:flex-col mb:gap-5">
+            <div className="flex flex-col items-center gap-5">
+              <div className="relative inline-block">
+                <DeleteImageButton onClick={handleRemoveImage} className="absolute right-0" />
+                <ProfileImage imageUrl={image ? image : "default"} className="h-[124px] w-[124px]" />
+              </div>
               <Button type="button" bgColor="stroke" buttonSize="normal" onClick={handleSelectImageClick}>
                 {MY_PAGE_TEXT.EDIT_IMAGE}
               </Button>
@@ -123,8 +128,13 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             </div>
           </div>
         </div>
-        <div className="flex gap-4 pb-10">
-          <Button onClick={handleModalClose} type="button" buttonSize="normal" bgColor="white">
+        <div className="flex gap-4 pb-10 mb:pb-0">
+          <Button
+            onClick={handleModalClose}
+            type="button"
+            buttonSize="normal"
+            bgColor="white"
+            className="flex items-center justify-center">
             {MY_PAGE_TEXT.CANCEL}
           </Button>
           <Button
@@ -132,7 +142,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             type="button"
             buttonSize="normal"
             bgColor="yellow"
-            className="bg-yellow-500 font-semibold">
+            className="flex items-center justify-center bg-yellow-500 font-semibold">
             {MY_PAGE_TEXT.COMPLETE_EDIT}
           </Button>
         </div>
