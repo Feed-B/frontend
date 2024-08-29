@@ -24,10 +24,10 @@ function MyPageContent() {
 
   return (
     <main
-      className="mx-auto mt-4 grid grid-cols-1 grid-rows-[180px_88px_1fr] gap-x-11 gap-y-10 px-8 
-      mb:grid-rows-[minmax(120px,_1fr)_88px_1fr] mb:gap-y-6 mb:p-5 
+      className="mx-auto mt-4 grid grid-cols-1 grid-rows-[fit-content_88px_1fr] gap-x-11 gap-y-10 px-8 
+      mb:gap-y-6 mb:p-5
       tbr:p-5 
-      pc:mt-[64px] pc:max-w-[1200px] pc:grid-cols-[180px_1fr] pc:grid-rows-[186px_1fr] pc:gap-y-8
+      pc:mt-[64px] pc:max-w-[1200px] pc:grid-cols-[180px_1fr] pc:grid-rows-[fit-content_1fr] pc:gap-y-8
     ">
       <div className="row-start-2 row-end-3 pc:col-span-1 pc:row-span-2">
         <MyPageCategory
