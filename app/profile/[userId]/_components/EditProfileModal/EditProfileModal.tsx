@@ -20,6 +20,8 @@ interface EditProfileModalProps {
   profileData: UserDataType;
 }
 
+const REFLY_ABOUT_ME_LENGTH = 150;
+
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
   const queryClient = useQueryClient();
 
@@ -137,16 +139,22 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
               <label htmlFor="introduction" className="text-base font-bold text-gray-900">
                 {MY_PAGE_TEXT.INTRODUCTION}
               </label>
-              <textarea
-                value={aboutMeValue.value}
-                onChange={aboutMeValue.handleChangeValue}
-                id="introduction"
-                className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-sm text-gray-800 placeholder:text-sm 
+              <div className="relative">
+                <textarea
+                  value={aboutMeValue.value}
+                  onChange={aboutMeValue.handleChangeValue}
+                  id="introduction"
+                  className="h-[140px] w-[384px] resize-none rounded-lg border border-gray-200 px-2 py-3 text-sm text-gray-800 placeholder:text-sm 
                 tbc:w-full
                 tbr:w-full
                 "
-                placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
-              />
+                  placeholder={"자신을 표현할 간단한 소개를 적어주세요(최대 150자)"}
+                  maxLength={REFLY_ABOUT_ME_LENGTH}
+                />
+                <p className="absolute bottom-3 right-2 text-sm text-gray-500">
+                  {aboutMeValue.value.length} / {REFLY_ABOUT_ME_LENGTH}
+                </p>
+              </div>
             </div>
           </div>
         </div>
