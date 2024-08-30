@@ -252,8 +252,8 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data">
-        <div className="mt-8 flex w-full flex-col gap-8">
+      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data" className="w-full">
+        <div className="mb-40 mt-8 flex w-full flex-col gap-8 pc:mb-32">
           <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" />
             <div>
@@ -276,6 +276,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             inputSize="large"
             error={errors.title}
             onChange={e => setValue("title", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <Input
             register={register("introduction", {
@@ -292,6 +293,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             inputSize="large"
             error={errors.introduction}
             onChange={e => setValue("introduction", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -305,7 +307,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className="h-52 w-[690px] resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none"
+                className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none pc:w-[690px]"
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
@@ -330,6 +332,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             inputSize="large"
             error={errors.serviceUrl}
             onChange={e => setValue("serviceUrl", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -343,7 +346,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
               {errors.imageList && <ErrorMessage error={errors.imageList} />}
             </div>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <SkillStackProvider>
               <SkillStackSection
                 handleTechStackInput={handleTechStackInput}
@@ -353,14 +356,13 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection
               setError={setError}
               clearErrors={clearErrors}
               title="팀원"
-              placeholder="이름"
               name="projectTeammates"
-              inputWidth="w-[114px]"
+              inputWidth="w-[118px]"
               dropDownType="job"
               onInputChange={handleTeammateChange}
               initialTeammateList={project?.projectTeammates}
@@ -369,10 +371,9 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="mb-24 flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection
               title="추가 링크"
-              placeholder="http://"
               name="projectLinks"
               dropDownType="tool"
               onInputChange={handleProjectLinkChange}
