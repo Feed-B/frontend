@@ -38,6 +38,7 @@ interface AddSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   clearErrors?: UseFormClearErrors<AddProjectFormData>;
   touchedTeammate?: boolean;
   setTouchedTeammate?: (isTouch: boolean) => void;
+  error?: string;
 }
 
 interface InputBox {
@@ -60,6 +61,7 @@ function AddSection({
   clearErrors,
   touchedTeammate,
   setTouchedTeammate,
+  error,
 }: AddSectionProps) {
   const [additionalInput, setAdditionalInput] = useState<InputBox[]>([]);
   const [nextId, setNextId] = useState(1);
@@ -141,6 +143,7 @@ function AddSection({
                   handleInputChange(item.id, title === "팀원" ? "job" : "siteType", value);
                 }}
                 initialDropDownValue={title === "팀원" ? item.job : item.siteType}
+                error={error}
               />
               {title === "팀원" && (
                 <Input
@@ -152,6 +155,7 @@ function AddSection({
                   inputWidth={inputWidth}
                   onChange={event => handleInputChange(item.id, "name", event.target.value)}
                   onBlur={() => setTouchedTeammate && setTouchedTeammate(true)}
+                  error={error}
                 />
               )}
             </div>

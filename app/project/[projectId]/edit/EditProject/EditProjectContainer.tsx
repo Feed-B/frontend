@@ -257,8 +257,12 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
           <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" />
             <div>
-              <ThumbnailBox setThumbnail={handleThumbnailFile} initialUrl={project?.thumbnailUrl || ""} />
-              {errors.thumbnail && <ErrorMessage error={errors.thumbnail} />}
+              <ThumbnailBox
+                setThumbnail={handleThumbnailFile}
+                initialUrl={project?.thumbnailUrl || ""}
+                error={errors.thumbnail}
+              />
+              <div className="h-4">{errors.thumbnail && <ErrorMessage error={errors.thumbnail} />}</div>
             </div>
           </section>
           <Input
@@ -307,14 +311,14 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none pc:w-[690px]"
+                className={`h-52 w-full resize-none rounded-lg border border-solid ${errors.content ? "border-red-300" : "border-gray-200"} px-2 py-3 text-sm font-normal ${errors.content ? "focus:border-red-500" : "focus:border-gray-900"} focus:outline-none pc:w-[690px]`}
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
                 value={watch("content")}
                 onChange={e => setValue("content", e.target.value)}
               />
-              {errors.content && <ErrorMessage error={errors.content} />}
+              <div className="h-4">{errors.content && <ErrorMessage error={errors.content} />}</div>
             </div>
           </section>
           <Input
@@ -342,8 +346,9 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                 handleImageFile={handleImageFile}
                 initialImageType={imageType}
                 initialUrlList={project?.imageUrlList}
+                error={errors.imageList?.message}
               />
-              {errors.imageList && <ErrorMessage error={errors.imageList} />}
+              <div className="h-4">{errors.imageList && <ErrorMessage error={errors.imageList} />}</div>
             </div>
           </section>
           <section className="flex w-full flex-col gap-4 pc:w-[690px]">
@@ -352,8 +357,11 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
                 handleTechStackInput={handleTechStackInput}
                 initialStackList={project?.techStacks?.map(stack => stack.techStack)}
                 setTouchedStack={setTouchedStack}
+                error={errors.projectTechStackList?.message}
               />
-              {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
+              <div className="h-4">
+                {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
+              </div>
             </SkillStackProvider>
           </section>
           <section className="flex w-full flex-col gap-4 pc:w-[690px]">
@@ -368,8 +376,9 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
               initialTeammateList={project?.projectTeammates}
               touchedTeammate={touchedTeammate}
               setTouchedTeammate={setTouchedTeammate}
+              error={errors.teammateList?.message}
             />
-            {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
+            <div className="h-4">{errors.teammateList && <ErrorMessage error={errors.teammateList} />}</div>
           </section>
           <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection

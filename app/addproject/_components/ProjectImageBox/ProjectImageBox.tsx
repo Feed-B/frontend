@@ -24,6 +24,7 @@ interface ProjectImageBoxProps {
   initialImageType?: string;
   initialUrlList?: string[];
   register?: UseFormRegisterReturn;
+  error?: string;
 }
 
 function ProjectImageBox({
@@ -32,11 +33,14 @@ function ProjectImageBox({
   initialImageType = "",
   initialUrlList = [],
   register,
+  error,
 }: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedSize, setSelectedSize] = useState(initialImageType || "웹");
   const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
   const { addToast } = useToast();
+
+  const borderClass = error ? "border-red-300" : "border-gray-200";
 
   useEffect(() => {
     if (initialUrlList.length > 0) {
@@ -156,7 +160,8 @@ function ProjectImageBox({
         <Droppable droppableId="cardLists" direction="horizontal">
           {provided => (
             <div className="cardLists" {...provided.droppableProps} ref={provided.innerRef}>
-              <div className="flex items-center justify-center overflow-y-hidden rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-24 tbc:justify-start tbc:p-3 tbr:h-[156px] tbr:justify-start pc:min-h-[252px]">
+              <div
+                className={`flex items-center justify-center overflow-y-hidden rounded-lg border-2 border-dashed ${borderClass} bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-24 tbc:justify-start tbc:p-3 tbr:h-[156px] tbr:justify-start pc:min-h-[256px]`}>
                 {showImageUrlList.length > 0 ? (
                   <div className="flex w-full flex-row items-start gap-4 pc:flex-wrap">
                     {showImageUrlList.map((image, index) => (
