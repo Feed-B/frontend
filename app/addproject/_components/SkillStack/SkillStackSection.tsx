@@ -10,9 +10,10 @@ interface SkillStackSectionProps {
   handleTechStackInput: (stackList: string[]) => void;
   initialStackList?: string[];
   setTouchedStack?: (isTouch: boolean) => void;
+  error?: string;
 }
 
-function SkillStackSection({ handleTechStackInput, initialStackList, setTouchedStack }: SkillStackSectionProps) {
+function SkillStackSection({ handleTechStackInput, initialStackList, setTouchedStack, error }: SkillStackSectionProps) {
   const { selectedStacks, isAddStack } = useGetSkillStack();
   const hasInitialized = useRef(false);
 
@@ -32,7 +33,7 @@ function SkillStackSection({ handleTechStackInput, initialStackList, setTouchedS
   return (
     <>
       <Title title="기술스택" name="search" label />
-      <SkillStackSearch setTouchedStack={setTouchedStack} />
+      <SkillStackSearch setTouchedStack={setTouchedStack} error={error} />
       <SelectSkillStack />
     </>
   );

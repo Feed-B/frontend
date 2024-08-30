@@ -2,18 +2,21 @@
 
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import Button from "@/app/_components/Button/Button";
 
 interface ThumbnailBoxProps {
   setThumbnail: (file: File) => void;
   register?: UseFormRegisterReturn;
   initialUrl?: string;
+  error?: FieldError;
 }
 
-function ThumbnailBox({ setThumbnail, register, initialUrl }: ThumbnailBoxProps) {
+function ThumbnailBox({ setThumbnail, register, initialUrl, error }: ThumbnailBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showImageUrl, setShowImageUrl] = useState<string | null | undefined>(initialUrl);
+
+  const borderClass = error ? "border-red-300" : "border-gray-200";
 
   useEffect(() => {
     setShowImageUrl(initialUrl);
@@ -37,7 +40,8 @@ function ThumbnailBox({ setThumbnail, register, initialUrl }: ThumbnailBoxProps)
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative flex h-[232px] w-[232px] items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-gray-100">
+      <div
+        className={`relative flex h-[232px] w-[232px] items-center justify-center rounded-xl border-2 border-dashed ${borderClass} bg-gray-100`}>
         {showImageUrl ? (
           <div className="group relative h-full w-full">
             <Image
