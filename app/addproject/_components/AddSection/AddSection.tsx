@@ -129,7 +129,7 @@ function AddSection({
 
   return (
     <>
-      <Title title={title} name={`${name}-${additionalInput[0]?.id}-primary`} label />
+      <Title title={title} name={`${name}-${additionalInput[0]?.id}-${title === "팀원" ? "name" : "url"}`} label />
       <div>
         {additionalInput.map(item => (
           <div key={item.id} className="mb-2 flex flex-col gap-1 pc:flex-row">

@@ -240,6 +240,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.title}
             onChange={e => setValue("title", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <Input
             register={register("introduction", {
@@ -256,6 +257,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.introduction}
             onChange={e => setValue("introduction", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -269,7 +271,7 @@ function AddProjectContainer() {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none pc:w-[968px]"
+                className="h-52 w-full resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none pc:w-[690px]"
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
@@ -294,6 +296,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.serviceUrl}
             onChange={e => setValue("serviceUrl", e.target.value)}
+            className="mb:w-full tbc:w-full tbr:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -308,13 +311,13 @@ function AddProjectContainer() {
               {errors.imageList && <ErrorMessage error={errors.imageList} />}
             </div>
           </section>
-          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <SkillStackProvider>
               <SkillStackSection handleTechStackInput={handleTechStackInput} setTouchedStack={setTouchedStack} />
               {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
             </SkillStackProvider>
           </section>
-          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection
               setError={setError}
               clearErrors={clearErrors}
@@ -328,7 +331,7 @@ function AddProjectContainer() {
             />
             {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="flex flex-col gap-4 mb:w-full tbc:w-full tbr:w-full pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection
               title="추가 링크"
               name="projectLinks"
