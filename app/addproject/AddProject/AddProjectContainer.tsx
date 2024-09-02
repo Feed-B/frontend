@@ -320,9 +320,6 @@ function AddProjectContainer() {
                 setTouchedStack={setTouchedStack}
                 error={errors.projectTechStackList?.message}
               />
-              <div className="h-4">
-                {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
-              </div>
             </SkillStackProvider>
           </section>
           <section className="flex w-full flex-col gap-4 pc:w-[690px]">
@@ -338,7 +335,6 @@ function AddProjectContainer() {
               setTouchedTeammate={setTouchedTeammate}
               error={errors.teammateList?.message}
             />
-            <div className="h-4">{errors.teammateList && <ErrorMessage error={errors.teammateList} />}</div>
           </section>
           <section className="flex w-full flex-col gap-4 pc:w-[690px]">
             <AddSection

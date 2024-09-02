@@ -184,6 +184,7 @@ function AddSection({
             </div>
           </div>
         ))}
+        <div className="h-4">{error && <p className="text-sm text-red-500">{error}</p>}</div>
       </div>
       <Button
         buttonSize="normal"

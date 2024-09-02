@@ -111,6 +111,7 @@ function SkillStackSearch({ setTouchedStack, error }: SkillStackSearchProps) {
           </ul>
         </div>
       )}
+      <div className="h-4">{error && <p className="text-sm text-red-500">{error}</p>}</div>
     </div>
   );
 }
