@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import useModal from "@/app/_hooks/useModal";
 import { setRedirectUrl } from "@/app/_utils/handleToken";
 import LoginModal from "@/app/_components/LoginModal/LoginModal";
