@@ -13,6 +13,7 @@ import { useToast } from "@/app/_context/ToastContext";
 import useModal from "@/app/_hooks/useModal";
 import WarningModal from "@/app/_components/Modal/WarningModal";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import Button from "@/app/_components/Button/Button";
 import SocialDropBox from "../MenuDropBox/SocialDropBox";
 import MenuDropBox from "../MenuDropBox/MenuDropBox";
 
@@ -69,6 +70,24 @@ function ProjectHeader({ projectId }: Props) {
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl font-bold text-gray-900">
             {project.title}
           </h1>
+          <Button buttonSize="small" bgColor="yellow">
+            yellow
+          </Button>
+          <Button buttonSize="small" bgColor="yellow" disabled>
+            disabled
+          </Button>
+          <Button buttonSize="small" bgColor="gray">
+            gray
+          </Button>
+          <Button buttonSize="small" bgColor="white">
+            white
+          </Button>
+          <Button buttonSize="small" bgColor="blue">
+            blue
+          </Button>
+          <Button buttonSize="small" bgColor="stroke">
+            stroke
+          </Button>
           <div className="flex gap-2">
             <WishButtonAndCount
               projectId={projectId}
