@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import shortcutIcon from "@/public/icons/doubleArrowRight.svg";
 import Button from "@/app/_components/Button/Button";
 import DirectionButton from "@/app/_components/Button/DirectionButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
@@ -74,9 +73,8 @@ function ProjectArticle({ projectId }: Props) {
           <h2 className="text-base font-bold text-gray-600">{project.introductions}</h2>
           <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
           <Link href={project.serviceUrl} target="_blank">
-            <Button bgColor="yellow" className="flex items-center gap-1 p-3" buttonSize={"small"}>
+            <Button bgColor="stroke" buttonSize="normal">
               <p>서비스 바로가기</p>
-              <Image src={shortcutIcon} alt="배포 사이트 바로가기." width={12} priority />
             </Button>
           </Link>
         </div>
