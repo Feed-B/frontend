@@ -27,7 +27,7 @@ function Project({ params }: Props) {
         <StackSection projectId={params.projectId} />
         <RatingSection projectId={params.projectId} />
       </div>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 px-5 pc:px-0">
         <CurrentPageProvider>
           <MyCommentSection projectId={params.projectId} />
           <CommentListSection projectId={params.projectId} />
