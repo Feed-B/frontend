@@ -50,6 +50,7 @@ export const usePrefetchQuery = async (params: ProjectListParams) => {
   return { dehydratedState };
 };
 
+// 그리고 이 코드도 훅으로 관리할 겁니다
 export const useFetchNovelContainerQuery = (params: ProjectListParams) => {
   return useInfiniteQuery({
     queryKey: newProjectQueryKeys.list(params).queryKey,
