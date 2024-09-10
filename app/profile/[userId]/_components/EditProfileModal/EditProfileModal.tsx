@@ -171,7 +171,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
             onClick={handleCompletedProfile}
             type="button"
             buttonSize="normal"
-            bgColor="mainBlue"
+            bgColor="blue"
             className="flex items-center justify-center text-white">
             {MY_PAGE_TEXT.COMPLETE_EDIT}
           </Button>
