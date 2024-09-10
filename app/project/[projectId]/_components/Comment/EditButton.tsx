@@ -64,11 +64,15 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
   };
 
   return (
-    <div className="flex">
-      <Button className="ml-auto" buttonSize="normal" bgColor="gray" onClick={showComment}>
+    <div className="ml-auto flex gap-2">
+      <Button
+        className="border border-gray-200 hover:bg-gray-200"
+        buttonSize="normal"
+        bgColor="gray"
+        onClick={showComment}>
         취소
       </Button>
-      <Button className="ml-2" buttonSize="normal" bgColor="yellow" onClick={editComment}>
+      <Button buttonSize="normal" bgColor="yellow" onClick={editComment}>
         수정
       </Button>
     </div>

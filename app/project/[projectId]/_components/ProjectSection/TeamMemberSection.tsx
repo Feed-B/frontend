@@ -20,21 +20,23 @@ function TeamMemberSection({ projectId }: Props) {
   if (!teamMember) return null;
 
   return (
-    <section className="px-8">
-      <h3 className="mb-4 text-lg font-semibold">팀원</h3>
-      <div className="flex gap-6">
+    <section>
+      <h3 className="mb-4 text-base font-bold pc:text-lg pc:font-semibold">팀원</h3>
+      <div className="flex flex-wrap gap-x-6 overflow-hidden">
         {teamMember.map((team, index) => (
           <div className="flex gap-3" key={index}>
-            <p className="p-1 text-sm font-semibold text-blue-400">{JOB_CATEGORIES_KR[team.job as JobCategory]}</p>
+            <p className="text-nowrap p-1 text-sm font-semibold text-blue-400">
+              {JOB_CATEGORIES_KR[team.job as JobCategory]}
+            </p>
             <div className="flex items-center gap-2 text-sm text-gray-900">
               {team.teammateList.map(member => (
                 <div key={member.id}>
                   {member.url ? (
                     <Link href={member.url} target="_blank">
-                      <p className="font-medium underline">{member.teammateName}</p>
+                      <p className="text-nowrap font-medium underline">{member.teammateName}</p>
                     </Link>
                   ) : (
-                    <p>{member.teammateName}</p>
+                    <p className="text-nowrap font-medium">{member.teammateName}</p>
                   )}
                 </div>
               ))}

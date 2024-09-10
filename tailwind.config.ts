@@ -63,10 +63,10 @@ const config: Config = {
       },
     },
     screens: {
-      mb: { max: "479px" },
-      tbc: { min: "480px", max: "767px" },
-      tbr: { min: "768px", max: "1023px" },
-      pc: { min: "1024px" },
+      mb: { max: "767px" },
+      tbc: { min: "768px", max: "1023px" },
+      tbr: { min: "1024px", max: "1439px" },
+      pc: { min: "1440px" },
     },
     colors: {
       inherit: "inherit",

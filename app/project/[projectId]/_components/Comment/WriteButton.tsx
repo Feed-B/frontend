@@ -65,12 +65,7 @@ function WriteButton({ projectId, showComment }: Props) {
 
   return (
     <div className="flex">
-      <Button
-        className="ml-auto"
-        buttonSize="normal"
-        bgColor={isDisabled ? "gray" : "yellow"}
-        onClick={handleSubmit}
-        disabled={isDisabled}>
+      <Button className="ml-auto" buttonSize="normal" bgColor="yellow" onClick={handleSubmit} disabled={isDisabled}>
         등록
       </Button>
     </div>

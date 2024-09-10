@@ -16,8 +16,8 @@ function StackSection({ projectId }: Props) {
   if (!data) return null;
 
   return (
-    <section className="px-8">
-      <h3 className="mb-4 text-lg font-semibold">사용한 스킬</h3>
+    <section>
+      <h3 className="mb-4 text-base font-bold pc:text-lg pc:font-semibold">사용한 스킬</h3>
       <ul className="flex flex-wrap gap-2">
         {data.projectTechStacks.map(stack => {
           const stackItem = FULL_STACK_DATA.find(item => item.name === stack.techStack);
