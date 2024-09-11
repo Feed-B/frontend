@@ -18,6 +18,7 @@ interface Props {
 interface Image {
   width: number;
   style: string;
+  article: string;
 }
 
 function ProjectArticle({ projectId }: Props) {
@@ -26,14 +27,14 @@ function ProjectArticle({ projectId }: Props) {
   if (!project) return null;
 
   const IMAGE_TYPE: Record<string, Image> = {
-    WEB: { width: 572, style: "w-[572px]" },
-    MOBILE: { width: 188, style: "w-[188px]" },
+    WEB: { width: 572, style: "w-[572px]", article: "min-w-[396px]" },
+    MOBILE: { width: 188, style: "w-[188px]", article: "min-w-[780px]" },
   };
 
-  const { width: imageWidth, style: imageWidthStyle } = IMAGE_TYPE[project.imageType];
+  const { width: imageWidth, style: imageWidthStyle, article: articleWidthStyle } = IMAGE_TYPE[project.imageType];
 
   return (
-    <article className="flex flex-col gap-4 pc:flex-row pc:gap-24 pc:py-7">
+    <article className="flex flex-row py-7 mb:flex-col mb:gap-4 mb:py-0 tbc:flex-col tbc:gap-4 tbc:py-0 tbr:justify-between tbr:gap-5 pc:gap-24">
       {/* 이미지 */}
       <div className="flex flex-col justify-between">
         <div className="relative flex">
@@ -68,7 +69,7 @@ function ProjectArticle({ projectId }: Props) {
       </div>
 
       {/* 프로젝트 본문 */}
-      <div className="flex flex-col gap-6 pc:justify-between">
+      <div className={`flex flex-col justify-between gap-6 ${articleWidthStyle}`}>
         <div className="flex flex-col gap-4">
           <h2 className="text-base font-bold text-gray-600">{project.introductions}</h2>
           <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
