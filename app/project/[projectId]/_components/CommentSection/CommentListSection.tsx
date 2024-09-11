@@ -3,25 +3,13 @@
 import React from "react";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
+import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import Pagination from "../Comment/Pagination";
 import InfinityScroll from "../Comment/InfinityScroll";
 
 interface Props {
   projectId: number;
 }
-
-const WINDOW_BOUNDARY = {
-  MAX: {
-    TBR: 1439,
-    TBC: 1023,
-    MB: 767,
-  },
-  MIN: {
-    PC: 1440,
-    TBR: 1024,
-    TBC: 768,
-  },
-};
 
 function CommentListSection({ projectId }: Props) {
   const { isLoggedIn } = useCheckLogin();
