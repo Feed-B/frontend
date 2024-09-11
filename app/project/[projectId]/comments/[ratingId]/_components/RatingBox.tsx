@@ -46,7 +46,7 @@ function RatingBox(props: RatingBoxProps) {
   };
 
   return (
-    <div className="flex w-full flex-wrap items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6 mb:justify-start tbc:justify-start tbr:justify-start">
+    <div className="flex w-full flex-wrap items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6 mb:justify-start mb:gap-5 tbc:justify-start tbr:justify-start">
       <div className="flex items-center gap-2">
         <p className="text-sm font-semibold text-gray-900 mb:text-xs">총점</p>
         <p className="text-2xl font-bold text-gray-900 mb:text-xl">{props.averageRank}</p>
