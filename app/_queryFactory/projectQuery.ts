@@ -1,5 +1,5 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { useInfiniteQuery, dehydrate } from "@tanstack/react-query";
+import { dehydrate } from "@tanstack/react-query";
 import { projectApi } from "../_apis/project";
 import { ProjectListParams } from "../_types/ProjectListDataType";
 import getQueryClient from "./getQueryClient";
@@ -48,20 +48,4 @@ export const usePrefetchQuery = async (params: ProjectListParams) => {
   const dehydratedState = dehydrate(queryClient);
 
   return { dehydratedState };
-};
-
-// 그리고 이 코드도 훅으로 관리할 겁니다
-export const useFetchNovelContainerQuery = (params: ProjectListParams) => {
-  return useInfiniteQuery({
-    queryKey: newProjectQueryKeys.list(params).queryKey,
-    queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...params, page: pageParam }),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage: any) => {
-      const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1;
-      }
-      return undefined;
-    },
-  });
 };
