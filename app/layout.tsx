@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import "./_styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "더 많은 사이드 프로젝트 피드백을 얻기 위한 방법 | 피드비",
+  title: "피드비 | 더 많은 사이드 프로젝트 피드백을 얻기 위한 방법 ",
   description:
     "피드비는 여러분의 프로젝트를 공유하고, 서로 피드백을 주고받을 수 있는 최적의 플랫폼입니다. 피드비를 통해 프로젝트의 완성도를 높이고, 새로운 아이디어를 얻어보세요!",
   icons: {
