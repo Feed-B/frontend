@@ -154,23 +154,25 @@ export default async function Home() {
             width={1130}
           />
         </section>
-        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[300px] mb:gap-1 tbc:h-[300px] tbc:gap-2 tbr:h-[450px]">
-          <h2 className="mt-24 text-center text-5xl font-semibold text-black mb:text-xl tbc:text-xl tbr:text-4xl">
-            지금 프로젝트를 공유하고 피드백 받기
-          </h2>
-          <h3 className="mb-7 mt-5 text-center text-xl font-normal text-gray-700 mb:mb-2 mb:mt-2 mb:text-xs tbc:text-sm tbr:mb-3 tbr:mt-2">
-            FeedB와 함께라면 프로젝트 진행이 더 이상 혼자가 아닙니다. <br className="pc:hidden" />
-            다양한 의견을 통해 프로젝트를 개선하고, 새로운 아이디어를 얻어보세요!
-          </h3>
-          <Link href={"/main"}>
-            <Button
-              buttonSize="normal"
-              bgColor="yellow"
-              type="button"
-              className="flex items-center px-6 py-4 pt-5 text-base mb:px-4 mb:py-2 mb:text-sm">
-              피드비 시작하기
-            </Button>
-          </Link>
+        <section className="mx-auto flex h-screen w-full flex-col items-center justify-around gap-3 bg-gray-100 mb:h-[300px] mb:gap-1 tbc:h-[300px] tbc:gap-2 tbr:h-[450px]">
+          <div className="flex flex-col items-center justify-between gap-7">
+            <h2 className="mt-24 text-center text-5xl font-semibold text-black mb:text-xl tbc:text-xl tbr:text-4xl">
+              지금 프로젝트를 공유하고 피드백 받기
+            </h2>
+            <h3 className="mt-5 text-center text-xl font-normal text-gray-700 mb:mb-2 mb:mt-2 mb:text-xs tbc:text-sm tbr:mb-3 tbr:mt-2">
+              FeedB와 함께라면 프로젝트 진행이 더 이상 혼자가 아닙니다. <br className="pc:hidden" />
+              다양한 의견을 통해 프로젝트를 개선하고, 새로운 아이디어를 얻어보세요!
+            </h3>
+            <Link href={"/main"}>
+              <Button
+                buttonSize="normal"
+                bgColor="yellow"
+                type="button"
+                className="flex items-center px-6 py-4 pt-5 text-base mb:px-4 mb:py-2 mb:text-sm">
+                피드비 시작하기
+              </Button>
+            </Link>
+          </div>
           <Image
             className="br:mt-4 mt-16 mb:mt-10 tbc:mt-6"
             src={landingFeedBackSection}
