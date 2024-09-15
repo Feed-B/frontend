@@ -1,21 +1,16 @@
 "use client";
-
 import React, { Suspense } from "react";
 import SkeletonProjectList from "@/app/_components/ProjectList/SkeletonUI/SkeletonProjectList";
 import DeferredComponent from "@/app/_components/ProjectList/SkeletonUI/DeferredComponent";
-import useModal from "@/app/_hooks/useModal";
 import StackProvider from "../../_context/StackProvider";
 import SideBar from "../SideBar/SideBar";
 import SortFilter from "../SortFilter/SortFilter";
 import SearchBar from "../SearchBar/SearchBar";
 import StackBox from "../StackBox/StackBox";
 import ProjectSection from "../ProjectSection/ProjectSection";
-import StackBar from "../StackBar/StackBar";
-import StackModal from "../StackModal/StackModal";
+import MobileFilterBar from "../MobileFilterBar/MobileFilterBar";
 
 function SelectStack() {
-  const { openModal, handleModalClose, handleModalOpen } = useModal();
-
   return (
     <StackProvider>
       <SideBar />
@@ -25,9 +20,7 @@ function SelectStack() {
           <SearchBar />
         </div>
         <StackBox />
-        {/* 테블릿, 모바일*/}
-        {openModal && <StackModal handleModalClose={handleModalClose} />}
-        <StackBar handleModalOpen={handleModalOpen} />
+        <MobileFilterBar />
       </section>
       <Suspense
         fallback={
