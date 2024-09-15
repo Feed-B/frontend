@@ -30,6 +30,10 @@ function MobileSearchBar({ isToggle, toggleAction }: MobileSearchBarProps) {
     resetSearchString();
   };
 
+  const handleClickSubmit = () => {
+    isChangeSearchString(inputValue);
+  };
+
   return (
     <>
       {!isToggle && (
@@ -41,8 +45,7 @@ function MobileSearchBar({ isToggle, toggleAction }: MobileSearchBarProps) {
         </button>
       )}
       {isToggle && (
-        <div className="flex w-full max-w-[740px] items-center gap-2 rounded-xl border border-solid border-[#D6D6D6] p-2 mb:max-w-[320px] tbc:max-w-[420px] pc:hidden">
-          <Image src={searchIcon} alt="검색 기능입니다." width={16} priority />
+        <div className="flex w-full max-w-[740px] items-center justify-between gap-5 rounded-xl border border-solid border-[#D6D6D6] p-2 px-4 mb:max-w-[320px] tbc:max-w-[420px] pc:hidden">
           <form onSubmit={handleSubmit}>
             <input
               className="mb-1 w-[125px] text-xs font-normal outline-none"
@@ -53,7 +56,12 @@ function MobileSearchBar({ isToggle, toggleAction }: MobileSearchBarProps) {
               onChange={onChange}
             />
           </form>
-          {inputValue.length > 0 && <Image src={closeIcon} alt="검색 초기화" width={16} onClick={handleReset} />}
+          {inputValue.length > 0 && (
+            <div className="flex gap-2">
+              <Image src={searchIcon} alt="검색 기능입니다." width={16} priority onClick={handleClickSubmit} />
+              <Image src={closeIcon} alt="검색 초기화" width={16} onClick={handleReset} />
+            </div>
+          )}
         </div>
       )}
     </>
