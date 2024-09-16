@@ -4,11 +4,14 @@ import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
+import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import MyCommentProvider from "../../_context/MyCommentProvider";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
 import ShowComment from "./MyComment/ShowComment";
 import WriteComment from "./MyComment/WriteComment";
 import EditComment from "./MyComment/EditComment";
+import WriteCommentButton from "./MyComment/WriteCommentButton";
 
 interface Props {
   projectId: number;
@@ -17,6 +20,8 @@ interface Props {
 const CommentContainer = ({ projectId }: Props) => {
   const { view, setView } = useMyCommentContext();
   const { isLoggedIn } = useCheckLogin();
+  const { windowWidth } = useBrowserSize();
+  const { TBC } = WINDOW_BOUNDARY.MAX;
 
   const commentQuery = commentQueryKeys.myComment(projectId);
 
@@ -36,8 +41,8 @@ const CommentContainer = ({ projectId }: Props) => {
   return (
     <section>
       {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
-      {view === "write" && <WriteComment projectId={projectId} />}
-      {view === "edit" && <EditComment projectId={projectId} myComment={myComment} />}
+      {view === "write" && (windowWidth > TBC ? <WriteComment projectId={projectId} /> : <WriteCommentButton />)}
+      {view === "edit" && (windowWidth > TBC ? <EditComment projectId={projectId} myComment={myComment} /> : <></>)}
     </section>
   );
 };
