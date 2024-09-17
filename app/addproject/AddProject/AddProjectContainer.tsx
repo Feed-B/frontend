@@ -212,7 +212,7 @@ function AddProjectContainer() {
   return (
     <>
       <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data" className="w-full">
-        <div className="mb-40 mt-8 flex w-full flex-col gap-8 pc:mb-32">
+        <div className="mb-40 mt-8 flex w-full flex-col gap-8 tbr:mb-32 pc:mb-32">
           <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" />
             <div>
@@ -241,7 +241,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.title}
             onChange={e => setValue("title", e.target.value)}
-            className="mb:w-full tbc:w-full tbr:w-full"
+            className="mb:w-full tbc:w-full"
           />
           <Input
             register={register("introduction", {
@@ -258,7 +258,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.introduction}
             onChange={e => setValue("introduction", e.target.value)}
-            className="mb:w-full tbc:w-full tbr:w-full"
+            className="mb:w-full tbc:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -272,7 +272,7 @@ function AddProjectContainer() {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className={`h-52 w-full resize-none rounded-lg border border-solid ${errors.content ? "border-red-300" : "border-gray-200"} px-2 py-3 text-sm font-normal ${errors.content ? "focus:border-red-500" : "focus:border-gray-900"} focus:outline-none pc:w-[690px]`}
+                className={`h-52 w-full resize-none rounded-lg border border-solid ${errors.content ? "border-red-300" : "border-gray-200"} px-2 py-3 text-sm font-normal ${errors.content ? "focus:border-red-500" : "focus:border-gray-900"} focus:outline-none tbr:w-[690px] pc:w-[690px]`}
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
@@ -297,7 +297,7 @@ function AddProjectContainer() {
             inputSize="large"
             error={errors.serviceUrl}
             onChange={e => setValue("serviceUrl", e.target.value)}
-            className="mb:w-full tbc:w-full tbr:w-full"
+            className="mb:w-full tbc:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -313,7 +313,7 @@ function AddProjectContainer() {
               <div className="h-4">{errors.imageList && <ErrorMessage error={errors.imageList} />}</div>
             </div>
           </section>
-          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <SkillStackProvider>
               <SkillStackSection
                 handleTechStackInput={handleTechStackInput}
@@ -322,7 +322,7 @@ function AddProjectContainer() {
               />
             </SkillStackProvider>
           </section>
-          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <AddSection
               setError={setError}
               clearErrors={clearErrors}
@@ -336,7 +336,7 @@ function AddProjectContainer() {
               error={errors.teammateList?.message}
             />
           </section>
-          <section className="flex w-full flex-col gap-4 pc:w-[690px]">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <AddSection
               title="추가 링크"
               name="projectLinks"

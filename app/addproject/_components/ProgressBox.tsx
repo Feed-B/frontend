@@ -9,11 +9,11 @@ function ProgressBox({ progress, openCancelModal }: ProgressBoxProps) {
   const markerPosition = 86;
 
   return (
-    <div className="fixed bottom-0 left-0 z-40 flex h-36 w-full items-center justify-center bg-gray-100 px-5 py-4 tbr:h-32 pc:h-24 pc:px-20">
-      <div className="flex flex-col items-center justify-start gap-4 mb:gap-2 pc:w-[1200px] pc:flex-row pc:justify-between">
-        <div className="flex items-center gap-6 mb:gap-3 tbc:gap-3">
+    <div className="fixed bottom-0 left-0 z-40 flex h-36 w-full items-center justify-center bg-gray-100 px-5 py-4 tbc:h-32 tbr:h-24 pc:h-24 pc:px-20">
+      <div className="flex flex-col items-center justify-start gap-4 mb:gap-2 tbr:flex-row pc:w-[1200px] pc:flex-row pc:justify-between">
+        <div className="flex items-center gap-6 mb:gap-3">
           <div className="relative">
-            <div className="relative h-3 w-96 overflow-hidden rounded-2xl bg-gray-200 mb:w-40 tbc:w-60 tbr:h-4 tbr:w-72 pc:h-5">
+            <div className="relative h-3 w-96 overflow-hidden rounded-2xl bg-gray-200 mb:w-40 tbc:w-72 tbr:h-4 pc:h-5">
               <div
                 className="relative flex h-full rounded-2xl bg-yellow-500 transition-all duration-300"
                 style={{ width: `${progress}%` }}>

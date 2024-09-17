@@ -161,9 +161,9 @@ function ProjectImageBox({
           {provided => (
             <div className="cardLists" {...provided.droppableProps} ref={provided.innerRef}>
               <div
-                className={`flex items-center justify-center overflow-y-hidden rounded-lg border-2 border-dashed ${borderClass} bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-24 tbc:justify-start tbc:p-3 tbr:h-[156px] tbr:justify-start pc:min-h-[256px]`}>
+                className={`flex items-center justify-center overflow-y-hidden rounded-lg border-2 border-dashed ${borderClass} bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-[156px] tbc:justify-start tbr:min-h-[256px] pc:min-h-[256px]`}>
                 {showImageUrlList.length > 0 ? (
-                  <div className="flex w-full flex-row items-start gap-4 pc:flex-wrap">
+                  <div className="flex w-full flex-row items-start gap-4 tbr:flex-wrap pc:flex-wrap">
                     {showImageUrlList.map((image, index) => (
                       <Draggable draggableId={image.id} index={index} key={image.id}>
                         {provided => (
@@ -182,7 +182,7 @@ function ProjectImageBox({
                     {showImageUrlList.length < 5 && (
                       <>
                         <div
-                          className="flex min-h-[220px] min-w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50 mb:hidden tbc:hidden tbr:hidden"
+                          className="flex min-h-[220px] min-w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50 mb:hidden tbc:hidden"
                           onClick={handleUploadButtonClick}>
                           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
                             <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />

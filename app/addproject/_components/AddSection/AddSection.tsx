@@ -134,7 +134,7 @@ function AddSection({
       <Title title={title} name={`${name}-${additionalInput[0]?.id}-${title === "팀원" ? "name" : "url"}`} label />
       <div>
         {additionalInput.map(item => (
-          <div key={item.id} className="mb-2 flex flex-col gap-1 pc:flex-row">
+          <div key={item.id} className="mb-2 flex flex-col gap-1 tbr:flex-row pc:flex-row">
             <div className="flex gap-1">
               <DropDownBox
                 dataType={dropDownType}
