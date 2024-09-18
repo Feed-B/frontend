@@ -52,7 +52,7 @@ function RatingBox(props: RatingBoxProps) {
         <p className="text-2xl font-bold text-gray-900 mb:text-xl">{props.averageRank}</p>
         <div className="flex items-center">{renderStars(props.averageRank)}</div>
       </div>
-      <div className="flex flex-wrap items-center gap-4 tbc:flex-col tbr:flex-col">
+      <div className="flex flex-wrap items-center gap-4 mb:flex-col tbc:flex-col tbr:flex-col">
         {Object.entries(rating).map(([key, value]) => (
           <div key={key} className="flex items-center justify-end gap-1">
             <p className="text-xs text-gray-900 mb:text-[8px]">{ratingLabels[key]}</p>

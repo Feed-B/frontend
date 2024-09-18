@@ -73,7 +73,7 @@ export default async function Home() {
             priority
           />
         </section>
-        <section className="relative mx-auto flex h-screen w-full flex-col items-center gap-3 bg-gray-100 mb:h-[300px] tbc:h-[400px] tbr:h-[550px]">
+        <section className="relative mx-auto flex h-screen w-full flex-col items-center gap-3 bg-gray-100 mb:h-[350px] tbc:h-[400px] tbr:h-[550px]">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black mb:mt-16 mb:text-xl tbc:text-xl tbr:text-4xl">
             프로젝트 등록과 공유
           </h2>
@@ -88,7 +88,7 @@ export default async function Home() {
           <div className="absolute right-0 z-10 h-full w-20 rotate-180 bg-custom-gradient mb:hidden tbc:hidden tbr:hidden" />
           <LandingProjectList />
         </section>
-        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[580px] mb:gap-1 tbc:h-[620px] tbc:w-[80%] tbc:gap-2 tbr:h-[900px]">
+        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[700px] mb:gap-1 tbc:h-[620px] tbc:w-[80%] tbc:gap-2 tbr:h-[900px]">
           <h2 className="mt-5 text-center text-5xl font-semibold text-black mb:text-xl tbc:text-xl tbr:text-4xl">
             프로젝트 공유와 피드백
           </h2>
@@ -107,7 +107,7 @@ export default async function Home() {
           </Link>
           <Image src={landingProjectSection} alt="프로젝트 상세 페이지 이미지" width={900} />
         </section>
-        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[300px] mb:gap-1 tbc:h-[400px] tbc:w-[80%] tbc:gap-2 tbr:h-[550px]">
+        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[450px] mb:gap-1 tbc:h-[400px] tbc:w-[80%] tbc:gap-2 tbr:h-[550px]">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black mb:mt-[0px] mb:text-xl tbc:text-xl tbr:text-4xl">
             다양한 기준으로 프로젝트 평가
           </h2>
@@ -131,7 +131,7 @@ export default async function Home() {
             width={1000}
           />
         </section>
-        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[380px] mb:gap-1 tbc:h-[600px] tbc:w-[80%] tbc:gap-2 tbr:h-[750px]">
+        <section className="mx-auto flex h-screen w-full flex-col items-center justify-center gap-3 bg-gray-100 mb:h-[450px] mb:gap-1 tbc:h-[600px] tbc:w-[80%] tbc:gap-2 tbr:h-[750px]">
           <h2 className="mt-24 text-center text-5xl font-semibold text-black mb:text-xl tbc:text-xl tbr:text-4xl">
             프로젝트에 대한 토론
           </h2>
@@ -174,7 +174,7 @@ export default async function Home() {
             </Link>
           </div>
           <Image
-            className="br:mt-4 mt-16 mb:mt-10 tbc:mt-6"
+            className="br:mt-4 mb:mt-15 mt-10 tbc:mt-6"
             src={landingFeedBackSection}
             alt="프로젝트 피드백 이미지"
             width={1130}
