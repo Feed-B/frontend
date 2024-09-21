@@ -76,7 +76,7 @@ function ShowComment({ projectId, myComment }: Props) {
             userProfileImageUrl={authorProfileImageUrl}
           />
           <div className="flex items-center gap-2">
-            <CommentCount size="large" commentCount={childCommentCount} />
+            <CommentCount commentCount={childCommentCount} />
             <MenuDropBox
               mode="comment"
               projectId={projectId}
@@ -89,7 +89,7 @@ function ShowComment({ projectId, myComment }: Props) {
         <div className="flex justify-between">
           <TotalStar starRating={averageRank} />
           <Link href={`/project/${projectId}/comments/${ratingId}?userId=${authorId}`}>
-            <div className="flex items-center">
+            <div className="flex items-center rounded-md p-1 hover:bg-gray-200">
               <p className="text-xs text-gray-900">더보기</p>
               <Image src={arrowIcon} alt="댓글 상세보기." width={20} />
             </div>

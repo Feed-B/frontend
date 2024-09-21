@@ -59,6 +59,12 @@ function ProjectHeader({ projectId }: Props) {
     closeDeleteModal();
   };
 
+  const handleProfileClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+    router.push(`/profile/${project.memberId}`);
+  };
+
   return (
     <>
       {deleteModal && (
@@ -81,7 +87,9 @@ function ProjectHeader({ projectId }: Props) {
           </div>
         </div>
         <div className="flex h-6 w-full items-center gap-3">
-          <p className="text-nowrap text-sm font-semibold text-gray-900">{project.authorName}</p>
+          <p className="cursor-pointer text-nowrap text-sm font-semibold text-gray-900" onClick={handleProfileClick}>
+            {project.authorName}
+          </p>
           <p className="text-nowrap text-xs text-blue-500">{JOB_CATEGORIES_KR[project.authorJob as JobCategory]}</p>
           <p className="text-sm text-gray-500">{createDate(project.createdAt)}</p>
         </div>
