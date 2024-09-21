@@ -41,7 +41,8 @@ const CommentContainer = ({ projectId }: Props) => {
   return (
     <section>
       {view === "show" && <ShowComment projectId={projectId} myComment={myComment} />}
-      {view === "write" && (windowWidth > TBC ? <WriteComment projectId={projectId} /> : <WriteCommentButton />)}
+      {view === "write" &&
+        (windowWidth > TBC ? <WriteComment projectId={projectId} /> : <WriteCommentButton projectId={projectId} />)}
       {view === "edit" && (windowWidth > TBC ? <EditComment projectId={projectId} myComment={myComment} /> : <></>)}
     </section>
   );

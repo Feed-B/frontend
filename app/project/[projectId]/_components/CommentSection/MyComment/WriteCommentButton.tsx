@@ -6,12 +6,16 @@ import plusIcon from "@/public/icons/blackPlus.svg";
 import useModal from "@/app/_hooks/useModal";
 import WriteCommentModal from "./WriteCommentModal";
 
-function WriteCommentButton() {
+interface Props {
+  projectId: number;
+}
+
+function WriteCommentButton({ projectId }: Props) {
   const { openModal, handleModalClose, handleModalOpen } = useModal();
 
   return (
     <>
-      {openModal && <WriteCommentModal handleModalClose={handleModalClose} />}
+      {openModal && <WriteCommentModal projectId={projectId} openModal={true} handleModalClose={handleModalClose} />}
       <div className="fixed bottom-5 right-5 z-10">
         <Button
           buttonSize={"normal"}
