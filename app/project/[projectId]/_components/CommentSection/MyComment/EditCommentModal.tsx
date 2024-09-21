@@ -4,23 +4,36 @@ import React from "react";
 import Image from "next/image";
 import closeIcon from "@/public/icons/close.svg";
 import ModalPortal from "@/app/_utils/ModalPortal";
+import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import ToolTip from "../../Comment/ToolTip";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterRating from "../../Comment/EnterRating";
 import EnterText from "../../Comment/EnterText";
-import WriteButton from "../../Comment/WriteButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
+import EditButton from "../../Comment/EditButton";
 
 interface Props {
   openModal: boolean;
   projectId: number;
+  myComment: MyCommentResponse;
   handleModalClose: () => void;
 }
 
-function WriteCommentModal({ projectId, openModal, handleModalClose }: Props) {
+function EditCommentModal({ projectId, openModal, myComment, handleModalClose }: Props) {
   const { setView } = useMyCommentContext();
 
-  const handleWriteComment = () => {
+  const getRatingData = [
+    myComment.projectRating.ideaRank,
+    myComment.projectRating.designRank,
+    myComment.projectRating.functionRank,
+    myComment.projectRating.completionRank,
+  ];
+
+  const { comment: getCommentData, ratingId } = myComment.projectRating;
+
+  if (!myComment.projectRating) return null;
+
+  const handleEditComment = () => {
     handleModalClose();
     setView("show");
   };
@@ -49,9 +62,9 @@ function WriteCommentModal({ projectId, openModal, handleModalClose }: Props) {
             </div>
             <div className="flex flex-col gap-6">
               <EnterCommentProvider>
-                <EnterRating />
-                <EnterText />
-                <WriteButton projectId={projectId} showComment={handleWriteComment} />
+                <EnterRating ratingValue={getRatingData} />
+                <EnterText commentValue={getCommentData} />
+                <EditButton projectId={projectId} ratingId={ratingId} showComment={handleEditComment} />
               </EnterCommentProvider>
             </div>
           </section>
@@ -61,4 +74,4 @@ function WriteCommentModal({ projectId, openModal, handleModalClose }: Props) {
   );
 }
 
-export default WriteCommentModal;
+export default EditCommentModal;

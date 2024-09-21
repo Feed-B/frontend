@@ -10,12 +10,16 @@ import { commentApi } from "@/app/_apis/comment";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import useBrowserSize from "@/app/_hooks/useBrowserSize";
+import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
+import useModal from "@/app/_hooks/useModal";
 import TotalStar from "../../Comment/TotalStar";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
 import MenuDropBox from "../../MenuDropBox/MenuDropBox";
 import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
+import EditCommentModal from "./EditCommentModal";
 
 interface Props {
   projectId: number;
@@ -27,6 +31,14 @@ function ShowComment({ projectId, myComment }: Props) {
   const queryClient = useQueryClient();
   const { setView } = useMyCommentContext();
   const { addToast } = useToast();
+
+  const { openModal, handleModalClose, handleModalOpen } = useModal();
+  const { windowWidth } = useBrowserSize();
+  const { TBC } = WINDOW_BOUNDARY.MAX;
+
+  const handleEditComment = () => {
+    windowWidth > TBC ? setView("edit") : handleModalOpen();
+  };
 
   const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
@@ -66,6 +78,14 @@ function ShowComment({ projectId, myComment }: Props) {
 
   return (
     <>
+      {openModal && (
+        <EditCommentModal
+          projectId={projectId}
+          openModal={true}
+          myComment={myComment}
+          handleModalClose={handleModalClose}
+        />
+      )}
       <h3 className="mb-4 text-lg font-semibold">내가 쓴 리뷰</h3>
       <div className="relative flex flex-col gap-4 rounded-xl border border-solid border-gray-300 bg-gray-100 p-4">
         <div className="flex justify-between">
@@ -80,7 +100,7 @@ function ShowComment({ projectId, myComment }: Props) {
             <MenuDropBox
               mode="comment"
               projectId={projectId}
-              handleEditClick={() => setView("edit")}
+              handleEditClick={handleEditComment}
               handleDelete={handleDeleteComment}
             />
           </div>
