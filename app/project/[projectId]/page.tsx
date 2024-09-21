@@ -19,7 +19,7 @@ function Project({ params }: Props) {
   revalidatePathAction(`project/${params.projectId}`);
 
   return (
-    <main className="mx-auto my-16 flex max-w-[1200px] flex-col gap-20 mb:gap-8 tbc:gap-8">
+    <main className="mx-auto my-16 flex max-w-[1200px] flex-col gap-20 mb:my-9 mb:gap-8 tbc:my-9 tbc:gap-8">
       <div className="flex flex-col gap-10 px-8 mb:gap-8 mb:px-5 tbc:gap-8 tbc:px-5">
         <ProjectHeader projectId={params.projectId} />
         <ProjectArticle projectId={params.projectId} />

@@ -71,8 +71,8 @@ function ProjectArticle({ projectId }: Props) {
       {/* 프로젝트 본문 */}
       <div className={`flex flex-col justify-between gap-6 ${articleWidthStyle}`}>
         <div className="flex flex-col gap-4">
-          <h2 className="text-base font-bold text-gray-600">{project.introductions}</h2>
-          <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-600">{project.content}</p>
+          <h2 className="text-base font-bold text-gray-700">{project.introductions}</h2>
+          <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-700">{project.content}</p>
           <Link href={project.serviceUrl} target="_blank">
             <Button bgColor="stroke" buttonSize="normal">
               <p>서비스 바로가기</p>

@@ -34,7 +34,7 @@ function RatingSection({ projectId }: Props) {
   if (averageRank % 1 !== 0) isInteger = false;
 
   return (
-    <section className="flex gap-8 py-4 mb:flex-col mb:gap-2 tbc:flex-col tbc:gap-2">
+    <section className="flex gap-8 py-4 mb:flex-col mb:gap-2 mb:py-0 tbc:flex-col tbc:gap-2 tbc:py-0">
       {/* 평균 별점 */}
       <div className="flex min-w-fit flex-col items-center gap-2 mb:gap-1 tbc:gap-1">
         <p className="text-5xl font-bold text-gray-900 mb:text-[40px] tbc:text-[40px]">{averageRank}</p>
