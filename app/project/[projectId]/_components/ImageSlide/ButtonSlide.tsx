@@ -11,7 +11,7 @@ interface Props {
 
 function ButtonSlide({ project }: Props) {
   const { index, translate, handlePrev, handleNext } = useImageIndex();
-  const { width: imageWidth, style: imageWidthStyle } = IMAGE_TYPE[project.imageType];
+  const { largeWidth: imageWidth, largeStyle: imageWidthStyle } = IMAGE_TYPE[project.imageType];
 
   return (
     <section className="relative flex">

@@ -1,5 +1,7 @@
 export interface Image {
-  width: number;
-  style: string;
+  largeWidth: number;
+  smallWidth: number;
+  largeStyle: string;
+  smallStyle: string;
   article: string;
 }
