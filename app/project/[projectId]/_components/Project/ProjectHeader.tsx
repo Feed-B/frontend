@@ -75,7 +75,7 @@ function ProjectHeader({ projectId }: Props) {
       {deleteModal && (
         <WarningModal mode="delete" handleDeleteClick={handleDeleteProject} closeModal={closeDeleteModal} />
       )}
-      <header className="py-3 pc:-mx-4">
+      <header className="tbr:py-3 pc:-mx-4 pc:py-3">
         <div className="flex justify-between gap-2">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-bold text-gray-900">
             {project.title}

@@ -9,6 +9,8 @@ import DirectionButton from "@/app/_components/Button/DirectionButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import useImageIndex from "@/app/_hooks/useImageIndex";
+import useBrowserSize from "@/app/_hooks/useBrowserSize";
+import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import LinkSection from "../ProjectSection/LinkSection";
 
 interface Props {
@@ -24,6 +26,9 @@ interface Image {
 function ProjectArticle({ projectId }: Props) {
   const { index, translate, handlePrev, handleNext } = useImageIndex();
   const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
+  const { windowWidth } = useBrowserSize();
+  const { TBC } = WINDOW_BOUNDARY.MAX;
+
   if (!project) return null;
 
   const IMAGE_TYPE: Record<string, Image> = {
@@ -36,8 +41,8 @@ function ProjectArticle({ projectId }: Props) {
   return (
     <article className="flex flex-row py-7 mb:flex-col mb:gap-4 mb:py-0 tbc:flex-col tbc:gap-4 tbc:py-0 tbr:justify-between tbr:gap-5 pc:gap-24">
       {/* 이미지 */}
-      <div className="flex flex-col justify-between">
-        <div className="relative flex">
+      {windowWidth > TBC ? (
+        <section className="relative flex">
           {index > 0 && (
             <DirectionButton
               direction="left"
@@ -65,11 +70,25 @@ function ProjectArticle({ projectId }: Props) {
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      ) : (
+        <section>
+          <div className="flex h-[406px] overflow-x-scroll scrollbar-hide">
+            <div className="flex h-fit w-fit gap-x-4">
+              {project.imageUrlList.map(image => (
+                <div
+                  className={`flex h-[406px] ${imageWidthStyle} overflow-hidden rounded-xl border border-solid border-gray-300`}
+                  key={image.id}>
+                  <Image src={image.url} alt="서비스 프로젝트." width={imageWidth} height={406} priority />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 프로젝트 본문 */}
-      <div className={`flex flex-col justify-between gap-6 ${articleWidthStyle}`}>
+      <section className={`flex flex-col justify-between gap-6 pc:${articleWidthStyle} tbr:${articleWidthStyle}`}>
         <div className="flex flex-col gap-4">
           <h2 className="text-base font-bold text-gray-700">{project.introductions}</h2>
           <p className="text-overflow-12 whitespace-pre-wrap text-sm text-gray-700">{project.content}</p>
@@ -80,7 +99,7 @@ function ProjectArticle({ projectId }: Props) {
           </Link>
         </div>
         {project.projectLinks[0]?.siteType && <LinkSection linkList={project.projectLinks} />}
-      </div>
+      </section>
     </article>
   );
 }
