@@ -49,6 +49,7 @@ function RatingSection({ projectId }: Props) {
         </div>
         <p className="text-sm text-gray-600 mb:text-xs tbc:text-xs">평균 별점({rankCount}명)</p>
       </div>
+
       {/* 상세 별점 */}
       <div className="flex w-full flex-col justify-between gap-1">
         {ratingCategory.map(category => (
@@ -57,10 +58,7 @@ function RatingSection({ projectId }: Props) {
               {category.name}
             </p>
             <div className="h-3 w-full rounded bg-gray-200 mb:h-5 tbc:h-5">
-              <div
-                className={"h-3 rounded bg-yellow-500 mb:h-5 tbc:h-5"}
-                style={{ width: starPercent(category.rate) }}
-              />
+              <div className="h-3 rounded bg-yellow-500 mb:h-5 tbc:h-5" style={{ width: starPercent(category.rate) }} />
             </div>
             <p className="min-w-6 text-right text-base font-bold text-blue-500 mb:text-sm mb:font-semibold tbc:text-sm tbc:font-semibold">
               {category.rate.toString().padEnd(3, ".0")}
