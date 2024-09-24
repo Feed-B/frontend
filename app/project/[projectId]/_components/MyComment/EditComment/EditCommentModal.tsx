@@ -10,7 +10,7 @@ import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterRating from "../../Comment/EnterRating";
 import EnterText from "../../Comment/EnterText";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
-import EditButton from "../../Comment/EditButton";
+import EditButton from "./EditButton";
 
 interface Props {
   openModal: boolean;

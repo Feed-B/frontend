@@ -8,8 +8,8 @@ import ToolTip from "../../Comment/ToolTip";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterRating from "../../Comment/EnterRating";
 import EnterText from "../../Comment/EnterText";
-import WriteButton from "../../Comment/WriteButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
+import WriteButton from "./WriteButton";
 
 interface Props {
   openModal: boolean;

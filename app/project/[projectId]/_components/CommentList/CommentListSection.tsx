@@ -4,8 +4,8 @@ import React from "react";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
-import Pagination from "../Comment/Pagination";
-import InfinityScroll from "../Comment/InfinityScroll";
+import Pagination from "./Pagination";
+import InfinityScroll from "./InfinityScroll";
 
 interface Props {
   projectId: number;

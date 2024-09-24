@@ -2,12 +2,12 @@
 
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import ToolTip from "../../Comment/ToolTip";
-import WriteCommentShield from "../../Shield/WriteCommentShield";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
-import WriteButton from "../../Comment/WriteButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
+import WriteCommentShield from "./WriteCommentShield";
+import WriteButton from "./WriteButton";
 
 interface Props {
   projectId: number;

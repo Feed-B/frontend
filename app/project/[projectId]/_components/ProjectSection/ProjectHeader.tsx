@@ -15,8 +15,8 @@ import WarningModal from "@/app/_components/Modal/WarningModal";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
-import SocialDropBox from "../MenuDropBox/SocialDropBox";
-import MenuDropBox from "../MenuDropBox/MenuDropBox";
+import SocialDropBox from "../Project/DropBox/SocialDropBox";
+import MenuDropBox from "../Project/DropBox/MenuDropBox";
 
 interface Props {
   projectId: number;

@@ -6,8 +6,8 @@ import Button from "@/app/_components/Button/Button";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
-import { useEnterCommentContext } from "../../_context/EnterCommentProvider";
-import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
+import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
+import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface Props {
   projectId: number;

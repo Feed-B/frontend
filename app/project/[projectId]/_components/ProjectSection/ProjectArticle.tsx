@@ -10,8 +10,8 @@ import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import { IMAGE_TYPE } from "@/app/_constants/ProjectData";
 import LinkSection from "../ProjectSection/LinkSection";
-import ButtonSlide from "../ImageSlide/ButtonSlide";
-import ScrollSlide from "../ImageSlide/ScrollSlide";
+import ButtonSlide from "../Project/ImageSlide/ButtonSlide";
+import ScrollSlide from "../Project/ImageSlide/ScrollSlide";
 
 interface Props {
   projectId: number;
