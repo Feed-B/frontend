@@ -35,7 +35,7 @@ function SocialDropBox({ projectId }: { projectId: number }) {
     <>
       <button type="button" onClick={toggleState} ref={buttonRef}>
         <Image
-          className="cursor-pointer rounded-lg hover:bg-gray-100"
+          className="cursor-pointer rounded-lg hover:bg-gray-200"
           src={shareIcon}
           alt="프로젝트 공유하기."
           width={24}

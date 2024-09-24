@@ -29,26 +29,28 @@ function MenuDropBox({ mode = "project", handleEditClick, projectId, handleDelet
     project: {
       editDropDown: <DropDown.LinkItem href={`/project/${projectId}/edit`}>수정</DropDown.LinkItem>,
       handleDeleteClick: () => handleDeleteMode(true),
+      iconSize: 24,
     },
     comment: {
       editDropDown: <DropDown.TextItem onClick={handleEditClick}>수정</DropDown.TextItem>,
       handleDeleteClick: () => handleDeleteMode(false),
+      iconSize: 20,
     },
   };
 
-  const { editDropDown, handleDeleteClick } = menuMode[mode === "project" ? "project" : "comment"];
+  const { editDropDown, handleDeleteClick, iconSize } = menuMode[mode === "project" ? "project" : "comment"];
 
   return (
     <button className="relative" type="button" onClick={toggleState} ref={buttonRef}>
       <Image
-        className="cursor-pointer rounded-lg hover:bg-gray-100"
+        className="cursor-pointer rounded-lg hover:bg-gray-200"
         src={kebabIcon}
         alt="프로젝트 메뉴."
-        width={24}
+        width={iconSize}
         priority
       />
       {isOpen && (
-        <DropDown className="mt-2" itemRef={dropdownRef}>
+        <DropDown className="right-2 mt-2" itemRef={dropdownRef}>
           {editDropDown}
           <DropDown.TextItem onClick={handleDeleteClick}>삭제</DropDown.TextItem>
         </DropDown>

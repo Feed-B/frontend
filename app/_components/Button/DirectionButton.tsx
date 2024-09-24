@@ -36,7 +36,7 @@ const DirectionButton: React.FC<DirectionButtonProps> = ({ direction, className,
   };
 
   const DefaultDirectionButtonClass =
-    "rounded-full h-11 w-11 flex items-center justify-center bg-gray-800 hover:bg-gray-900";
+    "rounded-full h-10 w-10 flex items-center justify-center bg-gray-800 hover:bg-gray-900";
   const DirectionButtonClass = twMerge(DefaultDirectionButtonClass, className);
 
   return (

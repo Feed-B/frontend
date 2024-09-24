@@ -28,30 +28,30 @@ function EnterRating({ ratingValue }: Props) {
   }, [ratingValue]);
 
   return (
-    <>
-      <div className="flex w-full justify-between px-3" onMouseUp={handleMouseUp}>
-        {ratingCategory.map(category => (
-          <div className="flex flex-col gap-1.5" key={category.id}>
-            <p className="text-base font-medium text-gray-900">{category.name}</p>
-            <div className="flex items-center">
-              {[...Array(MAX_STAR)].map((_, index) => (
-                <Image
-                  src={index < rating[category.id] ? fullStarIcon : emptyStarIcon}
-                  alt={index < rating[category.id] ? "노란색 별" : "회색 별"}
-                  width={40}
-                  key={index}
-                  onMouseDown={() => handleMouseDown(category.id, index + 1)}
-                  onMouseMove={() => handleMouseMove(category.id, index + 1)}
-                />
-              ))}
-              <p className="h-full min-w-7 content-end text-sm tracking-widest text-gray-600">
-                {rating[category.id]}/{MAX_STAR}
-              </p>
-            </div>
+    <div
+      className="flex w-full gap-4 px-3 mb:flex-wrap tbc:max-w-[500px] tbc:flex-wrap tbr:justify-between pc:justify-between"
+      onMouseUp={handleMouseUp}>
+      {ratingCategory.map(category => (
+        <div className="flex flex-col gap-1.5" key={category.id}>
+          <p className="text-base font-medium text-gray-900 mb:text-sm tbc:text-sm">{category.name}</p>
+          <div className="flex items-center">
+            {[...Array(MAX_STAR)].map((_, index) => (
+              <Image
+                src={index < rating[category.id] ? fullStarIcon : emptyStarIcon}
+                alt={index < rating[category.id] ? "노란색 별" : "회색 별"}
+                width={40}
+                key={index}
+                onMouseDown={() => handleMouseDown(category.id, index + 1)}
+                onMouseMove={() => handleMouseMove(category.id, index + 1)}
+              />
+            ))}
+            <p className="h-full min-w-7 content-end text-sm tracking-widest text-gray-600 mb:text-xs tbc:text-xs">
+              {rating[category.id]}/{MAX_STAR}
+            </p>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
 

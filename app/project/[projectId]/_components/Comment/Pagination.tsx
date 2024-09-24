@@ -42,7 +42,7 @@ function Pagination({ projectId }: Props) {
 
   return (
     <>
-      <div className={`grid grid-cols-4 gap-x-6 gap-y-5 ${totalPages > 1 && "grid-rows-2"}`}>
+      <div className={`grid grid-cols-4 gap-x-6 gap-y-5 tbr:grid-cols-3 ${totalPages > 1 && "grid-rows-2"}`}>
         {commentList.content.map(comment => (
           <CommentCard key={comment.authorId} projectId={projectId} comment={comment} />
         ))}
