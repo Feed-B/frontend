@@ -10,7 +10,7 @@ function StackBox() {
   const { projectState, isDeleteStack, clearStack } = useGetStack();
 
   return (
-    <div className="flex min-h-12 w-full items-center gap-3 rounded-xl border border-solid border-[#EBEBEB] bg-white p-3">
+    <div className="flex min-h-12 w-full items-center gap-3 rounded-xl border border-solid border-[#EBEBEB] bg-white p-3 mb:hidden tbc:hidden tbr:hidden">
       <div
         className="flex h-7 min-w-20 cursor-pointer items-center gap-1 border-r border-solid border-[#EBEBEB] bg-white px-2 py-1"
         onClick={clearStack}>

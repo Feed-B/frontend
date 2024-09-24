@@ -10,6 +10,7 @@ import EmptyProjectImage from "@/app/addproject/_components/ProjectImageBox/Empt
 import ProjectImageCard from "@/app/addproject/_components/ProjectImageBox/ProjectImageCard";
 import RadioButton from "@/app/addproject/_components/RadioButton";
 import { useToast } from "@/app/_context/ToastContext";
+import AddImageButton from "./AddImageButton";
 
 interface ImageType {
   id: string;
@@ -23,6 +24,7 @@ interface ProjectImageBoxProps {
   initialImageType?: string;
   initialUrlList?: string[];
   register?: UseFormRegisterReturn;
+  error?: string;
 }
 
 function ProjectImageBox({
@@ -31,11 +33,14 @@ function ProjectImageBox({
   initialImageType = "",
   initialUrlList = [],
   register,
+  error,
 }: ProjectImageBoxProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedSize, setSelectedSize] = useState(initialImageType || "웹");
   const [showImageUrlList, setShowImageUrlList] = useState<ImageType[]>([]);
   const { addToast } = useToast();
+
+  const borderClass = error ? "border-red-300" : "border-gray-200";
 
   useEffect(() => {
     if (initialUrlList.length > 0) {
@@ -156,9 +161,9 @@ function ProjectImageBox({
           {provided => (
             <div className="cardLists" {...provided.droppableProps} ref={provided.innerRef}>
               <div
-                className={`flex h-[252px] ${showImageUrlList.length > 0 ? "w-full" : "w-[690px]"} items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-100 p-4`}>
+                className={`flex items-center justify-center overflow-y-hidden rounded-lg border-2 border-dashed ${borderClass} bg-gray-100 p-4 mb:h-24 mb:justify-start mb:p-3 tbc:h-[156px] tbc:justify-start tbr:min-h-[256px] pc:min-h-[256px]`}>
                 {showImageUrlList.length > 0 ? (
-                  <div className="flex h-full w-full flex-row items-start gap-4">
+                  <div className="flex w-full flex-row items-start gap-4 tbr:flex-wrap pc:flex-wrap">
                     {showImageUrlList.map((image, index) => (
                       <Draggable draggableId={image.id} index={index} key={image.id}>
                         {provided => (
@@ -175,13 +180,16 @@ function ProjectImageBox({
                     ))}
                     {provided.placeholder}
                     {showImageUrlList.length < 5 && (
-                      <div
-                        className="flex h-[220px] w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50"
-                        onClick={handleUploadButtonClick}>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
-                          <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
+                      <>
+                        <div
+                          className="flex min-h-[220px] min-w-[220px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-500 hover:bg-blue-50 mb:hidden tbc:hidden"
+                          onClick={handleUploadButtonClick}>
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
+                            <Image src={whitePlusIcon} width={18} alt="이미지 추가 버튼" />
+                          </div>
                         </div>
-                      </div>
+                        <AddImageButton count={showImageUrlList.length + 1} onClick={handleUploadButtonClick} />
+                      </>
                     )}
                   </div>
                 ) : (

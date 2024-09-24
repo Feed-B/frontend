@@ -10,9 +10,10 @@ import { useGetSkillStack } from "../../_context/SkillStackProvider";
 
 interface SkillStackSearchProps {
   setTouchedStack?: (isTouch: boolean) => void;
+  error?: string;
 }
 
-function SkillStackSearch({ setTouchedStack }: SkillStackSearchProps) {
+function SkillStackSearch({ setTouchedStack, error }: SkillStackSearchProps) {
   const stackData = FULL_STACK_DATA;
   const [isHidden, setIsHidden] = useState(true);
   const [liOver, setLiOver] = useState(false);
@@ -22,6 +23,8 @@ function SkillStackSearch({ setTouchedStack }: SkillStackSearchProps) {
   const exceptionRef = useRef<HTMLDivElement>(null);
 
   const { isAddStack } = useGetSkillStack();
+
+  const borderClass = error ? "border-red-300" : "border-gray-200";
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = useCallback(event => {
     const { value } = event.currentTarget;
@@ -65,7 +68,7 @@ function SkillStackSearch({ setTouchedStack }: SkillStackSearchProps) {
   return (
     <div className="relative">
       <div
-        className="mb-1 flex flex-row items-center gap-3 rounded-lg border border-solid border-gray-200 p-3"
+        className={`mb-1 flex flex-row items-center gap-3 rounded-lg border border-solid ${borderClass} p-3`}
         ref={exceptionRef}>
         <Image src={searchIcon} alt="검색 아이콘" width={16} priority />
         <input
@@ -108,6 +111,7 @@ function SkillStackSearch({ setTouchedStack }: SkillStackSearchProps) {
           </ul>
         </div>
       )}
+      <div className="h-4">{error && <p className="text-sm text-red-500">{error}</p>}</div>
     </div>
   );
 }

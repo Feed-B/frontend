@@ -46,16 +46,16 @@ function RatingBox(props: RatingBoxProps) {
   };
 
   return (
-    <div className="flex w-full items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6">
+    <div className="flex w-full flex-wrap items-center justify-center gap-10 rounded-xl bg-gray-100 px-8 py-6 mb:justify-start mb:gap-5 tbc:justify-start tbr:justify-start">
       <div className="flex items-center gap-2">
-        <p className="text-sm font-semibold text-gray-900">총점</p>
-        <p className="text-2xl font-bold text-gray-900">{props.averageRank}</p>
+        <p className="text-sm font-semibold text-gray-900 mb:text-xs">총점</p>
+        <p className="text-2xl font-bold text-gray-900 mb:text-xl">{props.averageRank}</p>
         <div className="flex items-center">{renderStars(props.averageRank)}</div>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4 mb:flex-col tbc:flex-col tbr:flex-col">
         {Object.entries(rating).map(([key, value]) => (
           <div key={key} className="flex items-center justify-end gap-1">
-            <p className="text-xs text-gray-900">{ratingLabels[key]}</p>
+            <p className="text-xs text-gray-900 mb:text-[8px]">{ratingLabels[key]}</p>
             {renderStars(value)}
             <p className="min-w-5 text-[10px] text-gray-600">{value}/5</p>
           </div>

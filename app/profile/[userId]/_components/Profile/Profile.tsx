@@ -27,19 +27,28 @@ function Profile({ isMyPage }: { isMyPage: boolean }) {
   return (
     <>
       {isOpen && <EditProfileModal profileData={userProfileData} openModal={isOpen} handleModalClose={toggleState} />}
-      <form className="relative flex items-start justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8">
-        <div className="relative">
-          <ProfileImage
-            imageUrl={userProfileData?.imageUrl ? userProfileData.imageUrl : "default"}
-            className="h-[120px] w-[120px]"
-          />
-        </div>
+      <form
+        className="relative flex items-center justify-start gap-8 rounded-lg border border-solid border-gray-200 p-8 
+      mb:gap-2 mb:pt-3">
+        <ProfileImage
+          imageUrl={userProfileData?.imageUrl ? userProfileData.imageUrl : "default"}
+          className="relative h-[120px] w-[120px] flex-shrink-0 
+          mb:h-[66px] mb:w-[66px]"
+        />
         <div className="mt-2.5 flex flex-col gap-3">
-          <div className="flex items-center gap-4">
+          <div
+            className="flex items-center gap-4 
+          mb:gap-1">
             <div className="text-lg font-semibold text-gray-900">{userProfileData?.nickName}</div>
             <JobBadge job={JOB_CATEGORIES_KR[userProfileData.job] as JobCategoriesType} />
           </div>
-          <div className="text-sm text-gray-700">{userProfileData?.aboutMe}</div>
+          <p
+            className="w-[81%] text-sm text-gray-700 
+          mb:w-auto 
+          tbc:w-auto 
+          tbr:w-auto">
+            {userProfileData?.aboutMe}
+          </p>
         </div>
         {isMyPage && (
           <Button
@@ -47,7 +56,10 @@ function Profile({ isMyPage }: { isMyPage: boolean }) {
             type="button"
             bgColor="stroke"
             buttonSize="normal"
-            className="absolute bottom-8 right-8 w-28">
+            className="tbc:p-x-1 absolute bottom-8 right-8 w-28 border-none text-blue-500 
+            mb:-right-1.5 mb:top-3.5 mb:bg-transparent 
+            tbc:right-9 tbc:top-8 tbc:w-[84px] tbc:px-1
+            tbr:right-9 tbr:top-8 tbr:w-[84px] tbr:px-1">
             {MY_PAGE_TEXT.EDIT_PROFILE}
           </Button>
         )}

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { getRedirectUrl, setToken as setLocalStorageToken } from "@/app/_utils/handleToken";
+import { getRedirectUrl, setToken as setLocalStorageToken, setTokenInCookie } from "@/app/_utils/handleToken";
 import LoadingWrapper from "@/app/_components/LoadingWrapper/LoadingWrapper";
 import { useLogin } from "@/app/_context/LoginProvider";
 
@@ -38,6 +38,7 @@ function SuccessContent({ router }: any) {
       // 토큰을 전역으로 관리
       setToken(accessToken);
       setLocalStorageToken(accessToken);
+      setTokenInCookie(accessToken);
       const timestamp = Date.now();
       localStorage.setItem("tokenTimestamp", timestamp.toString());
     }

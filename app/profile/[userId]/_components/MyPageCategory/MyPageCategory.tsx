@@ -16,7 +16,7 @@ interface MyPageCategory {
 function MyPageCategory({ selectCategory, handleSelectCategory, isMyPage }: MyPageCategory) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-lg font-bold text-gray-900">{MY_PAGE_TEXT.MY_PAGE}</div>
+      <div className="hidden text-lg font-bold text-gray-900 pc:block">{MY_PAGE_TEXT.MY_PAGE}</div>
       <ProjectCategoryButton
         onClick={handleSelectCategory}
         id={"myProject"}

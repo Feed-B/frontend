@@ -10,7 +10,7 @@ interface ProjectImageCardProps {
 
 function ProjectImageCard({ index, imageUrl, handleImageDelete }: ProjectImageCardProps) {
   return (
-    <div className="relative h-[220px] w-[220px] rounded-xl border border-solid border-gray-300 bg-white hover:cursor-move hover:border-blue-500 hover:shadow-md active:border-blue-500">
+    <div className="relative h-[220px] w-[220px] rounded-xl border border-solid border-gray-300 bg-white hover:cursor-move hover:border-blue-500 hover:shadow-md active:border-blue-500 mb:h-[72px] mb:w-[72px] tbc:h-[124px] tbc:w-[124px]">
       <Image
         fill
         sizes="max-width"
@@ -20,7 +20,7 @@ function ProjectImageCard({ index, imageUrl, handleImageDelete }: ProjectImageCa
         priority
       />
       <div
-        className="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-700"
+        className="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-700 mb:right-[-20%] mb:top-[-12%]"
         onClick={() => handleImageDelete(index)}>
         <Image src={whiteDeleteIcon} width={18} alt="이미지 삭제 버튼" />
       </div>

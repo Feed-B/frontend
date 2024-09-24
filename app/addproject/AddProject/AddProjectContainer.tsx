@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { notFound, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import Button from "@/app/_components/Button/Button";
 import { addProjectApi } from "@/app/_apis/addProjectApi";
 import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
@@ -13,6 +12,7 @@ import useModal from "@/app/_hooks/useModal";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -20,22 +20,16 @@ import ProjectImageBox from "../_components/ProjectImageBox/ProjectImageBox";
 import Title from "../_components/Title";
 import SkillStackProvider from "../_context/SkillStackProvider";
 import WarningModal from "../../_components/Modal/WarningModal";
+import ProgressBox from "../_components/ProgressBox";
+import ErrorMessage from "../_components/ErrorMessage";
 
-const TITLE_MAX_LENGTH = 50;
-const DESCRIPTION_MAX_LENGTH = 150;
 const THUMBNAIL_INDEX = 1;
 
 type AddSectionDataType = TeammateType | ProjectLinkListType;
 
-const ErrorMessage = ({ error }: any) => {
-  return (
-    <div className="h-4">
-      <p className="text-sm text-red-500">{error.message}</p>
-    </div>
-  );
-};
-
 function AddProjectContainer() {
+  const [progress, setProgress] = useState(0);
+
   const queryClient = useQueryClient();
   const router = useRouter();
   const accessToken = getToken()?.accessToken;
@@ -69,6 +63,39 @@ function AddProjectContainer() {
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
+
+  useEffect(() => {
+    const {
+      thumbnail,
+      title,
+      introduction,
+      content,
+      serviceUrl,
+      imageList,
+      projectTechStackList,
+      teammateList,
+      projectLinkList,
+    } = watch();
+
+    const isFilled = (field: string) => field && field.trim() !== "";
+    const isNonEmptyArray = (arr: any) => Array.isArray(arr) && arr.length > 0;
+
+    const filledFields = [
+      thumbnail,
+      isFilled(title),
+      isFilled(introduction),
+      isFilled(content),
+      isFilled(serviceUrl),
+      isNonEmptyArray(imageList),
+      isNonEmptyArray(projectTechStackList),
+      isNonEmptyArray(teammateList) && teammateList.some(item => isFilled(item.name) && isFilled(item.job)),
+      isNonEmptyArray(projectLinkList) && projectLinkList.some(item => isFilled(item.siteType) && isFilled(item.url)),
+    ].filter(Boolean).length;
+
+    const newProgress = (filledFields / 9) * 100;
+    setProgress(newProgress);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch()]);
 
   const handleTechStackInput = useCallback(
     (stackList: string[]) => {
@@ -175,7 +202,6 @@ function AddProjectContainer() {
 
     try {
       await postMutation.mutateAsync(formData);
-      console.log("Project uploaded successfully");
     } catch (error) {
       console.error("Error occurred during mutation", error);
     }
@@ -185,8 +211,8 @@ function AddProjectContainer() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data">
-        <div className="mt-8 flex w-full flex-col gap-8">
+      <form onSubmit={handleSubmit(handleFormSubmit)} encType="multipart/form-data" className="w-full">
+        <div className="mb-40 mt-8 flex w-full flex-col gap-8 tbr:mb-32 pc:mb-32">
           <section className="flex w-fit flex-col gap-4">
             <Title title="썸네일" />
             <div>
@@ -195,8 +221,9 @@ function AddProjectContainer() {
                   required: "썸네일을 추가해주세요",
                 })}
                 setThumbnail={handleThumbnailFile}
+                error={errors.thumbnail}
               />
-              {errors.thumbnail && <ErrorMessage error={errors.thumbnail} />}
+              <div className="h-4">{errors.thumbnail && <ErrorMessage error={errors.thumbnail} />}</div>
             </div>
           </section>
           <Input
@@ -207,12 +234,14 @@ function AddProjectContainer() {
                 message: `제목은 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="프로젝트 이름 *"
+            title="프로젝트 이름"
             type="text"
             name="title"
             placeholder="제목을 입력해주세요"
             inputSize="large"
             error={errors.title}
+            onChange={e => setValue("title", e.target.value)}
+            className="mb:w-full tbc:w-full"
           />
           <Input
             register={register("introduction", {
@@ -222,12 +251,14 @@ function AddProjectContainer() {
                 message: `소개는 ${TITLE_MAX_LENGTH}자를 초과할 수 없습니다`,
               },
             })}
-            title="소개 *"
+            title="소개"
             type="text"
             name="introduction"
             placeholder={`소개를 입력해주세요 (최대 ${TITLE_MAX_LENGTH}자)`}
             inputSize="large"
             error={errors.introduction}
+            onChange={e => setValue("introduction", e.target.value)}
+            className="mb:w-full tbc:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="본문" name="content" label />
@@ -241,14 +272,14 @@ function AddProjectContainer() {
                   },
                 })}
                 maxLength={DESCRIPTION_MAX_LENGTH}
-                className="h-52 w-[690px] resize-none rounded-lg border border-solid border-gray-200 px-2 py-3 text-sm font-normal focus:border-gray-900 focus:outline-none"
+                className={`h-52 w-full resize-none rounded-lg border border-solid ${errors.content ? "border-red-300" : "border-gray-200"} px-2 py-3 text-sm font-normal ${errors.content ? "focus:border-red-500" : "focus:border-gray-900"} focus:outline-none tbr:w-[690px] pc:w-[690px]`}
                 placeholder={`텍스트를 입력해주세요 (최대 ${DESCRIPTION_MAX_LENGTH}자)`}
                 name="content"
                 id="content"
                 value={watch("content")}
                 onChange={e => setValue("content", e.target.value)}
               />
-              {errors.content && <ErrorMessage error={errors.content} />}
+              <div className="h-4">{errors.content && <ErrorMessage error={errors.content} />}</div>
             </div>
           </section>
           <Input
@@ -259,12 +290,14 @@ function AddProjectContainer() {
                 message: "유효한 URL을 입력해주세요",
               },
             })}
-            title="프로젝트 링크 *"
+            title="프로젝트 링크"
             type="text"
             name="serviceUrl"
             placeholder="http://"
             inputSize="large"
             error={errors.serviceUrl}
+            onChange={e => setValue("serviceUrl", e.target.value)}
+            className="mb:w-full tbc:w-full"
           />
           <section className="flex flex-col gap-4">
             <Title title="이미지" />
@@ -275,49 +308,44 @@ function AddProjectContainer() {
                 })}
                 setImageType={imageType => setFormValues(prevState => ({ ...prevState, imageType }))}
                 handleImageFile={handleImageFile}
+                error={errors.imageList?.message}
               />
-              {errors.imageList && <ErrorMessage error={errors.imageList} />}
+              <div className="h-4">{errors.imageList && <ErrorMessage error={errors.imageList} />}</div>
             </div>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <SkillStackProvider>
-              <SkillStackSection handleTechStackInput={handleTechStackInput} setTouchedStack={setTouchedStack} />
-              {errors.projectTechStackList && <ErrorMessage error={errors.projectTechStackList} />}
+              <SkillStackSection
+                handleTechStackInput={handleTechStackInput}
+                setTouchedStack={setTouchedStack}
+                error={errors.projectTechStackList?.message}
+              />
             </SkillStackProvider>
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <AddSection
               setError={setError}
               clearErrors={clearErrors}
               title="팀원"
-              placeholder="이름"
               name="projectTeammates"
-              inputWidth="w-[114px]"
+              inputWidth="w-[118px]"
               dropDownType="job"
               onInputChange={handleTeammateChange}
               touchedTeammate={touchedTeammate}
               setTouchedTeammate={setTouchedTeammate}
+              error={errors.teammateList?.message}
             />
-            {errors.teammateList && <ErrorMessage error={errors.teammateList} />}
           </section>
-          <section className="flex w-[690px] flex-col gap-4">
+          <section className="flex w-full flex-col gap-4 tbr:w-[690px] pc:w-[690px]">
             <AddSection
               title="추가 링크"
-              placeholder="http://"
               name="projectLinks"
               dropDownType="tool"
               onInputChange={handleProjectLinkChange}
             />
           </section>
         </div>
-        <div className="mb-16 mt-8 flex justify-end gap-2">
-          <Button buttonSize="normal" bgColor="gray" className="border-none" onClick={openCancelModal}>
-            취소
-          </Button>
-          <Button type="submit" buttonSize="normal" bgColor="yellow">
-            등록
-          </Button>
-        </div>
+        <ProgressBox progress={progress} openCancelModal={openCancelModal} />
       </form>
       {isCancelModalOpen && <WarningModal closeModal={closeCancelModal} />}
     </>

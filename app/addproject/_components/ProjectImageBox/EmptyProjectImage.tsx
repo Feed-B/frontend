@@ -1,8 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import fullFileIcon from "@/public/icons/fullFile.svg";
 import Button from "@/app/_components/Button/Button";
 import uploadIcon from "@/public/icons/blackUpload.svg";
+import AddImageButton from "./AddImageButton";
 
 const IMAGE_DESCRIPTION = "프로젝트를 설명할 이미지를 업로드해주세요";
 const IMAGE_SUB_DESCRIPTION = "최대 5장으로 구성해주세요";
@@ -12,7 +13,23 @@ interface EmptyProjectImageProps {
 }
 
 function EmptyProjectImage({ onButtonClick }: EmptyProjectImageProps) {
-  return (
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobileOrTablet(width <= 1023);
+    };
+
+    handleResize(); // 초기 실행 시 화면 크기 감지
+    window.addEventListener("resize", handleResize); // 화면 크기 변경 시 감지
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobileOrTablet ? (
+    <AddImageButton count={1} onClick={onButtonClick} />
+  ) : (
     <div className="flex flex-col items-center gap-5">
       <div className="flex flex-col items-center gap-3">
         <div className="text-center">

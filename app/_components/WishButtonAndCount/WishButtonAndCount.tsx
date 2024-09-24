@@ -17,10 +17,17 @@ interface WishButtonAndCountProps {
   isFavorite: boolean;
   wishCount: number;
   colorMode?: "bright" | "dark";
+  windowSize?: "normal" | "mobile";
   projectId: number;
 }
 
-function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark", projectId }: WishButtonAndCountProps) {
+function WishButtonAndCount({
+  isFavorite = false,
+  wishCount,
+  colorMode = "dark",
+  windowSize = "normal",
+  projectId,
+}: WishButtonAndCountProps) {
   const isDarkMode = colorMode === "dark";
   const { isLoggedIn } = useCheckLogin();
 
@@ -87,20 +94,38 @@ function WishButtonAndCount({ isFavorite = false, wishCount, colorMode = "dark",
   return (
     <>
       {openModal && <LoginModal openModal={openModal} handleModalClose={handleModalClose} />}
-      <div className="flex items-center justify-center gap-0.5">
-        <button
-          type="button"
-          className={`flex min-w-5 items-center gap-2.5 text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}
-          onClick={handleFavorite}>
-          <Image
-            width={24}
-            height={24}
-            src={favoriteState.isFavorite ? full.icon : empty.icon}
-            alt="프로젝트 찜하기."
-          />
-          {favoriteState.wishCountState}
-        </button>
-      </div>
+      {windowSize === "normal" ? (
+        <div className="flex items-center justify-center gap-0.5">
+          <button
+            type="button"
+            className={`flex min-w-5 items-center gap-2.5 text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}
+            onClick={handleFavorite}>
+            <Image
+              width={24}
+              height={24}
+              src={favoriteState.isFavorite ? full.icon : empty.icon}
+              alt="프로젝트 찜하기."
+            />
+            {favoriteState.wishCountState}
+          </button>
+        </div>
+      ) : (
+        <div
+          className={`flex h-[60px] w-[60px] items-center justify-center rounded-full ${favoriteState.isFavorite ? "bg-gray-900" : "bg-gray-100"}`}>
+          <button
+            type="button"
+            className={`flex min-w-5 flex-col items-center text-center text-sm ${favoriteState.isFavorite ? full.text : empty.text}`}
+            onClick={handleFavorite}>
+            <Image
+              width={24}
+              height={24}
+              src={favoriteState.isFavorite ? full.icon : empty.icon}
+              alt="프로젝트 찜하기."
+            />
+            {favoriteState.wishCountState}
+          </button>
+        </div>
+      )}
     </>
   );
 }

@@ -14,7 +14,7 @@ interface LinkListProps {
 function LinkSection({ linkList }: LinkListProps) {
   return (
     <section>
-      <p className="mb-2 text-sm font-semibold">추가 링크</p>
+      <p className="mb-2 text-base font-bold pc:text-sm pc:font-semibold">추가 링크</p>
       <div className="flex gap-2">
         {linkList.map(link => {
           const linkItem = TOOL_DATA.find(item => item.name === link.siteType);

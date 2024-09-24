@@ -16,9 +16,10 @@ interface DropDownProps {
   inputWidth?: string;
   handleInputChange?: (value: string) => void;
   initialDropDownValue?: string;
+  error?: string;
 }
 
-function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownValue }: DropDownProps) {
+function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownValue, error }: DropDownProps) {
   const toolData = TOOL_DATA.reduce(
     (acc, { name }) => {
       acc[name] = name;
@@ -33,6 +34,8 @@ function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownV
   };
 
   const data = dataMap[dataType];
+
+  const borderClass = error ? "border-red-300" : "border-gray-200";
 
   const { isOpen, toggleState } = useToggleHook();
 
@@ -60,7 +63,7 @@ function DropDownBox({ dataType, inputWidth, handleInputChange, initialDropDownV
   return (
     <div className="relative">
       <div
-        className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} cursor-pointer items-center justify-between gap-2 rounded-lg border border-solid border-gray-200 p-2 text-sm font-normal text-gray-900`}
+        className={`flex h-11 ${inputWidth ? inputWidth : "w-[118px]"} cursor-pointer items-center justify-between gap-2 rounded-lg border border-solid ${borderClass} p-2 text-sm font-normal text-gray-900`}
         onClick={toggleState}
         ref={exceptionRef}>
         {item}

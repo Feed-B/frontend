@@ -22,7 +22,7 @@ function WriteComment({ projectId }: Props) {
       {!isLoggedIn && <WriteCommentShield />}
       <div className={`${!isLoggedIn && "blur-sm"}`}>
         <div className="mb-8 flex items-center gap-1">
-          <p className="text-xl font-semibold text-gray-900">프로젝트를 평가해주세요</p>
+          <p className="text-xl font-semibold text-gray-900">프로젝트를 리뷰해주세요</p>
           <ToolTip />
         </div>
         <div className="flex flex-col gap-6">

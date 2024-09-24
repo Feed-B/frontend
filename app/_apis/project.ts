@@ -9,15 +9,21 @@ import {
 } from "./schema/projectResponse";
 
 export const projectApi = {
-  getProjectList: async ({
-    page = 1,
-    size = 12,
-    limit = 0,
-    searchString = "",
-    projectTechStacks = [],
-    sortCondition = "RECENT",
-  }: ProjectListParams) => {
-    const HEADER = getHeaders();
+  getProjectList: async (
+    {
+      page = 1,
+      size = 12,
+      limit = 0,
+      searchString = "",
+      projectTechStacks = [],
+      sortCondition = "RECENT",
+    }: ProjectListParams,
+    token?: string
+  ) => {
+    const applicationHeaders = {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    };
     return await httpClient().get<ProjectResponseType>(
       "/projects",
       {
@@ -28,7 +34,7 @@ export const projectApi = {
         size,
         limit,
       },
-      HEADER.applicationHeaders,
+      applicationHeaders,
       ["pojectList"]
     );
   },
