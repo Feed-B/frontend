@@ -3,7 +3,7 @@ import { FormEvent, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
-import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import ProfileImage from "@/app/_components/Profile/ProfileImage";
 import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";

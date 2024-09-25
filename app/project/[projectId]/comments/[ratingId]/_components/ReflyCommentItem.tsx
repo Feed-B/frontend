@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import ProfileImage from "@/app/_components/Profile/ProfileImage";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import useToggleHook from "@/app/_hooks/useToggleHook";

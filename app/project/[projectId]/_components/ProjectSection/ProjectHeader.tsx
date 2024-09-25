@@ -3,7 +3,7 @@
 import React from "react";
 import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
+import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";

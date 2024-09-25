@@ -3,7 +3,7 @@ import Image from "next/image";
 import feedbeeIcon from "@/public/beeIcons/yellowBee.svg";
 import fullStarIcon from "@/public/icons/fullStar.svg";
 import Button from "@/app/_components/Button/Button";
-import LoginModal from "@/app/_components/LoginModal/LoginModal";
+import LoginModal from "@/app/_components/Modal/LoginModal";
 import useModal from "@/app/_hooks/useModal";
 
 function WriteCommentShield() {

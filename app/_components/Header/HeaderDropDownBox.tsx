@@ -10,7 +10,7 @@ import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { profileAPI } from "@/app/_apis/ProfileAPI";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import DropDown from "../DropDown/DropDown";
-import ProfileImage from "../ProfileImage/ProfileImage";
+import ProfileImage from "../Profile/ProfileImage";
 
 interface HeaderDropDownBoxProps {
   handleLogout: () => void;

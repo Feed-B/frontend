@@ -6,7 +6,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { FULL_STACK_DATA } from "@/app/_constants/StackData";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
-import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
+import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import ProfileImage from "@/app/_components/Profile/ProfileImage";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 
 interface CommentProfileProps {

@@ -11,9 +11,9 @@ import feedbee from "@/public/beeIcons/yellowBee.svg";
 import logoTextIcon from "@/public/icons/logoText.svg";
 import { getToken } from "@/app/_utils/handleToken";
 import { useLogin } from "@/app/_context/LoginProvider";
-import LoginButton from "../LoginButton/LoginButton";
+import LoginButton from "../Button/LoginButton";
 import Button from "../Button/Button";
-import SignUpModal from "../SignUpModal/SignUpModal";
+import SignUpModal from "../Modal/SignUpModal/SignUpModal";
 import HeaderDropDownBox from "./HeaderDropDownBox";
 import HeaderSkeleton from "./HeaderSkeleton";
 

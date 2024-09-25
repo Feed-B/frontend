@@ -9,8 +9,8 @@ import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
 import Button from "./_components/Button/Button";
 import getQueryClient from "./_queryFactory/getQueryClient";
 import { projectQueryKeys } from "./_queryFactory/projectQuery";
-import LandingProjectList from "./_components/LandingProjectList/LandingProjectList";
-import AnimationSection from "./_components/AnimationSection/AnimationSection";
+import LandingProjectList from "./_components/LandingPage/LandingProjectList";
+import AnimationSection from "./_components/LandingPage/AnimationSection";
 
 export default async function Home() {
   const queryClient = getQueryClient();

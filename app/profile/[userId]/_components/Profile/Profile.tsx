@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import ProfileImage from "@/app/_components/ProfileImage/ProfileImage";
+import ProfileImage from "@/app/_components/Profile/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
