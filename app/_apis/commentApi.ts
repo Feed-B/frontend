@@ -1,19 +1,8 @@
 import { getHeaders } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
-import {
-  CommentDetailResponse,
-  CommentListResponse,
-  MyCommentResponse,
-  ReflyCommentResponse,
-} from "./schema/commentResponse";
+import { CommentDetailResponse, MyCommentResponse } from "./schema/commentResponse";
 
-interface CommentListRequest {
-  projectId?: number;
-  page?: number;
-  size?: number;
-}
-
-interface UploadCommentRequest {
+interface UploadCommentParams {
   ideaRank: number;
   designRank: number;
   functionRank: number;
@@ -21,48 +10,20 @@ interface UploadCommentRequest {
   comment: string;
 }
 
-interface UpadateCommentRequest {
+interface UpadateCommentParams {
   ideaRank: number;
   designRank: number;
   functionRank: number;
   completionRank: number;
   comment: string;
-}
-
-interface ReflyCommentListRequest extends CommentListRequest {
-  ratingId: number;
 }
 
 export const commentApi = {
-  getCommentList: async ({ projectId, page = 1, size = 8 }: CommentListRequest) => {
-    const HEADER = getHeaders();
-    return await httpClient().get<CommentListResponse>(
-      `/projects/${projectId}/ratings`,
-      {
-        page,
-        size,
-      },
-      HEADER.headers,
-      ["commentList"]
-    );
-  },
-  getCommentDetail: async (ratingId: number) => {
+  getComment: async (ratingId: number) => {
     const HEADER = getHeaders();
     return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
       "commentDetail",
     ]);
-  },
-  getReflyCommentList: async ({ ratingId, page = 1, size = 10 }: ReflyCommentListRequest) => {
-    const HEADER = getHeaders();
-    return await httpClient().get<ReflyCommentResponse>(
-      `/projects/${ratingId}/comments`,
-      {
-        page,
-        size,
-      },
-      HEADER.applicationHeaders,
-      ["reflyCommentList"]
-    );
   },
   getMyComment: async (projectId: number) => {
     const HEADER = getHeaders();
@@ -70,7 +31,7 @@ export const commentApi = {
       "myComment",
     ]);
   },
-  postComment: async (projectId: number, data: UploadCommentRequest) => {
+  postComment: async (projectId: number, data: UploadCommentParams) => {
     const HEADER = getHeaders();
     return await httpClient().postData(
       `/projects/${projectId}/ratings`,
@@ -91,7 +52,7 @@ export const commentApi = {
       HEADER.applicationHeaders
     );
   },
-  putComment: async (ratingId: number, data: UpadateCommentRequest) => {
+  putComment: async (ratingId: number, data: UpadateCommentParams) => {
     const HEADER = getHeaders();
     return await httpClient().put(
       `/projects/ratings/${ratingId}`,

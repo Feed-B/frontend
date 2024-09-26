@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { commentApi } from "@/app/_apis/commentApi";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentListApi } from "@/app/_apis/commentListApi";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {
@@ -19,7 +19,7 @@ function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
 
   const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
     queryKey: reflyCommentListQuery.queryKey,
-    queryFn: ({ pageParam = 1 }) => commentApi.getReflyCommentList({ ratingId, page: pageParam, size: 10 }),
+    queryFn: ({ pageParam = 1 }) => commentListApi.getReflyCommentList({ ratingId, page: pageParam, size: 10 }),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;

@@ -1,5 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { commentApi } from "../_apis/commentApi";
+import { commentListApi } from "../_apis/commentListApi";
 
 interface CommentListParams {
   projectId?: number;
@@ -14,15 +15,15 @@ interface ReflyCommentListParams extends CommentListParams {
 export const commentQueryKeys = createQueryKeys("comment", {
   list: (props: CommentListParams) => ({
     queryKey: ["commentList", props.page],
-    queryFn: async () => await commentApi.getCommentList({ ...props }),
+    queryFn: async () => await commentListApi.getCommentList({ ...props }),
   }),
   detail: (ratingId: number) => ({
     queryKey: ["commentData", ratingId],
-    queryFn: async () => await commentApi.getCommentDetail(ratingId),
+    queryFn: async () => await commentApi.getComment(ratingId),
   }),
   reflyList: (props: ReflyCommentListParams) => ({
     queryKey: ["reflyCommentList"],
-    queryFn: async () => await commentApi.getReflyCommentList({ ...props }),
+    queryFn: async () => await commentListApi.getReflyCommentList({ ...props }),
   }),
   myComment: (projectId: number) => ({
     queryKey: ["myComment"],

@@ -12,7 +12,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const projectData = await projectApi.getProject(params.projectId);
-  const commentData = await commentApi.getCommentDetail(params.ratingId);
+  const commentData = await commentApi.getComment(params.ratingId);
 
   return {
     title: `${commentData.authorName} | 피드백 `,
