@@ -33,7 +33,7 @@ export const projectListApi = {
         limit,
       },
       applicationHeaders,
-      ["pojectList"]
+      ["projectList"]
     );
   },
 
