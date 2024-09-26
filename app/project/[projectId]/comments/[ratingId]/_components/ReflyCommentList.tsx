@@ -23,8 +23,8 @@ function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1; // 다음 페이지 번호 반환
+      if (customPageable[0].hasNext) {
+        return customPageable[0].page + 1; // 다음 페이지 번호 반환
       }
       return undefined; // 더 이상 페이지가 없으면 undefined 반환
     },
@@ -39,7 +39,7 @@ function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
 
   return (
     <section className="relative mb-12 mt-6">
-      <h3 className="mb-4">댓글 ({reflyPage?.pages[0].customPageable.totalElements})</h3>
+      <h3 className="mb-4">댓글 ({reflyPage?.pages[0].customPageable[0].totalElements})</h3>
       {reflyPage?.pages.map(reflyList =>
         reflyList.content.map(refly => (
           <ReflyCommentItem key={refly.commentId} replyComment={refly} projectId={projectId} />

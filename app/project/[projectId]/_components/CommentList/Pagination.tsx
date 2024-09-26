@@ -6,7 +6,7 @@ import grayBee from "@/public/beeIcons/grayBee.svg";
 import previousIcon from "@/public/icons/blackArrowLeft.svg";
 import nextIcon from "@/public/icons/blackArrowRight.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import { CommentListResponse } from "@/app/_apis/schema/commentResponse";
+import { CommentListResponse } from "@/app/_apis/schema/commentListResponse";
 import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
 import CommentCard from "./CommentCard";
 
@@ -24,7 +24,7 @@ function Pagination({ projectId }: Props) {
 
   if (!commentList) return null;
 
-  const { totalPages, totalElements, first, last } = commentList.customPageable;
+  const { totalPages, totalElements, first, last } = commentList.customPageable[0];
 
   const moveNextPage = () => {
     if (!last) setCurrentPage((prev: number) => prev + 1);

@@ -1,27 +1,12 @@
 import { getHeaders } from "../_constants/HeaderToken";
+import { UpadateCommentParams, UploadCommentParams } from "../_types/CommentType";
 import httpClient from "./httpClient";
-import { CommentDetailResponse, MyCommentResponse } from "./schema/commentResponse";
-
-interface UploadCommentParams {
-  ideaRank: number;
-  designRank: number;
-  functionRank: number;
-  completionRank: number;
-  comment: string;
-}
-
-interface UpadateCommentParams {
-  ideaRank: number;
-  designRank: number;
-  functionRank: number;
-  completionRank: number;
-  comment: string;
-}
+import { CommentResponse, MyCommentResponse } from "./schema/commentResponse";
 
 export const commentApi = {
   getComment: async (ratingId: number) => {
     const HEADER = getHeaders();
-    return await httpClient().get<CommentDetailResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
+    return await httpClient().get<CommentResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
       "commentDetail",
     ]);
   },

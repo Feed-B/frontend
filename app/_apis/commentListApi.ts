@@ -1,19 +1,8 @@
 import { getHeaders } from "../_constants/HeaderToken";
+import { CommentListParams, ReflyCommentListParams } from "../_types/CommentListType";
 import httpClient from "./httpClient";
-import { CommentListResponse, ReflyCommentResponse } from "./schema/commentResponse";
-
-interface CommentListParams {
-  projectId?: number;
-  page?: number;
-  size?: number;
-}
-
-interface ReflyCommentListParams {
-  ratingId: number;
-  projectId?: number;
-  page?: number;
-  size?: number;
-}
+import { CommentListResponse } from "./schema/commentListResponse";
+import { ReflyCommentResponse } from "./schema/commentResponse";
 
 export const commentListApi = {
   getCommentList: async ({ projectId, page = 1, size = 8 }: CommentListParams) => {

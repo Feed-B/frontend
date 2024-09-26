@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import grayBee from "@/public/beeIcons/grayBee.svg";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import { CommentListResponse } from "@/app/_apis/schema/commentResponse";
+import { CommentListResponse } from "@/app/_apis/schema/commentListResponse";
 import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
 import CommentCard from "./CommentCard";
 
@@ -20,7 +20,7 @@ function InfinityScroll({ projectId }: Props) {
 
   if (!commentList) return null;
 
-  const { totalElements } = commentList.customPageable;
+  const { totalElements } = commentList.customPageable[0];
 
   return (
     <>
