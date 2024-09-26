@@ -1,5 +1,5 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { commentApi } from "../_apis/comment";
+import { commentApi } from "../_apis/commentApi";
 
 interface CommentListParams {
   projectId?: number;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { commentApi } from "@/app/_apis/comment";
+import { commentApi } from "@/app/_apis/commentApi";
 import Button from "@/app/_components/Button/Button";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";

@@ -8,7 +8,7 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import KebabDropDown from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-import { commentApi } from "@/app/_apis/comment";
+import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";

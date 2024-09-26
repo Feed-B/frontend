@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { commentApi } from "@/app/_apis/comment";
+import { commentApi } from "@/app/_apis/commentApi";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import ReflyCommentItem from "./ReflyCommentItem";
 

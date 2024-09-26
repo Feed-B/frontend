@@ -1,6 +1,6 @@
 import "@/app/_styles/globals.css";
-import { commentApi } from "@/app/_apis/comment";
-import { projectApi } from "@/app/_apis/project";
+import { commentApi } from "@/app/_apis/commentApi";
+import { projectApi } from "@/app/_apis/projectApi";
 
 interface Props {
   params: {
