@@ -8,7 +8,7 @@ import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
-import { PutUserDataType, profileAPI, UserDataType, JobType } from "@/app/_apis/ProfileAPI";
+import { PutUserDataType, profileApi, UserDataType, JobType } from "@/app/_apis/userApi";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
@@ -40,7 +40,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
 
   const changeProfileMutation = useMutation({
     mutationFn: (newProfileData: PutUserDataType) => {
-      return profileAPI.putUserData({ userId: profileData.id, userData: newProfileData });
+      return profileApi.putUserData({ userId: profileData.id, userData: newProfileData });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userQueryKeys.detail(Number(profileData.id)).queryKey });

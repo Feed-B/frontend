@@ -1,4 +1,4 @@
-import { ImageIdxType } from "@/app/_apis/ProfileAPI";
+import { ImageIndexType } from "@/app/_apis/userApi";
 
 export const isValidNickName = (beforeNickName: string, afterNickName: string) => {
   if (afterNickName.length !== 0 && beforeNickName === undefined) {
@@ -31,9 +31,9 @@ const CHANGE_PROFILE_CODE = {
 
 export const isImageChange = (beforeImage: string, afterImage: string) => {
   if (!afterImage || afterImage === "default") {
-    return CHANGE_PROFILE_CODE.DEFAULT_PROFILE as ImageIdxType;
+    return CHANGE_PROFILE_CODE.DEFAULT_PROFILE as ImageIndexType;
   } else if (afterImage !== beforeImage) {
-    return CHANGE_PROFILE_CODE.CHANGE_PROFILE as ImageIdxType;
+    return CHANGE_PROFILE_CODE.CHANGE_PROFILE as ImageIndexType;
   }
-  return CHANGE_PROFILE_CODE.STAY_PROFILE as ImageIdxType;
+  return CHANGE_PROFILE_CODE.STAY_PROFILE as ImageIndexType;
 };

@@ -1,5 +1,6 @@
 import { getHeaders } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
+import { SignUpRequest, SignUpResponse } from "./schema/user";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -24,14 +25,20 @@ export interface PutUserDataType {
     job: JobType;
   };
   image: File | null;
-  imageIdx: ImageIdxType;
+  imageIdx: ImageIndexType;
 }
 
-export type ImageIdxType = 0 | 1 | 2;
+export type ImageIndexType = 0 | 1 | 2;
 
 export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | "DEVOPS";
 
-export const profileAPI = {
+export const signUpApi = {
+  postSignUp: async (userData: SignUpRequest): Promise<SignUpResponse> => {
+    return await httpClient().post<SignUpResponse, SignUpRequest>("/signUp", userData);
+  },
+};
+
+export const profileApi = {
   getCurrentUserId: async () => {
     const HEADER = getHeaders();
     return await httpClient().get<CurrentUserIdType>("/profile", {}, HEADER.headers);
