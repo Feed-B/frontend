@@ -1,6 +1,6 @@
 import "@/app/_styles/globals.css";
-import { commentApi } from "@/app/_apis/comment";
-import { projectApi } from "@/app/_apis/project";
+import { commentApi } from "@/app/_apis/commentApi";
+import { projectApi } from "@/app/_apis/projectApi";
 
 interface Props {
   params: {
@@ -12,7 +12,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const projectData = await projectApi.getProject(params.projectId);
-  const commentData = await commentApi.getCommentDetail(params.ratingId);
+  const commentData = await commentApi.getComment(params.ratingId);
 
   return {
     title: `${commentData.authorName} | 피드백 `,

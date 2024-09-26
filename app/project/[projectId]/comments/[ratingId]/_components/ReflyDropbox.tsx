@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { commentApi } from "@/app/_apis/comment";
+import { commentApi } from "@/app/_apis/commentApi";
 import KebabDropDown from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { useToast } from "@/app/_context/ToastContext";

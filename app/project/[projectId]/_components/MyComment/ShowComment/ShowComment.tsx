@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
-import { commentApi } from "@/app/_apis/comment";
+import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ProjectData } from "@/app/_apis/schema/projectResponse";
-import { projectApi } from "@/app/_apis/project";
+import { ProjectData } from "@/app/_types/ProjectListType";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { getToken } from "@/app/_utils/handleToken";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
+import { projectApi } from "@/app/_apis/projectApi";
 import HoverCard from "./HoverCard";
 
 function ProjectCard({ project }: { project: ProjectData }) {

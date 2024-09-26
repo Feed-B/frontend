@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { projectListAPI } from "@/app/_apis/projectListAPI";
+import { projectListApi } from "@/app/_apis/projectListApi";
 import { profileProjectListKeys } from "@/app/_queryFactory/projectListQuery";
 import { MY_PAGE_TEXT } from "./constant";
 
@@ -24,7 +24,7 @@ function MypageProjectSection({
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: projectListQuery.queryKey,
     queryFn: ({ pageParam = 1 }) =>
-      projectListAPI.getMyProjectList({ page: pageParam, size: 16, userId: userId }, projectType),
+      projectListApi.getMyProjectList({ page: pageParam, size: 16, userId: userId }, projectType),
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;

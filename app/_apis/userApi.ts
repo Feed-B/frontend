@@ -1,48 +1,26 @@
 import { getHeaders } from "../_constants/HeaderToken";
+import { UserDataParams } from "../_types/UserType";
 import httpClient from "./httpClient";
+import { SignUpRequest, SignUpResponse, UserIdResponse, UserResponse } from "./schema/userResponse";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const HEADER = getHeaders();
 
-interface CurrentUserIdType {
-  id: number;
-}
+export const signUpApi = {
+  postSignUp: async (userData: SignUpRequest): Promise<SignUpResponse> => {
+    return await httpClient().post<SignUpResponse, SignUpRequest>("/signUp", userData);
+  },
+};
 
-export interface UserDataType {
-  id: number;
-  email: string;
-  nickName: string;
-  aboutMe: string;
-  job: JobType;
-  imageUrl: string;
-}
-
-export interface PutUserDataType {
-  memberEditRequestDto: {
-    id: number;
-    nickName: string;
-    aboutMe: string;
-    job: JobType;
-  };
-  image: File | null;
-  imageIdx: ImageIdxType;
-}
-
-export type ImageIdxType = 0 | 1 | 2;
-
-export type JobType = "FRONTEND" | "BACKEND" | "DESIGNER" | "ANDROID" | "IOS" | "DEVOPS";
-
-export const profileAPI = {
+export const profileApi = {
   getCurrentUserId: async () => {
-    const HEADER = getHeaders();
-    return await httpClient().get<CurrentUserIdType>("/profile", {}, HEADER.headers);
+    return await httpClient().get<UserIdResponse>("/profile", {}, HEADER.headers);
   },
   getUserData: async (userId: number) => {
-    const HEADER = getHeaders();
-    return await httpClient().get<UserDataType>(`/profile/${userId}`, { "": "" }, HEADER.headers);
+    return await httpClient().get<UserResponse>(`/profile/${userId}`, { "": "" }, HEADER.headers);
   },
-  putUserData: async ({ userId, userData }: { userId: number; userData: PutUserDataType }) => {
+  putUserData: async ({ userId, userData }: { userId: number; userData: UserDataParams }) => {
     const formData = new FormData();
-    const HEADER = getHeaders();
 
     const memberEditRequestDtoBlob = new Blob([JSON.stringify(userData.memberEditRequestDto)], {
       type: "application/json",

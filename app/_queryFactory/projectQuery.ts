@@ -1,13 +1,14 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { dehydrate } from "@tanstack/react-query";
-import { projectApi } from "../_apis/project";
-import { ProjectListParams } from "../_types/ProjectListDataType";
+import { projectApi } from "../_apis/projectApi";
+import { projectListApi } from "../_apis/projectListApi";
+import { ProjectListParams } from "../_types/ProjectListType";
 import getQueryClient from "./getQueryClient";
 
 export const projectQueryKeys = createQueryKeys("project", {
   list: (props: ProjectListParams, token?: string) => ({
     queryKey: ["projectList"],
-    queryFn: async () => await projectApi.getProjectList({ ...props }, token),
+    queryFn: async () => await projectListApi.getProjectList({ ...props }, token),
   }),
   detail: (projectId: number) => ({
     queryKey: ["projectDetail"],
@@ -34,7 +35,7 @@ export const usePrefetchQuery = async (params: ProjectListParams) => {
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: newProjectQueryKeys.list(params).queryKey,
-    queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...params, page: pageParam }),
+    queryFn: ({ pageParam = 1 }) => projectListApi.getProjectList({ ...params, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage: any) => {
       const { customPageable } = lastPage;
