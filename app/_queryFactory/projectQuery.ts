@@ -28,4 +28,6 @@ export const projectQueryKey = createQueryKeys("project", {
   edit: () => ["eidtProject"],
   myProject: () => ["myProjectList"],
   likeProject: () => ["LikeProjectList"],
+  teamMember: () => ["projectDetail", "teamMember"],
+  rating: () => ["projectDetail", "average-rating"],
 });
