@@ -1,44 +1,8 @@
 import { getHeaders } from "../_constants/HeaderToken";
-import { ProjectListParams } from "../_types/ProjectListDataType";
 import httpClient from "./httpClient";
-import {
-  ProjectResponse,
-  ProjectResponseType,
-  TeamMemberResponse,
-  TotalRatingResponse,
-} from "./schema/projectResponse";
+import { ProjectResponse, TeamMemberResponse, TotalRatingResponse } from "./schema/projectResponse";
 
 export const projectApi = {
-  getProjectList: async (
-    {
-      page = 1,
-      size = 12,
-      limit = 0,
-      searchString = "",
-      projectTechStacks = [],
-      sortCondition = "RECENT",
-    }: ProjectListParams,
-    token?: string
-  ) => {
-    const applicationHeaders = {
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-    };
-    return await httpClient().get<ProjectResponseType>(
-      "/projects",
-      {
-        sortCondition,
-        projectTechStacks,
-        searchString,
-        page,
-        size,
-        limit,
-      },
-      applicationHeaders,
-      ["pojectList"]
-    );
-  },
-
   getProject: async (projectId: number) => {
     const HEADER = getHeaders();
     return await httpClient().get<ProjectResponse>(`/projects/${projectId}`, {}, HEADER.headers, ["projectDetail"]);

@@ -4,8 +4,8 @@ import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { projectApi } from "@/app/_apis/project";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectListApi } from "@/app/_apis/projectListApi";
 import { useGetStack } from "../../_context/StackProvider";
 
 function ProjectSection() {
@@ -15,7 +15,7 @@ function ProjectSection() {
 
   const { data, fetchNextPage } = useSuspenseInfiniteQuery({
     queryKey: projectListQuery.queryKey,
-    queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...projectState, page: pageParam }),
+    queryFn: ({ pageParam = 1 }) => projectListApi.getProjectList({ ...projectState, page: pageParam }),
 
     initialPageParam: 1,
     getNextPageParam: lastPage => {
