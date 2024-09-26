@@ -5,8 +5,8 @@ import ToolTip from "../../Comment/ToolTip";
 import EnterRating from "../../Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
 import EnterText from "../../Comment/EnterText";
-import EditButton from "../../Comment/EditButton";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
+import EditButton from "./EditButton";
 
 interface Props {
   projectId: number;

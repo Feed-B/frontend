@@ -1,12 +1,12 @@
 import React from "react";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
-import ProjectHeader from "./_components/Project/ProjectHeader";
-import ProjectArticle from "./_components/Project/ProjectArticle";
+import ProjectHeader from "./_components/ProjectSection/ProjectHeader";
+import ProjectArticle from "./_components/ProjectSection/ProjectArticle";
 import TeamMemberSection from "./_components/ProjectSection/TeamMemberSection";
 import StackSection from "./_components/ProjectSection/StackSection";
 import RatingSection from "./_components/ProjectSection/RatingSection";
-import MyCommentSection from "./_components/CommentSection/MyCommentSection";
-import CommentListSection from "./_components/CommentSection/CommentListSection";
+import MyCommentSection from "./_components/MyComment/MyCommentSection";
+import CommentListSection from "./_components/CommentList/CommentListSection";
 import CurrentPageProvider from "./_context/CurrentPageProvider";
 
 interface Props {

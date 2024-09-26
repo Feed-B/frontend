@@ -5,9 +5,9 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import { signUpApi } from "@/app/_apis/signUp";
 import { useLogin } from "@/app/_context/LoginProvider";
 import { setToken } from "@/app/_utils/handleToken";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
-import SignUpDropdownBox from "./SignUpDropdownBox";
+import Input from "../../Input/Input";
+import Button from "../../Button/Button";
+import SignUpDropdownBox from "../../DropDown/SignUpDropdownBox";
 
 interface SignUpFormProps {
   item: string;

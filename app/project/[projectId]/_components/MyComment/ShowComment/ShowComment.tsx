@@ -17,9 +17,9 @@ import TotalStar from "../../Comment/TotalStar";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 import CommentProfile from "../../Comment/CommentProfile";
 import CommentCount from "../../Comment/CommentCount";
-import MenuDropBox from "../../MenuDropBox/MenuDropBox";
+import MenuDropBox from "../../Project/DropBox/MenuDropBox";
 import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
-import EditCommentModal from "./EditCommentModal";
+import EditCommentModal from "../EditComment/EditCommentModal";
 
 interface Props {
   projectId: number;

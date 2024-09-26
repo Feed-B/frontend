@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import useModal from "@/app/_hooks/useModal";
 import { setRedirectUrl } from "@/app/_utils/handleToken";
-import LoginModal from "@/app/_components/LoginModal/LoginModal";
+import LoginModal from "@/app/_components/Modal/LoginModal";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import Button from "../Button/Button";
 

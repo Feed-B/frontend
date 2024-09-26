@@ -3,7 +3,7 @@
 import React from "react";
 import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import WishButtonAndCount from "@/app/_components/WishButtonAndCount/WishButtonAndCount";
+import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
 import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
@@ -15,8 +15,8 @@ import WarningModal from "@/app/_components/Modal/WarningModal";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
-import SocialDropBox from "../MenuDropBox/SocialDropBox";
-import MenuDropBox from "../MenuDropBox/MenuDropBox";
+import SocialDropBox from "../Project/DropBox/SocialDropBox";
+import MenuDropBox from "../Project/DropBox/MenuDropBox";
 
 interface Props {
   projectId: number;

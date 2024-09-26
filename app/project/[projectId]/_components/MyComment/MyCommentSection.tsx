@@ -8,10 +8,10 @@ import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import MyCommentProvider from "../../_context/MyCommentProvider";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
-import ShowComment from "./MyComment/ShowComment";
-import WriteComment from "./MyComment/WriteComment";
-import EditComment from "./MyComment/EditComment";
-import WriteCommentButton from "./MyComment/WriteCommentButton";
+import ShowComment from "./ShowComment/ShowComment";
+import WriteComment from "./WriteComment/WriteComment";
+import EditComment from "./EditComment/EditComment";
+import WriteCommentButton from "./WriteComment/WriteCommentButton";
 
 interface Props {
   projectId: number;

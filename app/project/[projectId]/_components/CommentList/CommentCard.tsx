@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { Comment } from "@/app/_types/CommentType";
-import CommentProfile from "./CommentProfile";
-import CommentCount from "./CommentCount";
-import TotalStar from "./TotalStar";
+import CommentProfile from "../Comment/CommentProfile";
+import CommentCount from "../Comment/CommentCount";
+import TotalStar from "../Comment/TotalStar";
 
 interface CommentProps {
   projectId: number;
