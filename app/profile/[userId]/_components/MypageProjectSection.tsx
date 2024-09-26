@@ -28,8 +28,8 @@ function MypageProjectSection({
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1;
+      if (customPageable[0].hasNext) {
+        return customPageable[0].page + 1;
       }
       return undefined;
     },
@@ -54,7 +54,7 @@ function MypageProjectSection({
     <section className="flex flex-col">
       <h3 className="mb-4 text-lg font-semibold leading-relaxed text-gray-900">
         {listTitle(isMyPage, projectType)}
-        <span className="ml-2.5">({data?.pages[0].customPageable.totalElements})</span>
+        <span className="ml-2.5">({data?.pages[0].customPageable[0].totalElements})</span>
       </h3>
       <ProjectList projectList={data?.pages} lastRef={lastCardRef} />
     </section>

@@ -1,8 +1,8 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { dehydrate } from "@tanstack/react-query";
-import { projectApi } from "../_apis/project";
-import { ProjectListParams } from "../_types/ProjectListDataType";
+import { projectApi } from "../_apis/projectApi";
 import { projectListApi } from "../_apis/projectListApi";
+import { ProjectListParams } from "../_types/ProjectListType";
 import getQueryClient from "./getQueryClient";
 
 export const projectQueryKeys = createQueryKeys("project", {

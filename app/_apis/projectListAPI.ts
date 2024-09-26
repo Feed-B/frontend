@@ -1,14 +1,8 @@
 import { getHeaders } from "../_constants/HeaderToken";
-import { ProjectListParams } from "../_types/ProjectListDataType";
+import { GetMyProjectListParams, ProjectListParams } from "../_types/ProjectListType";
 import { MyPageProjectListType } from "../profile/[userId]/_components/MypageProjectSection";
 import httpClient from "./httpClient";
-import { ProjectResponseType } from "./schema/projectResponse";
-
-export interface GetMyProjectListParams {
-  page?: number;
-  size?: number;
-  userId: number;
-}
+import { ProjectListResponse } from "./schema/projectListResponse";
 
 export const projectListApi = {
   getProjectList: async (
@@ -26,7 +20,7 @@ export const projectListApi = {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json",
     };
-    return await httpClient().get<ProjectResponseType>(
+    return await httpClient().get<ProjectListResponse>(
       "/projects",
       {
         sortCondition,
@@ -43,7 +37,7 @@ export const projectListApi = {
 
   getMyProjectList: async ({ page, size, userId }: GetMyProjectListParams, selectDataType: MyPageProjectListType) => {
     const HEADER = getHeaders();
-    return await httpClient().get<ProjectResponseType>(
+    return await httpClient().get<ProjectListResponse>(
       `/${userId}/projects${selectDataType === "wishProject" ? "/likes" : ""}`,
       {
         page: page,

@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { RefObject } from "react";
 import formatViewCount from "@/app/_utils/formViewCount";
-import { ProjectResponseType } from "@/app/_apis/schema/projectResponse";
+import { ProjectListResponse } from "@/app/_apis/schema/projectListResponse";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
 
 interface ProjectListProp {
-  projectList: ProjectResponseType[] | undefined;
+  projectList: ProjectListResponse[] | undefined;
   lastRef?: RefObject<HTMLDivElement>;
 }
 

@@ -20,8 +20,8 @@ function ProjectSection() {
     initialPageParam: 1,
     getNextPageParam: lastPage => {
       const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1; // 다음 페이지 번호 반환
+      if (customPageable[0].hasNext) {
+        return customPageable[0].page + 1; // 다음 페이지 번호 반환
       }
       return undefined; // 더 이상 페이지가 없으면 undefined 반환
     },

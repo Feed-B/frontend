@@ -1,6 +1,6 @@
 import { getHeaders } from "../_constants/HeaderToken";
 import httpClient from "./httpClient";
-import { EditProjectResponse } from "./schema/editProjectResponse";
+import { EditProjectResponse } from "./schema/projectResponse";
 import { ProjectResponse, TeamMemberResponse, TotalRatingResponse } from "./schema/projectResponse";
 
 export const projectApi = {

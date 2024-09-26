@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { notFound } from "next/navigation";
 import { editProjectQueryKeys } from "@/app/_queryFactory/editProjectQuery";
-import { EditProjectResponse } from "@/app/_apis/schema/editProjectResponse";
+import { EditProjectResponse } from "@/app/_apis/schema/projectResponse";
 import Title from "@/app/addproject/_components/Title";
 import ThumbnailBox from "@/app/addproject/_components/ThumbnailBox";
 import ProjectImageBox from "@/app/addproject/_components/ProjectImageBox/ProjectImageBox";

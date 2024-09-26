@@ -1,4 +1,4 @@
-import { ProjectData } from "@/app/_apis/schema/projectResponse";
+import { ProjectData } from "@/app/_types/ProjectListType";
 import WishButtonAndCount from "../../Button/WishButton";
 import StackBadge from "./StackBadge";
 
