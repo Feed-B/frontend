@@ -4,9 +4,10 @@ import httpClient from "./httpClient";
 import { CommentListResponse } from "./schema/commentListResponse";
 import { ReflyCommentResponse } from "./schema/commentResponse";
 
+const HEADER = getHeaders();
+
 export const commentListApi = {
   getCommentList: async ({ projectId, page = 1, size = 8 }: CommentListParams) => {
-    const HEADER = getHeaders();
     return await httpClient().get<CommentListResponse>(
       `/projects/${projectId}/ratings`,
       {
@@ -18,7 +19,6 @@ export const commentListApi = {
     );
   },
   getReflyCommentList: async ({ ratingId, page = 1, size = 10 }: ReflyCommentListParams) => {
-    const HEADER = getHeaders();
     return await httpClient().get<ReflyCommentResponse>(
       `/projects/${ratingId}/comments`,
       {

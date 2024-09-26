@@ -4,6 +4,7 @@ import httpClient from "./httpClient";
 import { SignUpRequest, SignUpResponse, UserIdResponse, UserResponse } from "./schema/userResponse";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const HEADER = getHeaders();
 
 export const signUpApi = {
   postSignUp: async (userData: SignUpRequest): Promise<SignUpResponse> => {
@@ -13,16 +14,13 @@ export const signUpApi = {
 
 export const profileApi = {
   getCurrentUserId: async () => {
-    const HEADER = getHeaders();
     return await httpClient().get<UserIdResponse>("/profile", {}, HEADER.headers);
   },
   getUserData: async (userId: number) => {
-    const HEADER = getHeaders();
     return await httpClient().get<UserResponse>(`/profile/${userId}`, { "": "" }, HEADER.headers);
   },
   putUserData: async ({ userId, userData }: { userId: number; userData: UserDataParams }) => {
     const formData = new FormData();
-    const HEADER = getHeaders();
 
     const memberEditRequestDtoBlob = new Blob([JSON.stringify(userData.memberEditRequestDto)], {
       type: "application/json",

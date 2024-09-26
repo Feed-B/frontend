@@ -3,21 +3,20 @@ import { UpadateCommentParams, UploadCommentParams } from "../_types/CommentType
 import httpClient from "./httpClient";
 import { CommentResponse, MyCommentResponse } from "./schema/commentResponse";
 
+const HEADER = getHeaders();
+
 export const commentApi = {
   getComment: async (ratingId: number) => {
-    const HEADER = getHeaders();
     return await httpClient().get<CommentResponse>(`/projects/ratings/${ratingId}`, {}, HEADER.headers, [
       "commentDetail",
     ]);
   },
   getMyComment: async (projectId: number) => {
-    const HEADER = getHeaders();
     return await httpClient().get<MyCommentResponse>(`/projects/${projectId}/ratings/mine`, {}, HEADER.headers, [
       "myComment",
     ]);
   },
   postComment: async (projectId: number, data: UploadCommentParams) => {
-    const HEADER = getHeaders();
     return await httpClient().postData(
       `/projects/${projectId}/ratings`,
       {
@@ -27,7 +26,6 @@ export const commentApi = {
     );
   },
   postReflyComment: async (ratingId: number | undefined, comment: string) => {
-    const HEADER = getHeaders();
     return await httpClient().post(
       `/projects/${ratingId}/comments`,
       {
@@ -38,7 +36,6 @@ export const commentApi = {
     );
   },
   putComment: async (ratingId: number, data: UpadateCommentParams) => {
-    const HEADER = getHeaders();
     return await httpClient().put(
       `/projects/ratings/${ratingId}`,
       {
@@ -48,7 +45,6 @@ export const commentApi = {
     );
   },
   putReflyComment: async (commentId: number | undefined, comment: string) => {
-    const HEADER = getHeaders();
     return await httpClient().put(
       `/projects/comments/${commentId}`,
       {
@@ -58,11 +54,9 @@ export const commentApi = {
     );
   },
   deleteComment: async (ratingId: number) => {
-    const HEADER = getHeaders();
     return await httpClient().delete(`/projects/ratings/${ratingId}`, HEADER.applicationHeaders);
   },
   deleteReflyComment: async (reflyId: number) => {
-    const HEADER = getHeaders();
     return await httpClient().delete(`/projects/comments/${reflyId}`, HEADER.applicationHeaders);
   },
 };
