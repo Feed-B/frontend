@@ -7,7 +7,7 @@ import emptyProjectListIcon from "@/public/icons/emptyWhitePot.svg";
 import fullProjectListIcon from "@/public/icons/fullDarkPot.svg";
 import emptyProjectIcon from "@/public/icons/emptyBlackPot.svg";
 import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
-import { handleLikeProject } from "@/app/_apis/handleLikeProject";
+import { likeProjectApi } from "@/app/_apis/projectApi";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
@@ -60,12 +60,12 @@ function WishButtonAndCount({
 
   const likeMutation = useMutation({
     mutationFn: (projectId: number) => {
-      return handleLikeProject.postLikeProject({ projectId });
+      return likeProjectApi.postLikeProject({ projectId });
     },
   });
   const unLikeMutation = useMutation({
     mutationFn: (projectId: number) => {
-      return handleLikeProject.deleteLikeProject({ projectId });
+      return likeProjectApi.deleteLikeProject({ projectId });
     },
   });
 

@@ -44,3 +44,14 @@ export const editProjectApi = {
     return await httpClient().putFormData(`/projects/${projectId}`, projectData, HEADER.headers);
   },
 };
+
+export const likeProjectApi = {
+  postLikeProject: async ({ projectId }: { projectId: number }) => {
+    const HEADER = getHeaders();
+    return await httpClient().post(`/projects/${projectId}/like`, { "": "" }, HEADER.headers);
+  },
+  deleteLikeProject: async ({ projectId }: { projectId: number }) => {
+    const HEADER = getHeaders();
+    return await httpClient().delete(`/projects/${projectId}/unlike`, HEADER.headers);
+  },
+};
