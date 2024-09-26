@@ -16,7 +16,7 @@ import { EditProjectFormData } from "@/app/_types/EditProjectFormDataType";
 import Input from "@/app/_components/Input/Input";
 import AddSection from "@/app/addproject/_components/AddSection/AddSection";
 import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStackSection";
-import { editProjectApi } from "@/app/_apis/editProjectApi";
+import { editProjectApi } from "@/app/_apis/projectApi";
 import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
 import CancelModal from "@/app/_components/Modal/WarningModal";

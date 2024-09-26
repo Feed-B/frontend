@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { notFound, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { addProjectApi } from "@/app/_apis/addProjectApi";
+import { addProjectApi } from "@/app/_apis/projectApi";
 import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
