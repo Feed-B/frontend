@@ -43,7 +43,7 @@ export interface ReflyCommentResponse {
       authorProfileImageUrl: string;
     },
   ];
-  customPageable: CustomPageable[];
+  customPageable: CustomPageable;
 }
 
 interface CustomPageable {

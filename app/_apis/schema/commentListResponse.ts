@@ -15,7 +15,7 @@ export interface CommentListResponse {
       memberJob: string;
     },
   ];
-  customPageable: CustomPageable[];
+  customPageable: CustomPageable;
 }
 
 interface CustomPageable {

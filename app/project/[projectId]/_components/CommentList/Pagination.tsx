@@ -24,7 +24,7 @@ function Pagination({ projectId }: Props) {
 
   if (!commentList) return null;
 
-  const { totalPages, totalElements, first, last } = commentList.customPageable[0];
+  const { totalPages, totalElements, first, last } = commentList.customPageable;
 
   const moveNextPage = () => {
     if (!last) setCurrentPage((prev: number) => prev + 1);

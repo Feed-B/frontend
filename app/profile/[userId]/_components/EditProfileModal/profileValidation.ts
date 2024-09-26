@@ -1,4 +1,4 @@
-import { ImageIndexType } from "@/app/_apis/userApi";
+import { ImageIndexType } from "@/app/_types/UserType";
 
 export const isValidNickName = (beforeNickName: string, afterNickName: string) => {
   if (afterNickName.length !== 0 && beforeNickName === undefined) {

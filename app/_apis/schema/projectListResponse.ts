@@ -13,7 +13,7 @@ export interface ProjectListResponse {
       modifiedAt: string;
     },
   ];
-  customPageable: CustomPageable[];
+  customPageable: CustomPageable;
 }
 
 interface CustomPageable {

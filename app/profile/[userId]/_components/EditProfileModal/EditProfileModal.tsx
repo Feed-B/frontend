@@ -8,8 +8,10 @@ import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
-import { PutUserDataType, profileApi, UserDataType, JobType } from "@/app/_apis/userApi";
+import { profileApi } from "@/app/_apis/userApi";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { JobType, UserDataParams } from "@/app/_types/UserType";
+import { UserResponse } from "@/app/_apis/schema/userResponse";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -17,7 +19,7 @@ import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValida
 interface EditProfileModalProps {
   openModal: boolean;
   handleModalClose: () => void;
-  profileData: UserDataType;
+  profileData: UserResponse;
 }
 
 const REFLY_ABOUT_ME_LENGTH = 150;
@@ -39,7 +41,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   const { value: jobValue, handleSetValue } = useTextInput();
 
   const changeProfileMutation = useMutation({
-    mutationFn: (newProfileData: PutUserDataType) => {
+    mutationFn: (newProfileData: UserDataParams) => {
       return profileApi.putUserData({ userId: profileData.id, userData: newProfileData });
     },
     onSuccess: () => {
@@ -51,7 +53,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
 
-    const submitData: PutUserDataType = {
+    const submitData: UserDataParams = {
       image: isImageChange(profileData?.imageUrl, image) === 2 ? imageFile : null,
       imageIdx: isImageChange(profileData.imageUrl, image),
       memberEditRequestDto: {

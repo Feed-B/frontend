@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { SignUpRequest } from "@/app/_apis/schema/user";
+import { SignUpRequest } from "@/app/_apis/schema/userResponse";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import { signUpApi } from "@/app/_apis/userApi";
 import { useLogin } from "@/app/_context/LoginProvider";

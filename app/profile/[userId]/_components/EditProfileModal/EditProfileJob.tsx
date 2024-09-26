@@ -3,7 +3,7 @@ import DropDown from "@/app/_components/DropDown/DropDown";
 import openDropDownIcon from "@/public/icons/blackArrowBottom.svg";
 import closeDropDownIcon from "@/public/icons/blackArrowTop.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { JobType } from "@/app/_apis/userApi";
+import { JobType } from "@/app/_types/UserType";
 
 function EditJobDropDown({ currentJob }: { currentJob: JobType }) {
   const { isOpen, toggleState } = useToggleHook();

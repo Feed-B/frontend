@@ -20,7 +20,7 @@ function InfinityScroll({ projectId }: Props) {
 
   if (!commentList) return null;
 
-  const { totalElements } = commentList.customPageable[0];
+  const { totalElements } = commentList.customPageable;
 
   return (
     <>
