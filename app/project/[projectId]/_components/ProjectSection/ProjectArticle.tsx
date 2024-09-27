@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import { IMAGE_TYPE } from "@/app/_constants/ProjectData";
+import { projectApi } from "@/app/_apis/projectApi";
 import LinkSection from "../ProjectSection/LinkSection";
 import ButtonSlide from "../Project/ImageSlide/ButtonSlide";
 import ScrollSlide from "../Project/ImageSlide/ScrollSlide";
@@ -18,7 +19,10 @@ interface Props {
 }
 
 function ProjectArticle({ projectId }: Props) {
-  const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
+  const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery({
+    queryKey: projectQueryKey.detail(projectId).queryKey,
+    queryFn: async () => await projectApi.getProject(projectId),
+  });
   const { windowWidth } = useBrowserSize();
   const { TBC } = WINDOW_BOUNDARY.MAX;
 

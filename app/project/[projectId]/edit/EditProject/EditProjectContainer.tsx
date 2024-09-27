@@ -5,7 +5,6 @@ import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { notFound } from "next/navigation";
-import { editProjectQueryKeys } from "@/app/_queryFactory/editProjectQuery";
 import { EditProjectResponse } from "@/app/_apis/schema/projectResponse";
 import Title from "@/app/addproject/_components/Title";
 import ThumbnailBox from "@/app/addproject/_components/ThumbnailBox";
@@ -21,7 +20,7 @@ import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
 import CancelModal from "@/app/_components/Modal/WarningModal";
 import { useToast } from "@/app/_context/ToastContext";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import ProgressBox from "@/app/addproject/_components/ProgressBox";
 import ErrorMessage from "@/app/addproject/_components/ErrorMessage";
@@ -33,9 +32,10 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const [progress, setProgress] = useState(0);
 
   const queryClient = useQueryClient();
-  const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery(
-    editProjectQueryKeys.detail(projectId)
-  );
+  const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery({
+    queryKey: projectQueryKey.edit().queryKey,
+    queryFn: async () => await editProjectApi.getProject(projectId),
+  });
 
   const accessToken = getToken()?.accessToken;
 
@@ -184,10 +184,10 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     mutationFn: (projectData: FormData) => editProjectApi.putProject(projectId, projectData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.detail(projectId).queryKey,
+        queryKey: projectQueryKey.detail(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.teamMember(projectId).queryKey,
+        queryKey: projectQueryKey.teamMember(projectId).queryKey,
       });
       revalidateTagAction("projectDetail");
       revalidateTagAction("projectTeamMember");

@@ -5,7 +5,7 @@ import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack
 import { useRouter } from "next/navigation";
 import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { createDate } from "@/app/_utils/createDate";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import { projectApi } from "@/app/_apis/projectApi";
@@ -40,7 +40,7 @@ function ProjectHeader({ projectId }: Props) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.list({}).queryKey,
+        queryKey: projectQueryKey.list().queryKey,
       });
       addToast("프로젝트가 삭제되었습니다", "success");
     },
@@ -50,7 +50,10 @@ function ProjectHeader({ projectId }: Props) {
     },
   });
 
-  const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
+  const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery({
+    queryKey: projectQueryKey.detail(projectId).queryKey,
+    queryFn: async () => await projectApi.getProject(projectId),
+  });
   if (!project) return null;
 
   const handleDeleteModal = () => {

@@ -2,8 +2,9 @@ import React from "react";
 import { cookies } from "next/headers";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_utils/getQueryClient";
-import { projectQueryKeys } from "../_queryFactory/projectQuery";
+import { projectQueryKey } from "../_queryFactory/projectQuery";
 import { revalidateTagAction } from "../_utils/revalidationAction";
+import { projectListApi } from "../_apis/projectListApi";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
 async function MainPage() {
@@ -12,12 +13,10 @@ async function MainPage() {
   const cookieStore = cookies();
   const ACCESS_TOKEN = cookieStore.get("ACCESS_TOKEN");
 
-  const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 }, ACCESS_TOKEN?.value);
-
   await queryClient.prefetchInfiniteQuery({
-    queryKey: projectListQuery.queryKey,
-    queryFn: projectListQuery.queryFn,
-    initialPageParam: 1 as never,
+    queryKey: projectQueryKey.list().queryKey,
+    queryFn: async () => await projectListApi.getProjectList({ page: 1, size: 16 }, ACCESS_TOKEN?.value),
+    initialPageParam: 1,
     getNextPageParam: (lastPage: any) => {
       const { customPageable } = lastPage;
       if (customPageable.hasNext) {

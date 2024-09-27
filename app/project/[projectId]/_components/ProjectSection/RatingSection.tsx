@@ -7,8 +7,9 @@ import fullStarIcon from "@/public/icons/fullStar.svg";
 import halfStarIcon from "@/public/icons/halfStar.svg";
 import emptyStarIcon from "@/public/icons/emptyStar.svg";
 import { TotalRatingResponse } from "@/app/_apis/schema/projectResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { starPercent } from "@/app/_utils/rating";
+import { projectApi } from "@/app/_apis/projectApi";
 
 interface Props {
   projectId: number;
@@ -17,9 +18,10 @@ interface Props {
 const MAX_STAR = 5;
 
 function RatingSection({ projectId }: Props) {
-  const { data: totalRating }: UseQueryResult<TotalRatingResponse, Error> = useQuery(
-    projectQueryKeys.totalRating(projectId)
-  );
+  const { data: totalRating }: UseQueryResult<TotalRatingResponse, Error> = useQuery({
+    queryKey: projectQueryKey.averageRating(projectId).queryKey,
+    queryFn: async () => await projectApi.getTotalRating(projectId),
+  });
   if (!totalRating) return null;
 
   const { averageRank, rankCount } = totalRating;

@@ -5,10 +5,11 @@ import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { FULL_STACK_DATA } from "@/app/_constants/StackData";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
+import { projectApi } from "@/app/_apis/projectApi";
 
 interface Props {
   projectId: number;
@@ -18,7 +19,10 @@ function StackSection({ projectId }: Props) {
   const { windowWidth } = useBrowserSize();
   const { TBC } = WINDOW_BOUNDARY.MIN;
 
-  const { data }: UseQueryResult<ProjectResponse, Error> = useQuery(projectQueryKeys.detail(projectId));
+  const { data }: UseQueryResult<ProjectResponse, Error> = useQuery({
+    queryKey: projectQueryKey.detail(projectId).queryKey,
+    queryFn: async () => await projectApi.getProject(projectId),
+  });
   if (!data) return null;
 
   return (
