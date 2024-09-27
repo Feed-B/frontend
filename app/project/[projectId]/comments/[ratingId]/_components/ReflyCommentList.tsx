@@ -5,7 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
 
 import { commentListApi } from "@/app/_apis/commentListApi";
-import { reflyCommentQueryKey } from "@/app/_queryFactory/ReflyCommentQuery";
+import { reflyCommentQueryKey } from "@/app/_queryFactory/reflyCommentQuery";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {

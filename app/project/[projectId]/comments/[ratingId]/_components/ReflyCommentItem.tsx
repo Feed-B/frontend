@@ -2,9 +2,10 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ProfileImage from "@/app/_components/Profile/ProfileImage";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
 import useToggleHook from "@/app/_hooks/useToggleHook";
+import { profileApi } from "@/app/_apis/userApi";
 import ReflyDropbox from "./ReflyDropbox";
 import CommentInput from "./CommentInput";
 
@@ -23,7 +24,10 @@ interface ReflyCommentItemProp {
 function ReflyCommentItem({ replyComment, projectId }: ReflyCommentItemProp) {
   const { isOpen: reflyCommentEditOpen, toggleState } = useToggleHook();
 
-  const { data: userId } = useQuery(userQueryKeys.userId());
+  const { data: userId } = useQuery({
+    queryKey: userQueryKey.userId().queryKey,
+    queryFn: () => profileApi.getCurrentUserId(),
+  });
 
   return (
     <div className="relative mt-2 flex gap-3 p-2">

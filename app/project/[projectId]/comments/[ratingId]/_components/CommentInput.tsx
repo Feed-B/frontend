@@ -7,7 +7,7 @@ import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
-import { reflyCommentQueryKey } from "@/app/_queryFactory/ReflyCommentQuery";
+import { reflyCommentQueryKey } from "@/app/_queryFactory/reflyCommentQuery";
 
 interface CommentInputProps {
   projectId?: number;
