@@ -1,4 +1,4 @@
-import Providers from "@/app/_queryFactory/providers";
+import Providers from "@/app/_context/queryProviders";
 
 export default function EditProjectLayout({
   children,
