@@ -7,7 +7,7 @@ import landingEvaluationSection from "@/public/images/landingEvaluationSection.s
 import landingDebateSection from "@/public/images/landingDebateSection.svg";
 import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
 import Button from "./_components/Button/Button";
-import getQueryClient from "./_queryFactory/getQueryClient";
+import getQueryClient from "./_utils/getQueryClient";
 import { projectQueryKeys } from "./_queryFactory/projectQuery";
 import LandingProjectList from "./_components/LandingPage/LandingProjectList";
 import AnimationSection from "./_components/LandingPage/AnimationSection";

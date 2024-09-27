@@ -11,3 +11,8 @@ export const userQueryKeys = createQueryKeys("user", {
     queryFn: () => profileApi.getUserData(userId),
   }),
 });
+
+export const userQueryKey = createQueryKeys("user", {
+  userId: () => ["userId"],
+  profile: (userId: number) => ["profile", userId],
+});

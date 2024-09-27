@@ -1,7 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import getQueryClient from "../_queryFactory/getQueryClient";
+import getQueryClient from "../_utils/getQueryClient";
 import { projectQueryKeys } from "../_queryFactory/projectQuery";
 import { revalidateTagAction } from "../_utils/revalidationAction";
 import SelectStack from "./_components/SelectStack/SelectStack";
