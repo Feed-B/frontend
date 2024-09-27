@@ -6,14 +6,23 @@ import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
 import { JOB_CATEGORIES_KR, JobCategoriesType } from "@/app/_constants/JobCategoryData";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
+import { profileApi } from "@/app/_apis/userApi";
 import ProfileSkeleton from "../skeletonUI/ProfileSkeleton";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { MY_PAGE_TEXT } from "../constant";
 
 function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();
-  const { data: userProfileData, isPending, isError } = useQuery(userQueryKeys.detail(Number(userId)));
+
+  const {
+    data: userProfileData,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: userQueryKey.profile(Number(userId)).queryKey,
+    queryFn: () => profileApi.getUserData(Number(userId)),
+  });
   const { isOpen, toggleState } = useToggleHook();
 
   if (isError) {

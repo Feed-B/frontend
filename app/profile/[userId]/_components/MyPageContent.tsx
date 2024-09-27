@@ -2,7 +2,8 @@
 import { useParams } from "next/navigation";
 import { MouseEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
+import { profileApi } from "@/app/_apis/userApi";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory/MyPageCategory";
 import Profile from "./Profile/Profile";
@@ -11,7 +12,10 @@ function MyPageContent() {
   const { userId } = useParams();
   const [selectCategory, setSelectCategory] = useState<MyPageProjectListType>("myProject");
 
-  const { data: currentUserId } = useQuery(userQueryKeys.userId());
+  const { data: currentUserId } = useQuery({
+    queryKey: userQueryKey.userId().queryKey,
+    queryFn: () => profileApi.getCurrentUserId(),
+  });
 
   if (!currentUserId) {
     return;

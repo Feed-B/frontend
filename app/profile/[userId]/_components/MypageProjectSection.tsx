@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
 import { projectListApi } from "@/app/_apis/projectListApi";
-import { profileProjectListKeys } from "@/app/_queryFactory/projectListQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { MY_PAGE_TEXT } from "./constant";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
@@ -19,10 +19,9 @@ function MypageProjectSection({
   userId: number;
 }) {
   const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
-  const projectListQuery = profileProjectListKeys.profileList({ userId: userId }, projectType);
 
   const { data, fetchNextPage } = useInfiniteQuery({
-    queryKey: projectListQuery.queryKey,
+    queryKey: projectQueryKey.myProject().queryKey,
     queryFn: ({ pageParam = 1 }) =>
       projectListApi.getMyProjectList({ page: pageParam, size: 16, userId: userId }, projectType),
     initialPageParam: 1,

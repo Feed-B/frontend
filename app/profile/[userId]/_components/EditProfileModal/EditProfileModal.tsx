@@ -9,7 +9,7 @@ import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
 import { profileApi } from "@/app/_apis/userApi";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import { JobType, UserDataParams } from "@/app/_types/UserType";
 import { UserResponse } from "@/app/_apis/schema/userResponse";
 import { MY_PAGE_TEXT } from "../constant";
@@ -45,7 +45,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
       return profileApi.putUserData({ userId: profileData.id, userData: newProfileData });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userQueryKeys.detail(Number(profileData.id)).queryKey });
+      queryClient.invalidateQueries({ queryKey: userQueryKey.profile(Number(profileData.id)).queryKey });
       handleModalClose();
     },
   });

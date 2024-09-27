@@ -8,7 +8,7 @@ import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { profileApi } from "@/app/_apis/userApi";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import DropDown from "../DropDown/DropDown";
 import ProfileImage from "../Profile/ProfileImage";
 
@@ -23,10 +23,13 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
 
   useOutsideClick(dropdownRef, toggleState, divRef);
 
-  const { data: userId } = useQuery(userQueryKeys.userId());
+  const { data: userId } = useQuery({
+    queryKey: userQueryKey.userId().queryKey,
+    queryFn: () => profileApi.getCurrentUserId(),
+  });
 
   const { data: userdata } = useQuery({
-    queryKey: ["profile", userId?.id.toString()],
+    queryKey: userQueryKey.profile(Number(userId?.id)).queryKey,
     queryFn: () => profileApi.getUserData(Number(userId?.id)),
     enabled: !!userId,
   });

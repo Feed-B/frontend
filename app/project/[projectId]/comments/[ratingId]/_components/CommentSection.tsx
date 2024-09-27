@@ -4,8 +4,9 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import { commentApi } from "@/app/_apis/commentApi";
+import { profileApi } from "@/app/_apis/userApi";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
@@ -26,7 +27,11 @@ function CommentSection({ projectId, ratingId }: CommentSectionProps) {
     queryKey: commentQueryKey.detail(ratingId).queryKey,
     queryFn: async () => await commentApi.getComment(ratingId),
   });
-  const { data: userId } = useQuery(userQueryKeys.userId());
+
+  const { data: userId } = useQuery({
+    queryKey: userQueryKey.userId().queryKey,
+    queryFn: () => profileApi.getCurrentUserId(),
+  });
 
   if (!commentDetailData) {
     return <p>데이터를 가져오는데 실패했습니다. 죄송합니다.</p>;
