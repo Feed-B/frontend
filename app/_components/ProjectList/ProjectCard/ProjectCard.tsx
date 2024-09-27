@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ProjectData } from "@/app/_types/ProjectListType";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { getToken } from "@/app/_utils/handleToken";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 import { projectApi } from "@/app/_apis/projectApi";
@@ -10,15 +10,13 @@ import HoverCard from "./HoverCard";
 function ProjectCard({ project }: { project: ProjectData }) {
   const queryClient = useQueryClient();
 
-  const projectListQueryKey = projectQueryKeys.list({ page: 1, size: 16 });
-
   const projectPostViewmutation = useMutation({
     mutationFn: () => {
       return projectApi.postProjectView(project.projectId);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: projectListQueryKey.queryKey,
+        queryKey: projectQueryKey.list().queryKey,
       });
     },
     onError: error => {

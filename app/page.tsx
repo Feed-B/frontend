@@ -8,17 +8,17 @@ import landingDebateSection from "@/public/images/landingDebateSection.svg";
 import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
 import Button from "./_components/Button/Button";
 import getQueryClient from "./_utils/getQueryClient";
-import { projectQueryKeys } from "./_queryFactory/projectQuery";
+import { projectQueryKey } from "./_queryFactory/projectQuery";
 import LandingProjectList from "./_components/LandingPage/LandingProjectList";
 import AnimationSection from "./_components/LandingPage/AnimationSection";
+import { projectListApi } from "./_apis/projectListApi";
 
 export default async function Home() {
   const queryClient = getQueryClient();
-  const projectListQuery = projectQueryKeys.list({ page: 1, size: 12, sortCondition: "LIKES" });
 
   await queryClient.prefetchQuery({
-    queryKey: projectListQuery.queryKey,
-    queryFn: projectListQuery.queryFn,
+    queryKey: projectQueryKey.list().queryKey,
+    queryFn: async () => await projectListApi.getProjectList({ page: 1, size: 12, sortCondition: "LIKES" }),
   });
 
   const dehydratedState = dehydrate(queryClient);

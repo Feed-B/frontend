@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 
 interface projectStateType {
   projectTechStacks: string[];
@@ -59,11 +59,10 @@ function StackProvider({ children }: { children: ReactNode }) {
     size: 16,
   });
   const [stateUpdated, setStateUpdated] = useState(false); // projectState 상태가 업데이트 된 이후에 invalidateQueries 실행을 위한 함수
-  const projectListQuery = projectQueryKeys.list(projectState);
 
   useEffect(() => {
     if (stateUpdated) {
-      reactQueryClient.invalidateQueries({ queryKey: projectListQuery.queryKey });
+      reactQueryClient.invalidateQueries({ queryKey: projectQueryKey.list().queryKey });
       setStateUpdated(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

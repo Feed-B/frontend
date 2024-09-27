@@ -10,7 +10,7 @@ import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
 import useModal from "@/app/_hooks/useModal";
 import { useToast } from "@/app/_context/ToastContext";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
 import AddSection from "../_components/AddSection/AddSection";
@@ -158,7 +158,7 @@ function AddProjectContainer() {
     mutationFn: (projectData: FormData) => addProjectApi.postProject(projectData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.list({}).queryKey,
+        queryKey: projectQueryKey.list().queryKey,
       });
       revalidateTagAction("pojectList");
       router.push("/main");

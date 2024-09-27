@@ -4,17 +4,16 @@ import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { projectListApi } from "@/app/_apis/projectListApi";
 import { useGetStack } from "../../_context/StackProvider";
 
 function ProjectSection() {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
   const { projectState } = useGetStack();
-  const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
 
   const { data, fetchNextPage } = useSuspenseInfiniteQuery({
-    queryKey: projectListQuery.queryKey,
+    queryKey: projectQueryKey.list().queryKey,
     queryFn: ({ pageParam = 1 }) => projectListApi.getProjectList({ ...projectState, page: pageParam }),
 
     initialPageParam: 1,

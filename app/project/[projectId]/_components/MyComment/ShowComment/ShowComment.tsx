@@ -9,7 +9,7 @@ import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
 import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
+import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useModal from "@/app/_hooks/useModal";
@@ -40,7 +40,6 @@ function ShowComment({ projectId, myComment }: Props) {
     windowWidth > TBC ? setView("edit") : handleModalOpen();
   };
 
-  const projectRatingQuery = projectQueryKeys.totalRating(projectId);
   const commentQuery = commentQueryKeys.myComment(projectId);
   const commentListQuery = commentQueryKeys.list({ projectId, page: currentPage });
 
@@ -50,7 +49,7 @@ function ShowComment({ projectId, myComment }: Props) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: projectRatingQuery.queryKey,
+        queryKey: projectQueryKey.averageRating(projectId).queryKey,
       });
       queryClient.invalidateQueries({
         queryKey: commentQuery.queryKey,
