@@ -6,8 +6,8 @@ import Button from "@/app/_components/Button/Button";
 import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
 import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { reflyCommentQueryKey } from "@/app/_queryFactory/ReflyCommentQuery";
 
 interface CommentInputProps {
   projectId?: number;
@@ -24,8 +24,6 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
 
   const { addToast } = useToast();
 
-  const commentQueryKey = commentQueryKeys.reflyList({ ratingId: ratingId || 0 });
-
   useEffect(() => {
     if (commentValue) {
       setTextValue(commentValue);
@@ -38,7 +36,7 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: commentQueryKey.queryKey,
+        queryKey: reflyCommentQueryKey.list().queryKey,
       });
       setTextValue("");
       addToast("댓글이 생성되었습니다", "success");
@@ -56,7 +54,7 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: commentQueryKey.queryKey,
+        queryKey: reflyCommentQueryKey.list().queryKey,
       });
       setTextValue("");
       addToast("댓글이 수정되었습니다", "success");

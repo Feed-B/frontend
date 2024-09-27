@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { commentApi } from "@/app/_apis/commentApi";
 import Button from "@/app/_components/Button/Button";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
@@ -29,9 +29,6 @@ function WriteButton({ projectId, showComment }: Props) {
     comment: comment,
   };
 
-  const commentQuery = commentQueryKeys.myComment(projectId);
-  const commentListQuery = commentQueryKeys.list({ projectId, page: 1 });
-
   const mutation = useMutation({
     mutationFn: () => {
       return commentApi.postComment(projectId, { ...postCommentData });
@@ -41,10 +38,10 @@ function WriteButton({ projectId, showComment }: Props) {
         queryKey: projectQueryKey.averageRating(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentQuery.queryKey,
+        queryKey: commentQueryKey.myComment(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentListQuery.queryKey,
+        queryKey: commentQueryKey.list().queryKey,
       });
       addToast("프로젝트 리뷰가 작성되었습니다", "success");
     },

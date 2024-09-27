@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { commentApi } from "@/app/_apis/commentApi";
 import Button from "@/app/_components/Button/Button";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { useToast } from "@/app/_context/ToastContext";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
@@ -17,7 +17,7 @@ interface Props {
 }
 
 function EditButton({ projectId, ratingId, showComment }: Props) {
-  const { currentPage, setCurrentPage } = useCurrentPageContext();
+  const { setCurrentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
   const queryClient = useQueryClient();
   const { addToast } = useToast();
@@ -30,9 +30,6 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
     comment: comment,
   };
 
-  const commentQuery = commentQueryKeys.myComment(projectId);
-  const commentListQuery = commentQueryKeys.list({ projectId, page: currentPage });
-
   const mutation = useMutation({
     mutationFn: () => {
       return commentApi.putComment(ratingId, { ...putCommentData });
@@ -42,10 +39,10 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
         queryKey: projectQueryKey.averageRating(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentQuery.queryKey,
+        queryKey: commentQueryKey.myComment(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentListQuery.queryKey,
+        queryKey: commentQueryKey.list().queryKey,
       });
       setCurrentPage(1);
       addToast("프로젝트 리뷰가 수정되었습니다", "success");
