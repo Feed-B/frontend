@@ -1,4 +1,4 @@
-import Providers from "@/app/_queryFactory/providers";
+import Providers from "@/app/_context/queryProviders";
 import { projectApi } from "@/app/_apis/projectApi";
 import "@/app/_styles/globals.css";
 

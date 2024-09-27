@@ -1,7 +1,7 @@
 import Script from "next/script";
 import Header from "./_components/Header/Header";
 import ToastContainer from "./_components/Toast/ToastContainer";
-import Providers from "./_queryFactory/providers";
+import Providers from "./_context/queryProviders";
 import { LoginProvider } from "./_context/LoginProvider";
 import { ToastProvider } from "./_context/ToastContext";
 import GoogleAnalytics from "./googleAnalytics";

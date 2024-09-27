@@ -1,6 +1,6 @@
 import React from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import getQueryClient from "@/app/_queryFactory/getQueryClient";
+import getQueryClient from "@/app/_utils/getQueryClient";
 import EditProjectContainer from "./EditProject/EditProjectContainer";
 
 interface Props {
