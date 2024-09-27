@@ -30,3 +30,9 @@ export const commentQueryKeys = createQueryKeys("comment", {
     queryFn: async () => await commentApi.getMyComment(projectId),
   }),
 });
+
+export const commentQueryKey = createQueryKeys("comment", {
+  list: () => ["commentList"],
+  detail: (ratingId: number) => ["commentDetail", ratingId],
+  myComment: (ratingId: number) => ["myComment", ratingId],
+});
