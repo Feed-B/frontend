@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import grayBee from "@/public/beeIcons/grayBee.svg";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { CommentListResponse } from "@/app/_apis/schema/commentListResponse";
+import { commentListApi } from "@/app/_apis/commentListApi";
 import { useCurrentPageContext } from "../../_context/CurrentPageProvider";
 import CommentCard from "./CommentCard";
 
@@ -14,9 +15,10 @@ interface Props {
 
 function InfinityScroll({ projectId }: Props) {
   const { currentPage } = useCurrentPageContext();
-  const { data: commentList }: UseQueryResult<CommentListResponse, Error> = useQuery(
-    commentQueryKeys.list({ projectId: projectId, page: currentPage })
-  );
+  const { data: commentList }: UseQueryResult<CommentListResponse, Error> = useQuery({
+    queryKey: commentQueryKey.list().queryKey,
+    queryFn: async () => await commentListApi.getCommentList({ projectId: projectId, page: currentPage }),
+  });
 
   if (!commentList) return null;
 

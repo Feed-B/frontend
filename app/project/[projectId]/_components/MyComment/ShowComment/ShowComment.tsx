@@ -8,7 +8,7 @@ import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
@@ -27,7 +27,7 @@ interface Props {
 }
 
 function ShowComment({ projectId, myComment }: Props) {
-  const { currentPage, setCurrentPage } = useCurrentPageContext();
+  const { setCurrentPage } = useCurrentPageContext();
   const queryClient = useQueryClient();
   const { setView } = useMyCommentContext();
   const { addToast } = useToast();
@@ -40,9 +40,6 @@ function ShowComment({ projectId, myComment }: Props) {
     windowWidth > TBC ? setView("edit") : handleModalOpen();
   };
 
-  const commentQuery = commentQueryKeys.myComment(projectId);
-  const commentListQuery = commentQueryKeys.list({ projectId, page: currentPage });
-
   const mutation = useMutation({
     mutationFn: () => {
       return commentApi.deleteComment(ratingId);
@@ -52,10 +49,10 @@ function ShowComment({ projectId, myComment }: Props) {
         queryKey: projectQueryKey.averageRating(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentQuery.queryKey,
+        queryKey: commentQueryKey.myComment(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentListQuery.queryKey,
+        queryKey: commentQueryKey.list().queryKey,
       });
       setCurrentPage(1);
       addToast("프로젝트 리뷰가 삭제되었습니다", "success");

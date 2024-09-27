@@ -1,8 +1,11 @@
 import React from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
+import { commentApi } from "@/app/_apis/commentApi";
+import { reflyCommentQueryKey } from "@/app/_queryFactory/ReflyCommentQuery";
+import { commentListApi } from "@/app/_apis/commentListApi";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
 import CommentSection from "./_components/CommentSection";
@@ -18,17 +21,21 @@ async function CommentPage({ params }: Props) {
   revalidatePathAction(`project/${params.projectId}/comments/${params.ratingId}`);
   const queryClient = new QueryClient();
 
-  const reflyCommentListQuery = commentQueryKeys.reflyList({
-    projectId: params.projectId,
-    ratingId: params.ratingId,
-    page: 1,
-    size: 10,
+  await queryClient.prefetchQuery({
+    queryKey: commentQueryKey.detail(params.ratingId).queryKey,
+    queryFn: async () => await commentApi.getComment(params.ratingId),
   });
 
-  await queryClient.prefetchQuery(commentQueryKeys.detail(params.ratingId));
   await queryClient.prefetchInfiniteQuery({
-    queryKey: reflyCommentListQuery.queryKey,
-    queryFn: reflyCommentListQuery.queryFn,
+    queryKey: reflyCommentQueryKey.list().queryKey,
+    queryFn: async () =>
+      await commentListApi.getReflyCommentList({
+        projectId: params.projectId,
+        ratingId: params.ratingId,
+        page: 1,
+        size: 10,
+      }),
+
     initialPageParam: 1 as never,
     getNextPageParam: (lastPage: any) => {
       const { customPageable } = lastPage;

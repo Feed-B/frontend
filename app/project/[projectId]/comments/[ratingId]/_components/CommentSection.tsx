@@ -2,9 +2,10 @@
 
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { commentApi } from "@/app/_apis/commentApi";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
@@ -21,7 +22,10 @@ interface CommentSectionProps {
 
 function CommentSection({ projectId, ratingId }: CommentSectionProps) {
   const { isOpen: commentEditOpen, toggleState } = useToggleHook();
-  const { data: commentDetailData, isPending } = useQuery(commentQueryKeys.detail(ratingId));
+  const { data: commentDetailData, isPending } = useQuery({
+    queryKey: commentQueryKey.detail(ratingId).queryKey,
+    queryFn: async () => await commentApi.getComment(ratingId),
+  });
   const { data: userId } = useQuery(userQueryKeys.userId());
 
   if (!commentDetailData) {

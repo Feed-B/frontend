@@ -10,9 +10,8 @@ import DropDown from "@/app/_components/DropDown/DropDown";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import { commentApi } from "@/app/_apis/commentApi";
 import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
-import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface CommentDropboxProps {
   toggleState: () => void;
@@ -21,7 +20,6 @@ interface CommentDropboxProps {
 }
 
 function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: CommentDropboxProps) {
-  const { currentPage } = useCurrentPageContext();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -39,13 +37,13 @@ function CommentDropbox({ toggleState: editToggle, ratingId, projectId }: Commen
     },
     onSuccess: () => {
       queryClient.removeQueries({
-        queryKey: commentQueryKeys.detail(ratingId).queryKey,
+        queryKey: commentQueryKey.detail(ratingId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.myComment(projectId).queryKey,
+        queryKey: commentQueryKey.myComment(projectId).queryKey,
       });
       queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.list({ projectId, page: currentPage }).queryKey,
+        queryKey: commentQueryKey.list().queryKey,
       });
       addToast("프로젝트 리뷰가 삭제되었습니다", "success");
     },

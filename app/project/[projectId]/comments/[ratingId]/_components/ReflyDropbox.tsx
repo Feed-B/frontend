@@ -8,8 +8,8 @@ import { commentApi } from "@/app/_apis/commentApi";
 import KebabDropDown from "@/public/icons/kebab.svg";
 import DropDown from "@/app/_components/DropDown/DropDown";
 import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import { reflyCommentQueryKey } from "@/app/_queryFactory/ReflyCommentQuery";
 
 interface ReflyDropbox {
   reflyId: number;
@@ -35,7 +35,7 @@ function ReflyDropbox({ reflyId, toggleState }: ReflyDropbox) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.reflyList({ ratingId: reflyId }).queryKey,
+        queryKey: reflyCommentQueryKey.list().queryKey,
       });
       addToast("댓글이 삭제되었습니다", "success");
       revalidateTagAction("reflyCommentList");
