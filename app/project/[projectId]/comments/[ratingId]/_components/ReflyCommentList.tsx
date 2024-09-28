@@ -3,9 +3,8 @@
 import React, { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-
 import { commentListApi } from "@/app/_apis/commentListApi";
-import { reflyCommentQueryKey } from "@/app/_queryFactory/reflyCommentQuery";
+import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {
@@ -17,7 +16,7 @@ function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
   const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: reflyCommentQueryKey.list().queryKey,
+    queryKey: commentQueryKey.refly().queryKey,
     queryFn: ({ pageParam = 1 }) => commentListApi.getReflyCommentList({ ratingId, page: pageParam, size: 10 }),
     initialPageParam: 1,
     getNextPageParam: lastPage => {

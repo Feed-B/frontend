@@ -4,7 +4,7 @@ import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
 import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 import { commentApi } from "@/app/_apis/commentApi";
-import { reflyCommentQueryKey } from "@/app/_queryFactory/reflyCommentQuery";
+
 import { commentListApi } from "@/app/_apis/commentListApi";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
@@ -27,7 +27,7 @@ async function CommentPage({ params }: Props) {
   });
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: reflyCommentQueryKey.list().queryKey,
+    queryKey: commentQueryKey.refly().queryKey,
     queryFn: async () =>
       await commentListApi.getReflyCommentList({
         projectId: params.projectId,
