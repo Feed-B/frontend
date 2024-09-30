@@ -13,7 +13,7 @@ import { MyPageProjectListType } from "@/app/profile/[userId]/_components/Mypage
 export const useMyProjectList = (userId: number, selectDataType: MyPageProjectListType
 ) => {
   const query = useSuspenseInfiniteQuery({
-    queryKey: projectQueryKey.myProject().queryKey, 
+    queryKey: selectDataType === "myProject" ? projectQueryKey.myProject().queryKey : projectQueryKey.likeProject().queryKey, 
     queryFn: async ({ pageParam = 1 }) => {
       return projectListApi.getMyProjectList(
         { page: pageParam, size: 16, userId }, 
