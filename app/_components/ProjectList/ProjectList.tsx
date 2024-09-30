@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { RefObject } from "react";
-import formatViewCount from "@/app/_utils/formViewCount";
 import { ProjectListResponse } from "@/app/_apis/schema/projectListResponse";
+import formatViewCount from "@/app/_utils/formViewCount";
 import ProjectCardInfo from "./ProjectCardInfo";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import EmptyCard from "./ProjectCard/EmptyCard";
