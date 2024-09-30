@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import Link from "next/link";
-import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
-import landingDebateSection from "@/public/images/landingDebateSection.svg";
-import landingEvaluationSection from "@/public/images/landingEvaluationSection.svg";
-import landingProjectSection from "@/public/images/landingProjectSection.svg";
 import landingMainSection from "@/public/images/landingMainSection.svg";
+import landingProjectSection from "@/public/images/landingProjectSection.svg";
+import landingEvaluationSection from "@/public/images/landingEvaluationSection.svg";
+import landingDebateSection from "@/public/images/landingDebateSection.svg";
+import landingFeedBackSection from "@/public/images/landingFeedBackSection.svg";
 import Button from "./_components/Button/Button";
 import getQueryClient from "./_utils/getQueryClient";
 import { projectQueryKey } from "./_queryFactory/projectQuery";
