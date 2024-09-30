@@ -2,8 +2,8 @@
 import { useParams } from "next/navigation";
 import { MouseEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import { profileApi } from "@/app/_apis/userApi";
+import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory/MyPageCategory";
 import Profile from "./Profile/Profile";
