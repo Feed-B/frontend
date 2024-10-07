@@ -1,5 +1,4 @@
 "use client";
-
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
 import ToolTip from "../../Comment/ToolTip";
 import EnterRating from "../../Comment/EnterRating";

@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import useCheckLogin from "@/app/_hooks/useCheckLogin";
-import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
-import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
-import { commentApi } from "@/app/_apis/commentApi";
+import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
+import useCheckLogin from "@/app/_hooks/useCheckLogin";
+import { useMyComment } from "@/app/_hooks/reactQuery/useCommentQuery";
 import MyCommentProvider from "../../_context/MyCommentProvider";
 import { useMyCommentContext } from "../../_context/MyCommentProvider";
 import ShowComment from "./ShowComment/ShowComment";
@@ -24,11 +22,7 @@ const CommentContainer = ({ projectId }: Props) => {
   const { windowWidth } = useBrowserSize();
   const { TBC } = WINDOW_BOUNDARY.MAX;
 
-  const { data: myComment } = useQuery({
-    queryKey: commentQueryKey.myComment(projectId).queryKey,
-    queryFn: async () => await commentApi.getMyComment(projectId),
-    enabled: !!isLoggedIn,
-  });
+  const { data: myComment } = useMyComment(projectId, isLoggedIn);
 
   useEffect(() => {
     if (myComment && myComment.exists && view !== "edit") setView("show");

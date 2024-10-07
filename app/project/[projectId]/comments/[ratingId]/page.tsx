@@ -1,11 +1,8 @@
 import React from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
-import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
-import { commentApi } from "@/app/_apis/commentApi";
-
-import { commentListApi } from "@/app/_apis/commentListApi";
+import { usePrefetchCommentDetail, usePrefetchReflyCommentList } from "@/app/_hooks/reactQuery/useCommentQuery";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
 import CommentSection from "./_components/CommentSection";
@@ -21,29 +18,13 @@ async function CommentPage({ params }: Props) {
   revalidatePathAction(`project/${params.projectId}/comments/${params.ratingId}`);
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: commentQueryKey.detail(params.ratingId).queryKey,
-    queryFn: async () => await commentApi.getComment(params.ratingId),
-  });
+  usePrefetchCommentDetail(queryClient, params.ratingId);
 
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: commentQueryKey.refly().queryKey,
-    queryFn: async () =>
-      await commentListApi.getReflyCommentList({
-        projectId: params.projectId,
-        ratingId: params.ratingId,
-        page: 1,
-        size: 10,
-      }),
-
-    initialPageParam: 1 as never,
-    getNextPageParam: (lastPage: any) => {
-      const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1; // 다음 페이지 번호 반환
-      }
-      return undefined; // 더 이상 페이지가 없으면 undefined 반환
-    },
+  usePrefetchReflyCommentList(queryClient, {
+    projectId: params.projectId,
+    ratingId: params.ratingId,
+    page: 1,
+    size: 10,
   });
 
   const dehydratedState = dehydrate(queryClient);
