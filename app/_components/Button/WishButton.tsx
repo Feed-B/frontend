@@ -2,16 +2,14 @@
 import { MouseEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
-import { useQuery } from "@tanstack/react-query";
 import emptyProjectListIcon from "@/public/icons/emptyWhitePot.svg";
 import fullProjectListIcon from "@/public/icons/fullDarkPot.svg";
 import emptyProjectIcon from "@/public/icons/emptyBlackPot.svg";
 import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
 import { likeProjectApi } from "@/app/_apis/projectApi";
-import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
-import { profileApi } from "@/app/_apis/userApi";
+import { useCurrentUser } from "@/app/_hooks/reactQuery/useUserQuery";
 import LoginModal from "../Modal/LoginModal";
 
 interface WishButtonAndCountProps {
@@ -31,11 +29,7 @@ function WishButtonAndCount({
 }: WishButtonAndCountProps) {
   const isDarkMode = colorMode === "dark";
   const { isLoggedIn } = useCheckLogin();
-  const { data: currentUserId } = useQuery({
-    queryKey: userQueryKey.userId().queryKey,
-    queryFn: () => profileApi.getCurrentUserId(),
-    enabled: isLoggedIn,
-  });
+  const { data: currentUserId } = useCurrentUser(isLoggedIn);
   const { openModal, handleModalOpen, handleModalClose } = useModal();
 
   const full = {

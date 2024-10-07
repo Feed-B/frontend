@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { commentListApi } from "@/app/_apis/commentListApi";
-import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
+import { useInfinityReflyCommentList } from "@/app/_hooks/reactQuery/useCommentQuery";
 import ReflyCommentItem from "./ReflyCommentItem";
 
 interface ReflyCommentListProps {
@@ -15,18 +13,7 @@ interface ReflyCommentListProps {
 function ReflyCommentList({ ratingId, projectId }: ReflyCommentListProps) {
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
-  const { data: reflyPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: commentQueryKey.refly().queryKey,
-    queryFn: ({ pageParam = 1 }) => commentListApi.getReflyCommentList({ ratingId, page: pageParam, size: 10 }),
-    initialPageParam: 1,
-    getNextPageParam: lastPage => {
-      const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1; // 다음 페이지 번호 반환
-      }
-      return undefined; // 더 이상 페이지가 없으면 undefined 반환
-    },
-  });
+  const { data: reflyPage, fetchNextPage } = useInfinityReflyCommentList({ ratingId, size: 10 });
 
   useEffect(() => {
     if (isVisible) {

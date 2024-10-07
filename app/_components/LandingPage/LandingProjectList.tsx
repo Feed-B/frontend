@@ -1,16 +1,11 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Image from "next/image";
-import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
-import { projectListApi } from "@/app/_apis/projectListApi";
+import { useTotalProjectList } from "@/app/_hooks/reactQuery/useProjectQuery";
 
 function LandingProjectList() {
-  const { data } = useQuery({
-    queryKey: projectQueryKey.list().queryKey,
-    queryFn: async () => await projectListApi.getProjectList({ page: 1, size: 12, sortCondition: "LIKES" }),
-  });
+  const { data } = useTotalProjectList({ page: 1, size: 12, sortCondition: "LIKES" });
 
   if (!data) {
     return null;
