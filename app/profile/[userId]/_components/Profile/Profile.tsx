@@ -1,28 +1,19 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import ProfileImage from "@/app/_components/Profile/ProfileImage";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import JobBadge from "@/app/_components/JobBadge/JobBadge";
 import Button from "@/app/_components/Button/Button";
 import { JOB_CATEGORIES_KR, JobCategoriesType } from "@/app/_constants/JobCategoryData";
-import { userQueryKey } from "@/app/_queryFactory/userQuery";
-import { profileApi } from "@/app/_apis/userApi";
-import ProfileSkeleton from "../skeletonUI/ProfileSkeleton";
-import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { useProfileInfo } from "@/app/_hooks/reactQuery/useUserQuery";
 import { MY_PAGE_TEXT } from "../constant";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProfileSkeleton from "../skeletonUI/ProfileSkeleton";
 
 function Profile({ isMyPage }: { isMyPage: boolean }) {
   const { userId } = useParams();
 
-  const {
-    data: userProfileData,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: userQueryKey.profile(Number(userId)).queryKey,
-    queryFn: () => profileApi.getUserData(Number(userId)),
-  });
+  const { data: userProfileData, isPending, isError } = useProfileInfo(Number(userId));
   const { isOpen, toggleState } = useToggleHook();
 
   if (isError) {
