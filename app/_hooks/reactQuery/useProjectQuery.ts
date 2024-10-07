@@ -3,7 +3,12 @@ import { projectListApi } from "@/app/_apis/projectListApi";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { MyPageProjectListType } from "@/app/profile/[userId]/_components/MypageProjectSection";
 import { editProjectApi, projectApi } from "@/app/_apis/projectApi";
-import { EditProjectResponse, ProjectResponse } from "@/app/_apis/schema/projectResponse";
+import {
+  EditProjectResponse,
+  ProjectResponse,
+  TeamMemberResponse,
+  TotalRatingResponse,
+} from "@/app/_apis/schema/projectResponse";
 import type { projectStateType } from "@/app/main/_context/StackProvider";
 
 /** 프로젝트 리스트 */
@@ -67,31 +72,18 @@ export const useGetEditProject = (projectId: number) => {
 
 // 프로젝트 팀원 목록 조회
 export const useProjectTeamMember = (projectId: number) => {
-  const query = useQuery({
+  const query = useQuery<TeamMemberResponse, Error>({
     queryKey: projectQueryKey.teamMember(projectId).queryKey,
     queryFn: async () => await projectApi.getTeamMember(projectId),
   });
   return query;
 };
 
-// 프로젝트 좋아요 누른 횟수가 제일 많은 3개 조회
-export const useTopRatingProject = () => {};
-
 // 프로젝트 별점 항목들 각 각의 평균 조회
 export const useProjectAverageRating = (projectId: number) => {
-  const query = useQuery({
+  const query = useQuery<TotalRatingResponse, Error>({
     queryKey: projectQueryKey.averageRating(projectId).queryKey,
     queryFn: async () => await projectApi.getTotalRating(projectId),
   });
   return query;
 };
-
-/** 프로젝트 별점 관련 */
-// 프로젝트에 남긴 별점 상세 조회
-export const useProjectRating = () => {};
-
-// 프로젝트에 남긴 별점 목록 조회
-export const useWriteRatingList = () => {};
-
-// 프로젝트에 달린 나의 별점 조회
-export const useMyRating = () => {};
