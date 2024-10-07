@@ -1,7 +1,6 @@
 "use client";
-
 import React from "react";
-import { useMutation, useQuery, UseQueryResult, useQueryClient } from "@tanstack/react-query";
+import { useMutation, UseQueryResult, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import WishButtonAndCount from "@/app/_components/Button/WishButton";
 import { ProjectResponse } from "@/app/_apis/schema/projectResponse";
@@ -15,8 +14,9 @@ import WarningModal from "@/app/_components/Modal/WarningModal";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
-import SocialDropBox from "../Project/DropBox/SocialDropBox";
+import { useProjectDetail } from "@/app/_hooks/reactQuery/useProjectQuery";
 import MenuDropBox from "../Project/DropBox/MenuDropBox";
+import SocialDropBox from "../Project/DropBox/SocialDropBox";
 
 interface Props {
   projectId: number;
@@ -50,10 +50,8 @@ function ProjectHeader({ projectId }: Props) {
     },
   });
 
-  const { data: project }: UseQueryResult<ProjectResponse, Error> = useQuery({
-    queryKey: projectQueryKey.detail(projectId).queryKey,
-    queryFn: async () => await projectApi.getProject(projectId),
-  });
+  const { data: project }: UseQueryResult<ProjectResponse, Error> = useProjectDetail(projectId);
+
   if (!project) return null;
 
   const handleDeleteModal = () => {
