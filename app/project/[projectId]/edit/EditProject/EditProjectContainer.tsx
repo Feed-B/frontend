@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { notFound } from "next/navigation";
-import { EditProjectResponse } from "@/app/_apis/schema/projectResponse";
 import Title from "@/app/addproject/_components/Title";
 import ThumbnailBox from "@/app/addproject/_components/ThumbnailBox";
 import ProjectImageBox from "@/app/addproject/_components/ProjectImageBox/ProjectImageBox";
@@ -25,6 +24,7 @@ import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import ProgressBox from "@/app/addproject/_components/ProgressBox";
 import ErrorMessage from "@/app/addproject/_components/ErrorMessage";
 import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
+import { useGetEditProject } from "@/app/_hooks/reactQuery/useProjectQuery";
 
 type EditSectionDataType = TeammateType | ProjectLinkListType;
 
@@ -32,10 +32,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
   const [progress, setProgress] = useState(0);
 
   const queryClient = useQueryClient();
-  const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery({
-    queryKey: projectQueryKey.edit().queryKey,
-    queryFn: async () => await editProjectApi.getProject(projectId),
-  });
+  const { data: project } = useGetEditProject(projectId);
 
   const accessToken = getToken()?.accessToken;
 
