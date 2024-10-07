@@ -11,7 +11,7 @@ import React, {
 import { useQueryClient } from "@tanstack/react-query";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 
-interface projectStateType {
+export interface projectStateType {
   projectTechStacks: string[];
   sortCondition: "RECENT" | "LIKES" | "VIEWS";
   searchString: string;
