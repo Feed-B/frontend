@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { projectListApi } from "@/app/_apis/projectListApi";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { MyPageProjectListType } from "@/app/profile/[userId]/_components/MypageProjectSection";
@@ -9,10 +9,20 @@ import {
   TeamMemberResponse,
   TotalRatingResponse,
 } from "@/app/_apis/schema/projectResponse";
-import type { projectStateType } from "@/app/main/_context/StackProvider";
+import { ProjectListParams } from "@/app/_types/ProjectListType";
+import type { prefetchProjectListType, projectStateType } from "@/app/main/_context/StackProvider";
 
 /** 프로젝트 리스트 */
 // 전체 프로젝트 리스트 조회
+export const useTotalProjectList = (props: ProjectListParams) => {
+  const query = useQuery({
+    queryKey: projectQueryKey.list().queryKey,
+    queryFn: async () => await projectListApi.getProjectList(props),
+  });
+  return query;
+};
+
+// 전체 프로젝트 리스트 조회 -> 무한 스크롤
 export const useProjectList = (projectState: projectStateType) => {
   const query = useSuspenseInfiniteQuery({
     queryKey: projectQueryKey.list().queryKey,
@@ -84,6 +94,20 @@ export const useProjectAverageRating = (projectId: number) => {
   const query = useQuery<TotalRatingResponse, Error>({
     queryKey: projectQueryKey.averageRating(projectId).queryKey,
     queryFn: async () => await projectApi.getTotalRating(projectId),
+  });
+  return query;
+};
+
+/** Prefetch */
+// 전체 프로젝트 리스트 조회
+export const usePrefetchProjectList = (
+  queryClient: QueryClient,
+  projectState: prefetchProjectListType,
+  accessToken?: string
+) => {
+  const query = queryClient.prefetchQuery({
+    queryKey: projectQueryKey.list().queryKey,
+    queryFn: async () => await projectListApi.getProjectList(projectState, accessToken),
   });
   return query;
 };

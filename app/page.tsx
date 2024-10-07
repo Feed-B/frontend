@@ -7,19 +7,14 @@ import landingEvaluationSection from "@/public/images/landingEvaluationSection.s
 import landingProjectSection from "@/public/images/landingProjectSection.svg";
 import landingMainSection from "@/public/images/landingMainSection.svg";
 import Button from "./_components/Button/Button";
-import getQueryClient from "./_utils/getQueryClient";
-import { projectQueryKey } from "./_queryFactory/projectQuery";
 import LandingProjectList from "./_components/LandingPage/LandingProjectList";
 import AnimationSection from "./_components/LandingPage/AnimationSection";
-import { projectListApi } from "./_apis/projectListApi";
+import { usePrefetchProjectList } from "./_hooks/reactQuery/useProjectQuery";
+import getQueryClient from "./_utils/getQueryClient";
 
 export default async function Home() {
   const queryClient = getQueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: projectQueryKey.list().queryKey,
-    queryFn: async () => await projectListApi.getProjectList({ page: 1, size: 12, sortCondition: "LIKES" }),
-  });
+  usePrefetchProjectList(queryClient, { page: 1, size: 12, sortCondition: "LIKES" });
 
   const dehydratedState = dehydrate(queryClient);
 

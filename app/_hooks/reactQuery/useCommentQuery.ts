@@ -1,4 +1,4 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { QueryClient, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { commentListApi } from "@/app/_apis/commentListApi";
 import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { CommentListParams, ReflyCommentListParams } from "@/app/_types/CommentListType";
@@ -21,6 +21,24 @@ export const useReflyCommentList = (props: ReflyCommentListParams) => {
   const query = useQuery<ReflyCommentResponse, Error>({
     queryKey: commentQueryKey.refly().queryKey,
     queryFn: async () => await commentListApi.getReflyCommentList(props),
+  });
+  return query;
+};
+
+// 대댓글 무한 스크롤 조회
+export const useInfinityReflyCommentList = (props: ReflyCommentListParams) => {
+  const query = useInfiniteQuery({
+    queryKey: commentQueryKey.refly().queryKey,
+    queryFn: async ({ pageParam = 1 }) =>
+      await commentListApi.getReflyCommentList({ ratingId: props.ratingId, page: pageParam, size: props.size }),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => {
+      const { customPageable } = lastPage;
+      if (customPageable.hasNext) {
+        return customPageable.page + 1; // 다음 페이지 번호 반환
+      }
+      return undefined; // 더 이상 페이지가 없으면 undefined 반환
+    },
   });
   return query;
 };

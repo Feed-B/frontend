@@ -19,6 +19,12 @@ export interface projectStateType {
   size: number;
 }
 
+export interface prefetchProjectListType {
+  sortCondition?: "RECENT" | "LIKES" | "VIEWS";
+  page: number;
+  size: number;
+}
+
 interface StackContextType {
   projectState: projectStateType;
   setProjectState: Dispatch<SetStateAction<projectStateType>>;
