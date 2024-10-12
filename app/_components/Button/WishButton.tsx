@@ -1,15 +1,14 @@
 "use client";
 import { MouseEvent, useEffect, useState } from "react";
 import Image from "next/image";
-import { useMutation } from "@tanstack/react-query";
 import emptyProjectListIcon from "@/public/icons/emptyWhitePot.svg";
 import fullProjectListIcon from "@/public/icons/fullDarkPot.svg";
 import emptyProjectIcon from "@/public/icons/emptyBlackPot.svg";
 import fullProjectIcon from "@/public/icons/fullBrightPot.svg";
-import { likeProjectApi } from "@/app/_apis/projectApi";
 import useModal from "@/app/_hooks/useModal";
 import useCheckLogin from "@/app/_hooks/useCheckLogin";
 import { useCurrentUser } from "@/app/_hooks/reactQuery/useUserQuery";
+import useProjectMutation from "@/app/_hooks/mutations/useProjectMutation";
 import LoginModal from "../Modal/LoginModal";
 
 interface WishButtonAndCountProps {
@@ -46,6 +45,8 @@ function WishButtonAndCount({
     isFavorite: false,
     wishCountState: 0,
   });
+  
+  const {likeMutation, unLikeMutation} = useProjectMutation(projectId);
 
   useEffect(() => {
     setFavoriteState({
@@ -56,29 +57,18 @@ function WishButtonAndCount({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const likeMutation = useMutation({
-    mutationFn: (projectId: number) => {
-      return likeProjectApi.postLikeProject({ projectId });
-    },
-  });
-  const unLikeMutation = useMutation({
-    mutationFn: (projectId: number) => {
-      return likeProjectApi.deleteLikeProject({ projectId });
-    },
-  });
-
   const handleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
     if (isLoggedIn && currentUserId) {
       if (favoriteState.isFavorite) {
-        unLikeMutation.mutate(projectId);
+        unLikeMutation.mutate();
         setFavoriteState(prevState => ({
           isFavorite: false,
           wishCountState: prevState.wishCountState - 1,
         }));
       } else {
-        likeMutation.mutate(projectId);
+        likeMutation.mutate();
         setFavoriteState(prevState => ({
           isFavorite: true,
           wishCountState: prevState.wishCountState + 1,
