@@ -11,13 +11,13 @@ const useUserMutation = (profileData?: UserResponse, handleModalClose?: () => vo
 
   const changeProfileMutation = useMutation({
     mutationFn: (newProfileData: UserDataParams) => {
-      if (profileData?.id !== undefined) {
-        return profileApi.putUserData({
-          userId: profileData.id,
-          userData: newProfileData,
-        });
+      if (!profileData) {
+        throw new Error("User ID is undefined");
       }
-      throw new Error("User ID is undefined");
+      return profileApi.putUserData({
+        userId: profileData.id,
+        userData: newProfileData,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userQueryKey.profile(Number(profileData?.id)).queryKey });

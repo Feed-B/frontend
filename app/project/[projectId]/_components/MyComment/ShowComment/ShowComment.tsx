@@ -3,16 +3,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import arrowIcon from "@/public/icons/blackArrowRight.svg";
 import { MyCommentResponse } from "@/app/_apis/schema/commentResponse";
-import { commentApi } from "@/app/_apis/commentApi";
-import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
-import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
 import { WINDOW_BOUNDARY } from "@/app/_constants/WindowSize";
 import useModal from "@/app/_hooks/useModal";
+import useCommentMutation from "@/app/_hooks/mutations/useCommentMutation";
 import TotalStar from "../../Comment/TotalStar";
 import { useMyCommentContext } from "../../../_context/MyCommentProvider";
 import CommentProfile from "../../Comment/CommentProfile";
@@ -28,47 +24,23 @@ interface Props {
 
 function ShowComment({ projectId, myComment }: Props) {
   const { setCurrentPage } = useCurrentPageContext();
-  const queryClient = useQueryClient();
   const { setView } = useMyCommentContext();
-  const { addToast } = useToast();
 
   const { openModal, handleModalClose, handleModalOpen } = useModal();
   const { windowWidth } = useBrowserSize();
   const { TBC } = WINDOW_BOUNDARY.MAX;
+  const { deleteCommentMutation } = useCommentMutation({id: projectId, ratingId: myComment?.projectRating?.ratingId, setCurrentPage});
 
   const handleEditComment = () => {
     windowWidth > TBC ? setView("edit") : handleModalOpen();
   };
-
-  const mutation = useMutation({
-    mutationFn: () => {
-      return commentApi.deleteComment(ratingId);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKey.averageRating(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.myComment(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.list().queryKey,
-      });
-      setCurrentPage(1);
-      addToast("프로젝트 리뷰가 삭제되었습니다", "success");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("프로젝트 리뷰 삭제 오류가 발생했습니다", "error");
-    },
-  });
 
   if (!myComment.projectRating) return null;
   const { authorId, authorName, memberJob, childCommentCount, comment, averageRank, ratingId, authorProfileImageUrl } =
     myComment.projectRating;
 
   const handleDeleteComment = () => {
-    mutation.mutate();
+    deleteCommentMutation.mutate();
     setView("write");
   };
 
