@@ -1,10 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
 import { SignUpRequest } from "@/app/_apis/schema/userResponse";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { signUpApi } from "@/app/_apis/userApi";
 import { useLogin } from "@/app/_context/LoginProvider";
-import { setToken } from "@/app/_utils/handleToken";
+import useUserMutation from "@/app/_hooks/mutations/useUserMutation";
 import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import SignUpDropdownBox from "../../DropDown/SignUpDropdownBox";
@@ -33,21 +31,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
 
   const { email } = useLogin();
 
-  const mutation = useMutation({
-    mutationFn: (userData: SignUpRequest) => {
-      const response = signUpApi.postSignUp(userData);
-      return response;
-    },
-    onSuccess: data => {
-      console.log("Sign up Successful");
-      const accessToken = data.token;
-      setToken(accessToken);
-      window.location.reload(); // 회원가입 후 새로고침
-    },
-    onError: error => {
-      console.error("Sign up failed", error);
-    },
-  });
+  const { signUpMutation } = useUserMutation();
 
   const {
     register,
@@ -64,7 +48,7 @@ function SignUpForm({ item, dataType, setItem, handleModalClose }: SignUpFormPro
     };
 
     try {
-      await mutation.mutateAsync(requestData);
+      await signUpMutation.mutateAsync(requestData);
     } catch (error) {
       console.error("Error occured during mutation", error);
     }
