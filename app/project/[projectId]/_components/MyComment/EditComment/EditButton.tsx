@@ -1,11 +1,7 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { commentApi } from "@/app/_apis/commentApi";
 import Button from "@/app/_components/Button/Button";
-import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
-import { useToast } from "@/app/_context/ToastContext";
-import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
+import useCommentMutation from "@/app/_hooks/mutations/useCommentMutation";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
 import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
@@ -19,8 +15,6 @@ interface Props {
 function EditButton({ projectId, ratingId, showComment }: Props) {
   const { setCurrentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
-  const queryClient = useQueryClient();
-  const { addToast } = useToast();
 
   const putCommentData = {
     ideaRank: rating[0],
@@ -30,32 +24,16 @@ function EditButton({ projectId, ratingId, showComment }: Props) {
     comment: comment,
   };
 
-  const mutation = useMutation({
-    mutationFn: () => {
-      return commentApi.putComment(ratingId, { ...putCommentData });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKey.averageRating(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.myComment(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.list().queryKey,
-      });
-      setCurrentPage(1);
-      addToast("프로젝트 리뷰가 수정되었습니다", "success");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("프로젝트 리뷰 수정이 실패했습니다.", "error");
-    },
+  const { putCommentMutation } = useCommentMutation({
+    id: projectId,
+    ratingId,
+    commentData: putCommentData,
+    setCurrentPage,
   });
 
   const editComment = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    mutation.mutate();
+    putCommentMutation.mutate();
     showComment();
   };
 
