@@ -1,18 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { addProjectApi } from "@/app/_apis/projectApi";
 import { getToken } from "@/app/_utils/handleToken";
 import Input from "@/app/_components/Input/Input";
 import { AddProjectFormData, ProjectLinkListType, TeammateType } from "@/app/_types/AddProjectFormDataType";
 import useModal from "@/app/_hooks/useModal";
-import { useToast } from "@/app/_context/ToastContext";
-import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
-import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
+import useProjectMutation from "@/app/_hooks/mutations/useProjectMutation";
 import AddSection from "../_components/AddSection/AddSection";
 import SkillStackSection from "../_components/SkillStack/SkillStackSection";
 import ThumbnailBox from "../_components/ThumbnailBox";
@@ -30,10 +26,7 @@ type AddSectionDataType = TeammateType | ProjectLinkListType;
 function AddProjectContainer() {
   const [progress, setProgress] = useState(0);
 
-  const queryClient = useQueryClient();
-  const router = useRouter();
   const accessToken = getToken()?.accessToken;
-  const { addToast } = useToast();
 
   const [formValues, setFormValues] = useState({
     imageType: "웹",
@@ -63,6 +56,8 @@ function AddProjectContainer() {
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
+
+  const { postMutation } = useProjectMutation();
 
   useEffect(() => {
     const {
@@ -153,21 +148,6 @@ function AddProjectContainer() {
     },
     [clearErrors, setValue]
   );
-
-  const postMutation = useMutation({
-    mutationFn: (projectData: FormData) => addProjectApi.postProject(projectData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKey.list().queryKey,
-      });
-      revalidateTagAction("pojectList");
-      router.push("/main");
-      addToast("프로젝트가 생성되었습니다", "success");
-    },
-    onError: () => {
-      addToast("프로젝트 생성에 실패했습니다", "error");
-    },
-  });
 
   const handleFormSubmit = async (data: AddProjectFormData) => {
     setTouchedStack(true);

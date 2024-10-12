@@ -1,33 +1,17 @@
 import Image from "next/image";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ProjectData } from "@/app/_types/ProjectListType";
-import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { getToken } from "@/app/_utils/handleToken";
 import { revalidatePathAction } from "@/app/_utils/revalidationAction";
-import { projectApi } from "@/app/_apis/projectApi";
+import useProjectMutation from "@/app/_hooks/mutations/useProjectMutation";
 import HoverCard from "./HoverCard";
 
 function ProjectCard({ project }: { project: ProjectData }) {
-  const queryClient = useQueryClient();
-
-  const projectPostViewmutation = useMutation({
-    mutationFn: () => {
-      return projectApi.postProjectView(project.projectId);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKey.list().queryKey,
-      });
-    },
-    onError: error => {
-      console.error("Error:", error);
-    },
-  });
+  const { projectPostViewMutation } = useProjectMutation(project.projectId);
 
   const handlePostView = () => {
     const token = getToken();
     if (token) {
-      projectPostViewmutation.mutate();
+      projectPostViewMutation.mutate();
       revalidatePathAction("/main");
     }
   };
