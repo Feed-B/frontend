@@ -1,6 +1,5 @@
 "use client";
 import { FormEvent, useEffect } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import Modal from "@/app/_components/Modal/Modal";
 import ProfileImage from "@/app/_components/Profile/ProfileImage";
@@ -8,10 +7,9 @@ import Input from "@/app/_components/Input/Input";
 import DropDownBox from "@/app/addproject/_components/DropDown/DropDownBox";
 import useFileInput from "@/app/_hooks/useFileInput";
 import useTextInput from "@/app/_hooks/useTextInput";
-import { profileApi } from "@/app/_apis/userApi";
-import { userQueryKey } from "@/app/_queryFactory/userQuery";
 import { JobType, UserDataParams } from "@/app/_types/UserType";
 import { UserResponse } from "@/app/_apis/schema/userResponse";
+import useUserMutation from "@/app/_hooks/mutations/useUserMutation";
 import { MY_PAGE_TEXT } from "../constant";
 import DeleteImageButton from "./DeleteImageButton";
 import { isChangeAboutMe, isImageChange, isValidNickName } from "./profileValidation";
@@ -25,7 +23,6 @@ interface EditProfileModalProps {
 const REFLY_ABOUT_ME_LENGTH = 150;
 
 function EditProfileModal({ openModal, handleModalClose, profileData }: EditProfileModalProps) {
-  const queryClient = useQueryClient();
 
   const {
     inputRef: profileImageInputRef,
@@ -40,15 +37,7 @@ function EditProfileModal({ openModal, handleModalClose, profileData }: EditProf
   const aboutMeValue = useTextInput();
   const { value: jobValue, handleSetValue } = useTextInput();
 
-  const changeProfileMutation = useMutation({
-    mutationFn: (newProfileData: UserDataParams) => {
-      return profileApi.putUserData({ userId: profileData.id, userData: newProfileData });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userQueryKey.profile(Number(profileData.id)).queryKey });
-      handleModalClose();
-    },
-  });
+  const { changeProfileMutation } = useUserMutation(profileData, handleModalClose);
 
   const handleCompletedProfile = (event: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
     event.preventDefault();
