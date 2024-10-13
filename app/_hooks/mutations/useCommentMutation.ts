@@ -6,6 +6,14 @@ import { commentQueryKey } from "@/app/_queryFactory/commentQuery";
 import { projectQueryKey } from "@/app/_queryFactory/projectQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 
+interface CommentData {
+  ideaRank: number;
+  designRank: number;
+  functionRank: number;
+  completionRank: number;
+  comment: string;
+}
+
 const useCommentMutation = ({
   id,
   ratingId,
@@ -15,7 +23,7 @@ const useCommentMutation = ({
 }: {
   id?: number;
   ratingId?: number;
-  commentData?: any;
+  commentData?: CommentData;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
   setTextValue?: Dispatch<SetStateAction<string>>;
 }) => {
