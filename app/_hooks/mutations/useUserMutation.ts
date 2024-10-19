@@ -41,7 +41,7 @@ const useUserMutation = (profileData?: UserResponse, handleModalClose?: () => vo
     },
   });
 
-  return {changeProfileMutation, signUpMutation};
+  return { changeProfileMutation, signUpMutation };
 };
 
 export default useUserMutation;
