@@ -30,169 +30,123 @@ const useCommentMutation = ({
   const queryClient = useQueryClient();
   const { addToast } = useToast();
 
+  const handleSuccess = (action: string) => {
+    switch (action) {
+      case "postComment":
+        if (!id) {
+          throw new Error("Id is undefined");
+        }
+        queryClient.invalidateQueries({
+          queryKey: projectQueryKey.averageRating(id).queryKey,
+        });
+        queryClient.invalidateQueries({
+          queryKey: commentQueryKey.myComment(id).queryKey,
+        });
+        queryClient.invalidateQueries({
+          queryKey: commentQueryKey.list().queryKey,
+        });
+        addToast("프로젝트 리뷰가 작성되었습니다", "success");
+        break;
+      case "putComment":
+      case "deleteComment":
+        if (!id) {
+          throw new Error("Id is undefined");
+        }
+        if (setCurrentPage) {
+          // 프로젝트 상세 페이지
+          queryClient.invalidateQueries({
+            queryKey: projectQueryKey.averageRating(id).queryKey,
+          });
+        } else if (ratingId) {
+          // 댓글 상세 페이지
+          if (action === "putComment") {
+            queryClient.invalidateQueries({
+              queryKey: commentQueryKey.detail(ratingId).queryKey,
+            });
+          } else if (action === "deleteComment") {
+            queryClient.removeQueries({
+              queryKey: commentQueryKey.detail(ratingId).queryKey,
+            });
+          }
+        }
+        queryClient.invalidateQueries({
+          queryKey: commentQueryKey.myComment(id).queryKey,
+        });
+        queryClient.invalidateQueries({
+          queryKey: commentQueryKey.list().queryKey,
+        });
+        if (setCurrentPage) setCurrentPage(1);
+        addToast(`프로젝트 리뷰가 ${action === "deleteComment" ? "삭제" : "수정"}되었습니다`, "success");
+        break;
+      case "reflyComment":
+      case "putReflyComment":
+      case "deleteReflyComment":
+        queryClient.invalidateQueries({
+          queryKey: commentQueryKey.refly().queryKey,
+        });
+        if (setTextValue) setTextValue("");
+        addToast(`댓글이 ${action === "deleteReflyComment" ? "삭제" : "작성"}되었습니다`, "success");
+        revalidateTagAction("reflyCommentList");
+    }
+  };
+
+  const handleError = (error: any) => {
+    console.error("Error:", error);
+    addToast("오류가 발생했습니다.", "error");
+  };
+
   const postCommentMutation = useMutation({
     mutationFn: () => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
+      if (!id) throw new Error("Id is undefined");
       return commentApi.postComment(id, { ...commentData });
     },
-    onSuccess: () => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKey.averageRating(id).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.myComment(id).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.list().queryKey,
-      });
-      addToast("프로젝트 리뷰가 작성되었습니다", "success");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("프로젝트 리뷰 작성이 실패했습니다.", "error");
-    },
+    onSuccess: () => handleSuccess("postComment"),
+    onError: error => handleError(error),
   });
 
   const putCommentMutation = useMutation({
     mutationFn: () => {
-      if (!ratingId) {
-        throw new Error("Rating Id is undefined");
-      }
+      if (!ratingId) throw new Error("Rating Id is undefined");
       return commentApi.putComment(ratingId, { ...commentData });
     },
-    onSuccess: () => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
-      if (setCurrentPage) {
-        // 프로젝트 상세 페이지
-        queryClient.invalidateQueries({
-          queryKey: projectQueryKey.averageRating(id).queryKey,
-        });
-      } else if (ratingId) {
-        // 댓글 상세 페이지
-        queryClient.invalidateQueries({
-          queryKey: commentQueryKey.detail(ratingId).queryKey,
-        });
-      }
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.myComment(id).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.list().queryKey,
-      });
-      if (setCurrentPage) setCurrentPage(1);
-      addToast("프로젝트 리뷰가 수정되었습니다", "success");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("프로젝트 리뷰 수정이 실패했습니다.", "error");
-    },
+    onSuccess: () => handleSuccess("putComment"),
+    onError: error => handleError(error),
   });
 
   const deleteCommentMutation = useMutation({
     mutationFn: () => {
-      if (!ratingId) {
-        throw new Error("Rating Id is undefined");
-      }
+      if (!ratingId) throw new Error("Rating Id is undefined");
       return commentApi.deleteComment(ratingId);
     },
-    onSuccess: () => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
-      if (setCurrentPage) {
-        queryClient.invalidateQueries({
-          // 프로젝트 상세 페이지
-          queryKey: projectQueryKey.averageRating(id).queryKey,
-        });
-      } else if (ratingId) {
-        queryClient.removeQueries({
-          // 댓글 상세 페이지
-          queryKey: commentQueryKey.detail(ratingId).queryKey,
-        });
-      }
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.myComment(id).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.list().queryKey,
-      });
-      if (setCurrentPage) setCurrentPage(1);
-      addToast("프로젝트 리뷰가 삭제되었습니다", "success");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("프로젝트 리뷰 삭제 오류가 발생했습니다", "error");
-    },
+    onSuccess: () => handleSuccess("deleteComment"),
+    onError: error => handleError(error),
   });
 
   const postReflyCommentMutation = useMutation({
     mutationFn: (comment: string) => {
-      if (!ratingId) {
-        throw new Error("Rating Id is undefined");
-      }
+      if (!ratingId) throw new Error("Rating Id is undefined");
       return commentApi.postReflyComment(ratingId, comment);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.refly().queryKey,
-      });
-      if (setTextValue) setTextValue("");
-      addToast("댓글이 생성되었습니다", "success");
-      revalidateTagAction("reflyCommentList");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("댓글이 생성 오류가 발생했습니다", "error");
-    },
+    onSuccess: () => handleSuccess("postReflyComment"),
+    onError: error => handleError(error),
   });
 
   const putReflyCommentMutation = useMutation({
     mutationFn: (comment: string) => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
+      if (!id) throw new Error("Id is undefined");
       return commentApi.putReflyComment(id, comment);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.refly().queryKey,
-      });
-      if (setTextValue) setTextValue("");
-      addToast("댓글이 수정되었습니다", "success");
-      revalidateTagAction("reflyCommentList");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("댓글이 수정 오류가 발생했습니다", "error");
-    },
+    onSuccess: () => handleSuccess("putReflyComment"),
+    onError: error => handleError(error),
   });
 
   const deleteReflyCommentMutation = useMutation({
-    mutationFn: async () => {
-      if (!id) {
-        throw new Error("Id is undefined");
-      }
-      const response = await commentApi.deleteReflyComment(id);
-      return response;
+    mutationFn: () => {
+      if (!id) throw new Error("Id is undefined");
+      return commentApi.deleteReflyComment(id);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.refly().queryKey,
-      });
-      addToast("댓글이 삭제되었습니다", "success");
-      revalidateTagAction("reflyCommentList");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("댓글이 삭제 오류가 발생했습니다", "error");
-    },
+    onSuccess: () => handleSuccess("deleteReflyComment"),
+    onError: error => handleError(error),
   });
 
   return {
