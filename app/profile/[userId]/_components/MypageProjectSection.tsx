@@ -1,10 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import ProjectList from "@/app/_components/ProjectList/ProjectList";
 import { useIntersectionObserver } from "@/app/_hooks/useIntersectionObserver";
-import { projectListAPI } from "@/app/_apis/projectListAPI";
-import { profileProjectListKeys } from "@/app/_queryFactory/projectListQuery";
+import { useMyProjectList } from "@/app/_hooks/reactQuery/useProjectQuery";
 import { MY_PAGE_TEXT } from "./constant";
 
 export type MyPageProjectListType = "myProject" | "wishProject";
@@ -19,21 +17,7 @@ function MypageProjectSection({
   userId: number;
 }) {
   const { targetRef: lastCardRef, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
-  const projectListQuery = profileProjectListKeys.profileList({ userId: userId }, projectType);
-
-  const { data, fetchNextPage } = useInfiniteQuery({
-    queryKey: projectListQuery.queryKey,
-    queryFn: ({ pageParam = 1 }) =>
-      projectListAPI.getMyProjectList({ page: pageParam, size: 16, userId: userId }, projectType),
-    initialPageParam: 1,
-    getNextPageParam: lastPage => {
-      const { customPageable } = lastPage;
-      if (customPageable.hasNext) {
-        return customPageable.page + 1;
-      }
-      return undefined;
-    },
-  });
+  const { data, fetchNextPage } = useMyProjectList(userId, projectType);
 
   useEffect(() => {
     if (isVisible) {

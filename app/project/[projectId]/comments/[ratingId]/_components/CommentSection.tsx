@@ -1,10 +1,8 @@
 "use client";
-
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
+import { useCommentDetail } from "@/app/_hooks/reactQuery/useCommentQuery";
 import useToggleHook from "@/app/_hooks/useToggleHook";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { useCurrentUser } from "@/app/_hooks/reactQuery/useUserQuery";
 import CommentProfile from "../../../_components/Comment/CommentProfile";
 import EnterRating from "../../../_components/Comment/EnterRating";
 import EnterCommentProvider from "../../../_context/EnterCommentProvider";
@@ -21,8 +19,9 @@ interface CommentSectionProps {
 
 function CommentSection({ projectId, ratingId }: CommentSectionProps) {
   const { isOpen: commentEditOpen, toggleState } = useToggleHook();
-  const { data: commentDetailData, isPending } = useQuery(commentQueryKeys.detail(ratingId));
-  const { data: userId } = useQuery(userQueryKeys.userId());
+  const { data: commentDetailData, isPending } = useCommentDetail(ratingId);
+
+  const { data: userId } = useCurrentUser();
 
   if (!commentDetailData) {
     return <p>데이터를 가져오는데 실패했습니다. 죄송합니다.</p>;

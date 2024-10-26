@@ -1,12 +1,8 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { UseQueryResult, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { notFound } from "next/navigation";
-import { editProjectQueryKeys } from "@/app/_queryFactory/editProjectQuery";
-import { EditProjectResponse } from "@/app/_apis/schema/editProjectResponse";
 import Title from "@/app/addproject/_components/Title";
 import ThumbnailBox from "@/app/addproject/_components/ThumbnailBox";
 import ProjectImageBox from "@/app/addproject/_components/ProjectImageBox/ProjectImageBox";
@@ -16,37 +12,30 @@ import { EditProjectFormData } from "@/app/_types/EditProjectFormDataType";
 import Input from "@/app/_components/Input/Input";
 import AddSection from "@/app/addproject/_components/AddSection/AddSection";
 import SkillStackSection from "@/app/addproject/_components/SkillStack/SkillStackSection";
-import { editProjectApi } from "@/app/_apis/editProjectApi";
 import useModal from "@/app/_hooks/useModal";
 import { getToken } from "@/app/_utils/handleToken";
 import CancelModal from "@/app/_components/Modal/WarningModal";
-import { useToast } from "@/app/_context/ToastContext";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
-import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import ProgressBox from "@/app/addproject/_components/ProgressBox";
 import ErrorMessage from "@/app/addproject/_components/ErrorMessage";
 import { DESCRIPTION_MAX_LENGTH, TITLE_MAX_LENGTH } from "@/app/_constants/MaxTextLength";
+import { useGetEditProject } from "@/app/_hooks/reactQuery/useProjectQuery";
+import useProjectMutation from "@/app/_hooks/mutations/useProjectMutation";
 
 type EditSectionDataType = TeammateType | ProjectLinkListType;
 
 function EditProjectContainer({ projectId }: { projectId: number }) {
   const [progress, setProgress] = useState(0);
 
-  const queryClient = useQueryClient();
-  const { data: project }: UseQueryResult<EditProjectResponse, Error> = useQuery(
-    editProjectQueryKeys.detail(projectId)
-  );
+  const { data: project } = useGetEditProject(projectId);
 
   const accessToken = getToken()?.accessToken;
-
-  const router = useRouter();
 
   const [imageList, setImageList] = useState([] as any[]);
   const [imageType, setImageType] = useState("웹");
   const [touchedStack, setTouchedStack] = useState(false);
   const [touchedTeammate, setTouchedTeammate] = useState(false);
 
-  const { addToast } = useToast();
+  const { putMutation } = useProjectMutation(projectId);
 
   const {
     openModal: isCancelModalOpen,
@@ -97,7 +86,7 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
       setValue("introduction", project.introduction || "");
       setValue("content", project.content || "");
       setValue("serviceUrl", project.serviceUrl || "");
-      setImageType((project.imageType === "WEB" ? "웹" : "모바일") || "웹");
+      setImageType(project.imageType === "WEB" ? "웹" : "모바일");
     }
   }, [project, setValue]);
 
@@ -179,25 +168,6 @@ function EditProjectContainer({ projectId }: { projectId: number }) {
     },
     [clearErrors, setValue]
   );
-
-  const putMutation = useMutation({
-    mutationFn: (projectData: FormData) => editProjectApi.putProject(projectId, projectData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.detail(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.teamMember(projectId).queryKey,
-      });
-      revalidateTagAction("projectDetail");
-      revalidateTagAction("projectTeamMember");
-      router.push(`/project/${projectId}`);
-      addToast("프로젝트가 수정되었습니다", "success");
-    },
-    onError: () => {
-      addToast("프로젝트 수정에 실패했습니다", "error");
-    },
-  });
 
   const handleFormSubmit = async (data: EditProjectFormData) => {
     setTouchedStack(true);

@@ -1,13 +1,9 @@
 "use client";
 
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Button from "@/app/_components/Button/Button";
 import { REFLY_COMMENT_LENGTH } from "@/app/_constants/MaxTextLength";
-import { commentApi } from "@/app/_apis/comment";
-import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
-import { revalidateTagAction } from "@/app/_utils/revalidationAction";
+import useCommentMutation from "@/app/_hooks/mutations/useCommentMutation";
 
 interface CommentInputProps {
   projectId?: number;
@@ -19,54 +15,15 @@ interface CommentInputProps {
 }
 
 function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: CommentInputProps) {
-  const queryClient = useQueryClient();
   const [textValue, setTextValue] = useState("");
-
-  const { addToast } = useToast();
-
-  const commentQueryKey = commentQueryKeys.reflyList({ ratingId: ratingId || 0 });
+  const { postReflyCommentMutation } = useCommentMutation({ id: commentId, ratingId, setTextValue });
+  const { putReflyCommentMutation } = useCommentMutation({ id: commentId, setTextValue });
 
   useEffect(() => {
     if (commentValue) {
       setTextValue(commentValue);
     }
   }, [commentValue]);
-
-  const postReflyCommentmutation = useMutation({
-    mutationFn: (comment: string) => {
-      return commentApi.postReflyComment(ratingId, comment);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.queryKey,
-      });
-      setTextValue("");
-      addToast("댓글이 생성되었습니다", "success");
-      revalidateTagAction("reflyCommentList");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("댓글이 생성 오류가 발생했습니다", "error");
-    },
-  });
-
-  const putReflyCommentmutation = useMutation({
-    mutationFn: (comment: string) => {
-      return commentApi.putReflyComment(commentId, comment);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKey.queryKey,
-      });
-      setTextValue("");
-      addToast("댓글이 수정되었습니다", "success");
-      revalidateTagAction("reflyCommentList");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("댓글이 수정 오류가 발생했습니다", "error");
-    },
-  });
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTextValue(event.target.value);
@@ -75,9 +32,9 @@ function CommentInput({ ratingId, commentId, type, toggleState, commentValue }: 
   const handelSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (type === "post") {
-      postReflyCommentmutation.mutate(textValue);
+      postReflyCommentMutation.mutate(textValue);
     } else if (type === "put" && toggleState) {
-      putReflyCommentmutation.mutate(textValue);
+      putReflyCommentMutation.mutate(textValue);
       toggleState();
     }
   };

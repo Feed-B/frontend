@@ -1,5 +1,5 @@
-import Providers from "@/app/_queryFactory/providers";
-import { projectApi } from "@/app/_apis/project";
+import Providers from "@/app/_context/queryProviders";
+import { projectApi } from "@/app/_apis/projectApi";
 import "@/app/_styles/globals.css";
 
 interface Props {

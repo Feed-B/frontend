@@ -1,14 +1,10 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { commentApi } from "@/app/_apis/comment";
 import Button from "@/app/_components/Button/Button";
-import { useToast } from "@/app/_context/ToastContext";
-import { commentQueryKeys } from "@/app/_queryFactory/commentQuery";
 import { revalidateTagAction } from "@/app/_utils/revalidationAction";
 import useBrowserSize from "@/app/_hooks/useBrowserSize";
+import useCommentMutation from "@/app/_hooks/mutations/useCommentMutation";
 import { useEnterCommentContext } from "../../../_context/EnterCommentProvider";
-import { useCurrentPageContext } from "../../../_context/CurrentPageProvider";
 
 interface Props {
   ratingId: number;
@@ -17,13 +13,9 @@ interface Props {
 }
 
 function CommentEditButton({ ratingId, onClick, projectId }: Props) {
-  const { currentPage } = useCurrentPageContext();
   const { rating, comment } = useEnterCommentContext();
-  const { addToast } = useToast();
 
   const { windowWidth } = useBrowserSize();
-
-  const queryClient = useQueryClient();
 
   const editCommentData = {
     ideaRank: rating[0],
@@ -33,34 +25,14 @@ function CommentEditButton({ ratingId, onClick, projectId }: Props) {
     comment: comment,
   };
 
-  const mutation = useMutation({
-    mutationFn: () => {
-      return commentApi.putComment(ratingId, { ...editCommentData });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.detail(ratingId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.myComment(projectId).queryKey,
-      });
-      queryClient.invalidateQueries({
-        queryKey: commentQueryKeys.list({ projectId, page: currentPage }).queryKey,
-      });
-      addToast("프로젝트 리뷰가 수정되었습니다", "success");
-      revalidateTagAction("commentDetail");
-      revalidateTagAction("commentList");
-      revalidateTagAction("myComment");
-    },
-    onError: error => {
-      console.error("Error:", error);
-      addToast("리뷰 수정 오류가 발생했습니다.", "error");
-    },
-  });
+  const { putCommentMutation } = useCommentMutation({ id: projectId, ratingId, commentData: editCommentData });
 
   const editComment = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    mutation.mutate();
+    revalidateTagAction("commentDetail");
+    revalidateTagAction("commentList");
+    revalidateTagAction("myComment");
+    putCommentMutation.mutate();
     onClick();
   };
 

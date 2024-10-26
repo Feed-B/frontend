@@ -1,8 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { MouseEvent, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { useCurrentUser } from "@/app/_hooks/reactQuery/useUserQuery";
 import MypageProjectSection, { MyPageProjectListType } from "./MypageProjectSection";
 import MyPageCategory from "./MyPageCategory/MyPageCategory";
 import Profile from "./Profile/Profile";
@@ -11,7 +10,7 @@ function MyPageContent() {
   const { userId } = useParams();
   const [selectCategory, setSelectCategory] = useState<MyPageProjectListType>("myProject");
 
-  const { data: currentUserId } = useQuery(userQueryKeys.userId());
+  const { data: currentUserId } = useCurrentUser();
 
   if (!currentUserId) {
     return;
@@ -24,7 +23,7 @@ function MyPageContent() {
 
   return (
     <main
-      className="mx-auto mt-4 grid grid-cols-1 grid-rows-[fit-content_88px_1fr] gap-x-11 gap-y-10 px-8 
+      className="mx-auto mb-12 mt-4 grid grid-cols-1 grid-rows-[fit-content_88px_1fr] gap-x-11 gap-y-10 px-8 
       mb:gap-y-6 mb:p-5
       tbr:p-5 
       pc:mt-[64px] pc:max-w-[1200px] pc:grid-cols-[180px_1fr] pc:grid-rows-[fit-content_1fr] pc:gap-y-8

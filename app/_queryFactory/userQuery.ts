@@ -1,13 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { profileAPI } from "../_apis/ProfileAPI";
 
-export const userQueryKeys = createQueryKeys("user", {
-  userId: () => ({
-    queryKey: ["id"],
-    queryFn: () => profileAPI.getCurrentUserId(),
-  }),
-  detail: (userId: number) => ({
-    queryKey: ["profile"],
-    queryFn: () => profileAPI.getUserData(userId),
-  }),
+export const userQueryKey = createQueryKeys("user", {
+  userId: () => ["userId"],
+  profile: (userId: number) => ["profile", userId],
 });

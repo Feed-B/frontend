@@ -2,15 +2,13 @@
 
 import Image from "next/image";
 import React, { useRef } from "react";
-import { useQuery } from "@tanstack/react-query";
 import SmallArrowIcon from "@/public/icons/smallArrow.svg";
 import SmallTopArrowIcon from "@/public/icons/smallTopArrow.svg";
 import useToggleHook from "@/app/_hooks/useToggleHook";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
-import { profileAPI } from "@/app/_apis/ProfileAPI";
-import { userQueryKeys } from "@/app/_queryFactory/userQuery";
+import { useCurrentUser, useProfileInfo } from "@/app/_hooks/reactQuery/useUserQuery";
+import ProfileImage from "../Profile/ProfileImage";
 import DropDown from "../DropDown/DropDown";
-import ProfileImage from "../ProfileImage/ProfileImage";
 
 interface HeaderDropDownBoxProps {
   handleLogout: () => void;
@@ -23,13 +21,8 @@ function HeaderDropDownBox({ handleLogout }: HeaderDropDownBoxProps) {
 
   useOutsideClick(dropdownRef, toggleState, divRef);
 
-  const { data: userId } = useQuery(userQueryKeys.userId());
-
-  const { data: userdata } = useQuery({
-    queryKey: ["profile", userId?.id.toString()],
-    queryFn: () => profileAPI.getUserData(Number(userId?.id)),
-    enabled: !!userId,
-  });
+  const { data: userId } = useCurrentUser();
+  const { data: userdata } = useProfileInfo(Number(userId?.id));
 
   return (
     <>

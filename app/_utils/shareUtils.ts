@@ -1,4 +1,4 @@
-import { projectApi } from "../_apis/project";
+import { projectApi } from "../_apis/projectApi";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVICE_URL;
 

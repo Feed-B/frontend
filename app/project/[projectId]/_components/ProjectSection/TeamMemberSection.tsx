@@ -1,11 +1,8 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { TeamMemberResponse } from "@/app/_apis/schema/projectResponse";
-import { projectQueryKeys } from "@/app/_queryFactory/projectQuery";
 import { JOB_CATEGORIES_KR } from "@/app/_constants/JobCategoryData";
+import { useProjectTeamMember } from "@/app/_hooks/reactQuery/useProjectQuery";
 
 interface Props {
   projectId: number;
@@ -14,9 +11,8 @@ interface Props {
 type JobCategory = keyof typeof JOB_CATEGORIES_KR;
 
 function TeamMemberSection({ projectId }: Props) {
-  const { data: teamMember }: UseQueryResult<TeamMemberResponse, Error> = useQuery(
-    projectQueryKeys.teamMember(projectId)
-  );
+  const { data: teamMember } = useProjectTeamMember(projectId);
+
   if (!teamMember) return null;
 
   return (
