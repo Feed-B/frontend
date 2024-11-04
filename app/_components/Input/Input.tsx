@@ -2,7 +2,7 @@ import { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 import { UseFormRegisterReturn, FieldError } from "react-hook-form";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   inputSize: InputSize;
   register?: UseFormRegisterReturn;
