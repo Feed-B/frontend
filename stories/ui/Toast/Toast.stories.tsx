@@ -21,9 +21,9 @@ const Example = () => {
       <Button buttonSize="normal" bgColor="yellow" onClick={() => addToast("성공 성공", "success")}>
         Success Toast
       </Button>
-      <Button buttonSize="normal" bgColor="yellow" onClick={() => addToast("에러 발생", "error")}>
+      {/* <Button buttonSize="normal" bgColor="yellow" onClick={() => addToast("에러 발생", "error")}>
         Error Toast
-      </Button>
+      </Button> */}
     </div>
   );
 };
