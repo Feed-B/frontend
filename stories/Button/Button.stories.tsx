@@ -18,10 +18,8 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: "boolean",
     },
-    // 불필요한 속성
+    //type = "button"
     type: { table: { disable: true } },
-    onClick: { table: { disable: true } },
-    className: { table: { disable: true } },
   },
 };
 
