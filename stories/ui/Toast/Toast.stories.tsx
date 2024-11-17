@@ -28,10 +28,31 @@ const Example = () => {
   );
 };
 
-export const ToastStory: Story = {
+const Example2 = () => {
+  const { addToast } = useToast();
+
+  return (
+    <div className=" flex gap-10">
+      <Button buttonSize="normal" bgColor="yellow" onClick={() => addToast("에러 발생", "error")}>
+        Error Toast
+      </Button>
+    </div>
+  );
+};
+
+export const Success: Story = {
   render: () => (
     <ToastProvider>
       <Example />
+      <ToastContainer />
+    </ToastProvider>
+  ),
+};
+
+export const Error: Story = {
+  render: () => (
+    <ToastProvider>
+      <Example2 />
       <ToastContainer />
     </ToastProvider>
   ),
