@@ -81,11 +81,11 @@ const ProfileModalComponents = () => {
   );
 };
 
-export const LoginModalStory: Story = {
+export const Login: Story = {
   render: () => <LoginModalComponents />,
 };
 
-export const SignupModalStory: Story = {
+export const Signup: Story = {
   render: () => (
     <Providers>
       <LoginProvider>
@@ -95,7 +95,7 @@ export const SignupModalStory: Story = {
   ),
 };
 
-export const ProfileModalStory: Story = {
+export const Profile: Story = {
   render: () => (
     <Providers>
       <ProfileModalComponents />
