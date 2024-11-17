@@ -2,12 +2,12 @@ import { composeStories } from "@storybook/react";
 import React from "react";
 import { render, screen, userEvent } from "../../util/test-util";
 import * as stories from "./Toast.stories";
-const { ToastStory } = composeStories(stories);
+const { Success } = composeStories(stories);
 
 describe("Toast 컴포넌트 테스트", () => {
   it("Toast 클릭 시 Toast가 잘 뜨는지 확인", async () => {
     // GIVEN
-    render(<ToastStory />);
+    render(<Success />);
 
     // WHEN
     const button = screen.getByRole("button");
@@ -23,7 +23,7 @@ describe("Toast 컴포넌트 테스트", () => {
 
   it("Toast 클릭 후 3초 뒤 Toast가 사라지는지 확인", async () => {
     // GIVEN
-    const { container } = render(<ToastStory />);
+    const { container } = render(<Success />);
 
     // WHEN
     const button = screen.getByRole("button");
