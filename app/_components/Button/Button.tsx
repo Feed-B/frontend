@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren {
   buttonSize: ButtonSize;
   bgColor: BgColor;
 }
