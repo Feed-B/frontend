@@ -13,7 +13,7 @@ const meta: Meta<typeof ToastProvider> = {
 export default meta;
 type Story = StoryObj<typeof ToastProvider>;
 
-const Example = () => {
+const SuccessToastStory = () => {
   const { addToast } = useToast();
 
   return (
@@ -28,7 +28,7 @@ const Example = () => {
   );
 };
 
-const Example2 = () => {
+const ErrorToastStory = () => {
   const { addToast } = useToast();
 
   return (
@@ -43,7 +43,7 @@ const Example2 = () => {
 export const Success: Story = {
   render: () => (
     <ToastProvider>
-      <Example />
+      <SuccessToastStory />
       <ToastContainer />
     </ToastProvider>
   ),
@@ -52,7 +52,7 @@ export const Success: Story = {
 export const Error: Story = {
   render: () => (
     <ToastProvider>
-      <Example2 />
+      <ErrorToastStory />
       <ToastContainer />
     </ToastProvider>
   ),
