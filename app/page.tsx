@@ -12,7 +12,7 @@ import AnimationSection from "./_components/LandingPage/AnimationSection";
 import { usePrefetchProjectList } from "./_hooks/reactQuery/useProjectQuery";
 import getQueryClient from "./_utils/getQueryClient";
 
-export default async function Home() {
+export default function Home() {
   const queryClient = getQueryClient();
   usePrefetchProjectList(queryClient, { page: 1, size: 12, sortCondition: "LIKES" });
 
