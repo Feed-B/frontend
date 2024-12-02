@@ -1,6 +1,6 @@
 import { composeStories } from "@storybook/react";
 import React from "react";
-import { render, screen, userEvent } from "../../util/test-util";
+import { render, screen, userEvent, waitFor } from "../../util/test-util";
 import * as stories from "./Toast.stories";
 const { Success } = composeStories(stories);
 
@@ -15,9 +15,9 @@ describe("Toast 컴포넌트 테스트", () => {
 
     //THEN;
 
-    // await waitFor(() => {
-    //       expect(screen.getByText("성공 성공")).toBeInTheDocument();
-    // });
+    await waitFor(() => {
+      expect(screen.getByText("성공 성공")).toBeInTheDocument();
+    });
     expect(screen.getByText("성공 성공")).toBeInTheDocument();
   });
 
@@ -32,10 +32,10 @@ describe("Toast 컴포넌트 테스트", () => {
     const toastContainer = container.querySelector("#toast-container");
 
     // THEN
-    // jest.advanceTimersByTime(3901);
-    // await waitFor(() => {
-    //   expect(toastContainer?.hasChildNodes()).toBeFalsy();
-    // });
+    jest.advanceTimersByTime(3901);
+    await waitFor(() => {
+      expect(toastContainer?.hasChildNodes()).toBeFalsy();
+    });
     expect(toastContainer?.hasChildNodes()).toBeFalsy();
   });
 });

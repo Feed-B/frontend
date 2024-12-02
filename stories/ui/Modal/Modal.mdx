@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import * as ModalStories from "./Modal.stories";
+import Modal from "@/app/_components/Modal/Modal";
+
+<Meta of={ModalStories} />
+
+# Modal Components
+
+`Modal` 컴포넌트는 다양한 모달 기능을 제공합니다. 아래는 `LoginModal`, `SignUpModal`, `EditProfileModal`과 같은 예제입니다.
+
+## Props
+
+`Modal` 컴포넌트는 두 가지 주요 props를 받습니다:
+
+- `openModal`  
+  이 prop은 모달이 열려 있는지 여부를 제어하는 **boolean** 값입니다. `true`로 설정하면 모달이 열리고, `false`로 설정하면 닫힙니다.
+
+- `handleModalClose`  
+  모달을 닫는 동작을 수행하는 **함수**입니다. 이 함수를 호출하면 모달이 닫히는 로직이 실행됩니다.
+
+각 props는 모달의 동작과 상태 관리를 위한 핵심 역할을 합니다.
+
+---
+
+## Examples
+
+### Login Modal
+
+로그인 버튼을 클릭하면 `LoginModal`이 표시됩니다.
+
+<Canvas of={ModalStories.Login}>
+
+</Canvas>
+
+---
+
+### Signup Modal
+
+회원가입 버튼을 클릭하면 `SignUpModal`이 표시됩니다.
+
+<Canvas of={ModalStories.Signup}></Canvas>
+
+---
+
+### Profile Modal
+
+수정 버튼을 클릭하면 프로필 수정 모달이 표시됩니다.
+
+<Canvas of={ModalStories.Signup}></Canvas>
+
+---
+
+## Notes
+
+- `LoginModal` 및 `SignUpModal`은 각각 `useModal` 훅을 통해 모달 상태를 관리합니다.
+- `EditProfileModal`은 추가적으로 사용자 데이터를 받아 프로필 정보를 수정할 수 있습니다.
+
+---

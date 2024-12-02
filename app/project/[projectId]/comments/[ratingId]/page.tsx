@@ -13,11 +13,10 @@ interface Props {
   };
 }
 
-async function CommentPage({ params }: Props) {
+function CommentPage({ params }: Props) {
   const queryClient = new QueryClient();
 
   usePrefetchCommentDetail(queryClient, params.ratingId);
-
   usePrefetchReflyCommentList(queryClient, {
     projectId: params.projectId,
     ratingId: params.ratingId,

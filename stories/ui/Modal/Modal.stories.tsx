@@ -87,11 +87,9 @@ export const Login: Story = {
 
 export const Signup: Story = {
   render: () => (
-    <Providers>
-      <LoginProvider>
-        <SignupModalComponents />
-      </LoginProvider>
-    </Providers>
+    <LoginProvider>
+      <SignupModalComponents />
+    </LoginProvider>
   ),
 };
 

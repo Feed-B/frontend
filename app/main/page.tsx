@@ -5,7 +5,7 @@ import getQueryClient from "../_utils/getQueryClient";
 import { usePrefetchProjectList } from "../_hooks/reactQuery/useProjectQuery";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
-async function MainPage() {
+function MainPage() {
   const queryClient = getQueryClient();
   const cookieStore = cookies();
   const ACCESS_TOKEN = cookieStore.get("ACCESS_TOKEN");
