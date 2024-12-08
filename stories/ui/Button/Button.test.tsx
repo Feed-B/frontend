@@ -1,6 +1,6 @@
 import { composeStories } from "@storybook/react";
 import { userEvent, render, screen } from "../../util/test-util";
-import * as stories from "./Button.stories"; // 스토리북에서 Button 스토리를 가져옴
+import * as stories from "./Button.stories";
 
 const { Normal } = composeStories(stories);
 
