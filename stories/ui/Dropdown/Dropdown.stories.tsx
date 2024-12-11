@@ -10,7 +10,7 @@ import urlCircle from "@/public/icons/urlCircle.svg";
 import useOutsideClick from "@/app/_hooks/useOutsideClick";
 import kakaoImage from "@/public/icons/kakaoCircle.svg";
 
-const LINK_URL = process.env.NEXT_PUBLIC_SERVICE_URL;
+const EXAMPLE_URL = process.env.NEXT_PUBLIC_SERVICE_URL;
 
 const meta: Meta<typeof Dropdown> = {
   component: Dropdown,
@@ -58,7 +58,7 @@ export const Menu: StoryObj<DropDownProps> = {
 export const Header: StoryObj<DropDownProps> = {
   render: () => (
     <Example>
-      <DropDown.LinkItem href={`${LINK_URL}`}>마이페이지</DropDown.LinkItem>
+      <DropDown.LinkItem href={`${EXAMPLE_URL}`}>마이페이지</DropDown.LinkItem>
       <DropDown.HR />
       <DropDown.TextItem>로그아웃</DropDown.TextItem>
     </Example>
