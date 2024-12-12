@@ -7,6 +7,7 @@ const meta: Meta<typeof Input> = {
   parameters: {
     layout: "centered",
   },
+  title: "ui/Input",
   tags: ["autodocs"],
   argTypes: {
     inputSize: {
