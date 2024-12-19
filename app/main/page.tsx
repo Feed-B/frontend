@@ -2,12 +2,10 @@ import React from "react";
 import { cookies } from "next/headers";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "../_utils/getQueryClient";
-import { revalidateTagAction } from "../_utils/revalidationAction";
 import { usePrefetchProjectList } from "../_hooks/reactQuery/useProjectQuery";
 import SelectStack from "./_components/SelectStack/SelectStack";
 
-async function MainPage() {
-  revalidateTagAction("pojectList");
+function MainPage() {
   const queryClient = getQueryClient();
   const cookieStore = cookies();
   const ACCESS_TOKEN = cookieStore.get("ACCESS_TOKEN");

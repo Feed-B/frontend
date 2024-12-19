@@ -1,0 +1,56 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import * as ToastStories from "./Toast.stories";
+import { ToastProvider } from "@/app/_context/ToastContext";
+import ToastContainer from "@/app/_components/Toast/ToastContainer";
+
+<Meta of={ToastStories} />
+
+# Toast Components
+
+`ToastProvider`는 Toast 메시지를 관리하고 표시하는 기능을 제공합니다. 아래는 `SuccessToast`와 `ErrorToast` 예제입니다.
+
+## Props
+
+`ToastProvider`와 `useToast` 훅은 다음과 같은 props와 함수를 제공합니다:
+
+- `addToast(message: string, type: "success" | "error")`  
+  이 함수는 Toast 메시지를 추가하는 데 사용됩니다. 첫 번째 인자는 표시할 메시지이고, 두 번째 인자는 Toast의 유형을 지정합니다. `success`와 `error`로 구분할 수 있습니다.
+
+- `ToastContainer`  
+  이 컴포넌트는 실제로 Toast 메시지를 화면에 표시하는 역할을 합니다.
+
+---
+
+## Examples
+
+### Success Toast
+
+"Success Toast" 버튼을 클릭하면 성공 메시지가 표시됩니다.
+
+<Canvas of={ToastStories.Success} />
+
+---
+
+### Error Toast
+
+"Error Toast" 버튼을 클릭하면 에러 메시지가 표시됩니다.
+
+<Canvas of={ToastStories.Error} />
+
+---
+
+## Notes
+
+- `ToastProvider`는 Toast 메시지를 제공하며, `useToast` 훅을 통해 메시지를 추가할 수 있습니다.
+- `ToastContainer`는 실제로 화면에 표시되는 Toast를 담당합니다.
+
+---
+
+## Source Code
+
+```tsx
+<ToastProvider>
+  <SuccessToastStory />
+  <ToastContainer />
+</ToastProvider>
+```
