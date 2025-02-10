@@ -8,6 +8,7 @@ function httpClient() {
       next: {
         tags: [...tags],
       },
+      cache: "no-store",
     });
     const result: R = await response.json();
     return result;

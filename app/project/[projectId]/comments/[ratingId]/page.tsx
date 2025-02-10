@@ -1,7 +1,6 @@
 import React from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import ScrollToTopButton from "@/app/_components/Button/DirectionButton";
-import { revalidatePathAction } from "@/app/_utils/revalidationAction";
 import { usePrefetchCommentDetail, usePrefetchReflyCommentList } from "@/app/_hooks/reactQuery/useCommentQuery";
 import CommentInput from "./_components/CommentInput";
 import ReflyCommentList from "./_components/ReflyCommentList";
@@ -14,12 +13,10 @@ interface Props {
   };
 }
 
-async function CommentPage({ params }: Props) {
-  revalidatePathAction(`project/${params.projectId}/comments/${params.ratingId}`);
+function CommentPage({ params }: Props) {
   const queryClient = new QueryClient();
 
   usePrefetchCommentDetail(queryClient, params.ratingId);
-
   usePrefetchReflyCommentList(queryClient, {
     projectId: params.projectId,
     ratingId: params.ratingId,

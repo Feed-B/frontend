@@ -22,7 +22,7 @@ function Modal({ children, openModal, handleModalClose, className }: ModalProps)
 
   return (
     <ModalPortal>
-      <div className="fixed left-0 top-0 z-50 h-full w-full bg-black-overlay" onClick={handleModalClose}>
+      <div role="dialog" className="fixed left-0 top-0 z-50 h-full w-full bg-black-overlay" onClick={handleModalClose}>
         <div onClick={event => event.stopPropagation()} className={`${modalClass} ${openModal ? open : ""}`}>
           <Image
             src={closeIcon}
